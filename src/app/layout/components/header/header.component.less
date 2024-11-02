@@ -1,7 +1,7 @@
 @import "src/styles/variables";
 @import "src/styles/mixins";
 
-.layout-header {
+.header {
   position: fixed;
   height: 5rem;
   left: 0;
@@ -19,7 +19,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     padding: 0 1rem;
-    border-radius: 12px;
+    border-radius: @borderRadius;
     margin-left: 0.5rem;
 
     &:focus {
@@ -53,8 +53,7 @@
 }
 
 @media (max-width: 991px) {
-  .layout-header {
-
+  .header {
     &-logo {
       width: 100%;
       display: flex;

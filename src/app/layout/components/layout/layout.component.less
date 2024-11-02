@@ -1,75 +1,35 @@
-.layout-wrapper {
+@import "src/styles/variables";
+
+@headerBottomMargin: 7rem;
+@sideMargin: 2rem;
+
+.layout {
   min-height: 100vh;
-  border: 1px solid red;
-}
 
-.layout-menu {
-  position: fixed;
-  width: 300px;
-  height: calc(100vh - 9rem);
-  z-index: 999;
-  overflow-y: auto;
-  user-select: none;
-  top: 7rem;
-  left: 2rem;
-  transition: transform .2s, left .2s;
-  background-color: var(--surface-overlay);
-  border-radius: 12px;
-  padding: 0.5rem 1.5rem;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .02), 0 0 2px rgba(0, 0, 0, .05), 0 1px 4px rgba(0, 0, 0, .08);
-  border: 1px solid red;
-}
-
-.layout-main-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
-  padding: 7rem 2rem 2rem 4rem;
-  transition: margin-left .2s;
-
-  border: 1px solid green;
-}
-
-.layout-main {
-  flex: 1 1 auto;
-
-  border: 1px solid darkblue;
-}
-
-@media screen and (min-width: 1960px) {
-  .layout-main {
-    width: 1504px;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  &-menu {
+    position: fixed;
+    width: 300px;
+    height: calc(100vh - 9rem);
+    top: @headerBottomMargin;
+    left: @sideMargin;
+    transition: transform @transition, left @transition;
+    background-color: var(--surface-overlay);
+    border-radius: @borderRadius;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .02), 0 0 2px rgba(0, 0, 0, .05), 0 1px 4px rgba(0, 0, 0, .08);
   }
 
-}
-
-@media (min-width: 992px) {
-  .layout-wrapper {
-    &.layout-static {
-      .layout-main-container {
-        margin-left: 300px;
-      }
-    }
+  &-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding: @headerBottomMargin @sideMargin 2rem 4rem;
+    transition: margin-left @transition;
+    margin-left: 300px;
   }
-}
 
-@media (max-width: 991px) {
-  .layout-wrapper {
-    .layout-main-container {
-      margin-left: 0;
-      padding-left: 2rem;
-    }
-
-    .layout-menu {
-      transform: translateX(-100%);
-      left: 0;
-      top: 0;
-      height: 100vh;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+  &-main {
+    flex: 1 1 auto;
   }
 }
