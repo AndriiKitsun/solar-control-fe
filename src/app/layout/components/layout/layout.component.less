@@ -1,0 +1,35 @@
+@import "src/styles/variables";
+
+@headerBottomMargin: 7rem;
+@sideMargin: 2rem;
+
+.layout {
+  min-height: 100vh;
+
+  &-menu {
+    position: fixed;
+    width: 300px;
+    height: calc(100vh - 9rem);
+    top: @headerBottomMargin;
+    left: @sideMargin;
+    transition: transform @transition, left @transition;
+    background-color: var(--surface-overlay);
+    border-radius: @borderRadius;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .02), 0 0 2px rgba(0, 0, 0, .05), 0 1px 4px rgba(0, 0, 0, .08);
+  }
+
+  &-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding: @headerBottomMargin @sideMargin 2rem 4rem;
+    transition: margin-left @transition;
+    margin-left: 300px;
+  }
+
+  &-main {
+    flex: 1 1 auto;
+  }
+}
