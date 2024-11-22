@@ -6,6 +6,6 @@ import { Button } from 'primeng/button';
   standalone: true,
   imports: [Button],
   templateUrl: './theme-configurator.component.html',
-  styleUrl: './theme-configurator.component.less',
+  styleUrl: './theme-configurator.component.scss',
 })
 export class ThemeConfiguratorComponent {}

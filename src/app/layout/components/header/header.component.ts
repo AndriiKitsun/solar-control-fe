@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { LayoutService } from '../../services/layout/layout.service';
-import { Button } from 'primeng/button';
-import { ThemeConfiguratorComponent } from '../theme-configurator/theme-configurator.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, Button, ThemeConfiguratorComponent],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.less',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   isDarkMode = false;

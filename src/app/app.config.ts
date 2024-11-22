@@ -21,6 +21,7 @@ const preset = definePreset(Lara, {
     },
   },
 });
+console.log(`preset -->`, preset);
 
 export const appConfig: ApplicationConfig = {
   providers: [
