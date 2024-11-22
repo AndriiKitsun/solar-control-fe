@@ -93,7 +93,9 @@ export class LayoutService {
   private loadThemeConfig(): void {
     this.colorScheme = this.loadKey(
       LayoutService.colorSchemeKey,
-      ColorScheme.LIGHT,
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? ColorScheme.DARK
+        : ColorScheme.LIGHT,
     );
 
     this.primaryColor = this.loadKey(
