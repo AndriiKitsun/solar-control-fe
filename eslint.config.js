@@ -44,6 +44,12 @@ module.exports = tseslint.config(
     },
   },
   {
+    files: ["**/*.spec.ts"],
+    rules: {
+      '@typescript-eslint/no-empty-function': 'off'
+    },
+  },
+  {
     files: ["**/*.html"],
     extends: [
       ...angular.configs.templateRecommended,

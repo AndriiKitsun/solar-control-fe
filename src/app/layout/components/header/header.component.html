@@ -1,9 +1,28 @@
 <div class="header">
-  <button class="p-link header-button" (click)="toggleManu()">
-    <i class="pi pi-bars"></i>
-  </button>
+  <div class="header-logo-container">
+    <button pRipple type="button" class="header-button">
+      <i class="pi pi-bars"></i>
+    </button>
 
-  <a class="header-logo" routerLink="">
-    <span>Solar Control</span>
-  </a>
+    <a class="header-logo" routerLink="/">
+      <span>Solar Control</span>
+    </a>
+  </div>
+
+  <div class="header-actions-container">
+    <button pRipple type="button" (click)="toggleDarkMode()" class="header-button">
+      <i [class]="themeIcons[colorScheme]"></i>
+    </button>
+
+    <app-theme-configurator>
+      <button pRipple type="button" class="header-button header-button-highlight"
+              pStyleClass="@next" enterFromClass="hidden"
+              enterActiveClass="animate-scalein" leaveActiveClass="animate-fadeout"
+              leaveToClass="hidden"
+              [hideOnOutsideClick]='true'
+      >
+        <i class="pi pi-palette"></i>
+      </button>
+    </app-theme-configurator>
+  </div>
 </div>

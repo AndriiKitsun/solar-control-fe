@@ -1,0 +1,33 @@
+.layout {
+  min-height: 100vh;
+
+  &-menu {
+    position: fixed;
+    width: 20rem;
+    height: calc(100vh - 8rem);
+    overflow-y: auto;
+    user-select: none;
+    top: 6rem;
+    left: 2rem;
+    transition:
+      transform var(--layout-section-transition-duration),
+      left var(--layout-section-transition-duration);
+    background-color: var(--content-card-background);
+    border-radius: var(--content-border-radius);
+    padding: 0.5rem 1.5rem;
+  }
+  //
+  //&-main-container {
+  //  display: flex;
+  //  flex-direction: column;
+  //  min-height: 100vh;
+  //  justify-content: space-between;
+  //  padding: @headerBottomMargin @sideMargin 2rem 4rem;
+  //  transition: margin-left var(--transition-duration);
+  //  margin-left: 300px;
+  //}
+  //
+  //&-main {
+  //  flex: 1 1 auto;
+  //}
+}
