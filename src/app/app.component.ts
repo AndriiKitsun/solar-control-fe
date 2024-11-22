@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,4 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
 })
-export class AppComponent implements OnInit {
-  constructor(private primengConfig: PrimeNGConfig) {}
-
-  ngOnInit(): void {
-    this.primengConfig.ripple = true;
-  }
-}
+export class AppComponent {}

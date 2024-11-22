@@ -1,9 +1,7 @@
-@import "variables";
-
 .focused() {
   outline: 0 none;
   outline-offset: 0;
-  transition: box-shadow @transition;
+  transition: box-shadow var(--transition-duration);
   box-shadow: var(--focus-ring);
 }
 
