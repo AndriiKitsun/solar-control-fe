@@ -1,9 +1,21 @@
 <div class="header">
-  <button class="header-button" (click)="toggleManu()">
-    <i class="pi pi-bars"></i>
-  </button>
+  <div class="header-logo-container">
+    <button type="button" class="header-button" (click)="toggleManu()">
+      <i class="pi pi-bars"></i>
+    </button>
 
-  <a class="header-logo" routerLink="/">
-    <span>Solar Control</span>
-  </a>
+    <a class="header-logo" routerLink="/">
+      <span>Solar Control</span>
+    </a>
+  </div>
+
+  <div class="header-actions-container">
+    <button type="button" (click)="toggleDarkMode()" class="header-button">
+      <i [class]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"></i>
+    </button>
+
+    <button type="button" class="header-button">
+      <i class="pi pi-palette"></i>
+    </button>
+  </div>
 </div>

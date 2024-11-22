@@ -2,61 +2,82 @@
 
 .header {
   position: fixed;
-  height: 5rem;
+  height: 4rem;
   left: 0;
   top: 0;
   width: 100%;
   padding: 0 2rem;
-  background-color: var(--p-content-background);
-  transition: left var(--transition-duration);
+  //background-color: var(--surface-card);
+  transition: left var(--layout-section-transition-duration);
   display: flex;
   align-items: center;
+
+  // My styles
+  border: 1px solid red;
   box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
+  justify-content: space-between;
 
-  &-logo {
-    color: var(--p-surface-900);
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding: 0 1rem;
-    border-radius: 12px;
-    margin-left: 0.5rem;
+  &-logo-container {
+    //width: 20rem;
+    //display: flex;
+    //align-items: center;
 
-    &:focus {
-      .focused();
-    }
+    //color: var(--p-surface-900);
+    //font-size: 1.5rem;
+    //font-weight: 500;
+    //padding: 0 1rem;
+    //border-radius: 12px;
+    //margin-left: 0.5rem;
+    //
+    //&:focus {
+    //  .focused();
+    //}
+    border: 1px solid red;
   }
 
   &-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color-secondary);
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    transition: background-color var(--transition-duration);
-
-    &:hover {
-      color: var(--text-color);
-      background-color: var(--surface-hover);
-    }
-
-    &:focus {
-      .focused();
-    }
-
-    i {
-      font-size: 1.5rem;
-    }
+    //color: red;
+    //color: var(--text-color-secondary);
+    //display: inline-flex;
+    //justify-content: center;
+    //align-items: center;
   }
-}
 
-@media (max-width: 991px) {
-  .header {
-    &-logo {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+  &-menu-button {
+    margin-right: .5rem;
   }
+  //
+  //&-button {
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //  color: var(--text-color-secondary);
+  //  border-radius: 50%;
+  //  width: 3rem;
+  //  height: 3rem;
+  //  transition: background-color var(--transition-duration);
+  //
+  //  &:hover {
+  //    color: var(--text-color);
+  //    background-color: var(--surface-hover);
+  //  }
+  //
+  //  &:focus {
+  //    .focused();
+  //  }
+  //
+  //  i {
+  //    font-size: 1.5rem;
+  //  }
+  //}
 }
+//
+//@media (max-width: 991px) {
+//  .header {
+//    &-logo {
+//      width: 100%;
+//      display: flex;
+//      justify-content: center;
+//    }
+//  }
+//}

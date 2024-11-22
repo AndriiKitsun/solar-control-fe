@@ -11,4 +11,8 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.less',
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  constructor() {
+    document.documentElement.classList.toggle('app-dark');
+  }
+}
