@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./app";
+@use "./variables/common";
+@use "./variables/theme";
 
-@import "primeicons/primeicons.css";
+@use "core";
+@use "mixins";
+
+@use "primeicons/primeicons.css";
 
 @tailwind base;
 @tailwind components;

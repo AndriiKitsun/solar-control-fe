@@ -1,21 +1,21 @@
-//@headerBottomMargin: 7rem;
-//@sideMargin: 2rem;
-
 .layout {
   min-height: 100vh;
 
-  //&-menu {
-  //  position: fixed;
-  //  width: 300px;
-  //  height: calc(100vh - 9rem);
-  //  top: @headerBottomMargin;
-  //  left: @sideMargin;
-  //  transition: transform var(--transition-duration), left var(--transition-duration);
-  //  background-color: var(--p-content-background);
-  //  border-radius: 12px;
-  //  padding: 0.5rem 1.5rem;
-  //  box-shadow: 0 3px 5px rgba(0, 0, 0, .02), 0 0 2px rgba(0, 0, 0, .05), 0 1px 4px rgba(0, 0, 0, .08);
-  //}
+  &-menu {
+    position: fixed;
+    width: 20rem;
+    height: calc(100vh - 8rem);
+    overflow-y: auto;
+    user-select: none;
+    top: 6rem;
+    left: 2rem;
+    transition:
+      transform var(--layout-section-transition-duration),
+      left var(--layout-section-transition-duration);
+    background-color: var(--content-card-background);
+    border-radius: var(--content-border-radius);
+    padding: 0.5rem 1.5rem;
+  }
   //
   //&-main-container {
   //  display: flex;

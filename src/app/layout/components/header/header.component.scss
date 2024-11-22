@@ -1,3 +1,5 @@
+@use "mixins";
+
 .header {
   position: fixed;
   height: 4rem;
@@ -5,77 +7,69 @@
   top: 0;
   width: 100%;
   padding: 0 2rem;
-  //background-color: var(--surface-card);
+  background-color: var(--content-card-background);
   transition: left var(--layout-section-transition-duration);
   display: flex;
   align-items: center;
-
-  // My styles
-  border: 1px solid red;
-  box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
   justify-content: space-between;
+  box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
 
   &-logo-container {
-    //width: 20rem;
-    //display: flex;
-    //align-items: center;
+    display: flex;
+    align-items: center;
 
-    //color: var(--p-surface-900);
-    //font-size: 1.5rem;
-    //font-weight: 500;
-    //padding: 0 1rem;
-    //border-radius: 12px;
-    //margin-left: 0.5rem;
-    //
-    //&:focus {
-    //  .focused();
-    //}
-    border: 1px solid red;
+    .header-button {
+      margin-right: 0.5rem;
+    }
+
+    .header-logo {
+      display: inline-flex;
+      align-items: center;
+      font-size: 1.5rem;
+      border-radius: var(--content-border-radius);
+      color: var(--text-color);
+      font-weight: 500;
+      gap: 0.5rem;
+
+
+      &:focus-visible {
+        @include mixins.focused();
+      }
+    }
+  }
+
+  &-actions-container {
+    display: flex;
+    gap: 1rem;
   }
 
   &-button {
-    //color: red;
-    //color: var(--text-color-secondary);
-    //display: inline-flex;
-    //justify-content: center;
-    //align-items: center;
-  }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: background-color var(--transition-duration);
+    cursor: pointer;
 
-  &-menu-button {
-    margin-right: .5rem;
+    &:hover {
+      background-color: var(--content-hover-background);
+    }
+
+    &:focus-visible {
+      @include mixins.focused();
+    }
+
+    i {
+      font-size: 1.25rem;
+    }
+
+    &.header-button-highlight {
+      background-color: var(--primary-color);
+      color: var(--primary-contrast-color);
+    }
   }
-  //
-  //&-button {
-  //  display: flex;
-  //  justify-content: center;
-  //  align-items: center;
-  //  color: var(--text-color-secondary);
-  //  border-radius: 50%;
-  //  width: 3rem;
-  //  height: 3rem;
-  //  transition: background-color var(--transition-duration);
-  //
-  //  &:hover {
-  //    color: var(--text-color);
-  //    background-color: var(--surface-hover);
-  //  }
-  //
-  //  &:focus {
-  //    .focused();
-  //  }
-  //
-  //  i {
-  //    font-size: 1.5rem;
-  //  }
-  //}
 }
-//
-//@media (max-width: 991px) {
-//  .header {
-//    &-logo {
-//      width: 100%;
-//      display: flex;
-//      justify-content: center;
-//    }
-//  }
-//}
+

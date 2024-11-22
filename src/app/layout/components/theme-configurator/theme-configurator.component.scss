@@ -1,0 +1,16 @@
+.theme-configurator {
+  position: relative;
+
+  &-panel {
+    position: absolute;
+    top: 3.25rem;
+    right: 0;
+    width: 16rem;
+    padding: 1rem;
+    background-color: var(--content-card-background);
+    border: 1px solid var(--content-border-color);
+    border-radius: var(--content-border-radius);
+    transform-origin: top;
+    box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
+  }
+}

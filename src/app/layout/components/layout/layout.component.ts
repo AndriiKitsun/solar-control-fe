@@ -1,21 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 import { MenuComponent } from '../menu/menu.component';
-import { RouterOutlet } from '@angular/router';
-import { Button } from 'primeng/button';
+import { LayoutService } from '../../services';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    MenuComponent,
-    RouterOutlet,
-    FooterComponent,
-    Button,
-  ],
+  imports: [HeaderComponent, MenuComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {}
+export class LayoutComponent implements OnInit {
+  constructor(private readonly layoutService: LayoutService) {}
+
+  ngOnInit(): void {
+    this.layoutService.restoreThemeState();
+  }
+}
