@@ -25,9 +25,9 @@ export enum SurfaceColor {
   STONE = 'stone',
 }
 
-export enum ThemePreset {
+export enum ThemePresetName {
   AURA = 'Aura',
-  LORA = 'Lora',
+  LARA = 'Lara',
 }
 
 export enum ColorScheme {
@@ -50,4 +50,18 @@ export interface Palette {
   950: `{${string}.950}`;
 }
 
-export type SurfaceColorConfig = Record<ColorScheme, SurfaceColor>;
+export interface ThemePreset {
+  semantic: {
+    primary: Palette;
+    colorScheme: {
+      light: {
+        surface: Palette;
+      };
+      dark: {
+        surface: Palette;
+      };
+    };
+  };
+}
+
+export type ThemePresetConfig = Record<ThemePresetName, ThemePreset>;

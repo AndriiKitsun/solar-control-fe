@@ -25,6 +25,7 @@
       "dom"
     ],
     "paths": {
+      "@common/*": ["src/app/common/*"],
       "@layout/*": ["src/app/layout/*"]
     }
   },

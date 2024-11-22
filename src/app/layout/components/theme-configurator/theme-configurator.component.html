@@ -38,6 +38,12 @@
           </button>
         </div>
       </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="text-sm text-muted-color font-semibold">Theme presets</span>
+        <p-select-button [options]="presetOptions" [allowEmpty]="false" [(ngModel)]="selectedPreset"
+                         (onChange)="updatePreset($event)" />
+      </div>
     </div>
   </div>
 </div>

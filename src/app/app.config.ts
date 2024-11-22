@@ -4,6 +4,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { ThemePreset } from '@layout/services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,8 +14,7 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
       ripple: true,
       theme: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        preset: Aura,
+        preset: Aura as ThemePreset,
         options: {
           darkModeSelector: '.app-dark',
         },

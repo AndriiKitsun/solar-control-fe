@@ -6,18 +6,28 @@ import {
   SurfaceColor,
   LayoutService,
   ColorScheme,
+  ThemePresetName,
 } from '../../services';
+import { SelectButton } from 'primeng/selectbutton';
+import {
+  SelectButtonOption,
+  SelectButtonChangeTypedEvent,
+} from '@common/types';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-theme-configurator',
   standalone: true,
-  imports: [NgForOf, NgStyle, NgClass],
+  imports: [NgForOf, NgStyle, NgClass, SelectButton, FormsModule],
   templateUrl: './theme-configurator.component.html',
   styleUrl: './theme-configurator.component.scss',
 })
 export class ThemeConfiguratorComponent implements OnInit {
-  primaryColors: ColorModel<PrimaryColor>[] = [];
-  surfaceColors: ColorModel<SurfaceColor>[] = [];
+  primaryColors!: ColorModel<PrimaryColor>[];
+  surfaceColors!: ColorModel<SurfaceColor>[];
+
+  presetOptions!: SelectButtonOption[];
+  selectedPreset!: SelectButtonOption;
 
   constructor(private readonly layoutService: LayoutService) {}
 
@@ -26,11 +36,11 @@ export class ThemeConfiguratorComponent implements OnInit {
   }
 
   get selectedLightSurfaceColor(): SurfaceColor {
-    return this.layoutService.surfaceColorConfig[ColorScheme.LIGHT];
+    return this.layoutService.lightSurfaceColor;
   }
 
   get selectedDarkSurfaceColor(): SurfaceColor {
-    return this.layoutService.surfaceColorConfig[ColorScheme.DARK];
+    return this.layoutService.darkSurfaceColor;
   }
 
   ngOnInit(): void {
@@ -43,6 +53,13 @@ export class ThemeConfiguratorComponent implements OnInit {
       color,
       bgColor: `var(--p-${color}-500)`,
     }));
+
+    this.presetOptions = Object.values(ThemePresetName).map((label) => ({
+      label,
+    }));
+    this.selectedPreset = {
+      label: this.layoutService.presetName,
+    };
   }
 
   updatePrimaryColor(color: PrimaryColor): void {
@@ -55,5 +72,11 @@ export class ThemeConfiguratorComponent implements OnInit {
 
   updateDarkSurfaceColor(color: SurfaceColor): void {
     this.layoutService.updateSurfaceColor(ColorScheme.DARK, color);
+  }
+
+  updatePreset(event: SelectButtonChangeTypedEvent<ThemePresetName>): void {
+    if (event.value?.label) {
+      this.layoutService.updatePreset(event.value.label);
+    }
   }
 }

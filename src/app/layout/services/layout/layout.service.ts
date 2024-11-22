@@ -1,29 +1,42 @@
 import { Injectable } from '@angular/core';
 import {
-  SurfaceColorConfig,
   ColorScheme,
   PrimaryColor,
   SurfaceColor,
   Palette,
+  ThemePresetName,
+  ThemePresetConfig,
+  ThemePreset,
 } from './layout.types';
 import {
-  updatePreset,
   updatePrimaryPalette,
   updateSurfacePalette,
+  definePreset,
+  usePreset,
 } from '@primeng/themes';
+import Aura from '@primeng/themes/aura';
+import Lara from '@primeng/themes/lara';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LayoutService {
+  private static readonly darkModeClassKey = 'app-dark';
   private static readonly colorSchemeKey = 'colorScheme';
   private static readonly primaryColorKey = 'primaryColor';
   private static readonly surfaceColorKey = 'SurfaceColor';
-  private static readonly darkModeClassKey = 'app-dark';
+  private static readonly themePresetKey = 'themePreset';
+
+  private themePresets: ThemePresetConfig = {
+    [ThemePresetName.AURA]: Aura as ThemePreset,
+    [ThemePresetName.LARA]: Lara as ThemePreset,
+  };
 
   colorScheme!: ColorScheme;
   primaryColor!: PrimaryColor;
-  surfaceColorConfig!: SurfaceColorConfig;
+  lightSurfaceColor!: SurfaceColor;
+  darkSurfaceColor!: SurfaceColor;
+  presetName!: ThemePresetName;
 
   restoreThemeState(): void {
     this.loadThemeConfig();
@@ -32,23 +45,7 @@ export class LayoutService {
       document.documentElement.classList.add(LayoutService.darkModeClassKey);
     }
 
-    updatePreset({
-      semantic: {
-        primary: this.getPrimaryPalette(this.primaryColor),
-        colorScheme: {
-          light: {
-            surface: this.getSurfacePalette(
-              this.surfaceColorConfig[ColorScheme.LIGHT],
-            ),
-          },
-          dark: {
-            surface: this.getSurfacePalette(
-              this.surfaceColorConfig[ColorScheme.DARK],
-            ),
-          },
-        },
-      },
-    });
+    usePreset(this.createPreset(this.presetName));
   }
 
   toggleDarkMode(): void {
@@ -71,14 +68,26 @@ export class LayoutService {
   }
 
   updateSurfaceColor(scheme: ColorScheme, color: SurfaceColor): void {
-    this.surfaceColorConfig[scheme] = color;
+    if (scheme === ColorScheme.LIGHT) {
+      this.lightSurfaceColor = color;
+    } else {
+      this.darkSurfaceColor = color;
+    }
 
     updateSurfacePalette({
-      light: this.getSurfacePalette(this.surfaceColorConfig[ColorScheme.LIGHT]),
-      dark: this.getSurfacePalette(this.surfaceColorConfig[ColorScheme.DARK]),
+      light: this.getSurfacePalette(this.lightSurfaceColor),
+      dark: this.getSurfacePalette(this.darkSurfaceColor),
     });
 
     localStorage.setItem(`${scheme}${LayoutService.surfaceColorKey}`, color);
+  }
+
+  updatePreset(name: ThemePresetName): void {
+    this.presetName = name;
+
+    usePreset(this.createPreset(name));
+
+    localStorage.setItem(LayoutService.themePresetKey, name);
   }
 
   private loadThemeConfig(): void {
@@ -92,16 +101,19 @@ export class LayoutService {
       PrimaryColor.EMERALD,
     );
 
-    this.surfaceColorConfig = {
-      [ColorScheme.LIGHT]: this.loadKey(
-        `${ColorScheme.LIGHT}${LayoutService.surfaceColorKey}`,
-        SurfaceColor.SLATE,
-      ),
-      [ColorScheme.DARK]: this.loadKey(
-        `${ColorScheme.DARK}${LayoutService.surfaceColorKey}`,
-        SurfaceColor.ZINC,
-      ),
-    };
+    this.lightSurfaceColor = this.loadKey(
+      `${ColorScheme.LIGHT}${LayoutService.surfaceColorKey}`,
+      SurfaceColor.SLATE,
+    );
+    this.darkSurfaceColor = this.loadKey(
+      `${ColorScheme.DARK}${LayoutService.surfaceColorKey}`,
+      SurfaceColor.ZINC,
+    );
+
+    this.presetName = this.loadKey(
+      LayoutService.themePresetKey,
+      ThemePresetName.AURA,
+    );
   }
 
   private loadKey<T>(key: string, fallback: T): T {
@@ -139,5 +151,21 @@ export class LayoutService {
       900: `{${color}.900}`,
       950: `{${color}.950}`,
     };
+  }
+
+  private createPreset(name: ThemePresetName): ThemePreset {
+    return definePreset(this.themePresets[name], {
+      semantic: {
+        primary: this.getPrimaryPalette(this.primaryColor),
+        colorScheme: {
+          light: {
+            surface: this.getSurfacePalette(this.lightSurfaceColor),
+          },
+          dark: {
+            surface: this.getSurfacePalette(this.darkSurfaceColor),
+          },
+        },
+      },
+    }) as ThemePreset;
   }
 }
