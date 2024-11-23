@@ -116,6 +116,7 @@ export class LayoutService {
       LayoutService.themePresetKey,
       ThemePresetName.AURA,
     );
+    console.log();
   }
 
   private loadKey<T>(key: string, fallback: T): T {
