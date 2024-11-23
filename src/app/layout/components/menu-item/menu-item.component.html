@@ -1,23 +1,17 @@
-<li class="menu-item">
+<li class="menu-item" [ngClass]="{'menu-item_disabled': item.disabled, 'menu-item_selected': isItemSelected$ | async }">
   @if (isTopLevel) {
     <div class="menu-item__header">
-      @if (item.icon) {
-        <i [class]="item.icon" class="menu-item__icon"></i>
-      }
-
-      <span>{{ item.label }}</span>
+      <ng-container [ngTemplateOutlet]="menuItemLink" />
     </div>
+  } @else if (item.url) {
+    <a class="menu-item__link" tabindex="0"
+       [href]="item.url" [target]="item.target" pRipple>
+      <ng-container [ngTemplateOutlet]="menuItemLink" />
+    </a>
   } @else {
-    <a class="menu-item__link" (click)="itemClicked(item)" tabindex="0" routerLink="">
-      @if (item.icon) {
-        <i [class]="item.icon" class="menu-item__icon"></i>
-      }
-
-      <span>{{ item.label }}</span>
-
-      @if (item.items?.length) {
-        <i class="pi pi-fw pi-angle-down menu-item__submenu-icon"></i>
-      }
+    <a class="menu-item__link" tabindex="0"
+       [routerLink]="item.routerLink" [queryParams]="item.queryParams" pRipple>
+      <ng-container [ngTemplateOutlet]="menuItemLink" />
     </a>
   }
 
@@ -31,3 +25,15 @@
     </ul>
   }
 </li>
+
+<ng-template #menuItemLink>
+  @if (item.icon) {
+    <i [class]="item.icon" class="menu-item__icon"></i>
+  }
+
+  <span>{{ item.label }}</span>
+
+  @if (item.items?.length && !isTopLevel) {
+    <i class="pi pi-fw pi-angle-down menu-item__submenu-icon"></i>
+  }
+</ng-template>

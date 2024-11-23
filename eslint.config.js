@@ -1,12 +1,12 @@
 // @ts-check
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+const angular = require('angular-eslint');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 
 module.exports = tseslint.config(
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
@@ -17,44 +17,49 @@ module.exports = tseslint.config(
         languageOptions: {
           parserOptions: {
             projectService: true,
-            tsconfigRootDir: __dirname
+            tsconfigRootDir: __dirname,
           },
         },
       },
     ],
     processor: angular.processInlineTemplates,
     rules: {
-      '@typescript-eslint/explicit-function-return-type': 'warn',
-      "@angular-eslint/directive-selector": [
-        "error",
+      '@typescript-eslint/explicit-function-return-type': [
+        'warn',
         {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
+          allowExpressions: true,
         },
       ],
-      "@angular-eslint/component-selector": [
-        "error",
+      '@angular-eslint/directive-selector': [
+        'error',
         {
-          type: "element",
-          prefix: "app",
-          style: "kebab-case",
+          type: 'attribute',
+          prefix: 'app',
+          style: 'camelCase',
+        },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          type: 'element',
+          prefix: 'app',
+          style: 'kebab-case',
         },
       ],
     },
   },
   {
-    files: ["**/*.spec.ts"],
+    files: ['**/*.spec.ts'],
     rules: {
-      '@typescript-eslint/no-empty-function': 'off'
+      '@typescript-eslint/no-empty-function': 'off',
     },
   },
   {
-    files: ["**/*.html"],
+    files: ['**/*.html'],
     extends: [
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
     rules: {},
-  }
+  },
 );

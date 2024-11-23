@@ -1,7 +1,19 @@
 @use "mixins";
 
 .menu-item {
-  &_active {
+  &_disabled {
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    opacity: var(--disabled-opacity);
+  }
+
+  &_selected {
+    .menu-item__link {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
     .menu-item__submenu-icon {
       transform: rotate(-180deg);
     }
@@ -24,17 +36,10 @@
     outline: 0 none;
     color: var(--text-color);
     cursor: pointer;
-    //padding: 0.75rem 1rem;
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
     border-radius: var(--content-border-radius);
-    transition:
-      background-color var(--transition-duration),
-      box-shadow var(--transition-duration);
-
-    &.active-route {
-      font-weight: 700;
-      color: var(--primary-color);
-    }
+    transition: background-color var(--element-transition-duration),
+    box-shadow var(--element-transition-duration);
 
     &:hover {
       background-color: var(--content-hover-background);
@@ -50,7 +55,10 @@
   }
 
   &__submenu {
-    margin-left: 1rem;
+    // Nested submenus only
+    .menu-item__submenu {
+      margin-left: 1rem;
+    }
   }
 
   &__submenu-icon {
