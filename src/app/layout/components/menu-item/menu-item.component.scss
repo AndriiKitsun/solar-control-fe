@@ -1,0 +1,61 @@
+@use "mixins";
+
+.menu-item {
+  &_active {
+    .menu-item__submenu-icon {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &__header {
+    font-size: 0.857rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0.75rem 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    outline: 0 none;
+    color: var(--text-color);
+    cursor: pointer;
+    //padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
+    border-radius: var(--content-border-radius);
+    transition:
+      background-color var(--transition-duration),
+      box-shadow var(--transition-duration);
+
+    &.active-route {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    &:hover {
+      background-color: var(--content-hover-background);
+    }
+
+    &:focus-visible {
+      @include mixins.focused();
+    }
+  }
+
+  &__icon {
+    margin-right: 0.5rem;
+  }
+
+  &__submenu {
+    margin-left: 1rem;
+  }
+
+  &__submenu-icon {
+    font-size: 75%;
+    margin-left: auto;
+    transition: transform var(--transition-duration);
+  }
+}

@@ -1,3 +1,33 @@
-<li class="menu-item menu-item_active">
-  {{item.label}}
+<li class="menu-item">
+  @if (isTopLevel) {
+    <div class="menu-item__header">
+      @if (item.icon) {
+        <i [class]="item.icon" class="menu-item__icon"></i>
+      }
+
+      <span>{{ item.label }}</span>
+    </div>
+  } @else {
+    <a class="menu-item__link" (click)="itemClicked(item)" tabindex="0" routerLink="">
+      @if (item.icon) {
+        <i [class]="item.icon" class="menu-item__icon"></i>
+      }
+
+      <span>{{ item.label }}</span>
+
+      @if (item.items?.length) {
+        <i class="pi pi-fw pi-angle-down menu-item__submenu-icon"></i>
+      }
+    </a>
+  }
+
+  @if (item.items?.length) {
+    <ul class="menu-item__submenu">
+      @for (subItem of item.items; track subItem.label) {
+        @if (subItem.visible !== false) {
+          <app-menu-item [item]="subItem" [isTopLevel]="false" />
+        }
+      }
+    </ul>
+  }
 </li>
