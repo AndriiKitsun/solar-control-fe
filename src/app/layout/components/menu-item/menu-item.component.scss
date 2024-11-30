@@ -13,10 +13,6 @@
       font-weight: 700;
       color: var(--primary-color);
     }
-
-    .menu-item__submenu-icon {
-      transform: rotate(-180deg);
-    }
   }
 
   &__header {
@@ -38,8 +34,6 @@
     cursor: pointer;
     padding: 0.75rem 1rem;
     border-radius: var(--content-border-radius);
-    transition: background-color var(--element-transition-duration),
-    box-shadow var(--element-transition-duration);
 
     &:hover {
       background-color: var(--content-hover-background);
@@ -55,6 +49,9 @@
   }
 
   &__submenu {
+    display: block;
+    overflow: hidden;
+
     // Nested submenus only
     .menu-item__submenu {
       margin-left: 1rem;
@@ -65,5 +62,9 @@
     font-size: 75%;
     margin-left: auto;
     transition: transform var(--transition-duration);
+
+    &_active {
+      transform: rotate(-180deg);
+    }
   }
 }

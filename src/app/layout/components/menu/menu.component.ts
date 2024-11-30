@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { MenuItem } from 'primeng/api';
-import { MENU_ITEMS_EXAMPLE } from './menu.constants';
+import { MENU_ITEMS } from './menu.constants';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +14,6 @@ export class MenuComponent implements OnInit {
   items!: MenuItem[];
 
   ngOnInit(): void {
-    // this.items = MENU_ITEMS;
-    this.items = MENU_ITEMS_EXAMPLE;
+    this.items = MENU_ITEMS;
   }
 }
