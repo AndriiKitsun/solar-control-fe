@@ -1,9 +1,15 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout/components/layout/layout.component';
+import { LayoutComponent } from '@layout/components/layout/layout.component';
+import { RoutePath } from '@common/constants/router.constants';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: RoutePath.LANDING,
     component: LayoutComponent,
+    loadChildren: () => import('src/app/views/solar/solar.routes'),
   },
+  // {
+  //   path: '**',
+  //   component: NotFoundComponent,
+  // },
 ];

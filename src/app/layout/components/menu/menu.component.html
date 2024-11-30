@@ -1,1 +1,7 @@
-<p>menu works!</p>
+<ul class="menu">
+  @for (item of items; track item.label; let i = $index) {
+    @if (item.visible !== false) {
+      <app-menu-item [item]="item" [index]="i" />
+    }
+  }
+</ul>

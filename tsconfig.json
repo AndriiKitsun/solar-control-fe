@@ -26,7 +26,8 @@
     ],
     "paths": {
       "@common/*": ["src/app/common/*"],
-      "@layout/*": ["src/app/layout/*"]
+      "@layout/*": ["src/app/layout/*"],
+      "@views/*": ["src/app/views/*"]
     }
   },
   "angularCompilerOptions": {

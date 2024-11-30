@@ -6,3 +6,12 @@
     box-shadow var(--transition-duration),
     outline-color var(--transition-duration);
 }
+
+@mixin focused-menu() {
+  outline: var(--focus-ring-color) var(--focus-ring-style) var(--focus-ring-width);
+  outline-offset: -1px;
+  box-shadow: var(--focus-ring-shadow);
+  transition:
+    box-shadow var(--transition-duration),
+    outline-color var(--transition-duration);
+}
