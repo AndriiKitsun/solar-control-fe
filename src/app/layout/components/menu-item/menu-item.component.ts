@@ -62,8 +62,7 @@ export class MenuItemComponent implements OnInit, OnDestroy {
 
   isItemSelected$!: Observable<boolean>;
   isSubmenu!: boolean;
-  isSubmenuOpened = true;
-  submenuAnimationState = SubmenuAnimationState.EXPANDED;
+  isSubmenuOpened!: boolean;
   itemKey!: string;
 
   private menuStateSubscription!: Subscription;
@@ -72,6 +71,16 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly menuService: MenuService,
   ) {}
+
+  get animationState(): SubmenuAnimationState {
+    if (this.isTopLevel) {
+      return SubmenuAnimationState.EXPANDED;
+    }
+
+    return this.isSubmenuOpened
+      ? SubmenuAnimationState.EXPANDED
+      : SubmenuAnimationState.COLLAPSED;
+  }
 
   ngOnInit(): void {
     this.itemKey = this.buildItemKey();
@@ -108,9 +117,7 @@ export class MenuItemComponent implements OnInit, OnDestroy {
       map((activeRoute) => itemFullUrl === activeRoute),
       tap((isSelected) => {
         if (isSelected) {
-          this.menuService.updateMenuState({
-            itemKey: this.itemKey,
-          });
+          this.menuService.updateMenuState({ key: this.itemKey });
         }
       }),
     );
@@ -119,33 +126,30 @@ export class MenuItemComponent implements OnInit, OnDestroy {
   handleMenuStateChange(): Observable<MenuState | null> {
     return this.menuService.menuState$.pipe(
       tap((state) => {
-        if (!this.isSubmenu || !state) {
+        if (!this.isSubmenu) {
           return;
         }
 
-        let openState = false;
+        void Promise.resolve().then(() => {
+          let openState = false;
 
-        if (state.itemKey === this.itemKey) {
-          openState = !this.isSubmenuOpened;
-        } else if (state.itemKey.startsWith(this.itemKey) || this.isTopLevel) {
-          openState = true;
-        }
+          if (state.key === this.itemKey) {
+            openState = !this.isSubmenuOpened;
+          } else if (state.key.startsWith(this.itemKey) || this.isTopLevel) {
+            openState = true;
+          }
 
-        this.toggleSubmenu(openState);
+          this.toggleSubmenu(openState);
+        });
       }),
     );
   }
 
   itemClicked(): void {
-    this.menuService.updateMenuState({
-      itemKey: this.itemKey,
-    });
+    this.menuService.updateMenuState({ key: this.itemKey });
   }
 
   toggleSubmenu(isOpened: boolean): void {
     this.isSubmenuOpened = isOpened;
-    this.submenuAnimationState = isOpened
-      ? SubmenuAnimationState.EXPANDED
-      : SubmenuAnimationState.COLLAPSED;
   }
 }

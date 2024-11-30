@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MenuState } from './menu.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  private menuState = new BehaviorSubject<MenuState | null>(null);
+  private menuState = new Subject<MenuState>();
 
   menuState$ = this.menuState.asObservable();
 

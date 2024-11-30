@@ -1,3 +1,3 @@
 export interface MenuState {
-  itemKey: string;
+  key: string;
 }

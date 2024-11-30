@@ -16,7 +16,7 @@
   }
 
   @if (item.items?.length) {
-    <ul class="menu-item__submenu" [@submenu]="submenuAnimationState">
+    <ul class="menu-item__submenu" [@submenu]="animationState">
       @for (subItem of item.items; track subItem.label; let i = $index) {
         @if (subItem.visible !== false) {
           <app-menu-item [item]="subItem" [index]="i" [parentItemKey]="itemKey" [isTopLevel]="false" />

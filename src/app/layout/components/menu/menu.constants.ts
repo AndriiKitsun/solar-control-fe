@@ -54,21 +54,29 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         label: 'Address 1',
         icon: PrimeIcons.BUILDING_COLUMNS,
+        routerLink: RoutePath.MINERS,
+        queryParams: {
+          id: 'address1-1',
+        },
+      },
+      {
+        label: 'Address 2',
+        icon: PrimeIcons.BUILDING_COLUMNS,
         items: [
           {
             label: 'Asic 1',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.STATIONS,
+            routerLink: RoutePath.MINERS,
             queryParams: {
-              id: 'address1-1',
+              id: 'address2-1',
             },
           },
           {
-            label: 'Asic2',
+            label: 'Asic 2',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.STATIONS,
+            routerLink: RoutePath.MINERS,
             queryParams: {
-              id: 'address1-2',
+              id: 'address2-2',
             },
           },
         ],
