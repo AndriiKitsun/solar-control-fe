@@ -12,7 +12,6 @@ import {
   tap,
   Subscription,
 } from 'rxjs';
-import { StyleClass } from 'primeng/styleclass';
 import { MenuService, MenuState } from '../../services/menu';
 import {
   trigger,
@@ -26,14 +25,7 @@ import { SubmenuAnimationState } from './menu-item.types';
 @Component({
   selector: 'app-menu-item',
   standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    RouterLink,
-    Ripple,
-    NgClass,
-    AsyncPipe,
-    StyleClass,
-  ],
+  imports: [NgTemplateOutlet, RouterLink, Ripple, NgClass, AsyncPipe],
   templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss',
   animations: [
