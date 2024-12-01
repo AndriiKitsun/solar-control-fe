@@ -1,12 +1,9 @@
 name: Deploy app to GitHub Pages
 
-# Temp
-on: pull_request
-
-#on:
-#  push:
-#    branches: ["dev"]
-#  workflow_dispatch:
+on:
+  push:
+    branches: ["dev"]
+  workflow_dispatch:
 
 env:
   HUSKY: 0
@@ -33,7 +30,7 @@ jobs:
       - name: Install dependencies 🧱
         run: npm ci
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
