@@ -33,4 +33,4 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy -- --message=$GITHUB_REF_NAME:$GITHUB_SHA
+        run: npm run deploy -- --name=${{ secrets.APP_PUBLISHER_NAME }} --email=${{ secrets.APP_PUBLISHER_EMAIL }}  --message=${{ vars.GITHUB_REF_NAME }}-$GITHUB_SHA-${{ github.sha }}
