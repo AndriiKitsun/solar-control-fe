@@ -12,7 +12,7 @@
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "deploy": "ng deploy --dry-run",
+    "deploy": "ng deploy",
     "prepare": "husky"
   },
   "private": true,

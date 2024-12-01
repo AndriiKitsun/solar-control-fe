@@ -8,6 +8,9 @@ on: pull_request
 #    branches: ["dev"]
 #  workflow_dispatch:
 
+env:
+  HUSKY: 0
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -34,4 +37,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run ng -- deploy --dry-run --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="${{ github.ref_name }}: ${{ github.event.head_commit.message }}"
+          npm run deploy -- --dry-run --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="$GITHUB_HEAD_REF: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
