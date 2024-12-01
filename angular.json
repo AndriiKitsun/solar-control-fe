@@ -114,6 +114,12 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://andriikitsun.github.io/solar-control-fe/"
+          }
         }
       }
     }

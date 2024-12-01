@@ -1,0 +1,36 @@
+name: Deploy app to GitHub Pages
+
+# Temp
+on: pull_request
+
+#on:
+#  push:
+#    branches: ["dev"]
+#  workflow_dispatch:
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies 🧱
+        run: npm ci
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run deploy -- --message=$GITHUB_REF_NAME:$GITHUB_SHA
