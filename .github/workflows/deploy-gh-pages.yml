@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Build
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run ng -- deploy --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="${{ github.ref_name }}-${{ github.sha }}"
+          npm run ng -- deploy --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="${{ github.ref }}-${{ github.ref_name }}-${{ github.sha }}"
