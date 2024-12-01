@@ -1,0 +1,1 @@
+import{Sa as o,Ta as s,U as n,db as i,jb as a}from"./chunk-7TTOVAOP.js";var r=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-miners"]],standalone:!0,features:[a],decls:2,vars:0,template:function(e,p){e&1&&(o(0,"p"),i(1,"miners works!"),s())}})};export{r as MinersComponent};
