@@ -12,6 +12,7 @@
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "deploy": "ng deploy",
     "prepare": "husky"
   },
   "private": true,
@@ -36,6 +37,7 @@
     "@angular/cli": "^18.2.5",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
+    "angular-cli-ghpages": "^2.0.3",
     "angular-eslint": "18.4.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.13.0",
