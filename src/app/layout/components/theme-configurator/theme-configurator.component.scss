@@ -1,5 +1,6 @@
 .theme-configurator {
   position: relative;
+  z-index: 1;
 
   &-panel {
     position: absolute;

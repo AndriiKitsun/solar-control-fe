@@ -1,8 +1,6 @@
 name: Deploy app to GitHub Pages
 
 on:
-  push:
-    branches: ["dev"]
   workflow_dispatch:
 
 env:

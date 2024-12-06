@@ -1,15 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MinersComponent } from './miners.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TabBarComponent } from './tab-bar.component';
 import { ActivatedRoute } from '@angular/router';
 
-describe('MinersComponent', () => {
-  let component: MinersComponent;
-  let fixture: ComponentFixture<MinersComponent>;
+describe('TabBarComponent', () => {
+  let component: TabBarComponent;
+  let fixture: ComponentFixture<TabBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MinersComponent, NoopAnimationsModule],
+      imports: [TabBarComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -18,7 +17,7 @@ describe('MinersComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MinersComponent);
+    fixture = TestBed.createComponent(TabBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

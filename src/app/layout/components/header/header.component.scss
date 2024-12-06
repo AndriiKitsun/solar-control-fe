@@ -1,26 +1,16 @@
 @use "mixins";
 
 .header {
-  position: fixed;
   height: 4rem;
-  left: 0;
-  top: 0;
-  width: 100%;
   padding: 0 2rem;
   background-color: var(--content-card-background);
-  transition: left var(--layout-section-transition-duration);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
 
   &-logo-container {
     display: flex;
     align-items: center;
-
-    .header-button {
-      margin-right: 0.5rem;
-    }
 
     .header-logo {
       display: inline-flex;
@@ -30,7 +20,6 @@
       color: var(--text-color);
       font-weight: 500;
       gap: 0.5rem;
-
 
       &:focus-visible {
         @include mixins.focused();
@@ -51,7 +40,6 @@
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
-    transition: background-color var(--transition-duration);
     cursor: pointer;
 
     &:hover {

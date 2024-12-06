@@ -1,14 +1,13 @@
 <div class="layout">
-  <app-header />
-
-  <div class="layout-menu">
-    <app-menu />
+  <div class="layout-header">
+    <app-header />
+    <app-tab-bar></app-tab-bar>
   </div>
 
-  <div class="layout-main-container">
-    <div class="layout-main">
+  <div class="layout-main">
+    <main class="layout-main__content">
       <router-outlet></router-outlet>
-    </div>
+    </main>
 
     <app-footer />
   </div>
