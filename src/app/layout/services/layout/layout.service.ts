@@ -54,7 +54,11 @@ export class LayoutService {
         ? ColorScheme.DARK
         : ColorScheme.LIGHT;
 
-    document.documentElement.classList.toggle(LayoutService.darkModeClassKey);
+    if (document.startViewTransition) {
+      document.startViewTransition(() => this.toggleDarkModeClass());
+    } else {
+      this.toggleDarkModeClass();
+    }
 
     localStorage.setItem(LayoutService.colorSchemeKey, this.colorScheme);
   }
@@ -169,5 +173,9 @@ export class LayoutService {
         },
       },
     }) as ThemePreset;
+  }
+
+  private toggleDarkModeClass(): void {
+    document.documentElement.classList.toggle(LayoutService.darkModeClassKey);
   }
 }
