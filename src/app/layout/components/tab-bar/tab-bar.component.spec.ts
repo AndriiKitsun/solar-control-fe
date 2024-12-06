@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabBarComponent } from './tab-bar.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('TabBarComponent', () => {
   let component: TabBarComponent;
@@ -8,6 +9,12 @@ describe('TabBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TabBarComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {},
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TabBarComponent);
