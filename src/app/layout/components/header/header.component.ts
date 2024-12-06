@@ -5,11 +5,18 @@ import { StyleClass } from 'primeng/styleclass';
 import { RouterLink } from '@angular/router';
 import { PrimeIcons } from 'primeng/api';
 import { ColorScheme, LayoutService } from '../../services';
+import { TabBarComponent } from '../tab-bar/tab-bar.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Ripple, RouterLink, ThemeConfiguratorComponent, StyleClass],
+  imports: [
+    Ripple,
+    RouterLink,
+    ThemeConfiguratorComponent,
+    StyleClass,
+    TabBarComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

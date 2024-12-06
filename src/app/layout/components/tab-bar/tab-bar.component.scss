@@ -1,0 +1,10 @@
+.tab-bar {
+  &__list {
+    display: flex;
+    padding: 0 2rem;
+  }
+
+  &__tab {
+    height: 3rem;
+  }
+}

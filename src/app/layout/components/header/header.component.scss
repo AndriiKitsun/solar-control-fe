@@ -1,26 +1,17 @@
 @use "mixins";
 
 .header {
-  position: fixed;
   height: 4rem;
-  left: 0;
-  top: 0;
-  width: 100%;
   padding: 0 2rem;
   background-color: var(--content-card-background);
-  transition: left var(--layout-section-transition-duration);
+  transition: left var(--transition-duration);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 3px 5px rgba(0,0,0,.02), 0 0 2px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.08);
 
   &-logo-container {
     display: flex;
     align-items: center;
-
-    .header-button {
-      margin-right: 0.5rem;
-    }
 
     .header-logo {
       display: inline-flex;
