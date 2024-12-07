@@ -8,23 +8,6 @@
     opacity: var(--disabled-opacity);
   }
 
-  &_selected {
-    .menu-item__link {
-      font-weight: 700;
-      color: var(--primary-color);
-    }
-  }
-
-  &__header {
-    font-size: 0.857rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--text-color);
-    margin: 0.75rem 0;
-    display: flex;
-    align-items: center;
-  }
-
   &__link {
     display: flex;
     align-items: center;
@@ -40,8 +23,25 @@
     }
 
     &:focus-visible {
-      @include mixins.focused-menu();
+      @include mixins.focused-menu;
     }
+  }
+
+  &_selected {
+    .menu-item__link {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+  }
+
+  &__header {
+    font-size: 0.857rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0.75rem 0;
+    display: flex;
+    align-items: center;
   }
 
   &__icon {

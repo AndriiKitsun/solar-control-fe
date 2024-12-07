@@ -11,17 +11,24 @@
     "test:watch": "ng test",
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
+    "lint": "concurrently \"npm run eslint\" \"npm run stylelint\"",
+    "eslint": "ng lint",
+    "eslint:fix": "ng lint --fix",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "stylelint:fix": "npm run stylelint -- --fix",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "deploy": "ng deploy",
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*": [
+    "*.ts|*.html": [
       "eslint --fix",
-      "prettier --write --ignore-unknown"
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix",
+      "prettier --write"
     ]
   },
   "dependencies": {
@@ -48,6 +55,7 @@
     "angular-cli-ghpages": "^2.0.3",
     "angular-eslint": "18.4.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -61,6 +69,8 @@
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.49",
     "prettier": "^3.3.3",
+    "stylelint": "^16.11.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "tailwindcss": "^3.4.15",
     "tailwindcss-primeui": "^0.3.4",
     "typescript": "~5.5.2",
