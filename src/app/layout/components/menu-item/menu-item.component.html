@@ -1,16 +1,34 @@
-<li class="menu-item" [ngClass]="{'menu-item_disabled': item.disabled, 'menu-item_selected': isItemSelected$ | async }">
+<li
+  class="menu-item"
+  [ngClass]="{
+    'menu-item_disabled': item.disabled,
+    'menu-item_selected': isItemSelected$ | async,
+  }"
+>
   @if (isTopLevel) {
     <div class="menu-item__header">
       <ng-container [ngTemplateOutlet]="menuItemLink" />
     </div>
   } @else if (item.url) {
-    <a class="menu-item__link" tabindex="0" (click)="itemClicked()"
-       [href]="item.url" [target]="item.target" pRipple>
+    <a
+      class="menu-item__link"
+      tabindex="0"
+      (click)="itemClicked()"
+      [href]="item.url"
+      [target]="item.target"
+      pRipple
+    >
       <ng-container [ngTemplateOutlet]="menuItemLink" />
     </a>
   } @else {
-    <a class="menu-item__link" tabindex="0" (click)="itemClicked()"
-       [routerLink]="item.routerLink" [queryParams]="item.queryParams" pRipple>
+    <a
+      class="menu-item__link"
+      tabindex="0"
+      (click)="itemClicked()"
+      [routerLink]="item.routerLink"
+      [queryParams]="item.queryParams"
+      pRipple
+    >
       <ng-container [ngTemplateOutlet]="menuItemLink" />
     </a>
   }
@@ -19,7 +37,12 @@
     <ul class="menu-item__submenu" [@submenu]="animationState">
       @for (subItem of item.items; track subItem.label; let i = $index) {
         @if (subItem.visible !== false) {
-          <app-menu-item [item]="subItem" [index]="i" [parentItemKey]="itemKey" [isTopLevel]="false" />
+          <app-menu-item
+            [item]="subItem"
+            [index]="i"
+            [parentItemKey]="itemKey"
+            [isTopLevel]="false"
+          />
         }
       }
     </ul>
@@ -34,7 +57,9 @@
   <span>{{ item.label }}</span>
 
   @if (isSubmenu) {
-    <i class="pi pi-fw pi-angle-down menu-item__submenu-icon"
-       [ngClass]="{'menu-item__submenu-icon_active': isSubmenuOpened}"></i>
+    <i
+      class="pi pi-fw pi-angle-down menu-item__submenu-icon"
+      [ngClass]="{ 'menu-item__submenu-icon_active': isSubmenuOpened }"
+    ></i>
   }
 </ng-template>

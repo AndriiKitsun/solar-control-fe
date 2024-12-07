@@ -6,16 +6,26 @@
   </div>
 
   <div class="header-actions-container">
-    <button pRipple type="button" (click)="toggleDarkMode()" class="header-button">
+    <button
+      pRipple
+      type="button"
+      (click)="toggleDarkMode()"
+      class="header-button"
+    >
       <i [class]="themeIcons[colorScheme]"></i>
     </button>
 
     <app-theme-configurator>
-      <button pRipple type="button" class="header-button header-button-highlight"
-              pStyleClass="@next" enterFromClass="hidden"
-              enterActiveClass="animate-scalein" leaveActiveClass="animate-fadeout"
-              leaveToClass="hidden"
-              [hideOnOutsideClick]='true'
+      <button
+        pRipple
+        type="button"
+        class="header-button header-button-highlight"
+        pStyleClass="@next"
+        enterFromClass="hidden"
+        enterActiveClass="animate-scalein"
+        leaveActiveClass="animate-fadeout"
+        leaveToClass="hidden"
+        [hideOnOutsideClick]="true"
       >
         <i class="pi pi-palette"></i>
       </button>
