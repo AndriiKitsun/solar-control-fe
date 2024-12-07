@@ -4,15 +4,15 @@
   <div class="theme-configurator-panel hidden">
     <div class="flex flex-col gap-4">
       <div>
-        <span class="text-sm text-muted-color font-semibold"
+        <span class="text-sm font-semibold text-muted-color"
           >Primary color</span
         >
-        <div class="pt-2 flex gap-2 flex-wrap justify-between">
+        <div class="flex flex-wrap justify-between gap-2 pt-2">
           <button
             type="button"
             *ngFor="let item of primaryColors"
             [title]="item.color"
-            class="border-none w-5 h-5 rounded-full p-0 cursor-pointer outline-none outline-offset-1"
+            class="h-5 w-5 cursor-pointer rounded-full border-none p-0 outline-none outline-offset-1"
             [ngStyle]="{ 'background-color': item.bgColor }"
             [ngClass]="{
               'outline-primary': selectedPrimaryColor === item.color,
@@ -23,15 +23,15 @@
       </div>
 
       <div>
-        <span class="text-sm text-muted-color font-semibold"
+        <span class="text-sm font-semibold text-muted-color"
           >Surface color (Light theme)</span
         >
-        <div class="pt-2 flex gap-2 flex-wrap">
+        <div class="flex flex-wrap gap-2 pt-2">
           <button
             type="button"
             *ngFor="let item of surfaceColors"
             [title]="item.color"
-            class="border-none w-5 h-5 rounded-full p-0 cursor-pointer outline-none outline-offset-1"
+            class="h-5 w-5 cursor-pointer rounded-full border-none p-0 outline-none outline-offset-1"
             [ngStyle]="{ 'background-color': item.bgColor }"
             [ngClass]="{
               'outline-primary': selectedLightSurfaceColor === item.color,
@@ -42,15 +42,15 @@
       </div>
 
       <div>
-        <span class="text-sm text-muted-color font-semibold"
+        <span class="text-sm font-semibold text-muted-color"
           >Surface color (Dark theme)</span
         >
-        <div class="pt-2 flex gap-2 flex-wrap">
+        <div class="flex flex-wrap gap-2 pt-2">
           <button
             type="button"
             *ngFor="let item of surfaceColors"
             [title]="item.color"
-            class="border-none w-5 h-5 rounded-full p-0 cursor-pointer outline-none outline-offset-1"
+            class="h-5 w-5 cursor-pointer rounded-full border-none p-0 outline-none outline-offset-1"
             [ngStyle]="{ 'background-color': item.bgColor }"
             [ngClass]="{
               'outline-primary': selectedDarkSurfaceColor === item.color,
@@ -61,7 +61,7 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <span class="text-sm text-muted-color font-semibold"
+        <span class="text-sm font-semibold text-muted-color"
           >Theme presets</span
         >
         <p-select-button
