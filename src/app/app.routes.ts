@@ -6,10 +6,10 @@ export const routes: Routes = [
   {
     path: RoutePath.LANDING,
     component: LayoutComponent,
-    loadChildren: () => import('src/app/views/solar/solar.routes'),
+    loadChildren: () => import('@views/views.routes'),
   },
-  // {
-  //   path: '**',
-  //   component: NotFoundComponent,
-  // },
+  {
+    path: '**',
+    redirectTo: RoutePath.LANDING,
+  },
 ];

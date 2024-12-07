@@ -20,6 +20,7 @@
     padding: 9rem 2rem 0;
 
     &__content {
+      display: flex;
       flex: 1 1 auto;
       border-radius: var(--content-border-radius);
     }
