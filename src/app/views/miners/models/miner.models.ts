@@ -1,5 +1,11 @@
+export enum MinerType {
+  CARD = 'card',
+  ASIC = 'asic',
+}
+
 export interface MinerModel {
   id: string;
   name: string;
-  ip: string;
+  type: MinerType;
+  ipAddress?: string;
 }

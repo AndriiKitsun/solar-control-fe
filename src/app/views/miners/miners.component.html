@@ -1,30 +1,34 @@
 <div class="miners">
-  <div class="miners__sidebar">
-    <p-menu [model]="items" styleClass="w-64 h-full overflow-auto">
-      <ng-template #submenuheader let-item>
-        <span class="select-none font-bold text-primary">{{ item.label }}</span>
-      </ng-template>
+  @if (items$ | async; as items) {
+    <div class="miners__sidebar">
+      <p-menu [model]="items" styleClass="w-72 h-full overflow-auto">
+        <ng-template #submenuheader let-item>
+          <span class="select-none font-bold text-primary">{{
+            item.label
+          }}</span>
+        </ng-template>
 
-      <ng-template #item let-item>
-        <div class="menu-item__container">
-          <a pRipple class="p-menu-item-link menu-item__link">
-            @if (item.icon) {
-              <span class="p-menu-item-icon" [class]="item.icon"></span>
-            }
+        <ng-template #item let-item>
+          <div class="menu-item__container">
+            <a pRipple class="p-menu-item-link menu-item__link">
+              @if (item.icon) {
+                <span class="p-menu-item-icon" [class]="item.icon"></span>
+              }
 
-            <span class="p-menu-item-label">{{ item.label }}</span>
-          </a>
+              <span class="p-menu-item-label">{{ item.label }}</span>
+            </a>
 
-          <p-button
-            class="menu-item__button"
-            icon="pi pi-trash"
-            severity="danger"
-            rounded
-            text
-            (onClick)="deleteItem($event, item)"
-          />
-        </div>
-      </ng-template>
-    </p-menu>
-  </div>
+            <p-button
+              class="menu-item__button"
+              icon="pi pi-trash"
+              severity="danger"
+              rounded
+              text
+              (onClick)="deleteItem($event, item)"
+            />
+          </div>
+        </ng-template>
+      </p-menu>
+    </div>
+  }
 </div>

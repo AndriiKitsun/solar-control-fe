@@ -9,6 +9,10 @@ import { Ripple } from 'primeng/ripple';
 import { Button } from 'primeng/button';
 import { ButtonGroup } from 'primeng/buttongroup';
 import { RouterLinkActive } from '@angular/router';
+import { MinerService } from './services/miner.service';
+import { map, Observable, of } from 'rxjs';
+import { MinerType } from './models/miner.models';
+import { MINER_MENU_ITEM_MAPPING } from './constants/miners.constants';
 
 @Component({
   selector: 'app-miners',
@@ -29,16 +33,49 @@ import { RouterLinkActive } from '@angular/router';
   styleUrl: './miners.component.scss',
 })
 export class MinersComponent implements OnInit {
-  items: MenuItem[] = [];
+  items$!: Observable<MenuItem[]>;
 
-  selected = '2382c3bc-c9b8-4c16-ba8a-62c54b553184';
+  constructor(private readonly minerService: MinerService) {}
 
   ngOnInit(): void {
-    this.items = this.getMyConfig();
+    this.items$ = this.getMenuItems();
+    // this.items$ = this.getMyConfig();
     // this.items = this.getPrimeConfig();
   }
 
-  getMyConfig(): MenuItem[] {
+  getMenuItems(): Observable<MenuItem[]> {
+    return this.minerService.getMiners().pipe(
+      map((miners) => {
+        const menu: Partial<Record<MinerType, MenuItem[]>> = {};
+
+        miners.forEach((miner) => {
+          const { id, name, type } = miner;
+          const itemMapping = MINER_MENU_ITEM_MAPPING[type];
+
+          if (!menu[type]) {
+            menu[type] = [];
+          }
+
+          const menuItem = {
+            id,
+            label: name,
+            icon: itemMapping.icon,
+          };
+
+          menu[type].push(menuItem);
+        });
+
+        return Object.values(MinerType).map((type) => {
+          return {
+            label: MINER_MENU_ITEM_MAPPING[type].label,
+            items: menu[type],
+          };
+        });
+      }),
+    );
+  }
+
+  getMyConfig(): Observable<MenuItem[]> {
     const asics = Array(50)
       .fill(0)
       .map((_, i) => {
@@ -78,7 +115,7 @@ export class MinersComponent implements OnInit {
     const selectedAsic = asics[Math.floor(Math.random() * 10)];
     console.log(`selectedAsic -->`, selectedAsic);
 
-    return [
+    return of([
       {
         label: 'Asics',
         items: asics,
@@ -87,7 +124,7 @@ export class MinersComponent implements OnInit {
         label: 'Video Cards',
         items: videoCards,
       },
-    ];
+    ]);
   }
 
   getPrimeConfig(): MenuItem[] {
@@ -158,7 +195,7 @@ export class MinersComponent implements OnInit {
     ];
   }
 
-  logEvent(event: any): void {
+  logEvent(event: Event): void {
     console.log(`event -->`, event);
   }
 
