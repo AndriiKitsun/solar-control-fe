@@ -8,4 +8,5 @@ export interface MinerModel {
   name: string;
   type: MinerType;
   ipAddress?: string;
+  address?: string;
 }

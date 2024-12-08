@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { MinerService } from './miner.service';
 
 describe('MinerService', () => {

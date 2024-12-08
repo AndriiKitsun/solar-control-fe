@@ -1,5 +1,5 @@
-import { MinerType } from '../models/miner.models';
-import { MinerMenuItemMapConfig } from '../types/menu.types';
+import { MinerType } from '../models';
+import { MinerMenuItemMapConfig } from '../types';
 import { PrimeIcons } from 'primeng/api';
 
 export const MINER_MENU_ITEM_MAPPING: Record<
