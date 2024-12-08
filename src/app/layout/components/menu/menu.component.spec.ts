@@ -20,6 +20,8 @@ describe('MenuComponent', () => {
 
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('items', []);
     fixture.detectChanges();
   });
 
