@@ -1,3 +1,75 @@
-<div class="menu">
-  <app-menu></app-menu>
+<div class="miners">
+  <div class="miners__sidebar">
+    <!--    <span-->
+    <!--      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dicta-->
+    <!--      dolorum eaque eius esse ex exercitationem fugiat inventore ipsum itaque,-->
+    <!--      nobis, non pariatur quidem quis quos similique sit tenetur ullam? At-->
+    <!--      cumque eos est fuga molestiae praesentium qui recusandae? Delectus-->
+    <!--      dignissimos dolores excepturi facilis omnis optio provident quaerat quis-->
+    <!--      quos ullam? Autem commodi corporis ipsam maxime mollitia officiis,-->
+    <!--      recusandae. Aut consequatur corporis cupiditate debitis deleniti deserunt-->
+    <!--      dicta ex incidunt ipsa, nemo nulla optio, perspiciatis placeat praesentium-->
+    <!--      rerum sint vero voluptate voluptatum. Accusamus animi earum odit quibusdam-->
+    <!--      quod. Amet animi commodi consectetur distinctio eaque itaque, neque nobis-->
+    <!--      rerum. Minus, quaerat tenetur!</span-->
+    <!--    >-->
+    <p-menu [model]="items" styleClass="oveflow: auto"></p-menu>
+  </div>
 </div>
+
+<!--    <p-menu [model]="items" styleClass="w-96">-->
+<!--      <ng-template #item let-item>-->
+<!--        &lt;!&ndash;        <div class="p-menu-item-link flex justify-between">&ndash;&gt;-->
+<!--        &lt;!&ndash;          <a pRipple class="flex items-center">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span [class]="item.icon"></span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span class="ml-2">{{ item.label }}</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge" />&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span&ndash;&gt;-->
+<!--        &lt;!&ndash;              *ngIf="item.shortcut"&ndash;&gt;-->
+<!--        &lt;!&ndash;              class="ml-auto rounded border p-1 text-xs border-surface bg-emphasis text-muted-color"&ndash;&gt;-->
+<!--        &lt;!&ndash;            >&ndash;&gt;-->
+<!--        &lt;!&ndash;              {{ item.shortcut }}&ndash;&gt;-->
+<!--        &lt;!&ndash;            </span>&ndash;&gt;-->
+<!--        &lt;!&ndash;          </a>&ndash;&gt;-->
+<!--        &lt;!&ndash;          &lt;!&ndash;          <p-button&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;          &lt;!&ndash;            icon="pi pi-trash"&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;          &lt;!&ndash;            severity="secondary"&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;          &lt;!&ndash;            (onClick)="logEvent($event, item)"&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;          &lt;!&ndash;          ></p-button>&ndash;&gt;&ndash;&gt;-->
+
+<!--        &lt;!&ndash;          <p-button&ndash;&gt;-->
+<!--        &lt;!&ndash;            icon="pi pi-trash"&ndash;&gt;-->
+<!--        &lt;!&ndash;            [rounded]="true"&ndash;&gt;-->
+<!--        &lt;!&ndash;            [text]="true"&ndash;&gt;-->
+<!--        &lt;!&ndash;            (onClick)="logEvent($event, item)"&ndash;&gt;-->
+<!--        &lt;!&ndash;          />&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        <a-->
+<!--          routerlinkactive="p-menu-item-link-active"-->
+<!--          pripple=""-->
+<!--          class="p-ripple p-menu-item-link"-->
+<!--          ng-reflect-router-link-active="p-menu-item-link-active"-->
+<!--          ng-reflect-router-link="."-->
+<!--          ng-reflect-query-params="[object Object]"-->
+<!--          ng-reflect-router-link-active-options="[object Object]"-->
+<!--          ng-reflect-ng-class="[object Object]"-->
+<!--          tabindex="-1"-->
+<!--          data-pc-section="action"-->
+<!--          href="/miners?id=ebd7831b-4217-4141-9ef6-c8ae992f0e6b"-->
+<!--          pc13=""-->
+<!--          ><span-->
+<!--            class="p-menu-item-icon pi pi-server"-->
+<!--            ng-reflect-ng-class="pi pi-server"-->
+<!--          ></span-->
+<!--          >&lt;!&ndash;bindings={-->
+<!--  "ng-reflect-ng-if": "pi pi-server"-->
+<!--}&ndash;&gt;<span class="p-menu-item-label">Asic 2</span-->
+<!--          >&lt;!&ndash;bindings={-->
+<!--  "ng-reflect-ng-if-else": "[object Object]"-->
+<!--}&ndash;&gt;&lt;!&ndash;container&ndash;&gt;&lt;!&ndash;bindings={}&ndash;&gt;&lt;!&ndash;bindings={-->
+<!--  "ng-reflect-ng-template-outlet-context": "[object Object]"-->
+<!--}&ndash;&gt;<span class="p-ink" aria-hidden="true" role="presentation"></span-->
+<!--        ></a>-->
+<!--      </ng-template>-->
+<!--    </p-menu>-->

@@ -8,8 +8,8 @@ export const routes: Routes = [
     component: LayoutComponent,
     loadChildren: () => import('@views/views.routes'),
   },
-  {
-    path: '**',
-    redirectTo: RoutePath.LANDING,
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: RoutePath.LANDING,
+  // },
 ];

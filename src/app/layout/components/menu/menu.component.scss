@@ -1,0 +1,8 @@
+.menu {
+  overflow-y: auto;
+  user-select: none;
+  background-color: var(--content-card-background);
+  border-radius: var(--content-border-radius);
+  border: 1px solid var(--content-border-color);
+  padding: 0.5rem 1.5rem;
+}
