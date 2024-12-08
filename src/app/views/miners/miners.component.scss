@@ -1,18 +1,29 @@
 .miners {
-  border: 1px solid red;
-  display: flex;
   height: 100%;
+  display: flex;
+  border: 1px solid red;
 
   &__sidebar {
-    display: flex;
-    height: 100%;
-    border: 1px solid red;
-    width: 20rem;
-    overflow: auto;
+    border: 1px solid blue;
   }
 }
 
-.menu {
-  overflow-y: auto;
-  width: 24rem;
+.menu-item {
+  &__button {
+    visibility: hidden;
+  }
+
+  &__container {
+    display: flex;
+
+    &:hover {
+      .menu-item__button {
+        visibility: visible;
+      }
+    }
+  }
+
+  &__link {
+    flex-grow: 1;
+  }
 }

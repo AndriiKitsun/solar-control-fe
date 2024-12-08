@@ -44,6 +44,9 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
     },
   },
   {
