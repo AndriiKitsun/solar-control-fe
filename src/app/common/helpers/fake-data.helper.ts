@@ -33,4 +33,8 @@ export class FakeDataHelper {
   static randomISOString(): string {
     return new Date().toJSON();
   }
+
+  static randomBoolean(probability = 0.5): boolean {
+    return Math.random() < probability;
+  }
 }

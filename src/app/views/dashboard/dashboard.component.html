@@ -1,22 +1,54 @@
 <div class="dashboard">
   <div class="dashboard__table">
     @if (dataConfig$ | async; as data) {
-      <p-table [value]="data">
+      <!--      <p-table [value]="data">-->
+      <!--        <ng-template #header>-->
+      <!--          <tr>-->
+      <!--            @for (col of columnConfig; track col.id) {-->
+      <!--              <th [ngStyle]="col.ngStyle">{{ col.title }}</th>-->
+      <!--            }-->
+      <!--          </tr>-->
+      <!--        </ng-template>-->
+
+      <!--        <ng-template #body let-row>-->
+      <!--          <tr>-->
+      <!--            @for (col of columnConfig; track col.id) {-->
+      <!--              @if (col.field) {-->
+      <!--                <td>{{ row[col.field] }}</td>-->
+      <!--              }-->
+      <!--            }-->
+      <!--          </tr>-->
+      <!--        </ng-template>-->
+      <!--      </p-table>-->
+
+      <p-table [value]="data" showGridlines rowHover scrollable stripedRows>
         <ng-template #header>
           <tr>
-            @for (col of columnConfig; track col.id) {
-              <th [ngStyle]="col.ngStyle">{{ col.title }}</th>
-            }
+            <th>Name</th>
+            <th>U (V)</th>
+            <th>I (A)</th>
+            <th>p (Kw)</th>
+            <th>E (kW/h)</th>
+            <th>T1 (KW/h)</th>
+            <th>T2 (KW/h)</th>
+            <th>F (Hz)</th>
+            <th>PF</th>
+            <th>10m U (V)</th>
           </tr>
         </ng-template>
 
         <ng-template #body let-row>
           <tr>
-            @for (col of columnConfig; track col.id) {
-              @if (col.field) {
-                <td>{{ row[col.field] }}</td>
-              }
-            }
+            <td>{{ row.id }}</td>
+            <td>{{ row.voltageV | number }}</td>
+            <td>{{ row.currentA | number }}</td>
+            <td>{{ row.powerKw | number }}</td>
+            <td>{{ row.energyKwh | number }}</td>
+            <td>{{ row.frequencyHz }}</td>
+            <td>{{ row.powerFactor | number }}</td>
+            <td>{{ row.t1EnergyKwh | number }}</td>
+            <td>{{ row.t2EnergyKwh | number }}</td>
+            <td>{{ row.avgVoltageV | number }}</td>
           </tr>
         </ng-template>
       </p-table>

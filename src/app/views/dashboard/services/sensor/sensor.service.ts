@@ -8,15 +8,28 @@ import { FakeDataHelper } from '@common/helpers';
 })
 export class SensorService {
   getSensorsData(): Observable<SensorModel> {
+    const pzems: PzemModel[] = [];
+
+    if (FakeDataHelper.randomBoolean(0.95)) {
+      pzems.push(this.randomPzem('acInput'));
+    }
+
+    if (FakeDataHelper.randomBoolean(0.95)) {
+      pzems.push(this.randomPzem('acOutput'));
+    }
+
+    if (FakeDataHelper.randomBoolean(0.95)) {
+      pzems.push(this.randomPzem('dcAcc'));
+    }
+
+    if (FakeDataHelper.randomBoolean(0.95)) {
+      pzems.push(this.randomPzem('dcSun'));
+    }
+
     const model: SensorModel = {
       id: FakeDataHelper.randomUUID(),
       createdAtGmt: FakeDataHelper.randomISOString(),
-      pzems: [
-        this.randomPzem('acInput'),
-        this.randomPzem('acOutput'),
-        this.randomPzem('dcAcc'),
-        this.randomPzem('dcSun'),
-      ],
+      pzems,
     };
 
     return of(model);

@@ -97,7 +97,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  dataConfig$!: Observable<RowConfig[]>;
+  dataConfig$!: Observable<PzemModel[]>;
 
   constructor(private readonly sensorService: SensorService) {}
 
@@ -105,14 +105,15 @@ export class DashboardComponent implements OnInit {
     this.dataConfig$ = this.sensorService.getSensorsData().pipe(
       map((sensors) => {
         console.log(`sensors -->`, sensors);
+        return sensors.pzems;
 
-        sensors.pzems.forEach((pzem: PzemModel) => {
-          this.rowData.forEach((row) => {
-            row[pzem.id] = pzem[row.field];
-          });
-        });
-
-        return this.rowData;
+        // sensors.pzems.forEach((pzem: PzemModel) => {
+        //   this.rowData.forEach((row) => {
+        //     row[pzem.id] = pzem[row.field];
+        //   });
+        // });
+        //
+        // return this.rowData;
       }),
     );
   }
