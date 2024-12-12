@@ -1,4 +1,4 @@
-import { RowConfig } from '../types/sensors-table.types';
+import { RowConfig } from '../types';
 
 export enum TableRowId {
   AC_INPUT = 'acInput',

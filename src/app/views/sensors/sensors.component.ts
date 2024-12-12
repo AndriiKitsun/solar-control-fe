@@ -1,57 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { Component, OnInit, signal } from '@angular/core';
 import { SensorService } from './services';
-import {
-  JsonPipe,
-  AsyncPipe,
-  DecimalPipe,
-  NgForOf,
-  NgStyle,
-} from '@angular/common';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { TABLE_ROWS } from './constants';
-import { RowConfig } from './types/sensors-table.types';
-
-// enum SensorGridColumn {
-//   EMPTY = 'EMPTY',
-//   INPUT_AC = 'INPUT_AC',
-//   OUTPUT_AC = 'CURRENT',
-//   BATTERY_DC = 'BATTERY_DC',
-//   SUN_DC = 'SUN_DC',
-// }
-//
-// interface ColumnConfig {
-//   id: string;
-//   title?: string;
-//   ngStyle?: Record<string, string | number>;
-//   field?: string;
-// }
-
-// interface RowConfig {
-//   title: string;
-//   field: keyof PzemModel;
-//   [key: string]: string | number | undefined;
-// }
+import { RowConfig } from './types';
+import { AsyncPipe, DecimalPipe, DatePipe, NgClass } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { SensorModel } from './models';
 
 @Component({
   selector: 'app-sensors',
   standalone: true,
   templateUrl: './sensors.component.html',
   styleUrl: './sensors.component.scss',
-  imports: [TableModule, JsonPipe, AsyncPipe, DecimalPipe, NgForOf, NgStyle],
+  providers: [DatePipe],
+  imports: [TableModule, AsyncPipe, DecimalPipe, NgClass],
 })
 export class SensorsComponent implements OnInit {
+  isLoading = signal<boolean>(false);
+
+  createdAtLabel!: string;
   tablesRows$!: Observable<RowConfig[]>;
 
-  constructor(private readonly sensorService: SensorService) {}
+  constructor(
+    private readonly sensorService: SensorService,
+    private readonly datePipe: DatePipe,
+  ) {}
 
   ngOnInit(): void {
     this.tablesRows$ = this.getTableRows();
   }
 
   getTableRows(): Observable<RowConfig[]> {
+    this.isLoading.set(true);
+
     return this.sensorService.getSensorsData().pipe(
-      map((sensors) => {
+      tap((sensors: SensorModel) => {
+        this.isLoading.set(false);
+
+        // TODO: Add translation for the label
+        this.createdAtLabel = `PZEM Sensors: ${this.datePipe.transform(sensors.createdAtGmt, 'mediumTime')}`;
+      }),
+      map((sensors: SensorModel) => {
         return TABLE_ROWS.map((row) => {
           return {
             ...row,

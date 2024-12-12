@@ -10,8 +10,8 @@
   &__cell {
     text-align: center;
   }
-}
 
-.table-row__title {
-  font-weight: var(--table-column-title-font-weight);
+  &__row-title {
+    font-weight: var(--table-column-title-font-weight);
+  }
 }

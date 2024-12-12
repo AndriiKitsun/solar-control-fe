@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, interval, map } from 'rxjs';
 import { SensorModel, PzemModel } from '../../models';
 import { FakeDataHelper } from '@common/helpers';
 
@@ -8,6 +8,12 @@ import { FakeDataHelper } from '@common/helpers';
 })
 export class SensorService {
   getSensorsData(): Observable<SensorModel> {
+    // return of(this.randomSensor());
+
+    return interval(1000).pipe(map(() => this.randomSensor()));
+  }
+
+  private randomSensor(): SensorModel {
     const pzems: PzemModel[] = [];
 
     if (FakeDataHelper.randomBoolean(0.95)) {
@@ -26,13 +32,11 @@ export class SensorService {
       pzems.push(this.randomPzem('dcSun'));
     }
 
-    const model: SensorModel = {
+    return {
       id: FakeDataHelper.randomUUID(),
       createdAtGmt: FakeDataHelper.randomISOString(),
       pzems,
     };
-
-    return of(model);
   }
 
   private randomPzem(id: string): PzemModel {
