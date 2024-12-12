@@ -19,7 +19,7 @@ export class SensorService {
     }
 
     if (FakeDataHelper.randomBoolean(0.95)) {
-      pzems.push(this.randomPzem('dcAcc'));
+      pzems.push(this.randomPzem('dcBattery'));
     }
 
     if (FakeDataHelper.randomBoolean(0.95)) {
@@ -46,7 +46,7 @@ export class SensorService {
       powerFactor: FakeDataHelper.randomFloat(0, 1, 3),
       t1EnergyKwh: FakeDataHelper.randomFloat(0, 50),
       t2EnergyKwh: FakeDataHelper.randomFloat(0, 50),
-      avgVoltageV: FakeDataHelper.randomFloat(0, 100),
+      avgVoltageV: FakeDataHelper.randomFloat(170, 260),
     };
   }
 }

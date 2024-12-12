@@ -1,54 +1,43 @@
 <div class="sensors">
   <div>
-    @if (dataConfig$ | async; as data) {
-      <!--      <p-table [value]="data">-->
-      <!--        <ng-template #header>-->
-      <!--          <tr>-->
-      <!--            @for (col of columnConfig; track col.id) {-->
-      <!--              <th [ngStyle]="col.ngStyle">{{ col.title }}</th>-->
-      <!--            }-->
-      <!--          </tr>-->
-      <!--        </ng-template>-->
-
-      <!--        <ng-template #body let-row>-->
-      <!--          <tr>-->
-      <!--            @for (col of columnConfig; track col.id) {-->
-      <!--              @if (col.field) {-->
-      <!--                <td>{{ row[col.field] }}</td>-->
-      <!--              }-->
-      <!--            }-->
-      <!--          </tr>-->
-      <!--        </ng-template>-->
-      <!--      </p-table>-->
-
-      <p-table [value]="data" showGridlines rowHover scrollable stripedRows>
+    @if (tablesRows$ | async; as rows) {
+      <p-table [value]="rows" showGridlines rowHover scrollable stripedRows>
         <ng-template #header>
           <tr>
             <th>Name</th>
-            <th>U (V)</th>
-            <th>I (A)</th>
-            <th>p (Kw)</th>
-            <th>E (kW/h)</th>
-            <th>T1 (KW/h)</th>
-            <th>T2 (KW/h)</th>
-            <th>F (Hz)</th>
-            <th>PF</th>
-            <th>10m U (V)</th>
+            <th class="table__cell">U (V)</th>
+            <th class="table__cell">I (A)</th>
+            <th class="table__cell">p (Kw)</th>
+            <th class="table__cell">E (kW/h)</th>
+            <th class="table__cell">T1 (KW/h)</th>
+            <th class="table__cell">T2 (KW/h)</th>
+            <th class="table__cell">F (Hz)</th>
+            <th class="table__cell">PF</th>
+            <th class="table__cell">10m U (V)</th>
           </tr>
         </ng-template>
 
         <ng-template #body let-row>
           <tr>
-            <td>{{ row.id }}</td>
-            <td>{{ row.voltageV | number }}</td>
-            <td>{{ row.currentA | number }}</td>
-            <td>{{ row.powerKw | number }}</td>
-            <td>{{ row.energyKwh | number }}</td>
-            <td>{{ row.frequencyHz }}</td>
-            <td>{{ row.powerFactor | number }}</td>
-            <td>{{ row.t1EnergyKwh | number }}</td>
-            <td>{{ row.t2EnergyKwh | number }}</td>
-            <td>{{ row.avgVoltageV | number }}</td>
+            <td>{{ row.title }}</td>
+
+            <td class="table__cell">{{ row.data?.voltageV ?? 0 | number }}</td>
+            <td class="table__cell">{{ row.data?.currentA ?? 0 | number }}</td>
+            <td class="table__cell">{{ row.data?.powerKw ?? 0 | number }}</td>
+            <td class="table__cell">{{ row.data?.energyKwh ?? 0 | number }}</td>
+            <td class="table__cell">
+              {{ row.data?.t1EnergyKwh ?? 0 | number }}
+            </td>
+            <td class="table__cell">
+              {{ row.data?.t2EnergyKwh ?? 0 | number }}
+            </td>
+            <td class="table__cell">{{ row.data?.frequencyHz ?? 0 }}</td>
+            <td class="table__cell">
+              {{ row.data?.powerFactor ?? 0 | number }}
+            </td>
+            <td class="table__cell">
+              {{ row.data?.avgVoltageV ?? 0 | number }}
+            </td>
           </tr>
         </ng-template>
       </p-table>

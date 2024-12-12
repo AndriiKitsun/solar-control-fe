@@ -8,16 +8,16 @@ export const MAIN_TABS: TabItem[] = [
     icon: PrimeIcons.WAVE_PULSE,
     route: RoutePath.SENSORS,
   },
-  // {
-  //   label: 'Stations',
-  //   icon: PrimeIcons.WAREHOUSE,
-  //   route: RoutePath.STATIONS,
-  // },
-  // {
-  //   label: 'Miners',
-  //   icon: PrimeIcons.SERVER,
-  //   route: RoutePath.MINERS,
-  // },
+  {
+    label: 'Stations',
+    icon: PrimeIcons.WAREHOUSE,
+    route: RoutePath.STATIONS,
+  },
+  {
+    label: 'Miners',
+    icon: PrimeIcons.SERVER,
+    route: RoutePath.MINERS,
+  },
 ];
 
 export const ROUTE_REGEX = /[/?]/;
