@@ -14,7 +14,27 @@ export class FakeDataHelper {
     return Math.floor(Math.random() * (maxRounded - minRounded) + minRounded);
   }
 
+  static randomFloat(min = 0, max = 100, digitsAfterPoint?: number): number {
+    const minRounded = Math.ceil(min);
+    const maxRounded = Math.floor(max);
+    const value = Math.random() * (maxRounded - minRounded) + minRounded;
+
+    if (digitsAfterPoint || digitsAfterPoint === 0) {
+      return +value.toFixed(digitsAfterPoint);
+    }
+
+    return value;
+  }
+
   static randomFromList<T>(list: T[]): T {
     return list[Math.floor(Math.random() * list.length)];
+  }
+
+  static randomISOString(): string {
+    return new Date().toJSON();
+  }
+
+  static randomBoolean(probability = 0.5): boolean {
+    return Math.random() < probability;
   }
 }

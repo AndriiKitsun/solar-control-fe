@@ -3,11 +3,14 @@ import { RoutePath } from '@common/constants/router.constants';
 
 export default [
   {
-    path: RoutePath.LANDING,
+    path: RoutePath.ROOT,
+    pathMatch: 'full',
+    redirectTo: RoutePath.SENSORS,
+  },
+  {
+    path: RoutePath.SENSORS,
     loadComponent: () =>
-      import('./dashboard/dashboard.component').then(
-        (c) => c.DashboardComponent,
-      ),
+      import('./sensors/sensors.component').then((c) => c.SensorsComponent),
   },
   {
     path: RoutePath.MINERS,
