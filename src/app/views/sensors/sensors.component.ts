@@ -33,13 +33,13 @@ interface RowConfig {
 }
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-sensors',
   standalone: true,
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+  templateUrl: './sensors.component.html',
+  styleUrl: './sensors.component.scss',
   imports: [TableModule, JsonPipe, AsyncPipe, DecimalPipe, NgForOf, NgStyle],
 })
-export class DashboardComponent implements OnInit {
+export class SensorsComponent implements OnInit {
   columnConfig: ColumnConfig[] = [
     {
       id: SensorGridColumn.EMPTY,

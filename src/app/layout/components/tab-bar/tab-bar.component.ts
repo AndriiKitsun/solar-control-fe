@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, inject, DestroyRef } from '@angular/core';
 import { Tab, TabList, Tabs } from 'primeng/tabs';
-import { RoutePath } from '@common/constants/router.constants';
+import { DEFAULT_ROUTE } from '@common/constants/router.constants';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { tap, filter, map, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -33,7 +33,7 @@ export class TabBarComponent implements OnInit {
         map((event) => event.urlAfterRedirects),
         startWith(this.router.url),
         tap((url) => {
-          const route = url.split(ROUTE_REGEX).at(1) ?? RoutePath.LANDING;
+          const route = url.split(ROUTE_REGEX).at(1) ?? DEFAULT_ROUTE;
 
           this.activeRoute.set(route);
         }),
