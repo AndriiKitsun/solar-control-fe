@@ -18,7 +18,7 @@ import { SensorModel } from './models';
 export class SensorsComponent implements OnInit {
   isLoading = signal<boolean>(false);
 
-  createdAtLabel!: string;
+  createdAtLabel = 'PZEM Sensors';
   tablesRows$!: Observable<RowConfig[]>;
 
   constructor(
