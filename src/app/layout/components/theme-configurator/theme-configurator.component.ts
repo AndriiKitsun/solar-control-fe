@@ -14,11 +14,19 @@ import {
   SimpleSelectOption,
 } from '@common/types';
 import { FormsModule } from '@angular/forms';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-theme-configurator',
   standalone: true,
-  imports: [NgForOf, NgStyle, NgClass, SelectButton, FormsModule],
+  imports: [
+    NgForOf,
+    NgStyle,
+    NgClass,
+    SelectButton,
+    FormsModule,
+    TranslocoDirective,
+  ],
   templateUrl: './theme-configurator.component.html',
   styleUrl: './theme-configurator.component.scss',
 })

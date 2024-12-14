@@ -8,11 +8,10 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
-import { ThemePreset } from '@layout/services';
+import { ThemePreset, LangService } from '@layout/services';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
-import { LangService } from '@layout/services/lang/lang.service';
 import { ALLOWED_LANGS } from '@common/constants';
 
 export const appConfig: ApplicationConfig = {

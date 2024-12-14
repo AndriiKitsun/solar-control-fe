@@ -33,5 +33,11 @@
     "MINERS": "Miners",
     "SENSORS": "Sensors",
     "STATIONS": "Stations"
+  },
+  "THEME_CONFIGURATOR": {
+    "DARK_SURFACE_COLOR": "Surface color (Dark theme)",
+    "LIGHT_SURFACE_COLOR": "Surface color (Light theme)",
+    "PRIMARY_COLOR": "Primary color",
+    "THEME_PRESETS": "Theme presets"
   }
 }
