@@ -17,6 +17,7 @@ export class LangService {
 
   switchLang(lang: string): void {
     this.translocoService.setActiveLang(lang);
+    document.documentElement.lang = lang;
 
     LocalStorageHelper.set(LangService.langKey, lang);
   }
