@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private readonly themeService: ThemeService,
-    private langService: LangService,
+    private readonly langService: LangService,
   ) {}
 
   ngOnInit(): void {

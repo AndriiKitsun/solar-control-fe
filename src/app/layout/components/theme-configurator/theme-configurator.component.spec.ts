@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ThemeConfiguratorComponent } from './theme-configurator.component';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('ThemeConfiguratorComponent', () => {
   let component: ThemeConfiguratorComponent;
@@ -7,7 +8,7 @@ describe('ThemeConfiguratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeConfiguratorComponent],
+      imports: [ThemeConfiguratorComponent, TranslocoTestingModule.forRoot({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeConfiguratorComponent);

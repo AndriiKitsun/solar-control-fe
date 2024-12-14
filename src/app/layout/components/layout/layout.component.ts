@@ -13,9 +13,9 @@ import { TabBarComponent } from '../tab-bar/tab-bar.component';
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit {
-  constructor(private readonly layoutService: ThemeService) {}
+  constructor(private readonly themeService: ThemeService) {}
 
   ngOnInit(): void {
-    this.layoutService.restoreThemeState();
+    this.themeService.restoreThemeState();
   }
 }

@@ -3,6 +3,7 @@ import { LayoutComponent } from './layout.component';
 import { ActivatedRoute } from '@angular/router';
 import { ThemeService } from '../../services';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -10,7 +11,11 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutComponent, NoopAnimationsModule],
+      imports: [
+        LayoutComponent,
+        NoopAnimationsModule,
+        TranslocoTestingModule.forRoot({}),
+      ],
       providers: [
         {
           provide: ActivatedRoute,
