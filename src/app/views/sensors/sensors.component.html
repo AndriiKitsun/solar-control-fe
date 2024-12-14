@@ -1,7 +1,7 @@
 <div class="sensors" *transloco="let t">
   <div class="card">
     <div class="mb-4 text-xl font-semibold">
-      {{ t(pzemLabel, { time: createdAt | date: 'mediumTime' }) }}
+      {{ t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' }) }}
     </div>
     <p-table
       [value]="(tablesRows$ | async)!"
