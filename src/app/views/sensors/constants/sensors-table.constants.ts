@@ -1,5 +1,12 @@
 import { RowConfig } from '../types';
 
+/**
+ * t(SENSORS.TABLE.ROW.AC_INPUT)
+ * t(SENSORS.TABLE.ROW.AC_OUTPUT)
+ * t(SENSORS.TABLE.ROW.DC_BATTERY)
+ * t(SENSORS.TABLE.ROW.DC_SUN)
+ * */
+
 export enum TableRowId {
   AC_INPUT = 'acInput',
   AC_OUTPUT = 'acOutput',

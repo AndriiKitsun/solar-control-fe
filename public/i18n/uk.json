@@ -1,8 +1,8 @@
 {
   "MINERS": {
     "TYPE": {
-      "CARD": "Відеокарти",
-      "ASIC": "Asic Майнери"
+      "ASIC": "Asic Майнери",
+      "CARD": "Відеокарти"
     }
   },
   "SENSORS": {
@@ -10,16 +10,16 @@
     "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
     "TABLE": {
       "COLUMN": {
-        "NAME": "Назва",
-        "VOLTAGE": "U (В)",
+        "AVG_VOLTAGE": "10хв U (В)",
         "CURRENT": "I (A)",
-        "POWER": "P (кВт)",
         "ENERGY": "E (кВт⋅год)",
+        "FREQUENCY": "F (Гц)",
+        "NAME": "Назва",
+        "POWER": "P (кВт)",
+        "POWER_FACTOR": "Коеф. потуж.",
         "T1_ENERGY": "T1 (кВт⋅год)",
         "T2_ENERGY": "T2 (кВт⋅год)",
-        "FREQUENCY": "F (Гц)",
-        "POWER_FACTOR": "Коеф. потуж.",
-        "AVG_VOLTAGE": "10хв U (В)"
+        "VOLTAGE": "U (В)"
       },
       "ROW": {
         "AC_INPUT": "AC Вхід",
@@ -30,8 +30,8 @@
     }
   },
   "TAB_BAR": {
+    "MINERS": "Майнери",
     "SENSORS": "Датчики",
-    "STATIONS": "Станції",
-    "MINERS": "Майнери"
+    "STATIONS": "Станції"
   }
 }

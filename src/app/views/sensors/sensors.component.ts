@@ -8,6 +8,11 @@ import { TableModule } from 'primeng/table';
 import { SensorModel } from './models';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+/**
+ * t(SENSORS.PZEM_LABEL)
+ * t(SENSORS.PZEM_LABEL_WITH_TIME)
+ * */
+
 @Component({
   selector: 'app-sensors',
   standalone: true,

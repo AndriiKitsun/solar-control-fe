@@ -1,8 +1,8 @@
 {
   "MINERS": {
     "TYPE": {
-      "CARD": "Graphics Cards",
-      "ASIC": "Asic Miners"
+      "ASIC": "Asic Miners",
+      "CARD": "Graphics Cards"
     }
   },
   "SENSORS": {
@@ -10,16 +10,16 @@
     "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
     "TABLE": {
       "COLUMN": {
-        "NAME": "Name",
-        "VOLTAGE": "U (V)",
+        "AVG_VOLTAGE": "10m U (V)",
         "CURRENT": "I (A)",
-        "POWER": "P (kW)",
         "ENERGY": "E (kW⋅h)",
+        "FREQUENCY": "F (Hz)",
+        "NAME": "Name",
+        "POWER": "P (kW)",
+        "POWER_FACTOR": "Power factor",
         "T1_ENERGY": "T1 (kW⋅h)",
         "T2_ENERGY": "T2 (kW⋅h)",
-        "FREQUENCY": "F (Hz)",
-        "POWER_FACTOR": "Power factor",
-        "AVG_VOLTAGE": "10m U (V)"
+        "VOLTAGE": "U (V)"
       },
       "ROW": {
         "AC_INPUT": "AC Input",
@@ -30,8 +30,8 @@
     }
   },
   "TAB_BAR": {
+    "MINERS": "Miners",
     "SENSORS": "Sensors",
-    "STATIONS": "Stations",
-    "MINERS": "Miners"
+    "STATIONS": "Stations"
   }
 }

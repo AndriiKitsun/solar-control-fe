@@ -2,6 +2,12 @@ import { TabItem } from './tab-bar.types';
 import { RoutePath } from '@common/constants/router.constants';
 import { PrimeIcons } from 'primeng/api';
 
+/**
+ * t(TAB_BAR.SENSORS)
+ * t(TAB_BAR.STATIONS)
+ * t(TAB_BAR.MINERS)
+ * */
+
 export const MAIN_TABS: TabItem[] = [
   {
     label: 'TAB_BAR.SENSORS',

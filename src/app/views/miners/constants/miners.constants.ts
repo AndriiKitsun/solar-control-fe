@@ -2,6 +2,11 @@ import { MinerType } from '../models';
 import { MinerMenuItemMapConfig } from '../types';
 import { PrimeIcons } from 'primeng/api';
 
+/**
+ * t(MINERS.TYPE.CARD)
+ * t(MINERS.TYPE.ASIC)
+ * */
+
 export const MINER_MENU_ITEM_MAPPING: Record<
   MinerType,
   MinerMenuItemMapConfig
