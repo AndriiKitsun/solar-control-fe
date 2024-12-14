@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { ActivatedRoute } from '@angular/router';
-import { LayoutService } from '../../services';
+import { ThemeService, LangService } from '../../services';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -9,14 +10,18 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent],
+      imports: [HeaderComponent, TranslocoTestingModule.forRoot({})],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {},
         },
         {
-          provide: LayoutService,
+          provide: ThemeService,
+          useValue: {},
+        },
+        {
+          provide: LangService,
           useValue: {},
         },
       ],

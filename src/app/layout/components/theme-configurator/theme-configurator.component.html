@@ -1,12 +1,12 @@
-<div class="theme-configurator">
+<div class="theme-configurator" *transloco="let t">
   <ng-content></ng-content>
 
   <div class="theme-configurator-panel hidden">
     <div class="flex flex-col gap-4">
       <div>
-        <span class="text-sm font-semibold text-muted-color"
-          >Primary color</span
-        >
+        <span class="text-sm font-semibold text-muted-color">{{
+          t('THEME_CONFIGURATOR.PRIMARY_COLOR')
+        }}</span>
         <div class="flex flex-wrap justify-between gap-2 pt-2">
           <button
             type="button"
@@ -23,9 +23,9 @@
       </div>
 
       <div>
-        <span class="text-sm font-semibold text-muted-color"
-          >Surface color (Light theme)</span
-        >
+        <span class="text-sm font-semibold text-muted-color">{{
+          t('THEME_CONFIGURATOR.LIGHT_SURFACE_COLOR')
+        }}</span>
         <div class="flex flex-wrap gap-2 pt-2">
           <button
             type="button"
@@ -42,9 +42,9 @@
       </div>
 
       <div>
-        <span class="text-sm font-semibold text-muted-color"
-          >Surface color (Dark theme)</span
-        >
+        <span class="text-sm font-semibold text-muted-color">{{
+          t('THEME_CONFIGURATOR.DARK_SURFACE_COLOR')
+        }}</span>
         <div class="flex flex-wrap gap-2 pt-2">
           <button
             type="button"
@@ -62,8 +62,8 @@
 
       <div class="flex flex-col gap-2">
         <span class="text-sm font-semibold text-muted-color"
-          >Theme presets</span
-        >
+          >{{ t('THEME_CONFIGURATOR.THEME_PRESETS') }}
+        </span>
         <p-select-button
           [options]="presetOptions"
           [allowEmpty]="false"

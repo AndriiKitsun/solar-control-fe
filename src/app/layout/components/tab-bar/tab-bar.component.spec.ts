@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabBarComponent } from './tab-bar.component';
 import { ActivatedRoute } from '@angular/router';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('TabBarComponent', () => {
   let component: TabBarComponent;
@@ -8,7 +9,7 @@ describe('TabBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TabBarComponent],
+      imports: [TabBarComponent, TranslocoTestingModule.forRoot({})],
       providers: [
         {
           provide: ActivatedRoute,

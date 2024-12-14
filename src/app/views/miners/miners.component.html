@@ -1,10 +1,10 @@
-<div class="miners">
+<div class="miners" *transloco="let t">
   @if (items$ | async; as items) {
     <div class="miners__sidebar">
       <p-menu [model]="items" styleClass="w-72 h-full overflow-auto">
         <ng-template #submenuheader let-item>
           <span class="select-none font-bold text-primary">{{
-            item.label
+            t(item.label)
           }}</span>
         </ng-template>
 

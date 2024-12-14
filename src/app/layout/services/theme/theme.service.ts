@@ -7,7 +7,7 @@ import {
   ThemePresetName,
   ThemePresetConfig,
   ThemePreset,
-} from './layout.types';
+} from './theme.types';
 import {
   updatePrimaryPalette,
   updateSurfacePalette,
@@ -16,11 +16,12 @@ import {
 } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
+import { LocalStorageHelper } from '@common/helpers';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LayoutService {
+export class ThemeService {
   private static readonly darkModeClassKey = 'app-dark';
   private static readonly colorSchemeKey = 'colorScheme';
   private static readonly primaryColorKey = 'primaryColor';
@@ -42,7 +43,7 @@ export class LayoutService {
     this.loadThemeConfig();
 
     if (this.colorScheme === ColorScheme.DARK) {
-      document.documentElement.classList.add(LayoutService.darkModeClassKey);
+      document.documentElement.classList.add(ThemeService.darkModeClassKey);
     }
 
     usePreset(this.createPreset(this.presetName));
@@ -60,7 +61,7 @@ export class LayoutService {
       this.toggleDarkModeClass();
     }
 
-    localStorage.setItem(LayoutService.colorSchemeKey, this.colorScheme);
+    LocalStorageHelper.set(ThemeService.colorSchemeKey, this.colorScheme);
   }
 
   updatePrimaryColor(color: PrimaryColor): void {
@@ -68,7 +69,7 @@ export class LayoutService {
 
     updatePrimaryPalette(this.getPrimaryPalette(color));
 
-    localStorage.setItem(LayoutService.primaryColorKey, color);
+    LocalStorageHelper.set(ThemeService.primaryColorKey, color);
   }
 
   updateSurfaceColor(scheme: ColorScheme, color: SurfaceColor): void {
@@ -83,7 +84,7 @@ export class LayoutService {
       dark: this.getSurfacePalette(this.darkSurfaceColor),
     });
 
-    localStorage.setItem(`${scheme}${LayoutService.surfaceColorKey}`, color);
+    LocalStorageHelper.set(`${scheme}${ThemeService.surfaceColorKey}`, color);
   }
 
   updatePreset(name: ThemePresetName): void {
@@ -91,39 +92,35 @@ export class LayoutService {
 
     usePreset(this.createPreset(name));
 
-    localStorage.setItem(LayoutService.themePresetKey, name);
+    LocalStorageHelper.set(ThemeService.themePresetKey, name);
   }
 
   private loadThemeConfig(): void {
-    this.colorScheme = this.loadKey(
-      LayoutService.colorSchemeKey,
+    this.colorScheme = LocalStorageHelper.get(
+      ThemeService.colorSchemeKey,
       window.matchMedia('(prefers-color-scheme: dark)').matches
         ? ColorScheme.DARK
         : ColorScheme.LIGHT,
     );
 
-    this.primaryColor = this.loadKey(
-      LayoutService.primaryColorKey,
+    this.primaryColor = LocalStorageHelper.get(
+      ThemeService.primaryColorKey,
       PrimaryColor.EMERALD,
     );
 
-    this.lightSurfaceColor = this.loadKey(
-      `${ColorScheme.LIGHT}${LayoutService.surfaceColorKey}`,
+    this.lightSurfaceColor = LocalStorageHelper.get(
+      `${ColorScheme.LIGHT}${ThemeService.surfaceColorKey}`,
       SurfaceColor.SLATE,
     );
-    this.darkSurfaceColor = this.loadKey(
-      `${ColorScheme.DARK}${LayoutService.surfaceColorKey}`,
+    this.darkSurfaceColor = LocalStorageHelper.get(
+      `${ColorScheme.DARK}${ThemeService.surfaceColorKey}`,
       SurfaceColor.ZINC,
     );
 
-    this.presetName = this.loadKey(
-      LayoutService.themePresetKey,
+    this.presetName = LocalStorageHelper.get(
+      ThemeService.themePresetKey,
       ThemePresetName.AURA,
     );
-  }
-
-  private loadKey<T>(key: string, fallback: T): T {
-    return (localStorage.getItem(key) as T) ?? fallback;
   }
 
   private getPrimaryPalette(color: PrimaryColor): Palette {
@@ -176,6 +173,6 @@ export class LayoutService {
   }
 
   private toggleDarkModeClass(): void {
-    document.documentElement.classList.toggle(LayoutService.darkModeClassKey);
+    document.documentElement.classList.toggle(ThemeService.darkModeClassKey);
   }
 }

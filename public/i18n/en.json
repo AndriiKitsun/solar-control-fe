@@ -1,0 +1,43 @@
+{
+  "MINERS": {
+    "TYPE": {
+      "ASIC": "Asic Miners",
+      "CARD": "Graphics Cards"
+    }
+  },
+  "SENSORS": {
+    "PZEM_LABEL": "PZEM Sensors",
+    "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
+    "TABLE": {
+      "COLUMN": {
+        "AVG_VOLTAGE": "10m U (V)",
+        "CURRENT": "I (A)",
+        "ENERGY": "E (kW⋅h)",
+        "FREQUENCY": "F (Hz)",
+        "NAME": "Name",
+        "POWER": "P (kW)",
+        "POWER_FACTOR": "Power factor",
+        "T1_ENERGY": "T1 (kW⋅h)",
+        "T2_ENERGY": "T2 (kW⋅h)",
+        "VOLTAGE": "U (V)"
+      },
+      "ROW": {
+        "AC_INPUT": "AC Input",
+        "AC_OUTPUT": "AC Output",
+        "DC_BATTERY": "DC Battery",
+        "DC_SUN": "DC Sun"
+      }
+    }
+  },
+  "TAB_BAR": {
+    "MINERS": "Miners",
+    "SENSORS": "Sensors",
+    "STATIONS": "Stations"
+  },
+  "THEME_CONFIGURATOR": {
+    "DARK_SURFACE_COLOR": "Surface color (Dark theme)",
+    "LIGHT_SURFACE_COLOR": "Surface color (Light theme)",
+    "PRIMARY_COLOR": "Primary color",
+    "THEME_PRESETS": "Theme presets"
+  }
+}

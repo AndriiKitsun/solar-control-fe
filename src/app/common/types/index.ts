@@ -1,1 +1,2 @@
-export * from './select-button.types';
+export * from './lang.types';
+export * from './select.types';

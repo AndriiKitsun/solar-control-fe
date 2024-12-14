@@ -1,5 +1,7 @@
+import { TranslationKey } from '@common/types';
+
 export interface TabItem {
-  label: string;
+  label: TranslationKey;
   icon: string;
   route: string;
 }

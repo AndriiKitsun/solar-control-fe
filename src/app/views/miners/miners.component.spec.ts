@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MinersComponent } from './miners.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
+import { TranslocoTestingModule } from '@jsverse/transloco';
+import { MinerService } from './services';
+import { of } from 'rxjs';
 
 describe('MinersComponent', () => {
   let component: MinersComponent;
@@ -9,11 +12,21 @@ describe('MinersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MinersComponent, NoopAnimationsModule],
+      imports: [
+        MinersComponent,
+        NoopAnimationsModule,
+        TranslocoTestingModule.forRoot({}),
+      ],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {},
+        },
+        {
+          provide: MinerService,
+          useValue: {
+            getMiners: () => of(),
+          },
         },
       ],
     }).compileComponents();

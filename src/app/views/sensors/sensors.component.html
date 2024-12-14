@@ -1,55 +1,76 @@
-<div class="sensors">
-  <p-table
-    [value]="(tablesRows$ | async)!"
-    [loading]="isLoading()"
-    [tableStyle]="{ 'min-width': '70rem' }"
-    dataKey="id"
-    showGridlines
-    rowHover
-    scrollable
-    stripedRows
-  >
-    <ng-template #caption>
-      <span class="text-xl font-bold">{{ createdAtLabel }}</span>
-    </ng-template>
+<div class="sensors" *transloco="let t">
+  <div class="card">
+    <div class="mb-4 text-xl font-semibold">
+      {{ t(pzemLabel, { time: createdAt | date: 'mediumTime' }) }}
+    </div>
+    <p-table
+      [value]="(tablesRows$ | async)!"
+      [loading]="isLoading()"
+      dataKey="id"
+      [tableStyle]="{ 'min-height': '16rem' }"
+      showGridlines
+      rowHover
+      scrollable
+      stripedRows
+    >
+      <ng-template #header>
+        <tr>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.NAME') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.VOLTAGE') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.CURRENT') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.POWER') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.T1_ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.T2_ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.FREQUENCY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.POWER_FACTOR') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.AVG_VOLTAGE') }}
+          </th>
+        </tr>
+      </ng-template>
 
-    <ng-template #header>
-      <tr>
-        <th>Name</th>
-        <th class="table__cell">U (V)</th>
-        <th class="table__cell">I (A)</th>
-        <th class="table__cell">P (Kw)</th>
-        <th class="table__cell">E (kW/h)</th>
-        <th class="table__cell">T1 (KW/h)</th>
-        <th class="table__cell">T2 (KW/h)</th>
-        <th class="table__cell">F (Hz)</th>
-        <th class="table__cell">Pf</th>
-        <th class="table__cell">10m U (V)</th>
-      </tr>
-    </ng-template>
+      <ng-template #body let-row>
+        <tr [ngClass]="{ '!bg-highlight': !row.data }">
+          <td class="table__row-title">{{ t(row.title) }}</td>
 
-    <ng-template #body let-row>
-      <tr [ngClass]="{ '!bg-highlight': !row.data }">
-        <td class="table__row-title">{{ row.title }}</td>
-
-        <td class="table__cell">{{ row.data?.voltageV ?? 0 | number }}</td>
-        <td class="table__cell">{{ row.data?.currentA ?? 0 | number }}</td>
-        <td class="table__cell">{{ row.data?.powerKw ?? 0 | number }}</td>
-        <td class="table__cell">{{ row.data?.energyKwh ?? 0 | number }}</td>
-        <td class="table__cell">
-          {{ row.data?.t1EnergyKwh ?? 0 | number }}
-        </td>
-        <td class="table__cell">
-          {{ row.data?.t2EnergyKwh ?? 0 | number }}
-        </td>
-        <td class="table__cell">{{ row.data?.frequencyHz ?? 0 }}</td>
-        <td class="table__cell">
-          {{ row.data?.powerFactor ?? 0 | number }}
-        </td>
-        <td class="table__cell">
-          {{ row.data?.avgVoltageV ?? 0 | number }}
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+          <td class="table__cell">{{ row.data?.voltageV ?? 0 | number }}</td>
+          <td class="table__cell">{{ row.data?.currentA ?? 0 | number }}</td>
+          <td class="table__cell">{{ row.data?.powerKw ?? 0 | number }}</td>
+          <td class="table__cell">{{ row.data?.energyKwh ?? 0 | number }}</td>
+          <td class="table__cell">
+            {{ row.data?.t1EnergyKwh ?? 0 | number }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.t2EnergyKwh ?? 0 | number }}
+          </td>
+          <td class="table__cell">{{ row.data?.frequencyHz ?? 0 }}</td>
+          <td class="table__cell">
+            {{ row.data?.powerFactor ?? 0 | number }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.avgVoltageV ?? 0 | number }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
