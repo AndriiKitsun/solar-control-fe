@@ -1,7 +1,7 @@
 {
   "MINERS": {
     "TYPE": {
-      "CARD": "Video Cards",
+      "CARD": "Graphics Cards",
       "ASIC": "Asics"
     }
   },
