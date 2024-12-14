@@ -23,6 +23,7 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@common/*": ["src/app/common/*"],
+      "@config/*": ["src/app/config/*"],
       "@layout/*": ["src/app/layout/*"],
       "@views/*": ["src/app/views/*"]
     }

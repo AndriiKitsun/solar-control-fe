@@ -12,6 +12,8 @@ import { ThemePreset } from '@layout/services';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { ALLOWED_LANGS } from '@config/lang';
+import { LocalStorageHelper } from '@config/helpers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,9 +32,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideTransloco({
       config: {
-        availableLangs: ['en', 'uk'],
-        defaultLang: 'en',
-        // Remove this option if your application doesn't support changing language in runtime.
+        availableLangs: ALLOWED_LANGS as unknown as string[],
+        defaultLang: LocalStorageHelper.getLang(),
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },

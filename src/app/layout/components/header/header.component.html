@@ -30,5 +30,12 @@
         <i class="pi pi-palette"></i>
       </button>
     </app-theme-configurator>
+
+    <p-select
+      [options]="langOptions"
+      [(ngModel)]="selectedLang"
+      optionLabel="label"
+      (onChange)="switchLang($event)"
+    />
   </div>
 </header>
