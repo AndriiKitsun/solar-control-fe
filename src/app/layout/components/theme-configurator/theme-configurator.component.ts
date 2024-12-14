@@ -10,8 +10,8 @@ import {
 } from '../../services';
 import { SelectButton } from 'primeng/selectbutton';
 import {
-  SelectButtonOption,
   SelectButtonChangeTypedEvent,
+  SimpleSelectOption,
 } from '@common/types';
 import { FormsModule } from '@angular/forms';
 
@@ -26,8 +26,8 @@ export class ThemeConfiguratorComponent implements OnInit {
   primaryColors!: ColorModel<PrimaryColor>[];
   surfaceColors!: ColorModel<SurfaceColor>[];
 
-  presetOptions!: SelectButtonOption[];
-  selectedPreset!: SelectButtonOption;
+  presetOptions!: SimpleSelectOption<ThemePresetName>[];
+  selectedPreset!: SimpleSelectOption<ThemePresetName>;
 
   constructor(private readonly layoutService: ThemeService) {}
 
@@ -54,9 +54,10 @@ export class ThemeConfiguratorComponent implements OnInit {
       bgColor: `var(--p-${color}-500)`,
     }));
 
-    this.presetOptions = Object.values(ThemePresetName).map((label) => ({
-      label,
+    this.presetOptions = Object.values(ThemePresetName).map((name) => ({
+      label: name,
     }));
+
     this.selectedPreset = {
       label: this.layoutService.presetName,
     };
@@ -74,9 +75,9 @@ export class ThemeConfiguratorComponent implements OnInit {
     this.layoutService.updateSurfaceColor(ColorScheme.DARK, color);
   }
 
-  updatePreset(event: SelectButtonChangeTypedEvent<ThemePresetName>): void {
-    if (event.value?.label) {
-      this.layoutService.updatePreset(event.value.label);
-    }
+  updatePreset(
+    event: SelectButtonChangeTypedEvent<SimpleSelectOption<ThemePresetName>>,
+  ): void {
+    this.layoutService.updatePreset(event.value!.label);
   }
 }

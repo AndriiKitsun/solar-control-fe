@@ -7,11 +7,13 @@ import { PrimeIcons } from 'primeng/api';
 import { ColorScheme, ThemeService, LangService } from '../../services';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
 import { Select } from 'primeng/select';
-import { LangDefinition } from '@jsverse/transloco';
-import { SelectChangeTypedEvent } from '@common/types/select.types';
+import {
+  SelectChangeTypedEvent,
+  SelectOption,
+} from '@common/types/select.types';
 import { LANG_SELECT_OPTIONS } from './header.constants';
-import { LangSelectOption } from './header.types';
 import { FormsModule } from '@angular/forms';
+import { Lang } from '@common/types';
 
 @Component({
   selector: 'app-header',
@@ -34,8 +36,8 @@ export class HeaderComponent implements OnInit {
     [ColorScheme.DARK]: PrimeIcons.MOON,
   };
 
-  langOptions!: LangSelectOption[];
-  selectedLang?: LangSelectOption;
+  langOptions!: SelectOption<Lang>[];
+  selectedLang?: SelectOption<Lang>;
 
   constructor(
     private readonly themeService: ThemeService,
@@ -47,7 +49,7 @@ export class HeaderComponent implements OnInit {
 
     this.langOptions = LANG_SELECT_OPTIONS;
     this.selectedLang = LANG_SELECT_OPTIONS.find(
-      (option) => option.id === savedLang,
+      (option) => option.value === savedLang,
     );
   }
 
@@ -59,7 +61,7 @@ export class HeaderComponent implements OnInit {
     this.themeService.toggleDarkMode();
   }
 
-  switchLang(event: SelectChangeTypedEvent<LangDefinition>): void {
-    this.langService.switchLang(event.value.id);
+  switchLang(event: SelectChangeTypedEvent<SelectOption>): void {
+    this.langService.switchLang(event.value.value);
   }
 }

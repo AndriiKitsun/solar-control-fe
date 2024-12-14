@@ -1,12 +1,12 @@
-import { LangSelectOption } from './header.types';
+import { SelectOption, Lang } from '@common/types';
 
-export const LANG_SELECT_OPTIONS: LangSelectOption[] = [
+export const LANG_SELECT_OPTIONS: SelectOption<Lang>[] = [
   {
-    id: 'en',
+    value: 'en',
     label: 'ENG',
   },
   {
-    id: 'uk',
+    value: 'uk',
     label: 'УКР',
   },
 ];
