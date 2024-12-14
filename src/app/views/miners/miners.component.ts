@@ -8,11 +8,12 @@ import { AsyncPipe } from '@angular/common';
 import { Menu } from 'primeng/menu';
 import { Ripple } from 'primeng/ripple';
 import { Button } from 'primeng/button';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-miners',
   standalone: true,
-  imports: [AsyncPipe, Menu, Ripple, Button],
+  imports: [AsyncPipe, Menu, Ripple, Button, TranslocoDirective],
   templateUrl: './miners.component.html',
   styleUrl: './miners.component.scss',
 })

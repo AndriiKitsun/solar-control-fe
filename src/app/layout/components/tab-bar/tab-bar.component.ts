@@ -6,11 +6,12 @@ import { tap, filter, map, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MAIN_TABS, ROUTE_REGEX } from './tab-bar.constants';
 import { TabItem } from './tab-bar.types';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-tab-bar',
   standalone: true,
-  imports: [Tab, TabList, Tabs, RouterLink],
+  imports: [Tab, TabList, Tabs, RouterLink, TranslocoDirective],
   templateUrl: './tab-bar.component.html',
   styleUrl: './tab-bar.component.scss',
 })

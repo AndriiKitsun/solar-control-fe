@@ -10,8 +10,8 @@ import { Select } from 'primeng/select';
 import { LangDefinition } from '@jsverse/transloco';
 import { SelectChangeTypedEvent } from '@common/types/select.types';
 import { LANG_SELECT_OPTIONS } from './header.constants';
-import { FormsModule } from '@angular/forms';
 import { LangSelectOption } from './header.types';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',

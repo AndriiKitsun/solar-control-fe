@@ -7,22 +7,21 @@ export enum TableRowId {
   DC_SUN = 'dcSun',
 }
 
-// TODO: Add translations to 'title' fields
 export const TABLE_ROWS: readonly RowConfig[] = [
   {
     id: TableRowId.AC_INPUT,
-    title: 'AC Input',
+    title: 'SENSORS.TABLE.ROW.AC_INPUT',
   },
   {
     id: TableRowId.AC_OUTPUT,
-    title: 'AC Output',
+    title: 'SENSORS.TABLE.ROW.AC_OUTPUT',
   },
   {
     id: TableRowId.DC_BATTERY,
-    title: 'DC Battery',
+    title: 'SENSORS.TABLE.ROW.DC_BATTERY',
   },
   {
     id: TableRowId.DC_SUN,
-    title: 'DC Sun',
+    title: 'SENSORS.TABLE.ROW.DC_SUN',
   },
 ];

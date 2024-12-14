@@ -7,11 +7,11 @@ export const MINER_MENU_ITEM_MAPPING: Record<
   MinerMenuItemMapConfig
 > = {
   [MinerType.CARD]: {
-    label: 'Video Cards',
+    label: 'MINERS.TYPE.CARD',
     icon: PrimeIcons.MICROCHIP,
   },
   [MinerType.ASIC]: {
-    label: 'Asics',
+    label: 'MINERS.TYPE.ASIC',
     icon: PrimeIcons.SERVER,
   },
 };

@@ -4,17 +4,17 @@ import { PrimeIcons } from 'primeng/api';
 
 export const MAIN_TABS: TabItem[] = [
   {
-    label: 'Sensors',
+    label: 'TAB_BAR.SENSORS',
     icon: PrimeIcons.WAVE_PULSE,
     route: RoutePath.SENSORS,
   },
   {
-    label: 'Stations',
+    label: 'TAB_BAR.STATIONS',
     icon: PrimeIcons.WAREHOUSE,
     route: RoutePath.STATIONS,
   },
   {
-    label: 'Miners',
+    label: 'TAB_BAR.MINERS',
     icon: PrimeIcons.SERVER,
     route: RoutePath.MINERS,
   },

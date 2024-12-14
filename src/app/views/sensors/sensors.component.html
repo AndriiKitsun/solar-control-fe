@@ -1,9 +1,8 @@
 <div class="sensors" *transloco="let t">
   <div class="card">
     <div class="mb-4 text-xl font-semibold">
-      {{ t('SENSORS.TABLE.HEADER_LABEL') }}
+      {{ t(pzemLabel, { time: createdAt | date: 'mediumTime' }) }}
     </div>
-    <div class="mb-4 text-xl font-semibold">{{ createdAtLabel }}</div>
     <p-table
       [value]="(tablesRows$ | async)!"
       [loading]="isLoading()"
@@ -16,22 +15,42 @@
     >
       <ng-template #header>
         <tr>
-          <th class="table__cell table__header">Name</th>
-          <th class="table__cell table__header">U (V)</th>
-          <th class="table__cell table__header">I (A)</th>
-          <th class="table__cell table__header">P (Kw)</th>
-          <th class="table__cell table__header">E (kw/h)</th>
-          <th class="table__cell table__header">T1 (Kw/h)</th>
-          <th class="table__cell table__header">T2 (Kw/h)</th>
-          <th class="table__cell table__header">F (Hz)</th>
-          <th class="table__cell table__header">Pf</th>
-          <th class="table__cell table__header">10m U (V)</th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.NAME') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.VOLTAGE') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.CURRENT') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.POWER') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.T1_ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.T2_ENERGY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.FREQUENCY') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.POWER_FACTOR') }}
+          </th>
+          <th class="table__cell table__header">
+            {{ t('SENSORS.TABLE.COLUMN.AVG_VOLTAGE') }}
+          </th>
         </tr>
       </ng-template>
 
       <ng-template #body let-row>
         <tr [ngClass]="{ '!bg-highlight': !row.data }">
-          <td class="table__row-title">{{ row.title }}</td>
+          <td class="table__row-title">{{ t(row.title) }}</td>
 
           <td class="table__cell">{{ row.data?.voltageV ?? 0 | number }}</td>
           <td class="table__cell">{{ row.data?.currentA ?? 0 | number }}</td>
