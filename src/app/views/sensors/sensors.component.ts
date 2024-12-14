@@ -7,6 +7,7 @@ import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { SensorModel } from './models';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslationKey } from '@common/types';
 
 /**
  * t(SENSORS.PZEM_LABEL)
@@ -30,7 +31,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 export class SensorsComponent implements OnInit {
   isLoading = signal<boolean>(false);
 
-  pzemLabel = 'SENSORS.PZEM_LABEL';
+  pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
   createdAt = '';
 
   tablesRows$!: Observable<RowConfig[]>;
