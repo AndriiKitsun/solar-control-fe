@@ -2,7 +2,7 @@
   "MINERS": {
     "TYPE": {
       "CARD": "Graphics Cards",
-      "ASIC": "Asics"
+      "ASIC": "Asic Miners"
     }
   },
   "SENSORS": {
@@ -13,12 +13,12 @@
         "NAME": "Name",
         "VOLTAGE": "U (V)",
         "CURRENT": "I (A)",
-        "POWER": "P (Kw)",
-        "ENERGY": "E (kw/h)",
-        "T1_ENERGY": "T1 (Kw/h)",
-        "T2_ENERGY": "T2 (Kw/h)",
+        "POWER": "P (kW)",
+        "ENERGY": "E (kW⋅h)",
+        "T1_ENERGY": "T1 (kW⋅h)",
+        "T2_ENERGY": "T2 (kW⋅h)",
         "FREQUENCY": "F (Hz)",
-        "POWER_FACTOR": "Pf",
+        "POWER_FACTOR": "Power factor",
         "AVG_VOLTAGE": "10m U (V)"
       },
       "ROW": {
