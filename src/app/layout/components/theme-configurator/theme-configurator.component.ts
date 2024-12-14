@@ -4,7 +4,7 @@ import { ColorModel } from './theme-configurator.models';
 import {
   PrimaryColor,
   SurfaceColor,
-  LayoutService,
+  ThemeService,
   ColorScheme,
   ThemePresetName,
 } from '../../services';
@@ -29,7 +29,7 @@ export class ThemeConfiguratorComponent implements OnInit {
   presetOptions!: SelectButtonOption[];
   selectedPreset!: SelectButtonOption;
 
-  constructor(private readonly layoutService: LayoutService) {}
+  constructor(private readonly layoutService: ThemeService) {}
 
   get selectedPrimaryColor(): PrimaryColor {
     return this.layoutService.primaryColor;

@@ -12,8 +12,8 @@ import { ThemePreset } from '@layout/services';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
-import { ALLOWED_LANGS } from '@config/lang';
-import { LocalStorageHelper } from '@config/helpers';
+import { LangService } from '@layout/services/lang/lang.service';
+import { ALLOWED_LANGS } from '@common/constants';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideTransloco({
       config: {
         availableLangs: ALLOWED_LANGS as unknown as string[],
-        defaultLang: LocalStorageHelper.getLang(),
+        defaultLang: LangService.getLang(),
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },

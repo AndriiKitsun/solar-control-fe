@@ -1,4 +1,4 @@
-import { Lang } from '@config/lang';
+import { Lang } from '@common/types';
 
 export interface LangSelectOption {
   id: Lang;

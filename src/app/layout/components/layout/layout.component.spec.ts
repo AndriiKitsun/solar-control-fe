@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LayoutComponent } from './layout.component';
 import { ActivatedRoute } from '@angular/router';
-import { LayoutService } from '../../services';
+import { ThemeService } from '../../services';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LayoutComponent', () => {
@@ -17,7 +17,7 @@ describe('LayoutComponent', () => {
           useValue: {},
         },
         {
-          provide: LayoutService,
+          provide: ThemeService,
           useValue: {
             restoreThemeState: () => {},
           },

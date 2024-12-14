@@ -1,3 +1,3 @@
-import { ALLOWED_LANGS } from './lang.config';
+import { ALLOWED_LANGS } from '../constants';
 
 export type Lang = (typeof ALLOWED_LANGS)[number];

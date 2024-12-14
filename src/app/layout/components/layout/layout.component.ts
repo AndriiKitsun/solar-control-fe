@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { LayoutService } from '../../services';
+import { ThemeService } from '../../services';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
@@ -13,7 +13,7 @@ import { TabBarComponent } from '../tab-bar/tab-bar.component';
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit {
-  constructor(private readonly layoutService: LayoutService) {}
+  constructor(private readonly layoutService: ThemeService) {}
 
   ngOnInit(): void {
     this.layoutService.restoreThemeState();

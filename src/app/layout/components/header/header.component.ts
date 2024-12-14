@@ -4,13 +4,12 @@ import { ThemeConfiguratorComponent } from '../theme-configurator/theme-configur
 import { StyleClass } from 'primeng/styleclass';
 import { RouterLink } from '@angular/router';
 import { PrimeIcons } from 'primeng/api';
-import { ColorScheme, LayoutService } from '../../services';
+import { ColorScheme, ThemeService, LangService } from '../../services';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
 import { Select } from 'primeng/select';
-import { LangDefinition, TranslocoService } from '@jsverse/transloco';
+import { LangDefinition } from '@jsverse/transloco';
 import { SelectChangeTypedEvent } from '@common/types/select.types';
 import { LANG_SELECT_OPTIONS } from './header.constants';
-import { LocalStorageHelper } from '@config/helpers';
 import { FormsModule } from '@angular/forms';
 import { LangSelectOption } from './header.types';
 
@@ -39,28 +38,28 @@ export class HeaderComponent implements OnInit {
   selectedLang?: LangSelectOption;
 
   constructor(
-    private readonly layoutService: LayoutService,
-    private readonly translocoService: TranslocoService,
+    private readonly themeService: ThemeService,
+    private langService: LangService,
   ) {}
 
   ngOnInit(): void {
+    const savedLang = LangService.getLang();
+
     this.langOptions = LANG_SELECT_OPTIONS;
     this.selectedLang = LANG_SELECT_OPTIONS.find(
-      (option) => option.id === LocalStorageHelper.getLang(),
+      (option) => option.id === savedLang,
     );
   }
 
   get colorScheme(): ColorScheme {
-    return this.layoutService.colorScheme;
+    return this.themeService.colorScheme;
   }
 
   toggleDarkMode(): void {
-    this.layoutService.toggleDarkMode();
+    this.themeService.toggleDarkMode();
   }
 
   switchLang(event: SelectChangeTypedEvent<LangDefinition>): void {
-    this.translocoService.setActiveLang(event.value.id);
-
-    LocalStorageHelper.saveLang(event.value.id);
+    this.langService.switchLang(event.value.id);
   }
 }
