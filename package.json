@@ -20,8 +20,6 @@
     "prettier:fix": "prettier --write .",
     "i18n:extract": "transloco-keys-manager extract --sort",
     "i18n:find": "transloco-keys-manager find",
-    "translation": "node scripts/lint-translation.js",
-    "translation:fix": "node scripts/lint-translation.js --fix",
     "deploy": "ng deploy",
     "prepare": "husky"
   },
