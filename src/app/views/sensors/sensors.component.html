@@ -1,5 +1,8 @@
-<div class="sensors">
+<div class="sensors" *transloco="let t">
   <div class="card">
+    <div class="mb-4 text-xl font-semibold">
+      {{ t('SENSORS.TABLE.HEADER_LABEL') }}
+    </div>
     <div class="mb-4 text-xl font-semibold">{{ createdAtLabel }}</div>
     <p-table
       [value]="(tablesRows$ | async)!"

@@ -6,6 +6,7 @@ import { RowConfig } from './types';
 import { AsyncPipe, DecimalPipe, DatePipe, NgClass } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { SensorModel } from './models';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sensors',
@@ -13,7 +14,7 @@ import { SensorModel } from './models';
   templateUrl: './sensors.component.html',
   styleUrl: './sensors.component.scss',
   providers: [DatePipe],
-  imports: [TableModule, AsyncPipe, DecimalPipe, NgClass],
+  imports: [TableModule, AsyncPipe, DecimalPipe, NgClass, TranslocoDirective],
 })
 export class SensorsComponent implements OnInit {
   isLoading = signal<boolean>(false);
