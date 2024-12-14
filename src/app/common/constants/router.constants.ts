@@ -4,5 +4,3 @@ export enum RoutePath {
   MINERS = 'miners',
   STATIONS = 'stations',
 }
-
-export const DEFAULT_ROUTE = RoutePath.SENSORS;
