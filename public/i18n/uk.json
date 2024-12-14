@@ -1,37 +1,37 @@
 {
   "MINERS": {
     "TYPE": {
-      "CARD": "[uk]: Graphics Cards",
-      "ASIC": "[uk]: Asics"
+      "CARD": "Відеокарти",
+      "ASIC": "Asic майнери"
     }
   },
   "SENSORS": {
-    "PZEM_LABEL": "[uk]: PZEM Sensors",
-    "PZEM_LABEL_WITH_TIME": "[uk]: PZEM Sensors: {{time}}",
+    "PZEM_LABEL": "Показники PZEM",
+    "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
     "TABLE": {
       "COLUMN": {
-        "NAME": "[uk]: Name",
-        "VOLTAGE": "[uk]: U (V)",
-        "CURRENT": "[uk]: I (A)",
-        "POWER": "[uk]: P (Kw)",
-        "ENERGY": "[uk]: E (kw/h)",
-        "T1_ENERGY": "[uk]: T1 (Kw/h)",
-        "T2_ENERGY": "[uk]: T2 (Kw/h)",
-        "FREQUENCY": "[uk]: F (Hz)",
-        "POWER_FACTOR": "[uk]: Pf",
-        "AVG_VOLTAGE": "[uk]: 10m U (V)"
+        "NAME": "Назва",
+        "VOLTAGE": "U (В)",
+        "CURRENT": "I (A)",
+        "POWER": "P (кВт)",
+        "ENERGY": "E (кВт⋅год)",
+        "T1_ENERGY": "T1 (кВт⋅год)",
+        "T2_ENERGY": "T2 (кВт⋅год)",
+        "FREQUENCY": "F (Гц)",
+        "POWER_FACTOR": "Коеф. потуж.",
+        "AVG_VOLTAGE": "10хв U (В)"
       },
       "ROW": {
-        "AC_INPUT": "[uk]: AC Input",
-        "AC_OUTPUT": "[uk]: AC Output",
-        "DC_BATTERY": "[uk]: DC Battery",
-        "DC_SUN": "[uk]: DC Sun"
+        "AC_INPUT": "AC Вхід",
+        "AC_OUTPUT": "AC Вихід",
+        "DC_BATTERY": "DC Акумулятор",
+        "DC_SUN": "DC Сонце"
       }
     }
   },
   "TAB_BAR": {
-    "SENSORS": "[uk]: Sensors",
-    "STATIONS": "[uk]: Stations",
-    "MINERS": "[uk]: Miners"
+    "SENSORS": "Датчики",
+    "STATIONS": "Станції",
+    "MINERS": "Майнери"
   }
 }
