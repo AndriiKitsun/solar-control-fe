@@ -22,9 +22,11 @@
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
     "paths": {
+      "@api/*": ["src/app/api/*"],
       "@common/*": ["src/app/common/*"],
       "@layout/*": ["src/app/layout/*"],
-      "@views/*": ["src/app/views/*"]
+      "@views/*": ["src/app/views/*"],
+      "@env/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {

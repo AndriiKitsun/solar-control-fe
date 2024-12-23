@@ -24,8 +24,7 @@
       "ROW": {
         "AC_INPUT": "AC Вхід",
         "AC_OUTPUT": "AC Вихід",
-        "DC_BATTERY": "DC Акумулятор",
-        "DC_SUN": "DC Сонце"
+        "DC_BATTERY": "DC Акумулятор"
       }
     }
   },

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SensorsComponent } from './sensors.component';
-import { SensorService } from './services';
+import { SensorsWebSocketService } from './services';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { of } from 'rxjs';
 
@@ -13,9 +13,9 @@ describe('SensorsComponent', () => {
       imports: [SensorsComponent, TranslocoTestingModule.forRoot({})],
       providers: [
         {
-          provide: SensorService,
+          provide: SensorsWebSocketService,
           useValue: {
-            getSensorsData: () => of(),
+            on: () => of(),
           },
         },
       ],

@@ -1,11 +1,10 @@
-export interface SensorModel {
-  id: string;
+export interface PzemDataModel {
   createdAtGmt: string;
   pzems: PzemModel[];
 }
 
 export interface PzemModel {
-  id: string;
+  name: string;
   voltageV?: number;
   currentA?: number;
   powerKw?: number;
