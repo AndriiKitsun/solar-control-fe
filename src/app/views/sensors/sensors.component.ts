@@ -1,11 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { SensorService } from './services';
+import { SensorsWebSocketService } from './services';
 import { Observable, map, tap } from 'rxjs';
 import { TABLE_ROWS } from './constants';
 import { RowConfig } from './types';
 import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { SensorModel } from './models';
+import { PzemDataModel } from './models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { TranslationKey } from '@common/types';
 
@@ -36,7 +36,9 @@ export class SensorsComponent implements OnInit {
 
   tablesRows$!: Observable<RowConfig[]>;
 
-  constructor(private readonly sensorService: SensorService) {}
+  constructor(
+    private readonly sensorsWebSocketService: SensorsWebSocketService,
+  ) {}
 
   ngOnInit(): void {
     this.tablesRows$ = this.getTableRows();
@@ -45,18 +47,18 @@ export class SensorsComponent implements OnInit {
   getTableRows(): Observable<RowConfig[]> {
     this.isLoading.set(true);
 
-    return this.sensorService.getSensorsData().pipe(
-      tap((sensors: SensorModel) => {
+    return this.sensorsWebSocketService.on<PzemDataModel>().pipe(
+      tap((sensors: PzemDataModel) => {
         this.isLoading.set(false);
 
         this.pzemLabel = 'SENSORS.PZEM_LABEL_WITH_TIME';
         this.createdAt = sensors.createdAtGmt;
       }),
-      map((sensors: SensorModel) => {
+      map((sensors: PzemDataModel) => {
         return TABLE_ROWS.map((row) => {
           return {
             ...row,
-            data: sensors.pzems.find((pzem) => pzem.id === row.id),
+            data: sensors.pzems.find((pzem) => pzem.name === row.id),
           };
         });
       }),

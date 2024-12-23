@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, interval, map } from 'rxjs';
-import { SensorModel, PzemModel } from '../../models';
+import { PzemDataModel, PzemModel } from '../../models';
 import { FakeDataHelper } from '@common/helpers';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SensorService {
-  getSensorsData(): Observable<SensorModel> {
-    // return of(this.randomSensor());
-
+  // TODO: Delete after E2E testing
+  getSensorsData(): Observable<PzemDataModel> {
     return interval(1000).pipe(map(() => this.randomSensor()));
   }
 
-  private randomSensor(): SensorModel {
+  private randomSensor(): PzemDataModel {
     const pzems: PzemModel[] = [];
 
     if (FakeDataHelper.randomBoolean(0.95)) {
@@ -33,15 +32,14 @@ export class SensorService {
     }
 
     return {
-      id: FakeDataHelper.randomUUID(),
       createdAtGmt: FakeDataHelper.randomISOString(),
       pzems,
     };
   }
 
-  private randomPzem(id: string): PzemModel {
+  private randomPzem(name: string): PzemModel {
     return {
-      id,
+      name,
       voltageV: FakeDataHelper.randomFloat(170, 260),
       currentA: FakeDataHelper.randomFloat(0, 5),
       powerKw: FakeDataHelper.randomFloat(0, 10),

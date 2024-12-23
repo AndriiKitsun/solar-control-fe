@@ -24,8 +24,7 @@
       "ROW": {
         "AC_INPUT": "AC Input",
         "AC_OUTPUT": "AC Output",
-        "DC_BATTERY": "DC Battery",
-        "DC_SUN": "DC Sun"
+        "DC_BATTERY": "DC Battery"
       }
     }
   },
