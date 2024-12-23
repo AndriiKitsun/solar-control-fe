@@ -1,8 +1,4 @@
 import {
-  WebSocketSubjectConfig,
-  WebSocketSubject,
-} from 'rxjs/internal/observable/dom/WebSocketSubject';
-import {
   Observable,
   Observer,
   Subject,
@@ -13,6 +9,10 @@ import {
   map,
 } from 'rxjs';
 import { Injectable } from '@angular/core';
+import {
+  WebSocketSubjectConfig,
+  WebSocketSubject,
+} from 'rxjs/internal/observable/dom/WebSocketSubject';
 
 @Injectable()
 export abstract class WebSocketClientService {
@@ -28,7 +28,7 @@ export abstract class WebSocketClientService {
   private wsMessages$: Subject<unknown>;
 
   constructor() {
-    this.wsMessages$ = new Subject<unknown>();
+    this.wsMessages$ = new Subject();
 
     this.config = {
       closeObserver: {
