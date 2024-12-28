@@ -52,22 +52,32 @@
         <tr [ngClass]="{ '!bg-highlight': !row.data }">
           <td class="table__row-title">{{ t(row.title) }}</td>
 
-          <td class="table__cell">{{ row.data?.voltageV ?? 0 | number }}</td>
-          <td class="table__cell">{{ row.data?.currentA ?? 0 | number }}</td>
-          <td class="table__cell">{{ row.data?.powerKw ?? 0 | number }}</td>
-          <td class="table__cell">{{ row.data?.energyKwh ?? 0 | number }}</td>
           <td class="table__cell">
-            {{ row.data?.t1EnergyKwh ?? 0 | number }}
+            {{ row.data?.voltageV ?? 0 | number: '1.3-3' }}
           </td>
           <td class="table__cell">
-            {{ row.data?.t2EnergyKwh ?? 0 | number }}
-          </td>
-          <td class="table__cell">{{ row.data?.frequencyHz ?? 0 }}</td>
-          <td class="table__cell">
-            {{ row.data?.powerFactor ?? 0 | number }}
+            {{ row.data?.currentA ?? 0 | number: '1.3-3' }}
           </td>
           <td class="table__cell">
-            {{ row.data?.avgVoltageV ?? 0 | number }}
+            {{ row.data?.powerKw ?? 0 | number: '1.3-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.energyKwh ?? 0 | number: '1.3-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.t1EnergyKwh ?? 0 | number: '1.3-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.t2EnergyKwh ?? 0 | number: '1.3-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.frequencyHz ?? 0 | number: '1.0-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.powerFactor ?? 0 | number: '1.3-3' }}
+          </td>
+          <td class="table__cell">
+            {{ row.data?.avgVoltageV ?? 0 | number: '1.3-3' }}
           </td>
         </tr>
       </ng-template>
