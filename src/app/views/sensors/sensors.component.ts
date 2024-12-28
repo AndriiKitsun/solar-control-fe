@@ -16,7 +16,6 @@ import { TranslationKey } from '@common/types';
 
 @Component({
   selector: 'app-sensors',
-  standalone: true,
   templateUrl: './sensors.component.html',
   styleUrl: './sensors.component.scss',
   imports: [

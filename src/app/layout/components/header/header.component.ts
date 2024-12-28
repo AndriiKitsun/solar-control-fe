@@ -5,7 +5,6 @@ import { StyleClass } from 'primeng/styleclass';
 import { RouterLink } from '@angular/router';
 import { PrimeIcons } from 'primeng/api';
 import { ColorScheme, ThemeService, LangService } from '../../services';
-import { TabBarComponent } from '../tab-bar/tab-bar.component';
 import { Select } from 'primeng/select';
 import {
   SelectChangeTypedEvent,
@@ -17,13 +16,11 @@ import { Lang } from '@common/types';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [
     Ripple,
     RouterLink,
     ThemeConfiguratorComponent,
     StyleClass,
-    TabBarComponent,
     Select,
     FormsModule,
   ],
