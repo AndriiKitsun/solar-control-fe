@@ -26,6 +26,12 @@
         "AC_OUTPUT": "AC Output",
         "DC_BATTERY": "DC Battery"
       }
+    },
+    "BUTTON": {
+      "RESET_COUNTERS": "Reset counters"
+    },
+    "TOAST": {
+      "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
     }
   },
   "TAB_BAR": {
@@ -38,5 +44,10 @@
     "LIGHT_SURFACE_COLOR": "Surface color (Light theme)",
     "PRIMARY_COLOR": "Primary color",
     "THEME_PRESETS": "Theme presets"
+  },
+  "TOAST": {
+    "SUMMARY": {
+      "ERROR": "Error"
+    }
   }
 }

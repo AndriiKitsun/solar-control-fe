@@ -1,7 +1,18 @@
 <div class="sensors" *transloco="let t">
   <div class="card">
-    <div class="mb-4 text-xl font-semibold">
-      {{ t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' }) }}
+    <div class="mb-4 flex justify-between">
+      <span class="text-xl font-semibold">{{
+        t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' })
+      }}</span>
+
+      <p-button
+        [label]="t('SENSORS.BUTTON.RESET_COUNTERS')"
+        variant="outlined"
+        severity="danger"
+        icon="pi pi-bolt"
+        [loading]="isResetLoading()"
+        (onClick)="resetCounters()"
+      />
     </div>
     <p-table
       [value]="(tablesRows$ | async)!"
@@ -84,3 +95,5 @@
     </p-table>
   </div>
 </div>
+
+<p-toast />

@@ -26,6 +26,12 @@
         "AC_OUTPUT": "AC Вихід",
         "DC_BATTERY": "DC Акумулятор"
       }
+    },
+    "BUTTON": {
+      "RESET_COUNTERS": "Скинути лічильники"
+    },
+    "TOAST": {
+      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM"
     }
   },
   "TAB_BAR": {
@@ -38,5 +44,10 @@
     "LIGHT_SURFACE_COLOR": "Колір поверхні (Світла тема)",
     "PRIMARY_COLOR": "Основний колір",
     "THEME_PRESETS": "Тема"
+  },
+  "TOAST": {
+    "SUMMARY": {
+      "ERROR": "Помилка"
+    }
   }
 }

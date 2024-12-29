@@ -9,10 +9,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { ThemePreset, LangService } from '@layout/services';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { ALLOWED_LANGS } from '@common/constants';
+import { loggerInterceptor } from '@common/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +33,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([loggerInterceptor])),
     provideTransloco({
       config: {
         availableLangs: ALLOWED_LANGS as unknown as string[],

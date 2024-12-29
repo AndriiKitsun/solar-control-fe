@@ -1,2 +1,2 @@
-export * from './sensor/sensor.service';
+export * from './sensors/sensors.service';
 export * from './sensors-websocket.service';
