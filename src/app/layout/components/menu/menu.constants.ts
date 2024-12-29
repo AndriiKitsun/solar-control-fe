@@ -1,7 +1,6 @@
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { RoutePath } from '@common/constants/router.constants';
 
-// TODO: Delete it after integration with BE
 export const MENU_ITEMS: MenuItem[] = [
   {
     label: 'Home',

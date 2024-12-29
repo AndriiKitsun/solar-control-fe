@@ -2,6 +2,7 @@
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
+const sonarjs = require('eslint-plugin-sonarjs');
 
 module.exports = tseslint.config(
   {
@@ -11,6 +12,7 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsRecommended,
+      sonarjs.configs.recommended,
       {
         languageOptions: {
           parserOptions: {
@@ -44,6 +46,7 @@ module.exports = tseslint.config(
           style: 'kebab-case',
         },
       ],
+      'sonarjs/pseudo-random': 'off',
     },
   },
   {
