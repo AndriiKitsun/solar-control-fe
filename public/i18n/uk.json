@@ -40,8 +40,8 @@
     "STATIONS": "Станції"
   },
   "THEME_CONFIGURATOR": {
-    "DARK_SURFACE_COLOR": "Колір поверхні (Темна тема)",
-    "LIGHT_SURFACE_COLOR": "Колір поверхні (Світла тема)",
+    "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",
+    "LIGHT_SURFACE_COLOR": "Колір фону (Світла тема)",
     "PRIMARY_COLOR": "Основний колір",
     "THEME_PRESETS": "Тема"
   },

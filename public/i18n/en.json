@@ -40,8 +40,8 @@
     "STATIONS": "Stations"
   },
   "THEME_CONFIGURATOR": {
-    "DARK_SURFACE_COLOR": "Surface color (Dark theme)",
-    "LIGHT_SURFACE_COLOR": "Surface color (Light theme)",
+    "DARK_SURFACE_COLOR": "Background color (Dark theme)",
+    "LIGHT_SURFACE_COLOR": "Background color (Light theme)",
     "PRIMARY_COLOR": "Primary color",
     "THEME_PRESETS": "Theme presets"
   },
