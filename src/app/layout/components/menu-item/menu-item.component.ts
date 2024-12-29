@@ -24,7 +24,6 @@ import { SubmenuAnimationState } from './menu-item.types';
 
 @Component({
   selector: 'app-menu-item',
-  standalone: true,
   imports: [NgTemplateOutlet, RouterLink, Ripple, NgClass, AsyncPipe],
   templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss',

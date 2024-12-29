@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { SensorsWebSocketService } from './services';
-import { Observable, map, tap } from 'rxjs';
+import { SensorsWebSocketService, SensorsService } from './services';
+import { Observable, map, tap, first, finalize } from 'rxjs';
 import { TABLE_ROWS } from './constants';
 import { RowConfig } from './types';
 import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
@@ -8,15 +8,19 @@ import { TableModule } from 'primeng/table';
 import { PzemDataModel } from './models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { TranslationKey } from '@common/types';
+import { Button } from 'primeng/button';
+import { Toast } from 'primeng/toast';
+import { ToastService } from '@common/services';
+import { MessageService } from 'primeng/api';
 
 /**
  * t(SENSORS.PZEM_LABEL)
  * t(SENSORS.PZEM_LABEL_WITH_TIME)
+ * t(SENSORS.TOAST.RESET_ERROR)
  * */
 
 @Component({
   selector: 'app-sensors',
-  standalone: true,
   templateUrl: './sensors.component.html',
   styleUrl: './sensors.component.scss',
   imports: [
@@ -26,10 +30,14 @@ import { TranslationKey } from '@common/types';
     NgClass,
     TranslocoDirective,
     DatePipe,
+    Button,
+    Toast,
   ],
+  providers: [ToastService, MessageService],
 })
 export class SensorsComponent implements OnInit {
   isLoading = signal<boolean>(false);
+  isResetLoading = signal<boolean>(false);
 
   pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
   createdAt = '';
@@ -38,6 +46,8 @@ export class SensorsComponent implements OnInit {
 
   constructor(
     private readonly sensorsWebSocketService: SensorsWebSocketService,
+    private readonly sensorsService: SensorsService,
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -63,5 +73,23 @@ export class SensorsComponent implements OnInit {
         });
       }),
     );
+  }
+
+  resetCounters(): void {
+    this.isResetLoading.set(true);
+
+    this.sensorsService
+      .resetCounters()
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isResetLoading.set(false);
+        }),
+      )
+      .subscribe({
+        error: () => {
+          this.toastService.error('SENSORS.TOAST.RESET_ERROR');
+        },
+      });
   }
 }

@@ -9,7 +9,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-tab-bar',
-  standalone: true,
   imports: [Tab, TabList, Tabs, RouterLink, TranslocoDirective],
   templateUrl: './tab-bar.component.html',
   styleUrl: './tab-bar.component.scss',

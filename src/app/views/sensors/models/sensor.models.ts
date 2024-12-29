@@ -15,3 +15,8 @@ export interface PzemModel {
   t2EnergyKwh?: number;
   avgVoltageV?: number;
 }
+
+export interface PzemCounter {
+  name: string;
+  isReset: boolean;
+}

@@ -18,7 +18,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-theme-configurator',
-  standalone: true,
   imports: [
     NgForOf,
     NgStyle,

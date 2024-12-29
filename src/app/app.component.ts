@@ -4,7 +4,6 @@ import { LangService } from '@layout/services';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
 })
