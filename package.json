@@ -21,7 +21,9 @@
     "i18n:extract": "transloco-keys-manager extract --sort",
     "i18n:find": "transloco-keys-manager find",
     "deploy": "ng deploy",
-    "prepare": "husky"
+    "prepare": "husky",
+    "changeset:add": "changeset",
+    "changeset:publish": "changeset publish"
   },
   "lint-staged": {
     "*.ts|*.html": [
@@ -54,6 +56,8 @@
     "@angular-devkit/build-angular": "^19.0.6",
     "@angular/cli": "^19.0.6",
     "@angular/compiler-cli": "^19.0.5",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.11",
     "@jsverse/transloco-keys-manager": "^6.1.0",
     "@types/jasmine": "~5.1.5",
     "angular-cli-ghpages": "^2.0.3",
