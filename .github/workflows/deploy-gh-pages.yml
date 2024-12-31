@@ -31,4 +31,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         run: |
-          npm run deploy -- --repo="https://github.com/AndriiKitsun/solar-control-fe.git" --base-href="/solar-control-fe/" --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          npm run deploy -- --repo="https://github.com/AndriiKitsun/solar-control-fe.git" --base-href="/solar-control-fe/" --name="${{ secrets.APP_PUBLISHER_NAME }}" --email="${{ secrets.APP_PUBLISHER_EMAIL }}" --message="$GITHUB_REF_NAME $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
