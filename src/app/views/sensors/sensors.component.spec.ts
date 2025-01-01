@@ -3,6 +3,7 @@ import { SensorsComponent } from './sensors.component';
 import { SensorsWebSocketService, SensorsService } from './services';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { of } from 'rxjs';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;
@@ -20,6 +21,14 @@ describe('SensorsComponent', () => {
         },
         {
           provide: SensorsService,
+          useValue: {},
+        },
+        {
+          provide: MessageService,
+          useValue: {},
+        },
+        {
+          provide: ConfirmationService,
           useValue: {},
         },
       ],

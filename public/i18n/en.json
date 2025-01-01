@@ -32,6 +32,14 @@
     },
     "TOAST": {
       "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
+    },
+    "CONFIRM_DIALOG": {
+      "REJECT": "Cancel",
+      "CONFIRM_HEADER": "Confirmation",
+      "RESET_COUNTERS": {
+        "MESSAGE": "Are you sure you want to reset the PZEM counters?",
+        "ACCEPT": "Reset"
+      }
     }
   },
   "TAB_BAR": {
