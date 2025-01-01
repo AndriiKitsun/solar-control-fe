@@ -6,17 +6,16 @@ import { RowConfig } from './types';
 import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { PzemDataModel } from './models';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { TranslationKey } from '@common/types';
 import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
-import { ToastService } from '@common/services';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 /**
  * t(SENSORS.PZEM_LABEL)
  * t(SENSORS.PZEM_LABEL_WITH_TIME)
- * t(SENSORS.TOAST.RESET_ERROR)
  * */
 
 @Component({
@@ -32,12 +31,13 @@ import { MessageService } from 'primeng/api';
     DatePipe,
     Button,
     Toast,
+    ConfirmDialog,
   ],
-  providers: [ToastService, MessageService],
+  providers: [MessageService, ConfirmationService],
 })
 export class SensorsComponent implements OnInit {
   isLoading = signal<boolean>(false);
-  isResetLoading = signal<boolean>(false);
+  isResetProcessing = signal<boolean>(false);
 
   pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
   createdAt = '';
@@ -47,7 +47,9 @@ export class SensorsComponent implements OnInit {
   constructor(
     private readonly sensorsWebSocketService: SensorsWebSocketService,
     private readonly sensorsService: SensorsService,
-    private readonly toastService: ToastService,
+    private readonly translocoService: TranslocoService,
+    private readonly messageService: MessageService,
+    private readonly confirmationService: ConfirmationService,
   ) {}
 
   ngOnInit(): void {
@@ -75,20 +77,53 @@ export class SensorsComponent implements OnInit {
     );
   }
 
+  openResetConfirmationModal(event: MouseEvent): void {
+    this.confirmationService.confirm({
+      target: event.target!,
+      message: this.translocoService.translate(
+        'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
+      ),
+      header: this.translocoService.translate(
+        'SENSORS.CONFIRM_DIALOG.CONFIRM_HEADER',
+      ),
+      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+      rejectButtonProps: {
+        label: this.translocoService.translate('SENSORS.CONFIRM_DIALOG.REJECT'),
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: this.translocoService.translate(
+          'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.ACCEPT',
+        ),
+        severity: 'danger',
+      },
+      accept: () => {
+        this.resetCounters();
+      },
+    });
+  }
+
   resetCounters(): void {
-    this.isResetLoading.set(true);
+    this.isResetProcessing.set(true);
 
     this.sensorsService
       .resetCounters()
       .pipe(
         first(),
         finalize(() => {
-          this.isResetLoading.set(false);
+          this.isResetProcessing.set(false);
         }),
       )
       .subscribe({
         error: () => {
-          this.toastService.error('SENSORS.TOAST.RESET_ERROR');
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+            detail: this.translocoService.translate(
+              'SENSORS.TOAST.RESET_ERROR',
+            ),
+          });
         },
       });
   }

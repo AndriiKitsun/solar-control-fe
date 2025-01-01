@@ -10,8 +10,8 @@
         variant="outlined"
         severity="danger"
         icon="pi pi-bolt"
-        [loading]="isResetLoading()"
-        (onClick)="resetCounters()"
+        [loading]="isResetProcessing()"
+        (onClick)="openResetConfirmationModal($event)"
       />
     </div>
     <p-table
@@ -97,3 +97,4 @@
 </div>
 
 <p-toast />
+<p-confirmdialog />
