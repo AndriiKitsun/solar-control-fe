@@ -1,6 +1,6 @@
 import { MenuItem } from 'primeng/api';
-import { MinerType } from '../models';
-import { TranslationKey } from '@common/types';
+import { TranslationKey } from '@common/types/lang.types';
+import { MinerType } from '../models/miner.models';
 
 export interface MinerMenuItemMapConfig {
   label: TranslationKey;

@@ -1,4 +1,4 @@
-import { RowConfig } from '../types';
+import { RowConfig } from '../types/sensors-table.types';
 
 /**
  * t(SENSORS.TABLE.ROW.AC_INPUT)

@@ -1,5 +1,5 @@
 import enTranslation from 'public/i18n/en.json';
-import { ALLOWED_LANGS } from '../constants';
+import { ALLOWED_LANGS } from '../constants/lang.constants';
 
 type NestedKeys<T> = T extends object
   ? {

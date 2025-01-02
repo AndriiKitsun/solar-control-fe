@@ -1,6 +1,6 @@
-import { MinerType } from '../models';
-import { MinerMenuItemMapConfig } from '../types';
 import { PrimeIcons } from 'primeng/api';
+import { MinerType } from '../models/miner.models';
+import { MinerMenuItemMapConfig } from '../types/menu.types';
 
 /**
  * t(MINERS.TYPE.CARD)

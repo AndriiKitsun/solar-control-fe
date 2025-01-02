@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgStyle, NgClass } from '@angular/common';
 import { ColorModel } from './theme-configurator.models';
+import { SelectButton } from 'primeng/selectbutton';
+import { FormsModule } from '@angular/forms';
+import { TranslocoDirective } from '@jsverse/transloco';
 import {
   PrimaryColor,
   SurfaceColor,
-  ThemeService,
-  ColorScheme,
   ThemePresetName,
-} from '../../services';
-import { SelectButton } from 'primeng/selectbutton';
+  ColorScheme,
+} from '../../services/theme/theme.types';
 import {
-  SelectButtonChangeTypedEvent,
   SimpleSelectOption,
-} from '@common/types';
-import { FormsModule } from '@angular/forms';
-import { TranslocoDirective } from '@jsverse/transloco';
+  SelectButtonChangeTypedEvent,
+} from '@common/types/select.types';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-theme-configurator',
