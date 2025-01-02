@@ -3,8 +3,8 @@ import { MinersComponent } from './miners.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { MinerService } from './services';
 import { of } from 'rxjs';
+import { MinerService } from './services/miner/miner.service';
 
 describe('MinersComponent', () => {
   let component: MinersComponent;

@@ -1,17 +1,18 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { SensorsWebSocketService, SensorsService } from './services';
 import { Observable, map, tap, first, finalize } from 'rxjs';
-import { TABLE_ROWS } from './constants';
-import { RowConfig } from './types';
 import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { PzemDataModel } from './models';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-import { TranslationKey } from '@common/types';
 import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { TranslationKey } from '@common/types/lang.types';
+import { RowConfig } from './types/sensors-table.types';
+import { SensorsWebSocketService } from './services/sensors-websocket.service';
+import { SensorsService } from './services/sensors/sensors.service';
+import { PzemDataModel } from './models/sensor.models';
+import { TABLE_ROWS } from './constants/sensors-table.constants';
 
 /**
  * t(SENSORS.PZEM_LABEL)

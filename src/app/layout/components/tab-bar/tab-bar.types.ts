@@ -1,4 +1,4 @@
-import { TranslationKey } from '@common/types';
+import { TranslationKey } from '@common/types/lang.types';
 
 export interface TabItem {
   label: TranslationKey;

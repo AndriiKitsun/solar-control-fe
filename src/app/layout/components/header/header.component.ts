@@ -4,7 +4,6 @@ import { ThemeConfiguratorComponent } from '../theme-configurator/theme-configur
 import { StyleClass } from 'primeng/styleclass';
 import { RouterLink } from '@angular/router';
 import { PrimeIcons } from 'primeng/api';
-import { ColorScheme, ThemeService, LangService } from '../../services';
 import { Select } from 'primeng/select';
 import {
   SelectChangeTypedEvent,
@@ -12,7 +11,10 @@ import {
 } from '@common/types/select.types';
 import { LANG_SELECT_OPTIONS } from './header.constants';
 import { FormsModule } from '@angular/forms';
-import { Lang } from '@common/types';
+import { ColorScheme } from '../../services/theme/theme.types';
+import { Lang } from '@common/types/lang.types';
+import { ThemeService } from '../../services/theme/theme.service';
+import { LangService } from '../../services/lang/lang.service';
 
 @Component({
   selector: 'app-header',

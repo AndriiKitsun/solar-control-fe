@@ -1,5 +1,5 @@
-import { PzemModel } from '../models';
-import { TranslationKey } from '@common/types';
+import { TranslationKey } from '@common/types/lang.types';
+import { PzemModel } from '../models/sensor.models';
 
 export interface RowConfig {
   id: string;

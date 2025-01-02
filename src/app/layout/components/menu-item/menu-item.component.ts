@@ -12,7 +12,6 @@ import {
   tap,
   Subscription,
 } from 'rxjs';
-import { MenuService, MenuState } from '../../services/menu';
 import {
   trigger,
   state,
@@ -21,6 +20,8 @@ import {
   animate,
 } from '@angular/animations';
 import { SubmenuAnimationState } from './menu-item.types';
+import { MenuService } from '../../services/menu/menu.service';
+import { MenuState } from '../../services/menu/menu.types';
 
 @Component({
   selector: 'app-menu-item',

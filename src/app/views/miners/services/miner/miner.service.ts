@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { MinerModel, MinerType } from '../../models';
-import { FakeDataHelper } from '@common/helpers';
+import { MinerType, MinerModel } from '../../models/miner.models';
+import { FakeDataHelper } from '@common/helpers/fake-data.helper';
 
 @Injectable({
   providedIn: 'root',

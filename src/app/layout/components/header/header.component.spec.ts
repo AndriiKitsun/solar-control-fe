@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { ActivatedRoute } from '@angular/router';
-import { ThemeService, LangService } from '../../services';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { LangService } from '../../services/lang/lang.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

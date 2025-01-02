@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WebSocketClientService } from '@api/services';
+import { WebSocketClientService } from '@api/services/websocket-client.service';
 import { WebSocketSubjectConfig } from 'rxjs/internal/observable/dom/WebSocketSubject';
 import { env } from '@env/environment';
 

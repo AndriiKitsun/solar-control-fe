@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { ThemeService } from '../../services';
 import { RouterOutlet } from '@angular/router';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-layout',

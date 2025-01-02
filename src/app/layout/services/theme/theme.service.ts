@@ -16,7 +16,7 @@ import {
 } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
-import { LocalStorageHelper } from '@common/helpers';
+import { LocalStorageHelper } from '@common/helpers/local-storage.helper';
 
 @Injectable({
   providedIn: 'root',

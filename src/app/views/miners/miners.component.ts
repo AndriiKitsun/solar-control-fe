@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MinerService } from './services';
 import { map, Observable } from 'rxjs';
-import { MinerType } from './models';
-import { MINER_MENU_ITEM_MAPPING } from './constants';
-import { MinerMenuItem } from './types';
 import { AsyncPipe } from '@angular/common';
 import { Menu } from 'primeng/menu';
 import { Ripple } from 'primeng/ripple';
 import { Button } from 'primeng/button';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { MinerMenuItem } from './types/menu.types';
+import { MinerService } from './services/miner/miner.service';
+import { MinerType } from './models/miner.models';
+import { MINER_MENU_ITEM_MAPPING } from './constants/miners.constants';
 
 @Component({
   selector: 'app-miners',

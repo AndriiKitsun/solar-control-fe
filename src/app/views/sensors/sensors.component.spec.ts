@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SensorsComponent } from './sensors.component';
-import { SensorsWebSocketService, SensorsService } from './services';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { of } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { SensorsWebSocketService } from './services/sensors-websocket.service';
+import { SensorsService } from './services/sensors/sensors.service';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;
