@@ -18,10 +18,8 @@ import { AsicMenuItem } from './asics.types';
 })
 export class AsicsComponent implements OnInit {
   isLoading = signal(false);
-  isToolbarDisabled = computed(
-    () => this.isLoading() || !this.selectedItem().id,
-  );
-  selectedItem = signal<AsicMenuItem>({});
+  isToolbarDisabled = computed(() => this.isLoading() || !this.selectedItem());
+  selectedItem = signal<AsicMenuItem | null>(null);
 
   menuItems$!: Observable<AsicMenuItem[]>;
 
@@ -84,7 +82,7 @@ export class AsicsComponent implements OnInit {
     }
 
     const groupIdx = this.menu.findIndex(
-      (item) => item.label === this.selectedItem().asic!.address,
+      (item) => item.label === this.selectedItem()!.asic!.address,
     );
     const groupItems = this.menu[groupIdx].items;
 
@@ -93,7 +91,7 @@ export class AsicsComponent implements OnInit {
     }
 
     const idx = groupItems.findIndex(
-      (item) => item.id === this.selectedItem().id,
+      (item) => item.id === this.selectedItem()!.id,
     );
 
     if (idx !== -1) {
@@ -104,6 +102,6 @@ export class AsicsComponent implements OnInit {
       this.menu.splice(groupIdx, 1);
     }
 
-    this.selectedItem.set({});
+    this.selectedItem.set(null);
   }
 }
