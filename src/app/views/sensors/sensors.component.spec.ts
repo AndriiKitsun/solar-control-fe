@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SensorsComponent } from './sensors.component';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { of } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { SensorsWebSocketService } from './services/sensors-websocket.service';
+import { SensorsWebSocketService } from './services/sensors-websocket/sensors-websocket.service';
 import { SensorsService } from './services/sensors/sensors.service';
+import { SensorsWebsocketServiceMock } from './services/sensors-websocket/mocks/sensors-websocket.service.mock';
+import { SensorsServiceMock } from './services/sensors/mocks/sensors.service.mock';
+import { ConfirmationServiceMock } from '@common/mocks/confirmation.service.mock';
+import { MessageServiceMock } from '@common/mocks/message.service.mock';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;
@@ -16,22 +19,19 @@ describe('SensorsComponent', () => {
       providers: [
         {
           provide: SensorsWebSocketService,
-          useValue: {
-            isConnected$: of(),
-            on: () => of(),
-          },
+          useClass: SensorsWebsocketServiceMock,
         },
         {
           provide: SensorsService,
-          useValue: {},
+          useClass: SensorsServiceMock,
         },
         {
           provide: MessageService,
-          useValue: {},
+          useClass: MessageServiceMock,
         },
         {
           provide: ConfirmationService,
-          useValue: {},
+          useClass: ConfirmationServiceMock,
         },
       ],
     }).compileComponents();

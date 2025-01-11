@@ -9,7 +9,7 @@ import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TranslationKey } from '@common/types/lang.types';
 import { RowConfig } from './types/sensors-table.types';
-import { SensorsWebSocketService } from './services/sensors-websocket.service';
+import { SensorsWebSocketService } from './services/sensors-websocket/sensors-websocket.service';
 import { SensorsService } from './services/sensors/sensors.service';
 import { PzemDataModel } from './models/sensor.models';
 import { TABLE_ROWS } from './constants/sensors-table.constants';

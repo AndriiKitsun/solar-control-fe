@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabBarComponent } from './tab-bar.component';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
 
 describe('TabBarComponent', () => {
   let component: TabBarComponent;
@@ -13,7 +14,7 @@ describe('TabBarComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {},
+          useValue: ActivatedRouteMock,
         },
       ],
     }).compileComponents();
