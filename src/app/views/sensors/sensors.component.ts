@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, DestroyRef, computed } from '@angular/core';
 import { Observable, map, tap, first, finalize } from 'rxjs';
 import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -13,6 +13,7 @@ import { SensorsWebSocketService } from './services/sensors-websocket.service';
 import { SensorsService } from './services/sensors/sensors.service';
 import { PzemDataModel } from './models/sensor.models';
 import { TABLE_ROWS } from './constants/sensors-table.constants';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /**
  * t(SENSORS.PZEM_LABEL)
@@ -37,7 +38,9 @@ import { TABLE_ROWS } from './constants/sensors-table.constants';
   providers: [MessageService, ConfirmationService],
 })
 export class SensorsComponent implements OnInit {
-  isLoading = signal<boolean>(false);
+  isWsConnecting = signal(false);
+  isTableLoading = signal(false);
+  isLoading = computed(() => this.isWsConnecting() || this.isTableLoading());
   isResetProcessing = signal<boolean>(false);
 
   pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
@@ -51,18 +54,31 @@ export class SensorsComponent implements OnInit {
     private readonly translocoService: TranslocoService,
     private readonly messageService: MessageService,
     private readonly confirmationService: ConfirmationService,
+    private readonly destroyRef: DestroyRef,
   ) {}
 
   ngOnInit(): void {
+    this.subscribeOnWsStatusChange();
     this.tablesRows$ = this.getTableRows();
   }
 
+  subscribeOnWsStatusChange(): void {
+    this.sensorsWebSocketService.isConnected$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((value) => {
+          this.isWsConnecting.set(!value);
+        }),
+      )
+      .subscribe();
+  }
+
   getTableRows(): Observable<RowConfig[]> {
-    this.isLoading.set(true);
+    this.isTableLoading.set(true);
 
     return this.sensorsWebSocketService.on<PzemDataModel>().pipe(
       tap((sensors: PzemDataModel) => {
-        this.isLoading.set(false);
+        this.isTableLoading.set(false);
 
         this.pzemLabel = 'SENSORS.PZEM_LABEL_WITH_TIME';
         this.createdAt = sensors.createdAtGmt;
