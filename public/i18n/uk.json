@@ -4,6 +4,20 @@
       "ADD": "Додати",
       "EDIT": "Редагувати",
       "DELETE": "Видалити"
+    },
+    "DIALOG": {
+      "ADD": {
+        "HEADER": "Додати новий Asic"
+      },
+      "EDIT": {
+        "HEADER": "Редагувати Asic"
+      }
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC": {
+        "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?",
+        "DELETE": "Видалити"
+      }
     }
   },
   "SENSORS": {
@@ -35,8 +49,6 @@
       "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM"
     },
     "CONFIRM_DIALOG": {
-      "REJECT": "Скасувати",
-      "CONFIRM_HEADER": "Підтвердження",
       "RESET_COUNTERS": {
         "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?",
         "ACCEPT": "Скинути"
@@ -57,5 +69,9 @@
     "SUMMARY": {
       "ERROR": "Помилка"
     }
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Підтвердження",
+    "CANCEL": "Скасувати"
   }
 }

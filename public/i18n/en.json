@@ -4,6 +4,20 @@
       "ADD": "Add",
       "EDIT": "Edit",
       "DELETE": "Delete"
+    },
+    "DIALOG": {
+      "ADD": {
+        "HEADER": "Add new Asic"
+      },
+      "EDIT": {
+        "HEADER": "Edit Asic"
+      }
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC": {
+        "MESSAGE": "Are you sure you want to delete the Asic?",
+        "DELETE": "Delete"
+      }
     }
   },
   "SENSORS": {
@@ -35,8 +49,6 @@
       "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
     },
     "CONFIRM_DIALOG": {
-      "REJECT": "Cancel",
-      "CONFIRM_HEADER": "Confirmation",
       "RESET_COUNTERS": {
         "MESSAGE": "Are you sure you want to reset the PZEM counters?",
         "ACCEPT": "Reset"
@@ -57,5 +69,9 @@
     "SUMMARY": {
       "ERROR": "Error"
     }
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Confirmation",
+    "CANCEL": "Cancel"
   }
 }

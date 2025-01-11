@@ -36,7 +36,7 @@
             severity="danger"
             variant="outlined"
             [disabled]="isToolbarDisabled()"
-            (onClick)="deleteAsic()"
+            (onClick)="openDeleteAsicModal($event)"
           />
         </ng-template>
       </p-toolbar>
@@ -50,3 +50,5 @@
     }
   </div>
 </div>
+
+<p-confirm-dialog />

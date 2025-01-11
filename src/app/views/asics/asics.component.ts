@@ -2,19 +2,40 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { AsicsService } from './services/asics/asics.service';
 import { Toolbar } from 'primeng/toolbar';
-import { PrimeIcons, MenuItemCommandEvent } from 'primeng/api';
+import {
+  PrimeIcons,
+  MenuItemCommandEvent,
+  ConfirmationService,
+} from 'primeng/api';
 import { AsyncPipe } from '@angular/common';
 import { AsicModel } from './asics.models';
 import { AsicMenuItem } from './asics.types';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { TranslationKey } from '@common/types/lang.types';
+
+/**
+ * t(ASICS.DIALOG.ADD.HEADER)
+ * t(ASICS.DIALOG.EDIT.HEADER)
+ * */
 
 @Component({
   selector: 'app-asics',
-  imports: [TranslocoDirective, Menu, AsyncPipe, Toolbar, Button],
+  imports: [
+    TranslocoDirective,
+    Menu,
+    AsyncPipe,
+    Toolbar,
+    Button,
+    ConfirmDialog,
+  ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
+  providers: [DialogService, ConfirmationService],
 })
 export class AsicsComponent implements OnInit {
   isLoading = signal(false);
@@ -25,7 +46,12 @@ export class AsicsComponent implements OnInit {
 
   private menu: AsicMenuItem[] = [];
 
-  constructor(private readonly asicsService: AsicsService) {}
+  constructor(
+    private readonly asicsService: AsicsService,
+    private readonly dialogService: DialogService,
+    private readonly confirmationService: ConfirmationService,
+    private readonly translocoService: TranslocoService,
+  ) {}
 
   ngOnInit(): void {
     this.menuItems$ = this.getMenuItems();
@@ -69,11 +95,47 @@ export class AsicsComponent implements OnInit {
   }
 
   openAddAsicModal(): void {
-    console.log('openAddAsicModal');
+    this.openModifyDialog('ASICS.DIALOG.ADD.HEADER');
   }
 
   openEditAsicModal(): void {
-    console.log('openEditAsicModal');
+    this.openModifyDialog('ASICS.DIALOG.EDIT.HEADER');
+  }
+
+  openModifyDialog(header: TranslationKey): void {
+    this.dialogService.open(ModifyAsicDialogComponent, {
+      header: this.translocoService.translate(header),
+      duplicate: false,
+      closable: true,
+      draggable: true,
+      modal: true,
+      width: '35rem',
+    });
+  }
+
+  openDeleteAsicModal(event: MouseEvent): void {
+    this.confirmationService.confirm({
+      target: event.target!,
+      message: this.translocoService.translate(
+        'ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE',
+      ),
+      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
+      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+      rejectButtonProps: {
+        label: this.translocoService.translate('CONFIRM_DIALOG.CANCEL'),
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: this.translocoService.translate(
+          'ASICS.CONFIRM_DIALOG.DELETE_ASIC.DELETE',
+        ),
+        severity: 'danger',
+      },
+      accept: () => {
+        this.deleteAsic();
+      },
+    });
   }
 
   deleteAsic(): void {
