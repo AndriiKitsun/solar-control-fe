@@ -17,6 +17,7 @@ describe('SensorsComponent', () => {
         {
           provide: SensorsWebSocketService,
           useValue: {
+            isConnected$: of(),
             on: () => of(),
           },
         },

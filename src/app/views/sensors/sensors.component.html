@@ -10,6 +10,7 @@
         variant="outlined"
         severity="danger"
         icon="pi pi-bolt"
+        [disabled]="isLoading()"
         [loading]="isResetProcessing()"
         (onClick)="openResetConfirmationModal($event)"
       />
@@ -97,4 +98,4 @@
 </div>
 
 <p-toast />
-<p-confirmdialog />
+<p-confirm-dialog />
