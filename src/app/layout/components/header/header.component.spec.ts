@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { LangService } from '../../services/lang/lang.service';
 import { ThemeService } from '../../services/theme/theme.service';
+import { ThemeServiceMock } from '../../services/theme/mocks/theme.service.mock';
+import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
+import { LangServiceMock } from '../../services/lang/mocks/lang.service.mock';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -15,15 +18,15 @@ describe('HeaderComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {},
+          useValue: ActivatedRouteMock,
         },
         {
           provide: ThemeService,
-          useValue: {},
+          useClass: ThemeServiceMock,
         },
         {
           provide: LangService,
-          useValue: {},
+          useClass: LangServiceMock,
         },
       ],
     }).compileComponents();

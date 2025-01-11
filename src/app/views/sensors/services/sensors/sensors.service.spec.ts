@@ -3,7 +3,7 @@ import { SensorsService } from './sensors.service';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 
-describe('SensorService', () => {
+describe('SensorsService', () => {
   let service: SensorsService;
 
   beforeEach(() => {

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
+import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -13,7 +14,7 @@ describe('MenuComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {},
+          useValue: ActivatedRouteMock,
         },
       ],
     }).compileComponents();

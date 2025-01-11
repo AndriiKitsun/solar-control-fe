@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { ThemeService } from '../../services/theme/theme.service';
+import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
+import { ThemeServiceMock } from '../../services/theme/mocks/theme.service.mock';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -19,13 +21,11 @@ describe('LayoutComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {},
+          useValue: ActivatedRouteMock,
         },
         {
           provide: ThemeService,
-          useValue: {
-            restoreThemeState: () => {},
-          },
+          useClass: ThemeServiceMock,
         },
       ],
     }).compileComponents();
