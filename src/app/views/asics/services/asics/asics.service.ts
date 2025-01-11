@@ -1,51 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { MinerType, AsicModel } from '../../asics.models';
+import { Observable, of, delay } from 'rxjs';
+import { AsicModel } from '../../asics.models';
 import { FakeDataHelper } from '@common/helpers/fake-data.helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AsicsService {
-  private readonly minerNames: Record<MinerType, string[]> = {
-    [MinerType.CARD]: [
-      'GeForce RTX 3060',
-      'GeForce RTX 3060 Ti',
-      'GeForce RTX 3070',
-      'GeForce RTX 4060',
-      'GeForce RTX 4060 Ti',
-      'GeForce RTX 4070',
-      'GeForce RTX 4070 Ti',
-      'GeForce RTX 4080',
-      'GeForce RTX 4090',
-      'Radeon RX 6600 XT',
-      'RX 7600 XT',
-      'RX 7700 XT',
-    ],
-    [MinerType.ASIC]: [
-      'Asic Bitmain S19 110 Th/s',
-      'Asic Bitmain L9 16 Gh/s',
-      'Asic Bitmain L7 9050 Mh/s',
-      'Asic Bitmain KA3 166 Th/s',
-      'Jasminer X44-P 23.4 Gh/s',
-      'IceRiver KAS KS5M 15Th',
-    ],
-  };
+  private readonly minerNames: string[] = [
+    'Asic Bitmain S19 110 Th/s',
+    'Asic Bitmain L9 16 Gh/s',
+    'Asic Bitmain L7 9050 Mh/s',
+    'Asic Bitmain KA3 166 Th/s',
+    'Jasminer X44-P 23.4 Gh/s',
+    'IceRiver KAS KS5M 15Th',
+  ];
+  private readonly addresses: string[] = [
+    'home',
+    'father',
+    'mother',
+    'address1',
+    'address2',
+    'address3',
+  ];
 
-  getMiners(): Observable<AsicModel[]> {
-    const items = Array(30)
-      .fill(0)
-      .map<AsicModel>(() => {
-        const type = FakeDataHelper.randomFromList(Object.values(MinerType));
+  getAsics(): Observable<AsicModel[]> {
+    const items = Array.from({ length: 30 }).map<AsicModel>(() => {
+      return {
+        id: FakeDataHelper.randomUUID(),
+        name: FakeDataHelper.randomFromList(this.minerNames),
+        address: FakeDataHelper.randomFromList(this.addresses),
+      };
+    });
 
-        return {
-          id: FakeDataHelper.randomUUID(),
-          name: FakeDataHelper.randomFromList(this.minerNames[type]),
-          type,
-          ipAddress: FakeDataHelper.randomIP(),
-        };
-      });
-
-    return of(items);
+    return of(items).pipe(delay(2000));
   }
 }

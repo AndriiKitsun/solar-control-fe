@@ -1,8 +1,9 @@
 {
-  "MINERS": {
-    "TYPE": {
-      "ASIC": "Asic Майнери",
-      "CARD": "Відеокарти"
+  "ASICS": {
+    "TOOL_BAR": {
+      "ADD": "Додати",
+      "EDIT": "Редагувати",
+      "DELETE": "Видалити"
     }
   },
   "SENSORS": {

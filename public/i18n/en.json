@@ -1,8 +1,9 @@
 {
-  "MINERS": {
-    "TYPE": {
-      "ASIC": "Asic Miners",
-      "CARD": "Graphics Cards"
+  "ASICS": {
+    "TOOL_BAR": {
+      "ADD": "Add",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
     }
   },
   "SENSORS": {
