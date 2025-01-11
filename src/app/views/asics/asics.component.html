@@ -19,6 +19,7 @@
             variant="outlined"
             class="mr-2"
             [disabled]="isLoading()"
+            (onClick)="openAddAsicModal()"
           />
           <p-button
             [label]="t('ASICS.TOOL_BAR.EDIT')"
@@ -26,21 +27,26 @@
             severity="warn"
             variant="outlined"
             class="mr-2"
-            [disabled]="isLoading()"
+            [disabled]="isToolbarDisabled()"
+            (onClick)="openEditAsicModal()"
           />
           <p-button
             [label]="t('ASICS.TOOL_BAR.DELETE')"
             icon="pi pi-trash"
             severity="danger"
             variant="outlined"
-            [disabled]="isLoading()"
+            [disabled]="isToolbarDisabled()"
+            (onClick)="deleteAsic()"
           />
         </ng-template>
       </p-toolbar>
     </div>
 
-    <div class="card flex-1">
-      <!--      Asics data -->
-    </div>
+    @if (selectedItem(); as asic) {
+      <div class="card flex-1">
+        <p>{{ asic.id }}</p>
+        <p>{{ asic.label }}</p>
+      </div>
+    }
   </div>
 </div>

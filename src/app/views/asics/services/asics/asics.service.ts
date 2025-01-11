@@ -33,6 +33,6 @@ export class AsicsService {
       };
     });
 
-    return of(items).pipe(delay(2000));
+    return of(items).pipe(delay(0));
   }
 }
