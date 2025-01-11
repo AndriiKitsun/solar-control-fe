@@ -4,8 +4,7 @@ import { PrimeIcons } from 'primeng/api';
 
 /**
  * t(TAB_BAR.SENSORS)
- * t(TAB_BAR.STATIONS)
- * t(TAB_BAR.MINERS)
+ * t(TAB_BAR.ASICS)
  * */
 
 export const MAIN_TABS: TabItem[] = [
@@ -15,14 +14,9 @@ export const MAIN_TABS: TabItem[] = [
     route: RoutePath.SENSORS,
   },
   {
-    label: 'TAB_BAR.STATIONS',
-    icon: PrimeIcons.WAREHOUSE,
-    route: RoutePath.STATIONS,
-  },
-  {
-    label: 'TAB_BAR.MINERS',
+    label: 'TAB_BAR.ASICS',
     icon: PrimeIcons.SERVER,
-    route: RoutePath.MINERS,
+    route: RoutePath.ASICS,
   },
 ];
 

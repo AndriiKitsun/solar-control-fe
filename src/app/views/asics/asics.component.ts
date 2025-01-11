@@ -5,30 +5,30 @@ import { Menu } from 'primeng/menu';
 import { Ripple } from 'primeng/ripple';
 import { Button } from 'primeng/button';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { MinerMenuItem } from './types/menu.types';
-import { MinerService } from './services/miner/miner.service';
-import { MinerType } from './models/miner.models';
-import { MINER_MENU_ITEM_MAPPING } from './constants/miners.constants';
+import { AsicsMenuItem } from './asics.types';
+import { AsicsService } from './services/asics/asics.service';
+import { MinerType } from './asics.models';
+import { MINER_MENU_ITEM_MAPPING } from './asics.constants';
 
 @Component({
-  selector: 'app-miners',
+  selector: 'app-asics',
   imports: [AsyncPipe, Menu, Ripple, Button, TranslocoDirective],
-  templateUrl: './miners.component.html',
-  styleUrl: './miners.component.scss',
+  templateUrl: './asics.component.html',
+  styleUrl: './asics.component.scss',
 })
-export class MinersComponent implements OnInit {
-  items$!: Observable<MinerMenuItem[]>;
+export class AsicsComponent implements OnInit {
+  items$!: Observable<AsicsMenuItem[]>;
 
-  constructor(private readonly minerService: MinerService) {}
+  constructor(private readonly asicsService: AsicsService) {}
 
   ngOnInit(): void {
     this.items$ = this.getMenuItems();
   }
 
-  getMenuItems(): Observable<MinerMenuItem[]> {
-    return this.minerService.getMiners().pipe(
+  getMenuItems(): Observable<AsicsMenuItem[]> {
+    return this.asicsService.getMiners().pipe(
       map((miners) => {
-        const menu: Partial<Record<MinerType, MinerMenuItem[]>> = {};
+        const menu: Partial<Record<MinerType, AsicsMenuItem[]>> = {};
 
         miners.forEach((miner) => {
           const { id, name, type } = miner;
@@ -38,7 +38,7 @@ export class MinersComponent implements OnInit {
             menu[type] = [];
           }
 
-          const menuItem: MinerMenuItem = {
+          const menuItem: AsicsMenuItem = {
             id,
             label: name,
             icon: itemMapping.icon,
@@ -62,8 +62,8 @@ export class MinersComponent implements OnInit {
 
   deleteItem(
     event: MouseEvent,
-    clickedItem: MinerMenuItem,
-    items: MinerMenuItem[],
+    clickedItem: AsicsMenuItem,
+    items: AsicsMenuItem[],
   ): void {
     event.stopPropagation();
 

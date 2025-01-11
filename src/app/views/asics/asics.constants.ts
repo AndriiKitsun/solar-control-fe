@@ -1,6 +1,6 @@
 import { PrimeIcons } from 'primeng/api';
-import { MinerType } from '../models/miner.models';
-import { MinerMenuItemMapConfig } from '../types/menu.types';
+import { MinerType } from './asics.models';
+import { AsicsMenuItemMapConfig } from './asics.types';
 
 /**
  * t(MINERS.TYPE.CARD)
@@ -9,7 +9,7 @@ import { MinerMenuItemMapConfig } from '../types/menu.types';
 
 export const MINER_MENU_ITEM_MAPPING: Record<
   MinerType,
-  MinerMenuItemMapConfig
+  AsicsMenuItemMapConfig
 > = {
   [MinerType.CARD]: {
     label: 'MINERS.TYPE.CARD',

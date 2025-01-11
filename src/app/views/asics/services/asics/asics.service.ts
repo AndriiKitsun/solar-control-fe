@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { MinerType, MinerModel } from '../../models/miner.models';
+import { MinerType, AsicModel } from '../../asics.models';
 import { FakeDataHelper } from '@common/helpers/fake-data.helper';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MinerService {
+export class AsicsService {
   private readonly minerNames: Record<MinerType, string[]> = {
     [MinerType.CARD]: [
       'GeForce RTX 3060',
@@ -32,10 +32,10 @@ export class MinerService {
     ],
   };
 
-  getMiners(): Observable<MinerModel[]> {
+  getMiners(): Observable<AsicModel[]> {
     const items = Array(30)
       .fill(0)
-      .map<MinerModel>(() => {
+      .map<AsicModel>(() => {
         const type = FakeDataHelper.randomFromList(Object.values(MinerType));
 
         return {

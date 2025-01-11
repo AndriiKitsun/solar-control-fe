@@ -43,9 +43,8 @@
     }
   },
   "TAB_BAR": {
-    "MINERS": "Miners",
-    "SENSORS": "Sensors",
-    "STATIONS": "Stations"
+    "ASICS": "Asics",
+    "SENSORS": "Sensors"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",

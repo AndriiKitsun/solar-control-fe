@@ -3,7 +3,7 @@ export enum MinerType {
   ASIC = 'asic',
 }
 
-export interface MinerModel {
+export interface AsicModel {
   id: string;
   name: string;
   type: MinerType;

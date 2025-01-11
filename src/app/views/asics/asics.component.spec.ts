@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MinersComponent } from './miners.component';
+import { AsicsComponent } from './asics.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { MinerService } from './services/miner/miner.service';
-import { MinerServiceMock } from './services/miner/mocks/miner.service.mock';
+import { AsicsService } from './services/asics/asics.service';
+import { AsicsServiceMock } from './services/asics/mocks/asics.service.mock';
 import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
 
 describe('MinersComponent', () => {
-  let component: MinersComponent;
-  let fixture: ComponentFixture<MinersComponent>;
+  let component: AsicsComponent;
+  let fixture: ComponentFixture<AsicsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MinersComponent,
+        AsicsComponent,
         NoopAnimationsModule,
         TranslocoTestingModule.forRoot({}),
       ],
@@ -24,13 +24,13 @@ describe('MinersComponent', () => {
           useValue: ActivatedRouteMock,
         },
         {
-          provide: MinerService,
-          useClass: MinerServiceMock,
+          provide: AsicsService,
+          useClass: AsicsServiceMock,
         },
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MinersComponent);
+    fixture = TestBed.createComponent(AsicsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

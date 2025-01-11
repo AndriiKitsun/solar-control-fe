@@ -43,9 +43,8 @@
     }
   },
   "TAB_BAR": {
-    "MINERS": "Майнери",
-    "SENSORS": "Датчики",
-    "STATIONS": "Станції"
+    "ASICS": "Asic-и",
+    "SENSORS": "Датчики"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",

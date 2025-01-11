@@ -18,7 +18,7 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         label: 'Address 1',
         icon: PrimeIcons.SUN,
-        routerLink: RoutePath.STATIONS,
+        routerLink: RoutePath.ASICS,
         queryParams: {
           id: 'address1',
         },
@@ -30,7 +30,7 @@ export const MENU_ITEMS: MenuItem[] = [
           {
             label: 'Station 1',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.STATIONS,
+            routerLink: RoutePath.ASICS,
             queryParams: {
               id: 'address2-1',
             },
@@ -38,7 +38,7 @@ export const MENU_ITEMS: MenuItem[] = [
           {
             label: 'Station 2',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.STATIONS,
+            routerLink: RoutePath.ASICS,
             queryParams: {
               id: 'address2-2',
             },
@@ -53,7 +53,7 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         label: 'Address 1',
         icon: PrimeIcons.BUILDING_COLUMNS,
-        routerLink: RoutePath.MINERS,
+        routerLink: RoutePath.ASICS,
         queryParams: {
           id: 'address1-1',
         },
@@ -65,7 +65,7 @@ export const MENU_ITEMS: MenuItem[] = [
           {
             label: 'Asic 1',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.MINERS,
+            routerLink: RoutePath.ASICS,
             queryParams: {
               id: 'address2-1',
             },
@@ -73,7 +73,7 @@ export const MENU_ITEMS: MenuItem[] = [
           {
             label: 'Asic 2',
             icon: PrimeIcons.SUN,
-            routerLink: RoutePath.MINERS,
+            routerLink: RoutePath.ASICS,
             queryParams: {
               id: 'address2-2',
             },
