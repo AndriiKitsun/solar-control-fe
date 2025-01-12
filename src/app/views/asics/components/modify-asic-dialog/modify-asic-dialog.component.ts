@@ -8,6 +8,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { KeyFilter } from 'primeng/keyfilter';
 import { IPv4AddressRegExpPattern } from '../../asics.constants';
+import { AsicModel } from '../../asics.models';
 
 @Component({
   selector: 'app-modify-asic-dialog',
@@ -27,10 +28,7 @@ export class ModifyAsicDialogComponent implements OnInit {
   isEditMode!: boolean;
   addressSuggestions: string[] = [];
 
-  ipAddress = '';
-  address = '';
-  password = '';
-  hostname = '';
+  asic!: Partial<AsicModel>;
 
   private addresses!: string[];
 
@@ -45,6 +43,7 @@ export class ModifyAsicDialogComponent implements OnInit {
 
     this.isEditMode = data.isEditMode;
     this.addresses = data.addresses;
+    this.asic = !this.isEditMode || !data.asic ? {} : { ...data.asic };
   }
 
   suggestAddress(event: AutoCompleteCompleteEvent): void {
@@ -53,19 +52,19 @@ export class ModifyAsicDialogComponent implements OnInit {
     );
   }
 
-  closeDialog(): void {
-    this.ref.close();
+  closeDialog(result?: Partial<AsicModel>): void {
+    this.ref.close(result);
   }
 
   addAsic(): void {
-    console.log('Added');
+    console.log('Added', this.asic);
 
-    this.closeDialog();
+    this.closeDialog(this.asic);
   }
 
   editAsic(): void {
-    console.log('Edited');
+    console.log('Edited', this.asic);
 
-    this.closeDialog();
+    this.closeDialog(this.asic);
   }
 }

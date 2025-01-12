@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, tap, first } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
@@ -16,7 +16,6 @@ import { AsicMenuItem, ModifyAsicDialogData } from './asics.types';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
-import { TranslationKey } from '@common/types/lang.types';
 import { TableModule } from 'primeng/table';
 
 /**
@@ -69,13 +68,7 @@ export class AsicsComponent implements OnInit {
 
         asics.forEach((asic) => {
           const group = menu.find((item) => item.label === asic.address);
-          const item: AsicMenuItem = {
-            id: asic.id,
-            label: asic.name,
-            icon: PrimeIcons.SERVER,
-            command: (event) => this.onItemClick(event),
-            asic,
-          };
+          const item: AsicMenuItem = this.buildMenuItem(asic);
 
           if (!group) {
             menu.push({ label: asic.address, items: [item] });
@@ -98,17 +91,11 @@ export class AsicsComponent implements OnInit {
     this.selectedItem.set(event.item as AsicMenuItem);
   }
 
-  openAddAsicModal(): void {
-    this.openModifyDialog('ASICS.DIALOG.ADD.HEADER', false);
-  }
-
-  openEditAsicModal(): void {
-    this.openModifyDialog('ASICS.DIALOG.EDIT.HEADER', true);
-  }
-
-  openModifyDialog(header: TranslationKey, isEditMode: boolean): void {
-    this.dialogService.open(ModifyAsicDialogComponent, {
-      header: this.translocoService.translate(header),
+  openModifyDialog(isEditMode: boolean): void {
+    const ref = this.dialogService.open(ModifyAsicDialogComponent, {
+      header: this.translocoService.translate(
+        `ASICS.DIALOG.${isEditMode ? 'EDIT' : 'ADD'}.HEADER`,
+      ),
       duplicate: false,
       closable: true,
       draggable: true,
@@ -119,7 +106,14 @@ export class AsicsComponent implements OnInit {
       data: {
         isEditMode,
         addresses: this.addresses,
+        asic: this.selectedItem()?.asic,
       } satisfies ModifyAsicDialogData,
+    });
+
+    ref.onClose.pipe(first()).subscribe((asic: AsicModel) => {
+      if (!asic) {
+        return;
+      }
     });
   }
 
@@ -148,6 +142,16 @@ export class AsicsComponent implements OnInit {
         this.deleteAsic();
       },
     });
+  }
+
+  buildMenuItem(asic: AsicModel): AsicMenuItem {
+    return {
+      id: asic.id,
+      label: asic.name,
+      icon: PrimeIcons.SERVER,
+      command: (event) => this.onItemClick(event),
+      asic,
+    };
   }
 
   deleteAsic(): void {

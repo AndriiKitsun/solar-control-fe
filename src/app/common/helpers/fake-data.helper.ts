@@ -4,7 +4,7 @@ export class FakeDataHelper {
   }
 
   static randomIP(): string {
-    return '$.$.$.$'.replaceAll('$', this.randomInt(0, 1000).toString());
+    return '$.$.$.$'.replaceAll('$', () => this.randomInt(1, 256).toString());
   }
 
   static randomInt(min = 0, max = 100): number {

@@ -7,7 +7,7 @@
       aria-autocomplete="none"
       class="w-full"
       pInputText
-      [(ngModel)]="ipAddress"
+      [(ngModel)]="asic.ip"
       [pKeyFilter]="ipAddressRegExp"
       [pValidateOnly]="true"
     />
@@ -23,7 +23,7 @@
       required
       [suggestions]="addressSuggestions"
       [showEmptyMessage]="false"
-      [(ngModel)]="address"
+      [(ngModel)]="asic.address"
       (completeMethod)="suggestAddress($event)"
     />
     <label for="address" class="text-lg">Address*</label>
@@ -38,10 +38,25 @@
       class="w-full"
       pInputText
       required
-      [(ngModel)]="password"
+      [(ngModel)]="asic.password"
     />
     <label for="password" class="text-lg">Password*</label>
   </p-floatlabel>
+
+  @if (isEditMode) {
+    <p-floatlabel variant="on">
+      <input
+        type="password"
+        id="repeatPassword"
+        autocomplete="none"
+        aria-autocomplete="none"
+        class="w-full"
+        pInputText
+        required
+      />
+      <label for="repeatPassword" class="text-lg">Repeat password*</label>
+    </p-floatlabel>
+  }
 
   <p-floatlabel variant="on">
     <input
@@ -52,7 +67,7 @@
       class="w-full"
       pInputText
       required
-      [(ngModel)]="hostname"
+      [(ngModel)]="asic.name"
     />
     <label for="hostname" class="text-lg">Hostname*</label>
   </p-floatlabel>

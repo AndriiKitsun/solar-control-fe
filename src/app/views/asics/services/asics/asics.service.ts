@@ -33,6 +33,7 @@ export class AsicsService {
         id: FakeDataHelper.randomUUID(),
         name: FakeDataHelper.randomFromList(this.minerNames),
         address: FakeDataHelper.randomFromList(this.addresses),
+        ip: FakeDataHelper.randomIP(),
       };
     });
 

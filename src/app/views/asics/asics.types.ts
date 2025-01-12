@@ -8,4 +8,5 @@ export interface AsicMenuItem extends MenuItem {
 export interface ModifyAsicDialogData {
   isEditMode: boolean;
   addresses: string[];
+  asic?: AsicModel;
 }
