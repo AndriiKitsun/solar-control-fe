@@ -43,8 +43,8 @@ export class ModifyAsicDialogComponent implements OnInit {
     const data = this.dialogService.getInstance(this.ref)
       .data as ModifyAsicDialogData;
 
-    this.isEditMode = data.isEditMode;
-    this.addresses = data.addresses;
+    this.isEditMode = data?.isEditMode ?? false;
+    this.addresses = data?.addresses ?? [];
     this.asic = !this.isEditMode || !data.asic ? {} : { ...data.asic };
   }
 

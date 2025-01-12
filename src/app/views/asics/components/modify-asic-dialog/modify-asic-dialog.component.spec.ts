@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModifyAsicDialogComponent } from './modify-asic-dialog.component';
+import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
+import { DialogServiceMock } from '@common/mocks/dialog.service.mock';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('ModifyAsicDialogComponent', () => {
   let component: ModifyAsicDialogComponent;
@@ -7,7 +10,17 @@ describe('ModifyAsicDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModifyAsicDialogComponent],
+      imports: [ModifyAsicDialogComponent, TranslocoTestingModule.forRoot({})],
+      providers: [
+        {
+          provide: DynamicDialogRef,
+          useValue: DialogServiceMock.dynamicDialogRefMock,
+        },
+        {
+          provide: DialogService,
+          useClass: DialogServiceMock,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ModifyAsicDialogComponent);

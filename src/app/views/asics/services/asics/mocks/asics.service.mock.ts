@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { AsicModel } from '../../../asics.models';
 
 export class AsicsServiceMock implements ClassMock<AsicsService> {
-  getMiners(): Observable<AsicModel[]> {
+  getAsics(): Observable<AsicModel[]> {
     return of([]);
   }
 }

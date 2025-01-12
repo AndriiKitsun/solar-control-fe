@@ -1,31 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AsicsComponent } from './asics.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { AsicsService } from './services/asics/asics.service';
 import { AsicsServiceMock } from './services/asics/mocks/asics.service.mock';
-import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogServiceMock } from '@common/mocks/dialog.service.mock';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmationServiceMock } from '@common/mocks/confirmation.service.mock';
 
-describe('MinersComponent', () => {
+describe('AsicsComponent', () => {
   let component: AsicsComponent;
   let fixture: ComponentFixture<AsicsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AsicsComponent,
-        NoopAnimationsModule,
-        TranslocoTestingModule.forRoot({}),
-      ],
+      imports: [AsicsComponent, TranslocoTestingModule.forRoot({})],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: ActivatedRouteMock,
-        },
         {
           provide: AsicsService,
           useClass: AsicsServiceMock,
+        },
+        {
+          provide: DialogService,
+          useClass: DialogServiceMock,
+        },
+        {
+          provide: ConfirmationService,
+          useClass: ConfirmationServiceMock,
         },
       ],
     }).compileComponents();
