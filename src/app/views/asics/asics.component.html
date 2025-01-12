@@ -42,11 +42,23 @@
       </p-toolbar>
     </div>
 
-    @if (selectedItem(); as asic) {
-      <div class="card flex-1">
-        <p>{{ asic.id }}</p>
-        <p>{{ asic.label }}</p>
-      </div>
+    @if (selectedItem(); as menuItem) {
+      <p-table [value]="[menuItem.asic]" dataKey="id" showGridlines rowHover>
+        <ng-template #header>
+          <tr>
+            <th class="w-1/3">ID</th>
+            <th class="w-1/3">Name</th>
+            <th class="w-1/3">Address</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-asic>
+          <tr>
+            <td>{{ asic?.id }}</td>
+            <td>{{ asic?.name }}</td>
+            <td>{{ asic?.address }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     }
   </div>
 </div>

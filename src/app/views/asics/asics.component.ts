@@ -17,6 +17,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TranslationKey } from '@common/types/lang.types';
+import { TableModule } from 'primeng/table';
 
 /**
  * t(ASICS.DIALOG.ADD.HEADER)
@@ -32,6 +33,7 @@ import { TranslationKey } from '@common/types/lang.types';
     Toolbar,
     Button,
     ConfirmDialog,
+    TableModule,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
