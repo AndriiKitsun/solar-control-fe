@@ -19,6 +19,7 @@
   <p-floatlabel variant="on">
     <p-auto-complete
       inputId="address"
+      autocomplete="none"
       styleClass="w-full"
       dropdown
       completeOnFocus
@@ -34,14 +35,14 @@
   </p-floatlabel>
 
   <p-floatlabel variant="on">
-    <input
-      type="password"
-      id="password"
+    <p-password
+      inputId="password"
       autocomplete="none"
-      aria-autocomplete="none"
-      class="w-full"
-      pInputText
+      styleClass="w-full"
+      inputStyleClass="w-full"
       required
+      [toggleMask]="true"
+      [feedback]="false"
       [(ngModel)]="asic.password"
     />
     <label for="password" class="text-lg">{{
@@ -51,14 +52,13 @@
 
   @if (isEditMode) {
     <p-floatlabel variant="on">
-      <input
-        type="password"
-        id="repeatPassword"
+      <p-password
+        inputId="repeatPassword"
         autocomplete="none"
-        aria-autocomplete="none"
-        class="w-full"
-        pInputText
-        required
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        [toggleMask]="true"
+        [feedback]="false"
       />
       <label for="repeatPassword" class="text-lg">{{
         t('ASICS.DIALOG.MODIFY.FIELD.REPEAT_PASSWORD')

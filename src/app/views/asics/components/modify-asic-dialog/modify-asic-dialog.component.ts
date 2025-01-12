@@ -10,6 +10,7 @@ import { KeyFilter } from 'primeng/keyfilter';
 import { IPv4AddressRegExpPattern } from '../../asics.constants';
 import { AsicModel } from '../../asics.models';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { Password } from 'primeng/password';
 
 @Component({
   selector: 'app-modify-asic-dialog',
@@ -21,6 +22,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
     AutoComplete,
     Button,
     TranslocoDirective,
+    Password,
   ],
   templateUrl: './modify-asic-dialog.component.html',
 })
