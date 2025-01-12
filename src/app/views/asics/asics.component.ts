@@ -1,4 +1,11 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  signal,
+  computed,
+  AfterViewInit,
+  ViewChild,
+} from '@angular/core';
 import { map, Observable, tap, first } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
@@ -38,10 +45,12 @@ import { TableModule } from 'primeng/table';
   styleUrl: './asics.component.scss',
   providers: [ConfirmationService],
 })
-export class AsicsComponent implements OnInit {
+export class AsicsComponent implements OnInit, AfterViewInit {
   isLoading = signal(false);
   isToolbarDisabled = computed(() => this.isLoading() || !this.selectedItem());
   selectedItem = signal<AsicMenuItem | null>(null);
+
+  @ViewChild('menu') menuElement!: Menu;
 
   menuItems$!: Observable<AsicMenuItem[]>;
 
@@ -57,6 +66,16 @@ export class AsicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems$ = this.getMenuItems();
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.menuElement) {
+        // Override method to prevent menu item focus lose
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        this.menuElement.onListBlur = () => {};
+      }
+    }, 100);
   }
 
   getMenuItems(): Observable<AsicMenuItem[]> {
