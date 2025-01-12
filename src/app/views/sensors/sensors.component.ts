@@ -103,15 +103,13 @@ export class SensorsComponent implements OnInit {
       header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
       icon: PrimeIcons.EXCLAMATION_TRIANGLE,
       rejectButtonProps: {
-        label: this.translocoService.translate('CONFIRM_DIALOG.CANCEL'),
+        label: this.translocoService.translate('BUTTON.CANCEL'),
         severity: 'secondary',
         icon: PrimeIcons.TIMES,
         outlined: true,
       },
       acceptButtonProps: {
-        label: this.translocoService.translate(
-          'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.ACCEPT',
-        ),
+        label: this.translocoService.translate('BUTTON.RESET'),
         icon: PrimeIcons.CHECK,
         severity: 'danger',
       },

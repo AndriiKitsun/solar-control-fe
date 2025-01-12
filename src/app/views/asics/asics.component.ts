@@ -19,8 +19,8 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 
 /**
- * t(ASICS.DIALOG.ADD.HEADER)
- * t(ASICS.DIALOG.EDIT.HEADER)
+ * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
+ * t(ASICS.DIALOG.MODIFY.HEADER.EDIT)
  * */
 
 @Component({
@@ -94,7 +94,7 @@ export class AsicsComponent implements OnInit {
   openModifyDialog(isEditMode: boolean): void {
     const ref = this.dialogService.open(ModifyAsicDialogComponent, {
       header: this.translocoService.translate(
-        `ASICS.DIALOG.${isEditMode ? 'EDIT' : 'ADD'}.HEADER`,
+        `ASICS.DIALOG.MODIFY.HEADER.${isEditMode ? 'EDIT' : 'ADD'}`,
       ),
       duplicate: false,
       closable: true,
@@ -126,15 +126,13 @@ export class AsicsComponent implements OnInit {
       header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
       icon: PrimeIcons.EXCLAMATION_TRIANGLE,
       rejectButtonProps: {
-        label: this.translocoService.translate('CONFIRM_DIALOG.CANCEL'),
+        label: this.translocoService.translate('BUTTON.CANCEL'),
         severity: 'secondary',
         icon: PrimeIcons.TIMES,
         outlined: true,
       },
       acceptButtonProps: {
-        label: this.translocoService.translate(
-          'ASICS.CONFIRM_DIALOG.DELETE_ASIC.DELETE',
-        ),
+        label: this.translocoService.translate('BUTTON.DELETE'),
         severity: 'danger',
         icon: PrimeIcons.CHECK,
       },

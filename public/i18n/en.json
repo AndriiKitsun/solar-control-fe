@@ -1,22 +1,23 @@
 {
   "ASICS": {
-    "TOOL_BAR": {
-      "ADD": "Add",
-      "EDIT": "Edit",
-      "DELETE": "Delete"
-    },
     "DIALOG": {
-      "ADD": {
-        "HEADER": "Add Asic"
-      },
-      "EDIT": {
-        "HEADER": "Edit Asic"
+      "MODIFY": {
+        "HEADER": {
+          "ADD": "Add Asic",
+          "EDIT": "Edit Asic"
+        },
+        "FIELD": {
+          "IP": "IP Address*",
+          "ADDRESS": "Address*",
+          "PASSWORD": "Password*",
+          "REPEAT_PASSWORD": "Repeat password*",
+          "HOSTNAME": "Hostname*"
+        }
       }
     },
     "CONFIRM_DIALOG": {
       "DELETE_ASIC": {
-        "MESSAGE": "Are you sure you want to delete the Asic?",
-        "DELETE": "Delete"
+        "MESSAGE": "Are you sure you want to delete the Asic?"
       }
     }
   },
@@ -50,8 +51,7 @@
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
-        "MESSAGE": "Are you sure you want to reset the PZEM counters?",
-        "ACCEPT": "Reset"
+        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
       }
     }
   },
@@ -71,7 +71,13 @@
     }
   },
   "CONFIRM_DIALOG": {
-    "HEADER": "Confirmation",
-    "CANCEL": "Cancel"
+    "HEADER": "Confirmation"
+  },
+  "BUTTON": {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "RESET": "Reset"
   }
 }

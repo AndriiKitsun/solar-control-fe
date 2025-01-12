@@ -9,6 +9,7 @@ import { Button } from 'primeng/button';
 import { KeyFilter } from 'primeng/keyfilter';
 import { IPv4AddressRegExpPattern } from '../../asics.constants';
 import { AsicModel } from '../../asics.models';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-modify-asic-dialog',
@@ -19,6 +20,7 @@ import { AsicModel } from '../../asics.models';
     KeyFilter,
     AutoComplete,
     Button,
+    TranslocoDirective,
   ],
   templateUrl: './modify-asic-dialog.component.html',
 })

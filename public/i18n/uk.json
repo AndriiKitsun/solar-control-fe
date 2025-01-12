@@ -1,22 +1,23 @@
 {
   "ASICS": {
-    "TOOL_BAR": {
-      "ADD": "Додати",
-      "EDIT": "Редагувати",
-      "DELETE": "Видалити"
-    },
     "DIALOG": {
-      "ADD": {
-        "HEADER": "Додати Asic"
-      },
-      "EDIT": {
-        "HEADER": "Редагувати Asic"
+      "MODIFY": {
+        "HEADER": {
+          "ADD": "Додати Asic",
+          "EDIT": "Редагувати Asic"
+        },
+        "FIELD": {
+          "IP": "IP Адреса*",
+          "ADDRESS": "Адреса*",
+          "PASSWORD": "Пароль*",
+          "REPEAT_PASSWORD": "Повторіть пароль*",
+          "HOSTNAME": "Імʼя хоста*"
+        }
       }
     },
     "CONFIRM_DIALOG": {
       "DELETE_ASIC": {
-        "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?",
-        "DELETE": "Видалити"
+        "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
       }
     }
   },
@@ -50,8 +51,7 @@
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
-        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?",
-        "ACCEPT": "Скинути"
+        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
       }
     }
   },
@@ -71,7 +71,13 @@
     }
   },
   "CONFIRM_DIALOG": {
-    "HEADER": "Підтвердження",
-    "CANCEL": "Скасувати"
+    "HEADER": "Підтвердження"
+  },
+  "BUTTON": {
+    "ADD": "Додати",
+    "EDIT": "Редагувати",
+    "DELETE": "Видалити",
+    "CANCEL": "Скасувати",
+    "RESET": "Скинути"
   }
 }
