@@ -1,0 +1,70 @@
+<div class="asics" *transloco="let t">
+  <p-menu
+    [model]="(menuItems$ | async)!"
+    styleClass="w-72 h-full overflow-auto"
+  >
+    <ng-template #submenuheader let-item>
+      <span class="select-none font-bold text-primary">{{ item.label }}</span>
+    </ng-template>
+  </p-menu>
+
+  <div class="flex flex-1 flex-col">
+    <div class="card">
+      <p-toolbar>
+        <ng-template #start>
+          <p-button
+            [label]="t('BUTTON.ADD')"
+            icon="pi pi-plus"
+            severity="success"
+            variant="outlined"
+            class="mr-2"
+            [disabled]="isLoading()"
+            (onClick)="openModifyDialog(false)"
+          />
+          <p-button
+            [label]="t('BUTTON.EDIT')"
+            icon="pi pi-pencil"
+            severity="warn"
+            variant="outlined"
+            class="mr-2"
+            [disabled]="isToolbarDisabled()"
+            (onClick)="openModifyDialog(true)"
+          />
+          <p-button
+            [label]="t('BUTTON.DELETE')"
+            icon="pi pi-trash"
+            severity="danger"
+            variant="outlined"
+            [disabled]="isToolbarDisabled()"
+            (onClick)="openDeleteAsicModal($event)"
+          />
+        </ng-template>
+      </p-toolbar>
+    </div>
+
+    @if (selectedItem(); as menuItem) {
+      <div class="card">
+        <p-table [value]="[menuItem.asic]" dataKey="id" showGridlines rowHover>
+          <ng-template #header>
+            <tr>
+              <th class="w-40">ID</th>
+              <th class="w-40">Name</th>
+              <th class="w-40">Address</th>
+              <th class="w-40">IP Address</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-asic>
+            <tr>
+              <td>{{ asic?.id }}</td>
+              <td>{{ asic?.name }}</td>
+              <td>{{ asic?.address }}</td>
+              <td>{{ asic?.ip }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    }
+  </div>
+</div>
+
+<p-confirm-dialog />

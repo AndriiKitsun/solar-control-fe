@@ -1,0 +1,97 @@
+<div class="flex h-full flex-col gap-6" *transloco="let t">
+  <p-floatlabel variant="on" class="mt-1">
+    <input
+      type="text"
+      id="ip"
+      autocomplete="none"
+      aria-autocomplete="none"
+      class="w-full"
+      pInputText
+      [(ngModel)]="asic.ip"
+      [pKeyFilter]="ipAddressRegExp"
+      [pValidateOnly]="true"
+    />
+    <label for="ip" class="text-lg">{{
+      t('ASICS.DIALOG.MODIFY.FIELD.IP')
+    }}</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="on">
+    <p-auto-complete
+      inputId="address"
+      autocomplete="none"
+      styleClass="w-full"
+      dropdown
+      completeOnFocus
+      required
+      [suggestions]="addressSuggestions"
+      [showEmptyMessage]="false"
+      [(ngModel)]="asic.address"
+      (completeMethod)="suggestAddress($event)"
+    />
+    <label for="address" class="text-lg">{{
+      t('ASICS.DIALOG.MODIFY.FIELD.ADDRESS')
+    }}</label>
+  </p-floatlabel>
+
+  <p-floatlabel variant="on">
+    <p-password
+      inputId="password"
+      autocomplete="none"
+      styleClass="w-full"
+      inputStyleClass="w-full"
+      required
+      [toggleMask]="true"
+      [feedback]="false"
+      [(ngModel)]="asic.password"
+    />
+    <label for="password" class="text-lg">{{
+      t('ASICS.DIALOG.MODIFY.FIELD.PASSWORD')
+    }}</label>
+  </p-floatlabel>
+
+  @if (isEditMode) {
+    <p-floatlabel variant="on">
+      <p-password
+        inputId="repeatPassword"
+        autocomplete="none"
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        [toggleMask]="true"
+        [feedback]="false"
+      />
+      <label for="repeatPassword" class="text-lg">{{
+        t('ASICS.DIALOG.MODIFY.FIELD.REPEAT_PASSWORD')
+      }}</label>
+    </p-floatlabel>
+  }
+
+  <p-floatlabel variant="on">
+    <input
+      type="text"
+      id="hostname"
+      autocomplete="none"
+      aria-autocomplete="none"
+      class="w-full"
+      pInputText
+      required
+      [(ngModel)]="asic.name"
+    />
+    <label for="hostname" class="text-lg">{{
+      t('ASICS.DIALOG.MODIFY.FIELD.HOSTNAME')
+    }}</label>
+  </p-floatlabel>
+
+  <div class="mt-auto flex justify-end gap-2">
+    <p-button
+      [label]="t('BUTTON.CANCEL')"
+      variant="outlined"
+      severity="secondary"
+      (onClick)="closeDialog()"
+    />
+    <p-button
+      [label]="isEditMode ? t('BUTTON.EDIT') : t('BUTTON.ADD')"
+      (onClick)="isEditMode ? editAsic() : addAsic()"
+    />
+  </div>
+</div>

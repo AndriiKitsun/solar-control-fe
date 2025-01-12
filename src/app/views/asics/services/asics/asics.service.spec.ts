@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { MinerService } from './miner.service';
+import { AsicsService } from './asics.service';
 
-describe('MinerService', () => {
-  let service: MinerService;
+describe('AsicsService', () => {
+  let service: AsicsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MinerService);
+    service = TestBed.inject(AsicsService);
   });
 
   it('should be created', () => {

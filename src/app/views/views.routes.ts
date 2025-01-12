@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { RoutePath } from '@common/constants/router.constants';
+import { DialogService } from 'primeng/dynamicdialog';
 
 export default [
   {
@@ -13,13 +14,9 @@ export default [
       import('./sensors/sensors.component').then((c) => c.SensorsComponent),
   },
   {
-    path: RoutePath.MINERS,
+    path: RoutePath.ASICS,
     loadComponent: () =>
-      import('./miners/miners.component').then((c) => c.MinersComponent),
-  },
-  {
-    path: RoutePath.STATIONS,
-    loadComponent: () =>
-      import('./stations/stations.component').then((c) => c.StationsComponent),
+      import('./asics/asics.component').then((c) => c.AsicsComponent),
+    providers: [DialogService],
   },
 ] as Routes;

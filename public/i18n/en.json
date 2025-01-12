@@ -1,8 +1,24 @@
 {
-  "MINERS": {
-    "TYPE": {
-      "ASIC": "Asic Miners",
-      "CARD": "Graphics Cards"
+  "ASICS": {
+    "DIALOG": {
+      "MODIFY": {
+        "HEADER": {
+          "ADD": "Add Asic",
+          "EDIT": "Edit Asic"
+        },
+        "FIELD": {
+          "IP": "IP Address*",
+          "ADDRESS": "Address*",
+          "PASSWORD": "Password*",
+          "REPEAT_PASSWORD": "Repeat password*",
+          "HOSTNAME": "Hostname*"
+        }
+      }
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC": {
+        "MESSAGE": "Are you sure you want to delete the Asic?"
+      }
     }
   },
   "SENSORS": {
@@ -34,18 +50,14 @@
       "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
     },
     "CONFIRM_DIALOG": {
-      "REJECT": "Cancel",
-      "CONFIRM_HEADER": "Confirmation",
       "RESET_COUNTERS": {
-        "MESSAGE": "Are you sure you want to reset the PZEM counters?",
-        "ACCEPT": "Reset"
+        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
       }
     }
   },
   "TAB_BAR": {
-    "MINERS": "Miners",
-    "SENSORS": "Sensors",
-    "STATIONS": "Stations"
+    "ASICS": "Asics",
+    "SENSORS": "Sensors"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",
@@ -57,5 +69,15 @@
     "SUMMARY": {
       "ERROR": "Error"
     }
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Confirmation"
+  },
+  "BUTTON": {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "RESET": "Reset"
   }
 }
