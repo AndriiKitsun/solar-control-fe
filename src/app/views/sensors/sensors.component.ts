@@ -95,6 +95,7 @@ export class SensorsComponent implements OnInit {
 
           return {
             ...row,
+            isEmpty: !pzem,
             data: this.mapToRowData(pzem),
           };
         });
@@ -104,7 +105,7 @@ export class SensorsComponent implements OnInit {
 
   mapToRowData(pzem?: PzemModel): RowData {
     if (!pzem) {
-      return { isEmpty: true };
+      return {};
     }
 
     const acVoltageFormat = pzem.name.startsWith('ac')

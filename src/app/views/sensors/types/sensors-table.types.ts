@@ -3,11 +3,11 @@ import { TranslationKey } from '@common/types/lang.types';
 export interface RowConfig {
   id: string;
   title: TranslationKey;
+  isEmpty: boolean;
   data: RowData;
 }
 
 export interface RowData {
-  isEmpty?: boolean;
   voltage?: string;
   current?: string;
   power?: string;

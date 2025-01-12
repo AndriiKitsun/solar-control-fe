@@ -61,7 +61,7 @@
       </ng-template>
 
       <ng-template #body let-row>
-        <tr [ngClass]="{ '!bg-highlight': row.data.isEmpty }">
+        <tr [ngClass]="{ '!bg-highlight': row.isEmpty }">
           <td class="table__row-title">{{ t(row.title) }}</td>
           <td class="table__cell">{{ row.data.voltage }}</td>
           <td class="table__cell">{{ row.data.current }}</td>
