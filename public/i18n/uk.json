@@ -7,7 +7,7 @@
     },
     "DIALOG": {
       "ADD": {
-        "HEADER": "Додати новий Asic"
+        "HEADER": "Додати Asic"
       },
       "EDIT": {
         "HEADER": "Редагувати Asic"

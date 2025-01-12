@@ -7,7 +7,7 @@
     },
     "DIALOG": {
       "ADD": {
-        "HEADER": "Add new Asic"
+        "HEADER": "Add Asic"
       },
       "EDIT": {
         "HEADER": "Edit Asic"

@@ -12,7 +12,7 @@ import {
 } from 'primeng/api';
 import { AsyncPipe } from '@angular/common';
 import { AsicModel } from './asics.models';
-import { AsicMenuItem } from './asics.types';
+import { AsicMenuItem, ModifyAsicDialogData } from './asics.types';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -35,7 +35,7 @@ import { TranslationKey } from '@common/types/lang.types';
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
-  providers: [DialogService, ConfirmationService],
+  providers: [ConfirmationService],
 })
 export class AsicsComponent implements OnInit {
   isLoading = signal(false);
@@ -45,6 +45,7 @@ export class AsicsComponent implements OnInit {
   menuItems$!: Observable<AsicMenuItem[]>;
 
   private menu: AsicMenuItem[] = [];
+  private addresses: string[] = [];
 
   constructor(
     private readonly asicsService: AsicsService,
@@ -76,6 +77,7 @@ export class AsicsComponent implements OnInit {
 
           if (!group) {
             menu.push({ label: asic.address, items: [item] });
+            this.addresses.push(asic.address);
           } else {
             group.items!.push(item);
           }
@@ -95,21 +97,27 @@ export class AsicsComponent implements OnInit {
   }
 
   openAddAsicModal(): void {
-    this.openModifyDialog('ASICS.DIALOG.ADD.HEADER');
+    this.openModifyDialog('ASICS.DIALOG.ADD.HEADER', false);
   }
 
   openEditAsicModal(): void {
-    this.openModifyDialog('ASICS.DIALOG.EDIT.HEADER');
+    this.openModifyDialog('ASICS.DIALOG.EDIT.HEADER', true);
   }
 
-  openModifyDialog(header: TranslationKey): void {
+  openModifyDialog(header: TranslationKey, isEditMode: boolean): void {
     this.dialogService.open(ModifyAsicDialogComponent, {
       header: this.translocoService.translate(header),
       duplicate: false,
       closable: true,
       draggable: true,
       modal: true,
-      width: '35rem',
+      focusOnShow: false,
+      width: '25rem',
+      height: '31rem',
+      data: {
+        isEditMode,
+        addresses: this.addresses,
+      } satisfies ModifyAsicDialogData,
     });
   }
 
@@ -124,6 +132,7 @@ export class AsicsComponent implements OnInit {
       rejectButtonProps: {
         label: this.translocoService.translate('CONFIRM_DIALOG.CANCEL'),
         severity: 'secondary',
+        icon: PrimeIcons.TIMES,
         outlined: true,
       },
       acceptButtonProps: {
@@ -131,6 +140,7 @@ export class AsicsComponent implements OnInit {
           'ASICS.CONFIRM_DIALOG.DELETE_ASIC.DELETE',
         ),
         severity: 'danger',
+        icon: PrimeIcons.CHECK,
       },
       accept: () => {
         this.deleteAsic();

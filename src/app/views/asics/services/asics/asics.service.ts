@@ -17,8 +17,11 @@ export class AsicsService {
   ];
   private readonly addresses: string[] = [
     'home',
+    'home2',
+    'home3',
     'father',
     'mother',
+    'brother',
     'address1',
     'address2',
     'address3',
