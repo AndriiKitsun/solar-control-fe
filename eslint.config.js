@@ -47,6 +47,7 @@ module.exports = tseslint.config(
         },
       ],
       'sonarjs/pseudo-random': 'off',
+      'sonarjs/todo-tag': 'warn',
     },
   },
   {

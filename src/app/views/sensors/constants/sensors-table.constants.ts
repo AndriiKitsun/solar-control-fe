@@ -12,7 +12,7 @@ export enum TableRowId {
   DC_BATTERY = 'dcBattery',
 }
 
-export const TABLE_ROWS: readonly RowConfig[] = [
+export const TABLE_ROWS: readonly Omit<RowConfig, 'data'>[] = [
   {
     id: TableRowId.AC_INPUT,
     title: 'SENSORS.TABLE.ROW.AC_INPUT',
