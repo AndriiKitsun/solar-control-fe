@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, DestroyRef, computed } from '@angular/core';
 import { Observable, map, tap, first, finalize } from 'rxjs';
-import { AsyncPipe, DecimalPipe, NgClass, DatePipe } from '@angular/common';
+import { AsyncPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { Button } from 'primeng/button';
@@ -8,12 +8,19 @@ import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TranslationKey } from '@common/types/lang.types';
-import { RowConfig } from './types/sensors-table.types';
+import { RowConfig, RowData } from './types/sensors-table.types';
 import { SensorsWebSocketService } from './services/sensors-websocket/sensors-websocket.service';
 import { SensorsService } from './services/sensors/sensors.service';
-import { PzemDataModel } from './models/sensor.models';
+import { PzemDataModel, PzemModel } from './models/sensor.models';
 import { TABLE_ROWS } from './constants/sensors-table.constants';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  formatNum,
+  NEAREST_INT,
+  THREE_DIGITS,
+  ONE_DIGIT,
+  TWO_DIGIT,
+} from '@common/helpers/format.helper';
 
 /**
  * t(SENSORS.PZEM_LABEL)
@@ -27,7 +34,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [
     TableModule,
     AsyncPipe,
-    DecimalPipe,
     NgClass,
     TranslocoDirective,
     DatePipe,
@@ -85,13 +91,38 @@ export class SensorsComponent implements OnInit {
       }),
       map((sensors: PzemDataModel) => {
         return TABLE_ROWS.map((row) => {
+          const pzem = sensors.pzems.find((pzem) => pzem.name === row.id);
+
           return {
             ...row,
-            data: sensors.pzems.find((pzem) => pzem.name === row.id),
+            isEmpty: !pzem,
+            data: this.mapToRowData(pzem),
           };
         });
       }),
     );
+  }
+
+  mapToRowData(pzem?: PzemModel): RowData {
+    if (!pzem) {
+      return {};
+    }
+
+    const acVoltageFormat = pzem.name.startsWith('ac')
+      ? NEAREST_INT
+      : THREE_DIGITS;
+
+    return {
+      voltage: formatNum(pzem.voltageV, acVoltageFormat),
+      current: formatNum(pzem.currentA, ONE_DIGIT),
+      power: formatNum(pzem.powerKw, TWO_DIGIT),
+      energy: formatNum(pzem.energyKwh, ONE_DIGIT),
+      t1Energy: formatNum(pzem.t1EnergyKwh, ONE_DIGIT),
+      t2Energy: formatNum(pzem.t2EnergyKwh, ONE_DIGIT),
+      frequency: formatNum(pzem.frequencyHz, NEAREST_INT),
+      powerFactor: formatNum(pzem.powerFactor, TWO_DIGIT),
+      avgVoltage: formatNum(pzem.avgVoltageV, THREE_DIGITS),
+    };
   }
 
   openResetConfirmationModal(event: MouseEvent): void {
