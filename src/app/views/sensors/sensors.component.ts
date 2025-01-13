@@ -1,4 +1,11 @@
-import { Component, OnInit, signal, DestroyRef, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  signal,
+  DestroyRef,
+  computed,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Observable, map, tap, first, finalize } from 'rxjs';
 import { AsyncPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -31,6 +38,7 @@ import {
   selector: 'app-sensors',
   templateUrl: './sensors.component.html',
   styleUrl: './sensors.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     TableModule,
     AsyncPipe,

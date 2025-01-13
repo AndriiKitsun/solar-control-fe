@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NgForOf, NgStyle, NgClass } from '@angular/common';
 import { ColorModel } from './theme-configurator.models';
 import { SelectButton } from 'primeng/selectbutton';
@@ -28,6 +28,7 @@ import { ThemeService } from '../../services/theme/theme.service';
   ],
   templateUrl: './theme-configurator.component.html',
   styleUrl: './theme-configurator.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeConfiguratorComponent implements OnInit {
   primaryColors!: ColorModel<PrimaryColor>[];

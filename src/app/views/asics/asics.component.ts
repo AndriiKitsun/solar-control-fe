@@ -5,6 +5,7 @@ import {
   computed,
   AfterViewInit,
   ViewChild,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { map, Observable, tap, first } from 'rxjs';
 import { Menu } from 'primeng/menu';
@@ -43,6 +44,7 @@ import { TableModule } from 'primeng/table';
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ConfirmationService],
 })
 export class AsicsComponent implements OnInit, AfterViewInit {

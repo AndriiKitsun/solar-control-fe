@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { NgTemplateOutlet, NgClass, AsyncPipe } from '@angular/common';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
@@ -28,6 +34,7 @@ import { MenuState } from '../../services/menu/menu.types';
   imports: [NgTemplateOutlet, RouterLink, Ripple, NgClass, AsyncPipe],
   templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('submenu', [
       state(SubmenuAnimationState.COLLAPSED, style({ height: 0 })),
