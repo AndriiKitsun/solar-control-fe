@@ -1,4 +1,11 @@
-import { Component, OnInit, signal, inject, DestroyRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  signal,
+  inject,
+  DestroyRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Tab, TabList, Tabs } from 'primeng/tabs';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { tap, filter, map, startWith } from 'rxjs';
@@ -12,6 +19,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
   imports: [Tab, TabList, Tabs, RouterLink, TranslocoDirective],
   templateUrl: './tab-bar.component.html',
   styleUrl: './tab-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabBarComponent implements OnInit {
   tabs: TabItem[] = MAIN_TABS;

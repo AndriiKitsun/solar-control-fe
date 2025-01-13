@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { MenuItem } from 'primeng/api';
 
@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
   imports: [MenuItemComponent],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
   items = input.required<MenuItem[]>();

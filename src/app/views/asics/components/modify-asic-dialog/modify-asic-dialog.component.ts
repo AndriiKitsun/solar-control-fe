@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogData } from '../../asics.types';
 import { InputText } from 'primeng/inputtext';
@@ -25,6 +25,7 @@ import { Password } from 'primeng/password';
     Password,
   ],
   templateUrl: './modify-asic-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModifyAsicDialogComponent implements OnInit {
   ipAddressRegExp = new RegExp(IPv4AddressRegExpPattern);

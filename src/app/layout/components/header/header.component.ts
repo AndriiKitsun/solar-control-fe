@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Ripple } from 'primeng/ripple';
 import { ThemeConfiguratorComponent } from '../theme-configurator/theme-configurator.component';
 import { StyleClass } from 'primeng/styleclass';
@@ -28,6 +28,7 @@ import { LangService } from '../../services/lang/lang.service';
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
   themeIcons: Record<ColorScheme, PrimeIcons> = {
