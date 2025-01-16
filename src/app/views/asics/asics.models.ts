@@ -1,7 +1,10 @@
 export interface AsicModel {
   id: string;
-  name: string;
-  address: string;
   ip: string;
-  password?: string;
+  address: string;
+  hostname: string;
+}
+
+export interface AddAsicModel extends Partial<AsicModel> {
+  password: string;
 }

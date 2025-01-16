@@ -166,7 +166,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   buildMenuItem(asic: AsicModel): AsicMenuItem {
     return {
       id: asic.id,
-      label: asic.name,
+      label: asic.hostname,
       icon: PrimeIcons.SERVER,
       command: (event) => this.onItemClick(event),
       asic,

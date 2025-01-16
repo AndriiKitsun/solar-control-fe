@@ -8,7 +8,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { KeyFilter } from 'primeng/keyfilter';
 import { IPv4AddressRegExpPattern } from '../../asics.constants';
-import { AsicModel } from '../../asics.models';
+import { AsicModel, AddAsicModel } from '../../asics.models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { Password } from 'primeng/password';
 
@@ -33,7 +33,7 @@ export class ModifyAsicDialogComponent implements OnInit {
   isEditMode!: boolean;
   addressSuggestions: string[] = [];
 
-  asic!: Partial<AsicModel>;
+  asic!: Partial<AddAsicModel>;
 
   private addresses!: string[];
 

@@ -49,7 +49,7 @@
           <ng-template #header>
             <tr>
               <th class="w-40">ID</th>
-              <th class="w-40">Name</th>
+              <th class="w-40">Hostname</th>
               <th class="w-40">Address</th>
               <th class="w-40">IP Address</th>
             </tr>
@@ -57,7 +57,7 @@
           <ng-template #body let-asic>
             <tr>
               <td>{{ asic?.id }}</td>
-              <td>{{ asic?.name }}</td>
+              <td>{{ asic?.hostname }}</td>
               <td>{{ asic?.address }}</td>
               <td>{{ asic?.ip }}</td>
             </tr>
