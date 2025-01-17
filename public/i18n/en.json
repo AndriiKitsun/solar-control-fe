@@ -19,6 +19,9 @@
       "DELETE_ASIC": {
         "MESSAGE": "Are you sure you want to delete the Asic?"
       }
+    },
+    "TOAST": {
+      "SIDE_BAR": "The error occurred while fetching the Asics list"
     }
   },
   "SENSORS": {
@@ -47,7 +50,7 @@
       "RESET_COUNTERS": "Reset counters"
     },
     "TOAST": {
-      "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
