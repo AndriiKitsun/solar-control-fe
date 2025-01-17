@@ -10,6 +10,10 @@
           "IP": "IP Address*",
           "ADDRESS": "Address*",
           "PASSWORD": "Password*"
+        },
+        "VALIDATION": {
+          "REQUIRED": "Field is required",
+          "INVALID": "Field is invalid"
         }
       }
     },

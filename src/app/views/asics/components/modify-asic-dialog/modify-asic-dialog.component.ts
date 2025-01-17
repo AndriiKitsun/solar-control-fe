@@ -3,26 +3,33 @@ import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogData } from '../../asics.types';
 import { InputText } from 'primeng/inputtext';
 import { AutoCompleteCompleteEvent, AutoComplete } from 'primeng/autocomplete';
-import { FormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { KeyFilter } from 'primeng/keyfilter';
 import { IPv4AddressRegExpPattern } from '../../asics.constants';
-import { AsicModel, AddAsicModel } from '../../asics.models';
+import { AsicModel } from '../../asics.models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { Password } from 'primeng/password';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-modify-asic-dialog',
   imports: [
     FloatLabel,
     InputText,
-    FormsModule,
     KeyFilter,
     AutoComplete,
     Button,
     TranslocoDirective,
     Password,
+    ReactiveFormsModule,
+    NgTemplateOutlet,
   ],
   templateUrl: './modify-asic-dialog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +40,7 @@ export class ModifyAsicDialogComponent implements OnInit {
   isEditMode!: boolean;
   addressSuggestions: string[] = [];
 
-  asic!: Partial<AddAsicModel>;
+  form!: FormGroup;
 
   private addresses!: string[];
 
@@ -48,7 +55,27 @@ export class ModifyAsicDialogComponent implements OnInit {
 
     this.isEditMode = data?.isEditMode ?? false;
     this.addresses = data?.addresses ?? [];
-    this.asic = !this.isEditMode || !data.asic ? {} : { ...data.asic };
+
+    const asic = !this.isEditMode || !data.asic ? ({} as AsicModel) : data.asic;
+
+    this.form = new FormGroup({
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      ip: new FormControl(asic.ip, Validators.required),
+      address: new FormControl(asic.address),
+      password: new FormControl(''),
+    });
+  }
+
+  get ipControl() {
+    return this.form.get('ip');
+  }
+
+  get addressControl() {
+    return this.form.get('address');
+  }
+
+  get passwordControl() {
+    return this.form.get('password');
   }
 
   suggestAddress(event: AutoCompleteCompleteEvent): void {
@@ -57,19 +84,27 @@ export class ModifyAsicDialogComponent implements OnInit {
     );
   }
 
-  closeDialog(result?: Partial<AsicModel>): void {
+  closeDialog(result?: unknown): void {
     this.ref.close(result);
   }
 
   addAsic(): void {
-    console.log('Added', this.asic);
+    console.log('Added', this.form.value);
 
-    this.closeDialog(this.asic);
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.closeDialog(this.form.value);
   }
 
   editAsic(): void {
-    console.log('Edited', this.asic);
+    console.log('Edited', this.form.value);
 
-    this.closeDialog(this.asic);
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.closeDialog(this.form.value);
   }
 }
