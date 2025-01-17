@@ -18,7 +18,7 @@
     </p-floatlabel>
 
     <ng-container
-      *ngTemplateOutlet="kekw; context: { control: ipControl }"
+      *ngTemplateOutlet="validationError; context: { control: ipControl }"
     ></ng-container>
   </div>
 
@@ -42,7 +42,7 @@
     </p-floatlabel>
 
     <ng-container
-      *ngTemplateOutlet="kekw; context: { control: addressControl }"
+      *ngTemplateOutlet="validationError; context: { control: addressControl }"
     ></ng-container>
   </div>
 
@@ -64,7 +64,7 @@
     </p-floatlabel>
 
     <ng-container
-      *ngTemplateOutlet="kekw; context: { control: passwordControl }"
+      *ngTemplateOutlet="validationError; context: { control: passwordControl }"
     ></ng-container>
   </div>
 
@@ -84,7 +84,7 @@
     />
   </div>
 
-  <ng-template #kekw let-control="control">
+  <ng-template #validationError let-control="control">
     @if (control?.invalid && control?.dirty) {
       @if (control?.hasError('required')) {
         <small class="text-red-500">{{
