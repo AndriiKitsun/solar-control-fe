@@ -7,7 +7,7 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { map, Observable, tap, first } from 'rxjs';
+import { map, Observable, tap, first, catchError } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
@@ -17,6 +17,7 @@ import {
   PrimeIcons,
   MenuItemCommandEvent,
   ConfirmationService,
+  MessageService,
 } from 'primeng/api';
 import { AsyncPipe } from '@angular/common';
 import { AsicModel } from './asics.models';
@@ -25,6 +26,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
+import { Toast } from 'primeng/toast';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -41,11 +43,12 @@ import { TableModule } from 'primeng/table';
     Button,
     ConfirmDialog,
     TableModule,
+    Toast,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, MessageService],
 })
 export class AsicsComponent implements OnInit, AfterViewInit {
   isLoading = signal(false);
@@ -64,6 +67,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     private readonly dialogService: DialogService,
     private readonly confirmationService: ConfirmationService,
     private readonly translocoService: TranslocoService,
+    private readonly messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -104,6 +108,15 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       tap((menu: AsicMenuItem[]) => {
         this.menu = menu;
         this.isLoading.set(false);
+      }),
+      catchError((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+          detail: this.translocoService.translate('ASICS.TOAST.SIDE_BAR'),
+        });
+
+        throw err;
       }),
     );
   }
