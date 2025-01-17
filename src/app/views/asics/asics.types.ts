@@ -10,3 +10,15 @@ export interface ModifyAsicDialogData {
   addresses: string[];
   asic?: AsicModel;
 }
+
+export interface AsicSummaryGridItem {
+  ip: string;
+  state: {
+    value: string;
+    severity: string;
+  };
+  avgHashRate: string;
+  maxChipTemp: string;
+  powerConsumption: string;
+  avgFanSpeed: string;
+}

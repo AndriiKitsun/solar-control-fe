@@ -7,7 +7,17 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { map, Observable, tap, first, catchError } from 'rxjs';
+import {
+  map,
+  Observable,
+  tap,
+  first,
+  catchError,
+  switchMap,
+  filter,
+  interval,
+  startWith,
+} from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
@@ -20,17 +30,40 @@ import {
   MessageService,
 } from 'primeng/api';
 import { AsyncPipe } from '@angular/common';
-import { AsicModel } from './asics.models';
-import { AsicMenuItem, ModifyAsicDialogData } from './asics.types';
+import { AsicModel, AsicSummaryModel, AsicState } from './asics.models';
+import {
+  AsicMenuItem,
+  ModifyAsicDialogData,
+  AsicSummaryGridItem,
+} from './asics.types';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { Toast } from 'primeng/toast';
+import { toObservable } from '@angular/core/rxjs-interop';
+import {
+  formatNum,
+  THREE_DIGITS,
+  ONE_DIGIT,
+  NEAREST_INT,
+  TWO_DIGIT,
+} from '@common/helpers/format.helper';
+import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
+import { Tag } from 'primeng/tag';
+import { TagSeverity } from '@common/types/tag.types';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
  * t(ASICS.DIALOG.MODIFY.HEADER.EDIT)
+ * t(ASICS.TABLE.STATE.MINING)
+ * t(ASICS.TABLE.STATE.INITIALIZING)
+ * t(ASICS.TABLE.STATE.STARTING)
+ * t(ASICS.TABLE.STATE.AUTO-TUNING)
+ * t(ASICS.TABLE.STATE.RESTARTING)
+ * t(ASICS.TABLE.STATE.SHUTTING-DOWN)
+ * t(ASICS.TABLE.STATE.STOPPED)
+ * t(ASICS.TABLE.STATE.FAILURE)
  * */
 
 @Component({
@@ -44,6 +77,7 @@ import { Toast } from 'primeng/toast';
     ConfirmDialog,
     TableModule,
     Toast,
+    Tag,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
@@ -58,6 +92,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   @ViewChild('menu') menuElement!: Menu;
 
   menuItems$!: Observable<AsicMenuItem[]>;
+  asicSummary$: Observable<AsicSummaryGridItem[]> = this.getAsicSummary();
 
   private menu: AsicMenuItem[] = [];
   private addresses: string[] = [];
@@ -114,6 +149,44 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           severity: 'error',
           summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
           detail: this.translocoService.translate('ASICS.TOAST.SIDE_BAR'),
+        });
+
+        throw err;
+      }),
+    );
+  }
+
+  getAsicSummary(): Observable<AsicSummaryGridItem[]> {
+    return toObservable(this.selectedItem).pipe(
+      filter(Boolean),
+      switchMap((menuItem) => {
+        return interval(ASIC_SUMMARY_UPDATE_INTERVAL).pipe(
+          startWith(0),
+          switchMap(() => {
+            return this.asicsService.getSummary(menuItem.id!);
+          }),
+        );
+      }),
+      map((summary: AsicSummaryModel) => {
+        const gridData: AsicSummaryGridItem = {
+          ip: summary.ip,
+          state: {
+            value: `ASICS.TABLE.STATE.${summary.state.toUpperCase()}`,
+            severity: this.getStateSeverity(summary.state),
+          },
+          avgHashRate: formatNum(summary.avgHashRate, THREE_DIGITS),
+          maxChipTemp: formatNum(summary.maxChipTemp, ONE_DIGIT),
+          powerConsumption: formatNum(summary.powerConsumption, TWO_DIGIT),
+          avgFanSpeed: formatNum(summary.avgFanSpeed, NEAREST_INT),
+        };
+
+        return [gridData];
+      }),
+      catchError((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+          detail: this.translocoService.translate('ASICS.TOAST.SUMMARY'),
         });
 
         throw err;
@@ -213,5 +286,24 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     }
 
     this.selectedItem.set(null);
+  }
+
+  getStateSeverity(state: AsicState): TagSeverity {
+    switch (state) {
+      case 'mining':
+        return 'success';
+      case 'initializing':
+      case 'starting':
+      case 'auto-tuning':
+        return 'info';
+      case 'restarting':
+      case 'shutting-down':
+      case 'stopped':
+        return 'warn';
+      case 'failure':
+        return 'danger';
+      default:
+        return 'danger';
+    }
   }
 }
