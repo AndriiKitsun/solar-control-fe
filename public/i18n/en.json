@@ -21,7 +21,28 @@
       }
     },
     "TOAST": {
-      "SIDE_BAR": "The error occurred while fetching the Asics list"
+      "SIDE_BAR": "The error occurred while fetching the Asics list",
+      "SUMMARY": "The error occurred while fetching the Asic summary"
+    },
+    "TABLE": {
+      "COLUMN": {
+        "IP_ADDRESS": "IP Address",
+        "STATE": "Status",
+        "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
+        "MAX_TEMP": "Max Temperature (°C)",
+        "POWER_USAGE": "Power Usage (kW)",
+        "FAN_SPEED": "Fan Speed (%)"
+      },
+      "STATE": {
+        "MINING": "Mining",
+        "INITIALIZING": "Initializing",
+        "STARTING": "Starting",
+        "AUTO-TUNING": "Auto tuning",
+        "RESTARTING": "Restarting",
+        "SHUTTING-DOWN": "Shutting down",
+        "STOPPED": "Stopped",
+        "FAILURE": "Failure"
+      }
     }
   },
   "SENSORS": {

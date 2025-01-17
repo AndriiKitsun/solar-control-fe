@@ -3,3 +3,9 @@
   display: flex;
   gap: 2rem;
 }
+
+.table {
+  &__column {
+    width: calc(100% / 6);
+  }
+}

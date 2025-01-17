@@ -43,23 +43,53 @@
       </p-toolbar>
     </div>
 
-    @if (selectedItem(); as menuItem) {
+    @let summary = asicSummary$ | async;
+
+    @if (summary?.length) {
       <div class="card">
-        <p-table [value]="[menuItem.asic]" dataKey="id" showGridlines rowHover>
+        <p-table [value]="summary!" showGridlines rowHover>
           <ng-template #header>
             <tr>
-              <th class="w-40">ID</th>
-              <th class="w-40">Hostname</th>
-              <th class="w-40">Address</th>
-              <th class="w-40">IP Address</th>
+              <th class="table__column">
+                {{ t('ASICS.TABLE.COLUMN.IP_ADDRESS') }}
+              </th>
+              <th class="table__column">{{ t('ASICS.TABLE.COLUMN.STATE') }}</th>
+              <th class="table__column">
+                {{ t('ASICS.TABLE.COLUMN.AVERAGE_HASHRATE') }}
+              </th>
+              <th class="table__column">
+                {{ t('ASICS.TABLE.COLUMN.MAX_TEMP') }}
+              </th>
+              <th class="table__column">
+                {{ t('ASICS.TABLE.COLUMN.POWER_USAGE') }}
+              </th>
+              <th class="table__column">
+                {{ t('ASICS.TABLE.COLUMN.FAN_SPEED') }}
+              </th>
             </tr>
           </ng-template>
-          <ng-template #body let-asic>
+          <ng-template #body let-summary>
             <tr>
-              <td>{{ asic?.id }}</td>
-              <td>{{ asic?.hostname }}</td>
-              <td>{{ asic?.address }}</td>
-              <td>{{ asic?.ip }}</td>
+              <td>
+                <a
+                  href="http://{{ summary.ip }}"
+                  target="_blank"
+                  class="font-bold text-primary hover:underline"
+                  >{{ summary.ip }}</a
+                >
+              </td>
+
+              <td>
+                <p-tag
+                  [value]="t(summary.state.value)"
+                  [severity]="summary.state.severity"
+                />
+              </td>
+
+              <td>{{ summary.avgHashRate }}</td>
+              <td>{{ summary.maxChipTemp }}</td>
+              <td>{{ summary.powerConsumption }}</td>
+              <td>{{ summary.avgFanSpeed }}</td>
             </tr>
           </ng-template>
         </p-table>
