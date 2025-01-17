@@ -9,9 +9,7 @@
         "FIELD": {
           "IP": "IP Адреса*",
           "ADDRESS": "Адреса*",
-          "PASSWORD": "Пароль*",
-          "REPEAT_PASSWORD": "Повторіть пароль*",
-          "HOSTNAME": "Імʼя хоста*"
+          "PASSWORD": "Пароль*"
         }
       }
     },
