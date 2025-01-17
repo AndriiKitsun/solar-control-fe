@@ -19,4 +19,12 @@ export class AsicsService {
       `${env.apiEndpoint}/asics/${id}/summary`,
     );
   }
+
+  startMining(id: string): Observable<void> {
+    return this.http.post<void>(`${env.apiEndpoint}/asics/${id}/start`, {});
+  }
+
+  stopMining(id: string): Observable<void> {
+    return this.http.post<void>(`${env.apiEndpoint}/asics/${id}/stop`, {});
+  }
 }

@@ -1,0 +1,9 @@
+<p-menu #menu [model]="(menuItems$ | async)!" [popup]="true" />
+<p-button
+  (click)="menu.toggle($event)"
+  icon="pi pi-power-off"
+  severity="warn"
+  [disabled]="isDisabled()"
+/>
+
+<p-toast />

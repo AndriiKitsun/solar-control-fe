@@ -40,6 +40,10 @@
             (onClick)="openDeleteAsicModal($event)"
           />
         </ng-template>
+
+        <ng-template #end>
+          <app-asic-power-menu [id]="selectedItem()?.id" />
+        </ng-template>
       </p-toolbar>
     </div>
 

@@ -11,4 +11,12 @@ export class AsicsServiceMock implements ClassMock<AsicsService> {
   getSummary(id: string): Observable<AsicSummaryModel> {
     return of();
   }
+
+  startMining(id: string): Observable<void> {
+    return of();
+  }
+
+  stopMining(id: string): Observable<void> {
+    return of();
+  }
 }

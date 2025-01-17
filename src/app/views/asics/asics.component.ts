@@ -52,6 +52,7 @@ import {
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
 import { TagSeverity } from '@common/types/tag.types';
+import { AsicPowerMenuComponent } from './components/asic-power-menu/asic-power-menu.component';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -78,6 +79,7 @@ import { TagSeverity } from '@common/types/tag.types';
     TableModule,
     Toast,
     Tag,
+    AsicPowerMenuComponent,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
