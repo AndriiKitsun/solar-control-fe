@@ -138,6 +138,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       }),
       tap((menu: AsicMenuItem[]) => {
         this.menu = menu;
+        this.addresses = menu.map((item) => item.label!);
         this.isLoading.set(false);
       }),
       catchError((err) => {
@@ -161,7 +162,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
 
       if (!group) {
         menu.push({ label: asic.address, items: [item] });
-        this.addresses.push(asic.address);
       } else {
         group.items!.push(item);
       }
