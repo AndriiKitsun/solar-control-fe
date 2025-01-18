@@ -248,6 +248,8 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       if (!asic) {
         return;
       }
+
+      this.menuItemsSub$.next([]);
     });
   }
 
@@ -293,7 +295,8 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: () => {
-          this.deleteAsicFromMenu();
+          this.menuItemsSub$.next([]);
+          this.selectedItem.set(null);
         },
         error: () => {
           this.messageService.add({
@@ -303,32 +306,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           });
         },
       });
-  }
-
-  deleteAsicFromMenu(): void {
-    const groupIdx = this.menu.findIndex(
-      (item) => item.label === this.selectedItem()!.asic!.address,
-    );
-    const groupItems = this.menu[groupIdx].items;
-
-    if (!groupItems) {
-      return;
-    }
-
-    const idx = groupItems.findIndex(
-      (item) => item.id === this.selectedItem()!.id,
-    );
-
-    if (idx !== -1) {
-      groupItems.splice(idx, 1);
-    }
-
-    if (!groupItems.length) {
-      this.menu.splice(groupIdx, 1);
-    }
-
-    this.menuItemsSub$.next([...this.menu]);
-    this.selectedItem.set(null);
   }
 
   getStateSeverity(state: AsicState): TagSeverity {
