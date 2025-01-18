@@ -245,6 +245,10 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         return;
       }
 
+      if (isEditMode && this.selectedItem()?.asic) {
+        this.selectedItem()!.asic = asic;
+      }
+
       this.menuItemsSub$.next([]);
     });
   }
