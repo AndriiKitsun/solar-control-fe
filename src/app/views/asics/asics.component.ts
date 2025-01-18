@@ -14,9 +14,12 @@ import {
   first,
   catchError,
   switchMap,
-  filter,
   interval,
   startWith,
+  EMPTY,
+  finalize,
+  BehaviorSubject,
+  of,
 } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
@@ -96,6 +99,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
 
   private menu: AsicMenuItem[] = [];
   private addresses: string[] = [];
+  private menuItemsSub$ = new BehaviorSubject<AsicMenuItem[]>([]);
 
   constructor(
     private readonly asicsService: AsicsService,
@@ -122,23 +126,15 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   getMenuItems(): Observable<AsicMenuItem[]> {
     this.isLoading.set(true);
 
-    return this.asicsService.getAsics().pipe(
-      map((asics: AsicModel[]) => {
-        const menu: AsicMenuItem[] = [];
+    return this.menuItemsSub$.pipe(
+      switchMap((items: AsicMenuItem[]) => {
+        if (items.length) {
+          return of(items);
+        }
 
-        asics.forEach((asic) => {
-          const group = menu.find((item) => item.label === asic.address);
-          const item: AsicMenuItem = this.buildMenuItem(asic);
-
-          if (!group) {
-            menu.push({ label: asic.address, items: [item] });
-            this.addresses.push(asic.address);
-          } else {
-            group.items!.push(item);
-          }
-        });
-
-        return menu;
+        return this.asicsService
+          .getAsics()
+          .pipe(map((asics: AsicModel[]) => this.buildMenu(asics)));
       }),
       tap((menu: AsicMenuItem[]) => {
         this.menu = menu;
@@ -156,13 +152,44 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  buildMenu(asics: AsicModel[]): AsicMenuItem[] {
+    const menu: AsicMenuItem[] = [];
+
+    asics.forEach((asic) => {
+      const group = menu.find((item) => item.label === asic.address);
+      const item: AsicMenuItem = this.buildMenuItem(asic);
+
+      if (!group) {
+        menu.push({ label: asic.address, items: [item] });
+        this.addresses.push(asic.address);
+      } else {
+        group.items!.push(item);
+      }
+    });
+
+    return menu;
+  }
+
+  buildMenuItem(asic: AsicModel): AsicMenuItem {
+    return {
+      id: asic.id,
+      label: asic.hostname,
+      icon: PrimeIcons.SERVER,
+      command: (event) => this.onItemClick(event),
+      asic,
+    };
+  }
+
   getAsicSummary(): Observable<AsicSummaryGridItem[]> {
     return toObservable(this.selectedItem).pipe(
-      filter(Boolean),
       switchMap((menuItem) => {
         return interval(ASIC_SUMMARY_UPDATE_INTERVAL).pipe(
           startWith(0),
           switchMap(() => {
+            if (!menuItem) {
+              return EMPTY;
+            }
+
             return this.asicsService.getSummary(menuItem.id!);
           }),
         );
@@ -249,21 +276,36 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  buildMenuItem(asic: AsicModel): AsicMenuItem {
-    return {
-      id: asic.id,
-      label: asic.hostname,
-      icon: PrimeIcons.SERVER,
-      command: (event) => this.onItemClick(event),
-      asic,
-    };
-  }
-
   deleteAsic(): void {
     if (!this.selectedItem()) {
       return;
     }
 
+    this.isLoading.set(true);
+
+    this.asicsService
+      .deleteAsic(this.selectedItem()!.id!)
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.deleteAsicFromMenu();
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+            detail: this.translocoService.translate('ASICS.TOAST.DELETE'),
+          });
+        },
+      });
+  }
+
+  deleteAsicFromMenu(): void {
     const groupIdx = this.menu.findIndex(
       (item) => item.label === this.selectedItem()!.asic!.address,
     );
@@ -285,6 +327,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       this.menu.splice(groupIdx, 1);
     }
 
+    this.menuItemsSub$.next([...this.menu]);
     this.selectedItem.set(null);
   }
 

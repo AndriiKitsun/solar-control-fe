@@ -31,4 +31,8 @@ export class AsicsService {
 
     return this.http.patch<AsicModel>(`${env.apiEndpoint}/asics/${id}`, asic);
   }
+
+  deleteAsic(id: string): Observable<void> {
+    return this.http.delete<void>(`${env.apiEndpoint}/asics/${id}`);
+  }
 }

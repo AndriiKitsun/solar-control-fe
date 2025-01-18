@@ -27,7 +27,8 @@
       "SIDE_BAR": "The error occurred while fetching the Asics list",
       "SUMMARY": "The error occurred while fetching the Asic summary",
       "ADD": "The error occurred while adding an Asic",
-      "EDIT": "The error occurred while editing an Asic"
+      "EDIT": "The error occurred while editing an Asic",
+      "DELETE": "The error occurred while deleting an Asic"
     },
     "TABLE": {
       "COLUMN": {
