@@ -24,9 +24,15 @@ export type AsicState =
 export interface AsicSummaryModel {
   hostname: string;
   ip: string;
-  state: AsicState;
+  status: {
+    state: AsicState;
+    stateTimeDays: number;
+    stateTimeHours: number;
+    stateTimeMinutes: number;
+  };
   avgHashRate: number;
   maxChipTemp: number;
   powerConsumption: number;
   avgFanSpeed: number;
+  currentPreset?: string;
 }

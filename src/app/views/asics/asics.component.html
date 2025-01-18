@@ -54,6 +54,7 @@
                 {{ t('ASICS.TABLE.COLUMN.IP_ADDRESS') }}
               </th>
               <th class="table__column">{{ t('ASICS.TABLE.COLUMN.STATE') }}</th>
+              <th class="table__column">{{ t('ASICS.TABLE.COLUMN.TIME') }}</th>
               <th class="table__column">
                 {{ t('ASICS.TABLE.COLUMN.AVERAGE_HASHRATE') }}
               </th>
@@ -84,6 +85,16 @@
                   [value]="t(summary.state.value)"
                   [severity]="summary.state.severity"
                 />
+              </td>
+
+              <td>
+                {{
+                  t('ASICS.TABLE.TIME_FORMAT', {
+                    days: summary.time.days,
+                    hours: summary.time.hours,
+                    minutes: summary.time.minutes,
+                  })
+                }}
               </td>
 
               <td>{{ summary.avgHashRate }}</td>

@@ -17,6 +17,11 @@ export interface AsicSummaryGridItem {
     value: string;
     severity: string;
   };
+  time: {
+    days: number;
+    hours: number;
+    minutes: number;
+  };
   avgHashRate: string;
   maxChipTemp: string;
   powerConsumption: string;
