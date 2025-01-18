@@ -14,9 +14,12 @@ import {
   first,
   catchError,
   switchMap,
-  filter,
   interval,
   startWith,
+  EMPTY,
+  finalize,
+  BehaviorSubject,
+  of,
 } from 'rxjs';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
@@ -44,8 +47,6 @@ import { Toast } from 'primeng/toast';
 import { toObservable } from '@angular/core/rxjs-interop';
 import {
   formatNum,
-  THREE_DIGITS,
-  ONE_DIGIT,
   NEAREST_INT,
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
@@ -94,8 +95,8 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   menuItems$!: Observable<AsicMenuItem[]>;
   asicSummary$: Observable<AsicSummaryGridItem[]> = this.getAsicSummary();
 
-  private menu: AsicMenuItem[] = [];
   private addresses: string[] = [];
+  private menuItemsSub$ = new BehaviorSubject<AsicMenuItem[]>([]);
 
   constructor(
     private readonly asicsService: AsicsService,
@@ -122,26 +123,18 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   getMenuItems(): Observable<AsicMenuItem[]> {
     this.isLoading.set(true);
 
-    return this.asicsService.getAsics().pipe(
-      map((asics: AsicModel[]) => {
-        const menu: AsicMenuItem[] = [];
+    return this.menuItemsSub$.pipe(
+      switchMap((items: AsicMenuItem[]) => {
+        if (items.length) {
+          return of(items);
+        }
 
-        asics.forEach((asic) => {
-          const group = menu.find((item) => item.label === asic.address);
-          const item: AsicMenuItem = this.buildMenuItem(asic);
-
-          if (!group) {
-            menu.push({ label: asic.address, items: [item] });
-            this.addresses.push(asic.address);
-          } else {
-            group.items!.push(item);
-          }
-        });
-
-        return menu;
+        return this.asicsService
+          .getAsics()
+          .pipe(map((asics: AsicModel[]) => this.buildMenu(asics)));
       }),
       tap((menu: AsicMenuItem[]) => {
-        this.menu = menu;
+        this.addresses = menu.map((item) => item.label!);
         this.isLoading.set(false);
       }),
       catchError((err) => {
@@ -156,13 +149,43 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     );
   }
 
+  buildMenu(asics: AsicModel[]): AsicMenuItem[] {
+    const menu: AsicMenuItem[] = [];
+
+    asics.forEach((asic) => {
+      const group = menu.find((item) => item.label === asic.address);
+      const item: AsicMenuItem = this.buildMenuItem(asic);
+
+      if (!group) {
+        menu.push({ label: asic.address, items: [item] });
+      } else {
+        group.items!.push(item);
+      }
+    });
+
+    return menu;
+  }
+
+  buildMenuItem(asic: AsicModel): AsicMenuItem {
+    return {
+      id: asic.id,
+      label: asic.hostname,
+      icon: PrimeIcons.SERVER,
+      command: (event) => this.onItemClick(event),
+      asic,
+    };
+  }
+
   getAsicSummary(): Observable<AsicSummaryGridItem[]> {
     return toObservable(this.selectedItem).pipe(
-      filter(Boolean),
       switchMap((menuItem) => {
         return interval(ASIC_SUMMARY_UPDATE_INTERVAL).pipe(
           startWith(0),
           switchMap(() => {
+            if (!menuItem) {
+              return EMPTY;
+            }
+
             return this.asicsService.getSummary(menuItem.id!);
           }),
         );
@@ -174,9 +197,9 @@ export class AsicsComponent implements OnInit, AfterViewInit {
             value: `ASICS.TABLE.STATE.${summary.state.toUpperCase()}`,
             severity: this.getStateSeverity(summary.state),
           },
-          avgHashRate: formatNum(summary.avgHashRate, THREE_DIGITS),
-          maxChipTemp: formatNum(summary.maxChipTemp, ONE_DIGIT),
-          powerConsumption: formatNum(summary.powerConsumption, TWO_DIGIT),
+          avgHashRate: formatNum(summary.avgHashRate, TWO_DIGIT),
+          maxChipTemp: formatNum(summary.maxChipTemp, NEAREST_INT),
+          powerConsumption: formatNum(summary.powerConsumption, NEAREST_INT),
           avgFanSpeed: formatNum(summary.avgFanSpeed, NEAREST_INT),
         };
 
@@ -221,6 +244,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       if (!asic) {
         return;
       }
+
+      if (isEditMode && this.selectedItem()?.asic) {
+        this.selectedItem()!.asic = asic;
+      }
+
+      this.menuItemsSub$.next([]);
     });
   }
 
@@ -249,43 +278,34 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  buildMenuItem(asic: AsicModel): AsicMenuItem {
-    return {
-      id: asic.id,
-      label: asic.hostname,
-      icon: PrimeIcons.SERVER,
-      command: (event) => this.onItemClick(event),
-      asic,
-    };
-  }
-
   deleteAsic(): void {
     if (!this.selectedItem()) {
       return;
     }
 
-    const groupIdx = this.menu.findIndex(
-      (item) => item.label === this.selectedItem()!.asic!.address,
-    );
-    const groupItems = this.menu[groupIdx].items;
+    this.isLoading.set(true);
 
-    if (!groupItems) {
-      return;
-    }
-
-    const idx = groupItems.findIndex(
-      (item) => item.id === this.selectedItem()!.id,
-    );
-
-    if (idx !== -1) {
-      groupItems.splice(idx, 1);
-    }
-
-    if (!groupItems.length) {
-      this.menu.splice(groupIdx, 1);
-    }
-
-    this.selectedItem.set(null);
+    this.asicsService
+      .deleteAsic(this.selectedItem()!.id!)
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.menuItemsSub$.next([]);
+          this.selectedItem.set(null);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+            detail: this.translocoService.translate('ASICS.TOAST.DELETE'),
+          });
+        },
+      });
   }
 
   getStateSeverity(state: AsicState): TagSeverity {

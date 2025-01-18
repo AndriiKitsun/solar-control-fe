@@ -9,9 +9,12 @@
         "FIELD": {
           "IP": "IP Address*",
           "ADDRESS": "Address*",
-          "PASSWORD": "Password*",
-          "REPEAT_PASSWORD": "Repeat password*",
-          "HOSTNAME": "Hostname*"
+          "PASSWORD": "Password",
+          "PASSWORD_REQUIRED": "Password*"
+        },
+        "VALIDATION": {
+          "REQUIRED": "Field is required",
+          "INVALID": "Field is invalid"
         }
       }
     },
@@ -22,7 +25,10 @@
     },
     "TOAST": {
       "SIDE_BAR": "The error occurred while fetching the Asics list",
-      "SUMMARY": "The error occurred while fetching the Asic summary"
+      "SUMMARY": "The error occurred while fetching the Asic summary",
+      "ADD": "The error occurred while adding an Asic",
+      "EDIT": "The error occurred while editing an Asic",
+      "DELETE": "The error occurred while deleting an Asic"
     },
     "TABLE": {
       "COLUMN": {

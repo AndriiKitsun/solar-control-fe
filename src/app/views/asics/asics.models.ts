@@ -5,7 +5,9 @@ export interface AsicModel {
   hostname: string;
 }
 
-export interface AddAsicModel extends Partial<AsicModel> {
+export interface AddAsicModel {
+  ip: string;
+  address: string;
   password: string;
 }
 

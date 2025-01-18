@@ -45,7 +45,7 @@
 
     @let summary = asicSummary$ | async;
 
-    @if (summary?.length) {
+    @if (selectedItem() && summary?.length) {
       <div class="card">
         <p-table [value]="summary!" showGridlines rowHover>
           <ng-template #header>
