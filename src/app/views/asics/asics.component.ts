@@ -97,7 +97,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   menuItems$!: Observable<AsicMenuItem[]>;
   asicSummary$: Observable<AsicSummaryGridItem[]> = this.getAsicSummary();
 
-  private menu: AsicMenuItem[] = [];
   private addresses: string[] = [];
   private menuItemsSub$ = new BehaviorSubject<AsicMenuItem[]>([]);
 
@@ -137,7 +136,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           .pipe(map((asics: AsicModel[]) => this.buildMenu(asics)));
       }),
       tap((menu: AsicMenuItem[]) => {
-        this.menu = menu;
         this.addresses = menu.map((item) => item.label!);
         this.isLoading.set(false);
       }),

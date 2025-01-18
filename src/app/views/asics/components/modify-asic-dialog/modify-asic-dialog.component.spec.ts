@@ -3,6 +3,8 @@ import { ModifyAsicDialogComponent } from './modify-asic-dialog.component';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { DialogServiceMock } from '@common/mocks/dialog.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { AsicsService } from '../../services/asics/asics.service';
+import { AsicsServiceMock } from '../../services/asics/mocks/asics.service.mock';
 
 describe('ModifyAsicDialogComponent', () => {
   let component: ModifyAsicDialogComponent;
@@ -19,6 +21,10 @@ describe('ModifyAsicDialogComponent', () => {
         {
           provide: DialogService,
           useClass: DialogServiceMock,
+        },
+        {
+          provide: AsicsService,
+          useClass: AsicsServiceMock,
         },
       ],
     }).compileComponents();

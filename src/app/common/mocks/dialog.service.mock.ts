@@ -8,7 +8,11 @@ import {
 import { ComponentRef, Type } from '@angular/core';
 
 export class DialogServiceMock implements ClassMock<DialogService> {
-  static readonly componentMock = {} as DynamicDialogComponent;
+  static readonly componentMock = {
+    get data(): any {
+      return {};
+    },
+  } as DynamicDialogComponent;
   static readonly dynamicDialogRefMock: DynamicDialogRef =
     {} as DynamicDialogRef;
 
