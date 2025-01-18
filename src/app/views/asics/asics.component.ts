@@ -47,8 +47,6 @@ import { Toast } from 'primeng/toast';
 import { toObservable } from '@angular/core/rxjs-interop';
 import {
   formatNum,
-  THREE_DIGITS,
-  ONE_DIGIT,
   NEAREST_INT,
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
@@ -199,9 +197,9 @@ export class AsicsComponent implements OnInit, AfterViewInit {
             value: `ASICS.TABLE.STATE.${summary.state.toUpperCase()}`,
             severity: this.getStateSeverity(summary.state),
           },
-          avgHashRate: formatNum(summary.avgHashRate, THREE_DIGITS),
-          maxChipTemp: formatNum(summary.maxChipTemp, ONE_DIGIT),
-          powerConsumption: formatNum(summary.powerConsumption, TWO_DIGIT),
+          avgHashRate: formatNum(summary.avgHashRate, TWO_DIGIT),
+          maxChipTemp: formatNum(summary.maxChipTemp, NEAREST_INT),
+          powerConsumption: formatNum(summary.powerConsumption, NEAREST_INT),
           avgFanSpeed: formatNum(summary.avgFanSpeed, NEAREST_INT),
         };
 
