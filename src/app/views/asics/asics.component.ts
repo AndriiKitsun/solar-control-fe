@@ -194,10 +194,18 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         const gridData: AsicSummaryGridItem = {
           ip: summary.ip,
           state: {
-            value: `ASICS.TABLE.STATE.${summary.state.toUpperCase()}`,
-            severity: this.getStateSeverity(summary.state),
+            value: `ASICS.TABLE.STATE.${summary.status.state.toUpperCase()}`,
+            severity: this.getStateSeverity(summary.status.state),
           },
-          avgHashRate: formatNum(summary.avgHashRate, TWO_DIGIT),
+          time: {
+            days: summary.status.stateTimeDays,
+            hours: summary.status.stateTimeHours,
+            minutes: summary.status.stateTimeMinutes,
+          },
+          avgHashRate: this.formatHashRate(
+            summary.avgHashRate,
+            summary.currentPreset,
+          ),
           maxChipTemp: formatNum(summary.maxChipTemp, NEAREST_INT),
           powerConsumption: formatNum(summary.powerConsumption, NEAREST_INT),
           avgFanSpeed: formatNum(summary.avgFanSpeed, NEAREST_INT),
@@ -215,6 +223,16 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         throw err;
       }),
     );
+  }
+
+  formatHashRate(hashrate: number, preset?: string): string {
+    const formatted = formatNum(hashrate, TWO_DIGIT);
+
+    if (preset) {
+      return `${formatted} / ${preset}`;
+    }
+
+    return formatted;
   }
 
   onItemClick(event: MenuItemCommandEvent): void {

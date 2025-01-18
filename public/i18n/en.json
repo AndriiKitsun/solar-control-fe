@@ -34,6 +34,7 @@
       "COLUMN": {
         "IP_ADDRESS": "IP Address",
         "STATE": "Status",
+        "TIME": "Time",
         "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
         "MAX_TEMP": "Max Temperature (°C)",
         "POWER_USAGE": "Power Usage (kW)",
@@ -48,7 +49,8 @@
         "SHUTTING-DOWN": "Shutting down",
         "STOPPED": "Stopped",
         "FAILURE": "Failure"
-      }
+      },
+      "TIME_FORMAT": "{{days}}d {{hours}}h {{minutes}}m"
     }
   },
   "SENSORS": {

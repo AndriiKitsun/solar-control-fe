@@ -34,6 +34,7 @@
       "COLUMN": {
         "IP_ADDRESS": "IP Адреса",
         "STATE": "Статус",
+        "TIME": "Час",
         "AVERAGE_HASHRATE": "Сер. Хешрейт (Тх/с)",
         "MAX_TEMP": "Макс. Температура (°C)",
         "POWER_USAGE": "Споживання (кВт)",
@@ -48,7 +49,8 @@
         "SHUTTING-DOWN": "Вимкнення",
         "STOPPED": "Зупинено",
         "FAILURE": "Помилка"
-      }
+      },
+      "TIME_FORMAT": "{{days}}д {{hours}}г {{minutes}}хв"
     }
   },
   "SENSORS": {
