@@ -53,13 +53,14 @@
         autocomplete="none"
         styleClass="w-full"
         inputStyleClass="w-full"
-        required
         [toggleMask]="true"
         [feedback]="false"
         formControlName="password"
       />
       <label for="password" class="text-lg">{{
-        t('ASICS.DIALOG.MODIFY.FIELD.PASSWORD')
+        isEditMode
+          ? t('ASICS.DIALOG.MODIFY.FIELD.PASSWORD')
+          : t('ASICS.DIALOG.MODIFY.FIELD.PASSWORD_REQUIRED')
       }}</label>
     </p-floatlabel>
 
@@ -83,7 +84,7 @@
     <p-button
       [label]="isEditMode ? t('BUTTON.EDIT') : t('BUTTON.ADD')"
       icon="pi pi-check"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || !form.dirty"
       [loading]="isProcessing()"
       (onClick)="isEditMode ? editAsic() : addAsic()"
     />

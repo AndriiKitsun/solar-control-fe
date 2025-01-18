@@ -9,7 +9,8 @@
         "FIELD": {
           "IP": "IP Адреса*",
           "ADDRESS": "Адреса*",
-          "PASSWORD": "Пароль*"
+          "PASSWORD": "Пароль",
+          "PASSWORD_REQUIRED": "Пароль*"
         },
         "VALIDATION": {
           "REQUIRED": "Поле обовʼязкове",

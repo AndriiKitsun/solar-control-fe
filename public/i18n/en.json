@@ -9,7 +9,8 @@
         "FIELD": {
           "IP": "IP Address*",
           "ADDRESS": "Address*",
-          "PASSWORD": "Password*"
+          "PASSWORD": "Password",
+          "PASSWORD_REQUIRED": "Password*"
         },
         "VALIDATION": {
           "REQUIRED": "Field is required",

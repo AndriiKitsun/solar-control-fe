@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+
 import {
   Component,
   OnInit,
@@ -97,24 +99,26 @@ export class ModifyAsicDialogComponent implements OnInit {
   }
 
   initForm(asic?: AsicModel): FormGroup<ModifyAsicForm> {
-    let defaultIp: string;
-    let defaultAddress: string;
-
     if (!this.isEditMode || !asic) {
-      defaultIp = '';
-      defaultAddress = '';
-    } else {
-      defaultIp = asic.ip;
-      defaultAddress = asic.address;
+      return new FormGroup<ModifyAsicForm>({
+        ip: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        address: new FormControl('', { nonNullable: true }),
+        password: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      });
     }
 
     return new FormGroup<ModifyAsicForm>({
-      ip: new FormControl(defaultIp, {
+      ip: new FormControl(asic.ip, {
         nonNullable: true,
-        // eslint-disable-next-line @typescript-eslint/unbound-method
         validators: [Validators.required],
       }),
-      address: new FormControl(defaultAddress, { nonNullable: true }),
+      address: new FormControl(asic.address, { nonNullable: true }),
       password: new FormControl('', { nonNullable: true }),
     });
   }

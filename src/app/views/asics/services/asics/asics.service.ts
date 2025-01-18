@@ -25,6 +25,10 @@ export class AsicsService {
   }
 
   updateAsic(id: string, asic: Partial<AddAsicModel>): Observable<AsicModel> {
+    if (!asic.password) {
+      delete asic.password;
+    }
+
     return this.http.patch<AsicModel>(`${env.apiEndpoint}/asics/${id}`, asic);
   }
 }
