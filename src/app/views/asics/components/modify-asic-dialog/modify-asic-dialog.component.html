@@ -68,6 +68,10 @@
     ></ng-container>
   </div>
 
+  @if (errorMessageKey) {
+    <p-message severity="error" [text]="t(errorMessageKey)"></p-message>
+  }
+
   <div class="mt-auto flex justify-end gap-2">
     <p-button
       [label]="t('BUTTON.CANCEL')"
@@ -80,6 +84,7 @@
       [label]="isEditMode ? t('BUTTON.EDIT') : t('BUTTON.ADD')"
       icon="pi pi-check"
       [disabled]="form.invalid"
+      [loading]="isProcessing()"
       (onClick)="isEditMode ? editAsic() : addAsic()"
     />
   </div>

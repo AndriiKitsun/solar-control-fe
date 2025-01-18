@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AsicModel, AsicSummaryModel } from '../../asics.models';
+import { AsicModel, AsicSummaryModel, AddAsicModel } from '../../asics.models';
 import { HttpClient } from '@angular/common/http';
 import { env } from '@env/environment';
 
@@ -18,5 +18,13 @@ export class AsicsService {
     return this.http.get<AsicSummaryModel>(
       `${env.apiEndpoint}/asics/${id}/summary`,
     );
+  }
+
+  addAsic(asic: AddAsicModel): Observable<AsicModel> {
+    return this.http.post<AsicModel>(`${env.apiEndpoint}/asics`, asic);
+  }
+
+  updateAsic(id: string, asic: Partial<AddAsicModel>): Observable<AsicModel> {
+    return this.http.patch<AsicModel>(`${env.apiEndpoint}/asics/${id}`, asic);
   }
 }
