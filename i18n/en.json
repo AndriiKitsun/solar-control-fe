@@ -1,8 +1,56 @@
 {
-  "MINERS": {
-    "TYPE": {
-      "ASIC": "Asic Miners",
-      "CARD": "Graphics Cards"
+  "ASICS": {
+    "DIALOG": {
+      "MODIFY": {
+        "HEADER": {
+          "ADD": "Add Asic",
+          "EDIT": "Edit Asic"
+        },
+        "FIELD": {
+          "IP": "IP Address*",
+          "ADDRESS": "Address*",
+          "PASSWORD": "Password",
+          "PASSWORD_REQUIRED": "Password*"
+        },
+        "VALIDATION": {
+          "REQUIRED": "Field is required",
+          "INVALID": "Field is invalid"
+        }
+      }
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC": {
+        "MESSAGE": "Are you sure you want to delete the Asic?"
+      }
+    },
+    "TOAST": {
+      "SIDE_BAR": "The error occurred while fetching the Asics list",
+      "SUMMARY": "The error occurred while fetching the Asic summary",
+      "ADD": "The error occurred while adding an Asic",
+      "EDIT": "The error occurred while editing an Asic",
+      "DELETE": "The error occurred while deleting an Asic"
+    },
+    "TABLE": {
+      "COLUMN": {
+        "IP_ADDRESS": "IP Address",
+        "STATE": "Status",
+        "TIME": "Time",
+        "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
+        "MAX_TEMP": "Max Temperature (°C)",
+        "POWER_USAGE": "Power Usage (kW)",
+        "FAN_SPEED": "Fan Speed (%)"
+      },
+      "STATE": {
+        "MINING": "Mining",
+        "INITIALIZING": "Initializing",
+        "STARTING": "Starting",
+        "AUTO-TUNING": "Auto tuning",
+        "RESTARTING": "Restarting",
+        "SHUTTING-DOWN": "Shutting down",
+        "STOPPED": "Stopped",
+        "FAILURE": "Failure"
+      },
+      "TIME_FORMAT": "{{days}}d {{hours}}h {{minutes}}m"
     }
   },
   "SENSORS": {
@@ -31,13 +79,17 @@
       "RESET_COUNTERS": "Reset counters"
     },
     "TOAST": {
-      "RESET_ERROR": "The error occurred during the reset of the PZEM counters"
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
+    },
+    "CONFIRM_DIALOG": {
+      "RESET_COUNTERS": {
+        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
+      }
     }
   },
   "TAB_BAR": {
-    "MINERS": "Miners",
-    "SENSORS": "Sensors",
-    "STATIONS": "Stations"
+    "ASICS": "Asics",
+    "SENSORS": "Sensors"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",
@@ -49,5 +101,15 @@
     "SUMMARY": {
       "ERROR": "Error"
     }
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Confirmation"
+  },
+  "BUTTON": {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "RESET": "Reset"
   }
 }
