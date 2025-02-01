@@ -76,14 +76,20 @@
       }
     },
     "BUTTON": {
-      "RESET_COUNTERS": "Reset counters"
+      "RESET_COUNTERS": "Reset counters",
+      "POWER_ON": "Power ON",
+      "POWER_OFF": "Power OFF"
     },
     "TOAST": {
-      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters",
+      "POWER_ERROR": "The error occurred while switching power"
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
         "MESSAGE": "Are you sure you want to reset the PZEM counters?"
+      },
+      "POWER": {
+        "MESSAGE": "Are you sure you want to switch the power?"
       }
     }
   },

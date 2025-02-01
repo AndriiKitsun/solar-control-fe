@@ -1,22 +1,26 @@
 export interface PzemDataModel {
   createdAtGmt: string;
-  pzems: PzemModel[];
+  sensors: PzemModel[];
 }
 
 export interface PzemModel {
   name: string;
-  voltageV?: number;
-  currentA?: number;
-  powerKw?: number;
-  energyKwh?: number;
-  frequencyHz?: number;
+  voltage?: number;
+  current?: number;
+  power?: number;
+  energy?: number;
+  frequency?: number;
   powerFactor?: number;
-  t1EnergyKwh?: number;
-  t2EnergyKwh?: number;
-  avgVoltageV?: number;
+  t1Energy?: number;
+  t2Energy?: number;
+  avgVoltage?: number;
 }
 
 export interface PzemCounter {
   name: string;
   isReset: boolean;
+}
+
+export interface PowerStatus {
+  status: boolean;
 }

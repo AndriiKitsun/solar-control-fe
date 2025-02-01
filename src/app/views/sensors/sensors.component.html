@@ -1,20 +1,40 @@
 <div class="sensors" *transloco="let t">
   <div class="card">
-    <div class="mb-4 flex justify-between">
-      <span class="text-xl font-semibold">{{
-        t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' })
-      }}</span>
+    <p-toolbar styleClass="mb-4">
+      <ng-template #start>
+        <span class="text-xl font-semibold">{{
+          t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' })
+        }}</span>
+      </ng-template>
 
-      <p-button
-        [label]="t('SENSORS.BUTTON.RESET_COUNTERS')"
-        variant="outlined"
-        severity="danger"
-        icon="pi pi-bolt"
-        [disabled]="isLoading()"
-        [loading]="isResetProcessing()"
-        (onClick)="openResetConfirmationModal($event)"
-      />
-    </div>
+      <ng-template #end>
+        <p-button
+          [label]="
+            powerStatus()
+              ? t('SENSORS.BUTTON.POWER_OFF')
+              : t('SENSORS.BUTTON.POWER_ON')
+          "
+          variant="outlined"
+          [severity]="powerStatus() ? 'danger' : 'success'"
+          icon="pi pi-power-off"
+          styleClass="mr-2"
+          [disabled]="isLoading() || isPowerProcessing()"
+          [loading]="isPowerProcessing()"
+          (onClick)="openSwitchPowerConfirmationModal($event)"
+        />
+
+        <p-button
+          [label]="t('SENSORS.BUTTON.RESET_COUNTERS')"
+          variant="outlined"
+          severity="danger"
+          icon="pi pi-bolt"
+          [disabled]="isLoading()"
+          [loading]="isResetProcessing()"
+          (onClick)="openResetConfirmationModal($event)"
+        />
+      </ng-template>
+    </p-toolbar>
+
     <p-table
       [value]="(tablesRows$ | async)!"
       [loading]="isLoading()"
