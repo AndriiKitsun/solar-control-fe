@@ -91,15 +91,15 @@ export class SensorsComponent implements OnInit {
     this.isTableLoading.set(true);
 
     return this.sensorsWebSocketService.on<PzemDataModel>().pipe(
-      tap((sensors: PzemDataModel) => {
+      tap((response: PzemDataModel) => {
         this.isTableLoading.set(false);
 
         this.pzemLabel = 'SENSORS.PZEM_LABEL_WITH_TIME';
-        this.createdAt = sensors.createdAtGmt;
+        this.createdAt = response.createdAtGmt;
       }),
-      map((sensors: PzemDataModel) => {
+      map((response: PzemDataModel) => {
         return TABLE_ROWS.map((row) => {
-          const pzem = sensors.pzems.find((pzem) => pzem.name === row.id);
+          const pzem = response.sensors.find((pzem) => pzem.name === row.id);
 
           return {
             ...row,
@@ -121,15 +121,15 @@ export class SensorsComponent implements OnInit {
       : THREE_DIGITS;
 
     return {
-      voltage: formatNum(pzem.voltageV, acVoltageFormat),
-      current: formatNum(pzem.currentA, ONE_DIGIT),
-      power: formatNum(pzem.powerKw, TWO_DIGIT),
-      energy: formatNum(pzem.energyKwh, ONE_DIGIT),
-      t1Energy: formatNum(pzem.t1EnergyKwh, ONE_DIGIT),
-      t2Energy: formatNum(pzem.t2EnergyKwh, ONE_DIGIT),
-      frequency: formatNum(pzem.frequencyHz, NEAREST_INT),
+      voltage: formatNum(pzem.voltage, acVoltageFormat),
+      current: formatNum(pzem.current, ONE_DIGIT),
+      power: formatNum(pzem.power, TWO_DIGIT),
+      energy: formatNum(pzem.energy, ONE_DIGIT),
+      t1Energy: formatNum(pzem.t1Energy, ONE_DIGIT),
+      t2Energy: formatNum(pzem.t2Energy, ONE_DIGIT),
+      frequency: formatNum(pzem.frequency, NEAREST_INT),
       powerFactor: formatNum(pzem.powerFactor, TWO_DIGIT),
-      avgVoltage: formatNum(pzem.avgVoltageV, THREE_DIGITS),
+      avgVoltage: formatNum(pzem.avgVoltage, THREE_DIGITS),
     };
   }
 
