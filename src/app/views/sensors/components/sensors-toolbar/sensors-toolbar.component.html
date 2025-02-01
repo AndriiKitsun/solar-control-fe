@@ -1,0 +1,21 @@
+<p-toolbar styleClass="mb-4" *transloco="let t">
+  <ng-template #start>
+    @if (createdAt()) {
+      <span class="text-xl font-semibold">{{
+        t('SENSORS.PZEM_LABEL', { time: createdAt() | date: 'HH:mm:ss' })
+      }}</span>
+    }
+  </ng-template>
+
+  <ng-template #end>
+    <p-menu #menu [model]="(menuItems$ | async)!" popup />
+    <p-button
+      (click)="menu.toggle($event)"
+      icon="pi pi-ellipsis-v"
+      [disabled]="isDisabled()"
+    />
+  </ng-template>
+</p-toolbar>
+
+<p-toast />
+<p-confirm-dialog />

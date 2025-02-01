@@ -1,4 +1,4 @@
-export type TagSeverity =
+export type Severity =
   | 'success'
   | 'secondary'
   | 'info'

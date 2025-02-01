@@ -54,8 +54,7 @@
     }
   },
   "SENSORS": {
-    "PZEM_LABEL": "Показники PZEM",
-    "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
+    "PZEM_LABEL": "Показники PZEM: {{time}}",
     "TABLE": {
       "COLUMN": {
         "AVG_VOLTAGE": "10хв U (В)",
@@ -75,15 +74,24 @@
         "DC_BATTERY": "DC Акумулятор"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Скинути лічильники"
+    "MENU": {
+      "RESET_COUNTERS_2": "123",
+      "BUTTON": {
+        "RESET_COUNTERS": "Reset counters",
+        "POWER_ON": "Power ON",
+        "POWER_OFF": "Power OFF"
+      }
     },
     "TOAST": {
-      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM"
+      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM",
+      "POWER_SWITCH_ERROR": "Виникла помилка під час перемикання живлення"
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
         "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
+      },
+      "POWER_SWITCH": {
+        "MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення"
       }
     }
   },
@@ -110,6 +118,7 @@
     "EDIT": "Редагувати",
     "DELETE": "Видалити",
     "CANCEL": "Скасувати",
-    "RESET": "Скинути"
+    "RESET": "Скинути",
+    "CONFIRM": "Підтвердити"
   }
 }

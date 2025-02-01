@@ -54,8 +54,7 @@
     }
   },
   "SENSORS": {
-    "PZEM_LABEL": "PZEM Sensors",
-    "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
+    "PZEM_LABEL": "PZEM Sensors: {{time}}",
     "TABLE": {
       "COLUMN": {
         "AVG_VOLTAGE": "10m U (V)",
@@ -75,16 +74,25 @@
         "DC_BATTERY": "DC Battery"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Reset counters"
-    },
-    "TOAST": {
-      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
+    "MENU": {
+      "RESET_COUNTERS_2": "123",
+      "BUTTON": {
+        "RESET_COUNTERS": "Reset counters",
+        "POWER_ON": "Power ON",
+        "POWER_OFF": "Power OFF"
+      }
     },
     "CONFIRM_DIALOG": {
       "RESET_COUNTERS": {
         "MESSAGE": "Are you sure you want to reset the PZEM counters?"
+      },
+      "POWER_SWITCH": {
+        "MESSAGE": "Are you sure you want to switch power?"
       }
+    },
+    "TOAST": {
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters",
+      "POWER_SWITCH_ERROR": "The error occurred while switching power"
     }
   },
   "TAB_BAR": {
@@ -110,6 +118,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "CANCEL": "Cancel",
-    "RESET": "Reset"
+    "RESET": "Reset",
+    "CONFIRM": "Confirm"
   }
 }

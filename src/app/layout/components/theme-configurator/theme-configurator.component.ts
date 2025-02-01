@@ -13,7 +13,7 @@ import {
 import {
   SimpleSelectOption,
   SelectButtonChangeTypedEvent,
-} from '@common/types/select.types';
+} from '@common/types/primeng/select.types';
 import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({

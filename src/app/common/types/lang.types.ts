@@ -7,6 +7,12 @@ type NestedKeys<T> = T extends object
     }[keyof T]
   : never;
 
+type NestedObject<T> = {
+  [K in keyof T]: T extends object ? NestedObject<T[K]> : string;
+};
+
 export type TranslationKey = NestedKeys<typeof enTranslation>;
+export type TranslationObject = NestedObject<typeof enTranslation>;
+export type TranslationType = typeof enTranslation;
 
 export type Lang = (typeof ALLOWED_LANGS)[number];

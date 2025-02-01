@@ -52,7 +52,7 @@ import {
 } from '@common/helpers/format.helper';
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
-import { TagSeverity } from '@common/types/tag.types';
+import { Severity } from '@common/types/primeng/common.types';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -326,7 +326,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       });
   }
 
-  getStateSeverity(state: AsicState): TagSeverity {
+  getStateSeverity(state: AsicState): Severity {
     switch (state) {
       case 'mining':
         return 'success';

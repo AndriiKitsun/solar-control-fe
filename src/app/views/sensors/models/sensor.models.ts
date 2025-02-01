@@ -20,3 +20,7 @@ export interface PzemCounter {
   name: string;
   isReset: boolean;
 }
+
+export interface PzemPowerModel {
+  status: boolean;
+}

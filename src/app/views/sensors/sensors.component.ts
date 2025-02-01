@@ -6,13 +6,12 @@ import {
   computed,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Observable, map, tap, first, finalize } from 'rxjs';
-import { AsyncPipe, NgClass, DatePipe } from '@angular/common';
+import { Observable, map, tap } from 'rxjs';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
-import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TranslationKey } from '@common/types/lang.types';
 import { RowConfig, RowData } from './types/sensors-table.types';
@@ -28,6 +27,7 @@ import {
   ONE_DIGIT,
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
+import { SensorsToolbarComponent } from './components/sensors-toolbar/sensors-toolbar.component';
 
 /**
  * t(SENSORS.PZEM_LABEL)
@@ -44,10 +44,9 @@ import {
     AsyncPipe,
     NgClass,
     TranslocoDirective,
-    DatePipe,
-    Button,
     Toast,
     ConfirmDialog,
+    SensorsToolbarComponent,
   ],
   providers: [MessageService, ConfirmationService],
 })
@@ -55,7 +54,8 @@ export class SensorsComponent implements OnInit {
   isWsConnecting = signal(false);
   isTableLoading = signal(false);
   isLoading = computed(() => this.isWsConnecting() || this.isTableLoading());
-  isResetProcessing = signal<boolean>(false);
+  isResetProcessing = signal(false);
+  isSensorsEnabled = signal(true);
 
   pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
   createdAt = '';
@@ -94,7 +94,6 @@ export class SensorsComponent implements OnInit {
       tap((sensors: PzemDataModel) => {
         this.isTableLoading.set(false);
 
-        this.pzemLabel = 'SENSORS.PZEM_LABEL_WITH_TIME';
         this.createdAt = sensors.createdAtGmt;
       }),
       map((sensors: PzemDataModel) => {
@@ -133,52 +132,52 @@ export class SensorsComponent implements OnInit {
     };
   }
 
-  openResetConfirmationModal(event: MouseEvent): void {
-    this.confirmationService.confirm({
-      target: event.target!,
-      message: this.translocoService.translate(
-        'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
-      ),
-      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
-      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
-      rejectButtonProps: {
-        label: this.translocoService.translate('BUTTON.CANCEL'),
-        severity: 'secondary',
-        icon: PrimeIcons.TIMES,
-        outlined: true,
-      },
-      acceptButtonProps: {
-        label: this.translocoService.translate('BUTTON.RESET'),
-        icon: PrimeIcons.CHECK,
-        severity: 'danger',
-      },
-      accept: () => {
-        this.resetCounters();
-      },
-    });
-  }
-
-  resetCounters(): void {
-    this.isResetProcessing.set(true);
-
-    this.sensorsService
-      .resetCounters()
-      .pipe(
-        first(),
-        finalize(() => {
-          this.isResetProcessing.set(false);
-        }),
-      )
-      .subscribe({
-        error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-            detail: this.translocoService.translate(
-              'SENSORS.TOAST.RESET_ERROR',
-            ),
-          });
-        },
-      });
-  }
+  // openResetConfirmationModal(event: MouseEvent): void {
+  //   this.confirmationService.confirm({
+  //     target: event.target!,
+  //     message: this.translocoService.translate(
+  //       'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
+  //     ),
+  //     header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
+  //     icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+  //     rejectButtonProps: {
+  //       label: this.translocoService.translate('BUTTON.CANCEL'),
+  //       severity: 'secondary',
+  //       icon: PrimeIcons.TIMES,
+  //       outlined: true,
+  //     },
+  //     acceptButtonProps: {
+  //       label: this.translocoService.translate('BUTTON.RESET'),
+  //       icon: PrimeIcons.CHECK,
+  //       severity: 'danger',
+  //     },
+  //     accept: () => {
+  //       this.resetCounters();
+  //     },
+  //   });
+  // }
+  //
+  // resetCounters(): void {
+  //   this.isResetProcessing.set(true);
+  //
+  //   this.sensorsService
+  //     .resetCounters()
+  //     .pipe(
+  //       first(),
+  //       finalize(() => {
+  //         this.isResetProcessing.set(false);
+  //       }),
+  //     )
+  //     .subscribe({
+  //       error: () => {
+  //         this.messageService.add({
+  //           severity: 'error',
+  //           summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+  //           detail: this.translocoService.translate(
+  //             'SENSORS.TOAST.RESET_ERROR',
+  //           ),
+  //         });
+  //       },
+  //     });
+  // }
 }

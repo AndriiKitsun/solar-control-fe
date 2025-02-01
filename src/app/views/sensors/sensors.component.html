@@ -1,20 +1,36 @@
 <div class="sensors" *transloco="let t">
   <div class="card">
-    <div class="mb-4 flex justify-between">
-      <span class="text-xl font-semibold">{{
-        t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' })
-      }}</span>
+    <app-sensors-toolbar [disabled]="isLoading()" [createdAt]="createdAt" />
 
-      <p-button
-        [label]="t('SENSORS.BUTTON.RESET_COUNTERS')"
-        variant="outlined"
-        severity="danger"
-        icon="pi pi-bolt"
-        [disabled]="isLoading()"
-        [loading]="isResetProcessing()"
-        (onClick)="openResetConfirmationModal($event)"
-      />
-    </div>
+    <!--    <p-toolbar styleClass="mb-4">-->
+    <!--      <ng-template #start>-->
+    <!--        <span class="text-xl font-semibold">{{-->
+    <!--          t(pzemLabel, { time: createdAt | date: 'HH:mm:ss' })-->
+    <!--        }}</span>-->
+    <!--      </ng-template>-->
+
+    <!--      <ng-template #end>-->
+    <!--        <p-button-->
+    <!--          [label]="t('SENSORS.BUTTON.RESET_COUNTERS')"-->
+    <!--          variant="outlined"-->
+    <!--          severity="danger"-->
+    <!--          icon="pi pi-bolt"-->
+    <!--          class="mr-2"-->
+    <!--          [disabled]="isLoading()"-->
+    <!--          [loading]="isResetProcessing()"-->
+    <!--          (onClick)="openResetConfirmationModal($event)"-->
+    <!--        />-->
+
+    <!--        <p-button-->
+    <!--          [label]="isSensorsEnabled() ? 'Power off' : 'Power on'"-->
+    <!--          variant="outlined"-->
+    <!--          [severity]="isSensorsEnabled() ? 'danger' : 'success'"-->
+    <!--          icon="pi pi-power-off"-->
+    <!--          [disabled]="isLoading()"-->
+    <!--        />-->
+    <!--      </ng-template>-->
+    <!--    </p-toolbar>-->
+
     <p-table
       [value]="(tablesRows$ | async)!"
       [loading]="isLoading()"

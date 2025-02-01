@@ -8,7 +8,7 @@ import { Select } from 'primeng/select';
 import {
   SelectChangeTypedEvent,
   SelectOption,
-} from '@common/types/select.types';
+} from '@common/types/primeng/select.types';
 import { LANG_SELECT_OPTIONS } from './header.constants';
 import { FormsModule } from '@angular/forms';
 import { ColorScheme } from '../../services/theme/theme.types';
