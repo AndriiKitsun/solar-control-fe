@@ -1,5 +1,11 @@
 # solar-control-fe
 
+## 1.2.0
+
+### Minor Changes
+
+- [#35](https://github.com/AndriiKitsun/solar-control-fe/pull/35) [`3cbcc9e`](https://github.com/AndriiKitsun/solar-control-fe/commit/3cbcc9e7c5a8176f0e6d741ef1094e54211e1a96) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-100: Update ESP schema
+
 ## 1.1.0
 
 ### Minor Changes
