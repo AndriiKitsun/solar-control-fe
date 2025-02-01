@@ -28,6 +28,7 @@ import {
   ONE_DIGIT,
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
+import { Toolbar } from 'primeng/toolbar';
 
 /**
  * t(SENSORS.PZEM_LABEL)
@@ -48,6 +49,7 @@ import {
     Button,
     Toast,
     ConfirmDialog,
+    Toolbar,
   ],
   providers: [MessageService, ConfirmationService],
 })
@@ -56,6 +58,9 @@ export class SensorsComponent implements OnInit {
   isTableLoading = signal(false);
   isLoading = computed(() => this.isWsConnecting() || this.isTableLoading());
   isResetProcessing = signal<boolean>(false);
+  isPowerProcessing = signal<boolean>(false);
+
+  powerStatus = signal(false);
 
   pzemLabel: TranslationKey = 'SENSORS.PZEM_LABEL';
   createdAt = '';
@@ -73,6 +78,7 @@ export class SensorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeOnWsStatusChange();
+    this.subscribeOnPowerChange();
     this.tablesRows$ = this.getTableRows();
   }
 
@@ -82,6 +88,18 @@ export class SensorsComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
         tap((value) => {
           this.isWsConnecting.set(!value);
+        }),
+      )
+      .subscribe();
+  }
+
+  subscribeOnPowerChange(): void {
+    this.sensorsService
+      .getPowerStatus()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((response) => {
+          this.powerStatus.set(response.status);
         }),
       )
       .subscribe();
@@ -158,6 +176,31 @@ export class SensorsComponent implements OnInit {
     });
   }
 
+  openSwitchPowerConfirmationModal(event: MouseEvent): void {
+    this.confirmationService.confirm({
+      target: event.target!,
+      message: this.translocoService.translate(
+        'SENSORS.CONFIRM_DIALOG.POWER.MESSAGE',
+      ),
+      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
+      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+      rejectButtonProps: {
+        label: this.translocoService.translate('BUTTON.CANCEL'),
+        severity: 'secondary',
+        icon: PrimeIcons.TIMES,
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: this.translocoService.translate('BUTTON.RESET'),
+        icon: PrimeIcons.CHECK,
+        severity: 'danger',
+      },
+      accept: () => {
+        this.switchPower();
+      },
+    });
+  }
+
   resetCounters(): void {
     this.isResetProcessing.set(true);
 
@@ -176,6 +219,33 @@ export class SensorsComponent implements OnInit {
             summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
             detail: this.translocoService.translate(
               'SENSORS.TOAST.RESET_ERROR',
+            ),
+          });
+        },
+      });
+  }
+
+  switchPower(): void {
+    this.isPowerProcessing.set(true);
+
+    this.sensorsService
+      .switchPower(!this.powerStatus())
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isPowerProcessing.set(false);
+        }),
+      )
+      .subscribe({
+        next: (response) => {
+          this.powerStatus.set(response.status);
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
+            detail: this.translocoService.translate(
+              'SENSORS.TOAST.POWER_ERROR',
             ),
           });
         },
