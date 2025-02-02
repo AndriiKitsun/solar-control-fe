@@ -1,59 +1,82 @@
 {
   "ASICS": {
-    "DIALOG": {
-      "MODIFY": {
-        "HEADER": {
-          "ADD": "Додати Asic",
-          "EDIT": "Редагувати Asic"
-        },
-        "FIELD": {
-          "IP": "IP Адреса*",
-          "ADDRESS": "Адреса*",
-          "PASSWORD": "Пароль",
-          "PASSWORD_REQUIRED": "Пароль*"
-        },
-        "VALIDATION": {
-          "REQUIRED": "Поле обовʼязкове",
-          "INVALID": "Невірний формат"
-        }
-      }
-    },
     "CONFIRM_DIALOG": {
       "DELETE_ASIC": {
         "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
       }
     },
-    "TOAST": {
-      "SIDE_BAR": "Виникла помилка під час завантаження списку Asic майнерів",
-      "SUMMARY": "Виникла помилка під час завантаження показників Asic",
-      "ADD": "Виникла помилка під час додавання Asic",
-      "EDIT": "Виникла помилка під час редагування Asic",
-      "DELETE": "Виникла помилка під час видалення Asic"
+    "DIALOG": {
+      "MODIFY": {
+        "FIELD": {
+          "ADDRESS": "Адреса*",
+          "IP": "IP Адреса*",
+          "PASSWORD": "Пароль",
+          "PASSWORD_REQUIRED": "Пароль*"
+        },
+        "HEADER": {
+          "ADD": "Додати Asic",
+          "EDIT": "Редагувати Asic"
+        },
+        "VALIDATION": {
+          "INVALID": "Невірний формат",
+          "REQUIRED": "Поле обовʼязкове"
+        }
+      }
     },
     "TABLE": {
       "COLUMN": {
-        "IP_ADDRESS": "IP Адреса",
-        "STATE": "Статус",
-        "TIME": "Час",
         "AVERAGE_HASHRATE": "Сер. Хешрейт (Тх/с)",
+        "FAN_SPEED": "Швидкість (%)",
+        "IP_ADDRESS": "IP Адреса",
         "MAX_TEMP": "Макс. Температура (°C)",
         "POWER_USAGE": "Споживання (кВт)",
-        "FAN_SPEED": "Швидкість (%)"
+        "STATE": "Статус",
+        "TIME": "Час"
       },
       "STATE": {
-        "MINING": "Майнінг",
-        "INITIALIZING": "Ініціалізація",
-        "STARTING": "Запуск",
         "AUTO-TUNING": "Автоналаштування",
+        "FAILURE": "Помилка",
+        "INITIALIZING": "Ініціалізація",
+        "MINING": "Майнінг",
         "RESTARTING": "Перезапуск",
         "SHUTTING-DOWN": "Вимкнення",
-        "STOPPED": "Зупинено",
-        "FAILURE": "Помилка"
+        "STARTING": "Запуск",
+        "STOPPED": "Зупинено"
       },
       "TIME_FORMAT": "{{days}}д {{hours}}г {{minutes}}хв"
+    },
+    "TOAST": {
+      "ADD": "Виникла помилка під час додавання Asic",
+      "DELETE": "Виникла помилка під час видалення Asic",
+      "EDIT": "Виникла помилка під час редагування Asic",
+      "SIDE_BAR": "Виникла помилка під час завантаження списку Asic майнерів",
+      "SUMMARY": "Виникла помилка під час завантаження показників Asic"
     }
   },
+  "BUTTON": {
+    "ADD": "Додати",
+    "CANCEL": "Скасувати",
+    "DELETE": "Видалити",
+    "EDIT": "Редагувати",
+    "RESET": "Скинути"
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Підтвердження"
+  },
   "SENSORS": {
+    "BUTTON": {
+      "POWER_OFF": "Вимкнути",
+      "POWER_ON": "Увімкнути",
+      "RESET_COUNTERS": "Скинути лічильники"
+    },
+    "CONFIRM_DIALOG": {
+      "POWER": {
+        "MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?"
+      },
+      "RESET_COUNTERS": {
+        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
+      }
+    },
     "PZEM_LABEL": "Показники PZEM",
     "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
     "TABLE": {
@@ -75,29 +98,16 @@
         "DC_BATTERY": "DC Акумулятор"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Скинути лічильники",
-      "POWER_ON": "Увімкнути",
-      "POWER_OFF": "Вимкнути"
-    },
     "TOAST": {
-      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM",
-      "POWER_ERROR": "Виникла помилка під час скидання перемикання енергії"
-    },
-    "CONFIRM_DIALOG": {
-      "RESET_COUNTERS": {
-        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
-      },
-      "POWER": {
-        "MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?"
-      }
+      "POWER_ERROR": "Виникла помилка під час скидання перемикання енергії",
+      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM"
     }
   },
   "TAB_BAR": {
-    "SENSORS": "Датчики",
-    "PROTECTION": "Захист",
+    "ASICS": "Asic-и",
     "CONTROL": "Керування",
-    "ASICS": "Asic-и"
+    "PROTECTION": "Захист",
+    "SENSORS": "Датчики"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",
@@ -109,15 +119,5 @@
     "SUMMARY": {
       "ERROR": "Помилка"
     }
-  },
-  "CONFIRM_DIALOG": {
-    "HEADER": "Підтвердження"
-  },
-  "BUTTON": {
-    "ADD": "Додати",
-    "EDIT": "Редагувати",
-    "DELETE": "Видалити",
-    "CANCEL": "Скасувати",
-    "RESET": "Скинути"
   }
 }

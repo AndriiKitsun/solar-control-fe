@@ -1,59 +1,82 @@
 {
   "ASICS": {
-    "DIALOG": {
-      "MODIFY": {
-        "HEADER": {
-          "ADD": "Add Asic",
-          "EDIT": "Edit Asic"
-        },
-        "FIELD": {
-          "IP": "IP Address*",
-          "ADDRESS": "Address*",
-          "PASSWORD": "Password",
-          "PASSWORD_REQUIRED": "Password*"
-        },
-        "VALIDATION": {
-          "REQUIRED": "Field is required",
-          "INVALID": "Field is invalid"
-        }
-      }
-    },
     "CONFIRM_DIALOG": {
       "DELETE_ASIC": {
         "MESSAGE": "Are you sure you want to delete the Asic?"
       }
     },
-    "TOAST": {
-      "SIDE_BAR": "The error occurred while fetching the Asics list",
-      "SUMMARY": "The error occurred while fetching the Asic summary",
-      "ADD": "The error occurred while adding an Asic",
-      "EDIT": "The error occurred while editing an Asic",
-      "DELETE": "The error occurred while deleting an Asic"
+    "DIALOG": {
+      "MODIFY": {
+        "FIELD": {
+          "ADDRESS": "Address*",
+          "IP": "IP Address*",
+          "PASSWORD": "Password",
+          "PASSWORD_REQUIRED": "Password*"
+        },
+        "HEADER": {
+          "ADD": "Add Asic",
+          "EDIT": "Edit Asic"
+        },
+        "VALIDATION": {
+          "INVALID": "Field is invalid",
+          "REQUIRED": "Field is required"
+        }
+      }
     },
     "TABLE": {
       "COLUMN": {
-        "IP_ADDRESS": "IP Address",
-        "STATE": "Status",
-        "TIME": "Time",
         "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
+        "FAN_SPEED": "Fan Speed (%)",
+        "IP_ADDRESS": "IP Address",
         "MAX_TEMP": "Max Temperature (°C)",
         "POWER_USAGE": "Power Usage (kW)",
-        "FAN_SPEED": "Fan Speed (%)"
+        "STATE": "Status",
+        "TIME": "Time"
       },
       "STATE": {
-        "MINING": "Mining",
-        "INITIALIZING": "Initializing",
-        "STARTING": "Starting",
         "AUTO-TUNING": "Auto tuning",
+        "FAILURE": "Failure",
+        "INITIALIZING": "Initializing",
+        "MINING": "Mining",
         "RESTARTING": "Restarting",
         "SHUTTING-DOWN": "Shutting down",
-        "STOPPED": "Stopped",
-        "FAILURE": "Failure"
+        "STARTING": "Starting",
+        "STOPPED": "Stopped"
       },
       "TIME_FORMAT": "{{days}}d {{hours}}h {{minutes}}m"
+    },
+    "TOAST": {
+      "ADD": "The error occurred while adding an Asic",
+      "DELETE": "The error occurred while deleting an Asic",
+      "EDIT": "The error occurred while editing an Asic",
+      "SIDE_BAR": "The error occurred while fetching the Asics list",
+      "SUMMARY": "The error occurred while fetching the Asic summary"
     }
   },
+  "BUTTON": {
+    "ADD": "Add",
+    "CANCEL": "Cancel",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "RESET": "Reset"
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Confirmation"
+  },
   "SENSORS": {
+    "BUTTON": {
+      "POWER_OFF": "Power OFF",
+      "POWER_ON": "Power ON",
+      "RESET_COUNTERS": "Reset counters"
+    },
+    "CONFIRM_DIALOG": {
+      "POWER": {
+        "MESSAGE": "Are you sure you want to switch the power?"
+      },
+      "RESET_COUNTERS": {
+        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
+      }
+    },
     "PZEM_LABEL": "PZEM Sensors",
     "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
     "TABLE": {
@@ -75,29 +98,16 @@
         "DC_BATTERY": "DC Battery"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Reset counters",
-      "POWER_ON": "Power ON",
-      "POWER_OFF": "Power OFF"
-    },
     "TOAST": {
-      "RESET_ERROR": "The error occurred while resetting of the PZEM counters",
-      "POWER_ERROR": "The error occurred while switching power"
-    },
-    "CONFIRM_DIALOG": {
-      "RESET_COUNTERS": {
-        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
-      },
-      "POWER": {
-        "MESSAGE": "Are you sure you want to switch the power?"
-      }
+      "POWER_ERROR": "The error occurred while switching power",
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
     }
   },
   "TAB_BAR": {
-    "SENSORS": "Sensors",
-    "PROTECTION": "Protection",
+    "ASICS": "Asics",
     "CONTROL": "Control",
-    "ASICS": "Asics"
+    "PROTECTION": "Protection",
+    "SENSORS": "Sensors"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",
@@ -109,15 +119,5 @@
     "SUMMARY": {
       "ERROR": "Error"
     }
-  },
-  "CONFIRM_DIALOG": {
-    "HEADER": "Confirmation"
-  },
-  "BUTTON": {
-    "ADD": "Add",
-    "EDIT": "Edit",
-    "DELETE": "Delete",
-    "CANCEL": "Cancel",
-    "RESET": "Reset"
   }
 }
