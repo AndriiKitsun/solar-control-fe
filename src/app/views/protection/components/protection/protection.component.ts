@@ -1,17 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PROTECTION_GROUPS } from './protection.constants';
-import { ProtectionGroupModel } from '../../models/protection.models';
-import { FloatLabel } from 'primeng/floatlabel';
-import { InputNumber } from 'primeng/inputnumber';
-import { Button } from 'primeng/button';
-import { Checkbox } from 'primeng/checkbox';
+import { ProtectionGroup } from '../../models/protection-groups.models';
+import { ProtectionGroupComponent } from '../protection-group/protection-group.component';
 
 @Component({
   selector: 'app-protection',
-  imports: [FloatLabel, InputNumber, Button, Checkbox],
+  imports: [ProtectionGroupComponent],
   templateUrl: './protection.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProtectionComponent {
-  groups: ProtectionGroupModel[] = PROTECTION_GROUPS;
+  groups: ProtectionGroup[] = PROTECTION_GROUPS;
 }

@@ -1,54 +1,7 @@
 @for (group of groups; track group.id) {
   <div class="card">
-    <span class="text-xl font-semibold">{{ group.label }}</span>
+    <h3 class="mb-4 text-lg font-semibold">{{ group.label }}</h3>
 
-    <div class="mt-4 flex gap-8">
-      <p-floatlabel variant="on">
-        <p-input-number
-          [inputId]="group.minInputId"
-          [min]="group.input.min"
-          [max]="group.input.max"
-          [step]="group.input.step"
-          [suffix]="group.input.suffix"
-          [minFractionDigits]="group.input.fractionDigits"
-          [maxFractionDigits]="group.input.fractionDigits"
-          showButtons
-          [useGrouping]="false"
-        />
-        <label [for]="group.minInputId">Min</label>
-      </p-floatlabel>
-
-      <p-floatlabel variant="on">
-        <p-input-number
-          [inputId]="group.maxInputId"
-          [min]="group.input.min"
-          [max]="group.input.max"
-          [step]="group.input.step"
-          [suffix]="group.input.suffix"
-          [minFractionDigits]="group.input.fractionDigits"
-          [maxFractionDigits]="group.input.fractionDigits"
-          showButtons
-          [useGrouping]="false"
-        />
-        <label [for]="group.maxInputId">Max</label>
-      </p-floatlabel>
-
-      <div class="flex items-center">
-        <p-checkbox inputId="disableAsics" binary />
-        <label for="disableAsics" class="ml-2">Stop Asics</label>
-      </div>
-
-      <div class="flex items-center">
-        <p-checkbox inputId="alarm" binary />
-        <label for="alarm" class="ml-2">Alarm</label>
-      </div>
-
-      <div class="flex items-center">
-        <p-checkbox inputId="powerOff" binary />
-        <label for="powerOff" class="ml-2">Power off</label>
-      </div>
-
-      <p-button label="Save" />
-    </div>
+    <app-protection-group [disabled]="false" [group]="group" />
   </div>
 }

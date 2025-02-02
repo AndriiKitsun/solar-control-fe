@@ -1,17 +1,11 @@
-import { ProtectionGroupId } from '../components/protection/protection.constants';
+import {
+  ProtectionGroupId,
+  ProtectionActionId,
+} from '../enums/protection-groups.enums';
 
-export interface ProtectionGroupModel {
+export interface ProtectionItemModel {
   id: ProtectionGroupId;
-  minInputId: string;
-  maxInputId: string;
-  label: string;
-  input: ProtectionInputModel;
-}
-
-export interface ProtectionInputModel {
   min: number;
   max: number;
-  step: number;
-  suffix: string;
-  fractionDigits: number;
+  actions: ProtectionActionId[];
 }

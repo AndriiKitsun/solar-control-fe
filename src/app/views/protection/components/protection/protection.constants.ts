@@ -1,13 +1,28 @@
-import { ProtectionGroupModel } from '../../models/protection.models';
+import {
+  ProtectionGroupId,
+  ProtectionActionId,
+} from '../../enums/protection-groups.enums';
+import {
+  ProtectionGroup,
+  ProtectionAction,
+} from '../../models/protection-groups.models';
 
-export const enum ProtectionGroupId {
-  AC_OUTPUT_FREQUENCY = 'acOutputFrequency',
-  AC_OUTPUT_VOLTAGE = 'acOutputVoltage',
-  AC_OUTPUT_AVG_VOLTAGE = 'acOutputAvgVoltage',
-  DC_BATTERY_VOLTAGE = 'dcBatteryVoltage',
-}
+const PROTECTION_ACTIONS: ProtectionAction[] = [
+  {
+    id: ProtectionActionId.DISABLE_ASICS,
+    label: 'Disable Asics',
+  },
+  {
+    id: ProtectionActionId.ALARM,
+    label: 'Alarm',
+  },
+  {
+    id: ProtectionActionId.POWER_OFF,
+    label: 'Power Off',
+  },
+];
 
-export const PROTECTION_GROUPS: ProtectionGroupModel[] = [
+export const PROTECTION_GROUPS: ProtectionGroup[] = [
   {
     id: ProtectionGroupId.AC_OUTPUT_FREQUENCY,
     minInputId: `${ProtectionGroupId.AC_OUTPUT_FREQUENCY}Min`,
@@ -20,6 +35,7 @@ export const PROTECTION_GROUPS: ProtectionGroupModel[] = [
       fractionDigits: 2,
       suffix: ' Hz',
     },
+    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionGroupId.AC_OUTPUT_VOLTAGE,
@@ -33,6 +49,7 @@ export const PROTECTION_GROUPS: ProtectionGroupModel[] = [
       fractionDigits: 0,
       suffix: ' V',
     },
+    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionGroupId.AC_OUTPUT_AVG_VOLTAGE,
@@ -46,6 +63,7 @@ export const PROTECTION_GROUPS: ProtectionGroupModel[] = [
       fractionDigits: 0,
       suffix: ' V',
     },
+    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionGroupId.DC_BATTERY_VOLTAGE,
@@ -59,5 +77,6 @@ export const PROTECTION_GROUPS: ProtectionGroupModel[] = [
       fractionDigits: 1,
       suffix: ' V',
     },
+    actions: PROTECTION_ACTIONS,
   },
 ];
