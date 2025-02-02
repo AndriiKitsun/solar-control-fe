@@ -6,7 +6,7 @@ import { RowConfig } from '../types/sensors-table.types';
  * t(SENSORS.TABLE.ROW.DC_BATTERY)
  * */
 
-export enum TableRowId {
+export const enum TableRowId {
   AC_INPUT = 'acInput',
   AC_OUTPUT = 'acOutput',
   DC_BATTERY = 'dcBattery',

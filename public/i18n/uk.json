@@ -94,8 +94,10 @@
     }
   },
   "TAB_BAR": {
-    "ASICS": "Asic-и",
-    "SENSORS": "Датчики"
+    "SENSORS": "Датчики",
+    "PROTECTION": "Захист",
+    "CONTROL": "Керування",
+    "ASICS": "Asic-и"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",

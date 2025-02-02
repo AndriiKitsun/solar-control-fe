@@ -14,6 +14,13 @@ export default [
       import('./sensors/sensors.component').then((c) => c.SensorsComponent),
   },
   {
+    path: RoutePath.PROTECTION,
+    loadComponent: () =>
+      import('./protection/components/protection/protection.component').then(
+        (c) => c.ProtectionComponent,
+      ),
+  },
+  {
     path: RoutePath.ASICS,
     loadComponent: () =>
       import('./asics/asics.component').then((c) => c.AsicsComponent),

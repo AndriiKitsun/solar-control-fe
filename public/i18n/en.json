@@ -94,8 +94,10 @@
     }
   },
   "TAB_BAR": {
-    "ASICS": "Asics",
-    "SENSORS": "Sensors"
+    "SENSORS": "Sensors",
+    "PROTECTION": "Protection",
+    "CONTROL": "Control",
+    "ASICS": "Asics"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",
