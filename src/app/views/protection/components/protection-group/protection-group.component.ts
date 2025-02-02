@@ -29,7 +29,21 @@ import { ProtectionItemForm } from './protection-group.models';
 })
 export class ProtectionGroupComponent implements OnInit {
   group = input.required<ProtectionGroup>();
-  disabled = input.required<boolean>();
+  disabled = input.required<boolean, boolean>({
+    transform: (value) => {
+      if (!this.form) {
+        return value;
+      }
+
+      if (value) {
+        this.form.disable();
+      } else {
+        this.form.enable();
+      }
+
+      return value;
+    },
+  });
   save = output<ProtectionItemModel>();
 
   form!: FormGroup<ProtectionItemForm>;
