@@ -20,9 +20,15 @@ import {
 } from '@angular/forms';
 import { ProtectionItemModel } from '../../models/protection.models';
 import { ProtectionItemForm } from './protection-group.models';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { getConfirmDialogConfig } from '@common/helpers/confirmation/confirmation.helper';
+import { PrimeIcons, ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+
+/**
+ * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
+ * t(PROTECTION.TOAST.SAVE_ERROR)
+ */
 
 @Component({
   selector: 'app-protection-group',
@@ -60,6 +66,11 @@ export class ProtectionGroupComponent implements OnInit {
 
   form!: FormGroup<ProtectionItemForm>;
 
+  constructor(
+    private readonly translocoService: TranslocoService,
+    private readonly confirmationService: ConfirmationService,
+  ) {}
+
   ngOnInit(): void {
     this.form = new FormGroup<ProtectionItemForm>({
       id: new FormControl(this.group().id),
@@ -84,11 +95,26 @@ export class ProtectionGroupComponent implements OnInit {
     });
   }
 
-  saveItem(): void {
+  openSaveDialog(event: MouseEvent): void {
     if (this.form.invalid) {
       return;
     }
 
-    this.save.emit(this.form.value as ProtectionItemModel);
+    const config = getConfirmDialogConfig(
+      {
+        target: event.target!,
+        message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
+        acceptButtonProps: {
+          icon: PrimeIcons.SAVE,
+          label: 'BUTTON.SAVE',
+        },
+        accept: () => {
+          this.save.emit(this.form.value as ProtectionItemModel);
+        },
+      },
+      this.translocoService,
+    );
+
+    this.confirmationService.confirm(config);
   }
 }

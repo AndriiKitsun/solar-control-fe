@@ -29,10 +29,13 @@ import {
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
 import { Toolbar } from 'primeng/toolbar';
+import { createHttpErrorToast } from '@common/helpers/toast.helper';
 
 /**
  * t(SENSORS.PZEM_LABEL)
  * t(SENSORS.PZEM_LABEL_WITH_TIME)
+ * t(SENSORS.TOAST.RESET_ERROR)
+ * t(SENSORS.TOAST.POWER_ERROR)
  * */
 
 @Component({
@@ -214,13 +217,12 @@ export class SensorsComponent implements OnInit {
       )
       .subscribe({
         error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-            detail: this.translocoService.translate(
+          this.messageService.add(
+            createHttpErrorToast(
               'SENSORS.TOAST.RESET_ERROR',
+              this.translocoService,
             ),
-          });
+          );
         },
       });
   }
@@ -241,13 +243,12 @@ export class SensorsComponent implements OnInit {
           this.powerStatus.set(response.status);
         },
         error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-            detail: this.translocoService.translate(
+          this.messageService.add(
+            createHttpErrorToast(
               'SENSORS.TOAST.POWER_ERROR',
+              this.translocoService,
             ),
-          });
+          );
         },
       });
   }

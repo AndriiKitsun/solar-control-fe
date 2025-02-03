@@ -52,7 +52,8 @@ import {
 } from '@common/helpers/format.helper';
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
-import { TagSeverity } from '@common/types/tag.types';
+import { Severity } from '@common/types/severity.types';
+import { createHttpErrorToast } from '@common/helpers/toast.helper';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -65,6 +66,9 @@ import { TagSeverity } from '@common/types/tag.types';
  * t(ASICS.TABLE.STATE.SHUTTING-DOWN)
  * t(ASICS.TABLE.STATE.STOPPED)
  * t(ASICS.TABLE.STATE.FAILURE)
+ * t(ASICS.TOAST.SIDE_BAR_ERROR)
+ * t(ASICS.TOAST.SUMMARY_ERROR)
+ * t(ASICS.TOAST.DELETE_ERROR)
  * */
 
 @Component({
@@ -138,11 +142,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         this.isLoading.set(false);
       }),
       catchError((err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-          detail: this.translocoService.translate('ASICS.TOAST.SIDE_BAR'),
-        });
+        this.messageService.add(
+          createHttpErrorToast(
+            'ASICS.TOAST.SIDE_BAR_ERROR',
+            this.translocoService,
+          ),
+        );
 
         throw err;
       }),
@@ -214,11 +219,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         return [gridData];
       }),
       catchError((err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-          detail: this.translocoService.translate('ASICS.TOAST.SUMMARY'),
-        });
+        this.messageService.add(
+          createHttpErrorToast(
+            'ASICS.TOAST.SUMMARY_ERROR',
+            this.translocoService,
+          ),
+        );
 
         throw err;
       }),
@@ -317,16 +323,17 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           this.selectedItem.set(null);
         },
         error: () => {
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translocoService.translate('TOAST.SUMMARY.ERROR'),
-            detail: this.translocoService.translate('ASICS.TOAST.DELETE'),
-          });
+          this.messageService.add(
+            createHttpErrorToast(
+              'ASICS.TOAST.DELETE_ERROR',
+              this.translocoService,
+            ),
+          );
         },
       });
   }
 
-  getStateSeverity(state: AsicState): TagSeverity {
+  getStateSeverity(state: AsicState): Severity {
     switch (state) {
       case 'mining':
         return 'success';

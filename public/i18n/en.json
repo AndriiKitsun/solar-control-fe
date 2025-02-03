@@ -46,11 +46,11 @@
       "TIME_FORMAT": "{{days}}d {{hours}}h {{minutes}}m"
     },
     "TOAST": {
-      "ADD": "The error occurred while adding an Asic",
-      "DELETE": "The error occurred while deleting an Asic",
-      "EDIT": "The error occurred while editing an Asic",
-      "SIDE_BAR": "The error occurred while fetching the Asics list",
-      "SUMMARY": "The error occurred while fetching the Asic summary"
+      "ADD_ERROR": "The error occurred while adding an Asic",
+      "DELETE_ERROR": "The error occurred while deleting an Asic",
+      "EDIT_ERROR": "The error occurred while editing an Asic",
+      "SIDE_BAR_ERROR": "The error occurred while fetching the Asics list",
+      "SUMMARY_ERROR": "The error occurred while fetching the Asic summary"
     }
   },
   "BUTTON": {
@@ -58,17 +58,21 @@
     "CANCEL": "Cancel",
     "DELETE": "Delete",
     "EDIT": "Edit",
+    "OK": "Ok",
     "RESET": "Reset",
     "SAVE": "Save"
   },
   "CONFIRM_DIALOG": {
-    "HEADER": "Confirmation"
+    "HEADER": "Confirm"
   },
   "PROTECTION": {
     "ACTION": {
       "ALARM": "Alarm",
       "DISABLE_ASICS": "Disable Asics",
       "POWER_OFF": "Power OFF"
+    },
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
     },
     "GROUP": {
       "AC_OUTPUT_AVG_VOLTAGE": {
@@ -91,6 +95,9 @@
     "PLACEHOLDER": {
       "MAX": "Max",
       "MIN": "Min"
+    },
+    "TOAST": {
+      "SAVE_ERROR": "The error occurred while saving protection rules"
     }
   },
   "SENSORS": {
@@ -146,8 +153,6 @@
     "THEME_PRESETS": "Theme presets"
   },
   "TOAST": {
-    "SUMMARY": {
-      "ERROR": "Error"
-    }
+    "ERROR_SUMMARY": "Error"
   }
 }

@@ -56,7 +56,7 @@
       [label]="t('BUTTON.SAVE')"
       icon="pi pi-save"
       [disabled]="disabled() || form.invalid"
-      (onClick)="saveItem()"
+      (onClick)="openSaveDialog($event)"
     />
   </div>
 </div>
