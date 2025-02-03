@@ -21,6 +21,8 @@ import {
 import { ProtectionItemModel } from '../../models/protection.models';
 import { ProtectionItemForm } from './protection-group.models';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-protection-group',
@@ -31,7 +33,9 @@ import { TranslocoDirective } from '@jsverse/transloco';
     ReactiveFormsModule,
     Button,
     TranslocoDirective,
+    ConfirmDialog,
   ],
+  providers: [ConfirmationService],
   templateUrl: './protection-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
