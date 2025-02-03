@@ -2,12 +2,13 @@ import {
   ProtectionGroupId,
   ProtectionActionId,
 } from '../enums/protection-groups.enums';
+import { TranslationKey } from '@common/types/lang.types';
 
 export interface ProtectionGroup {
   id: ProtectionGroupId;
   minInputId: string;
   maxInputId: string;
-  label: string;
+  label: TranslationKey;
   input: ProtectionInput;
   actions: ProtectionAction[];
 }
@@ -16,11 +17,11 @@ export interface ProtectionInput {
   min: number;
   max: number;
   step: number;
-  suffix: string;
+  suffix: TranslationKey;
   fractionDigits: number;
 }
 
 export interface ProtectionAction {
   id: ProtectionActionId;
-  label: string;
+  label: TranslationKey;
 }

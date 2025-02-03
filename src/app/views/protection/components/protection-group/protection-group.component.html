@@ -1,4 +1,4 @@
-<div class="flex justify-between" [formGroup]="form">
+<div class="flex justify-between" *transloco="let t" [formGroup]="form">
   <div class="flex items-center gap-x-4">
     <p-floatlabel variant="on">
       <p-input-number
@@ -6,14 +6,16 @@
         [min]="group().input.min"
         [max]="group().input.max"
         [step]="group().input.step"
-        [suffix]="group().input.suffix"
+        [suffix]="t(group().input.suffix)"
         [minFractionDigits]="group().input.fractionDigits"
         [maxFractionDigits]="group().input.fractionDigits"
         [useGrouping]="false"
         showButtons
         formControlName="min"
       />
-      <label [for]="group().minInputId">Min</label>
+      <label [for]="group().minInputId">{{
+        t('PROTECTION.PLACEHOLDER.MIN')
+      }}</label>
     </p-floatlabel>
 
     <p-floatlabel variant="on">
@@ -22,14 +24,16 @@
         [min]="group().input.min"
         [max]="group().input.max"
         [step]="group().input.step"
-        [suffix]="group().input.suffix"
+        [suffix]="t(group().input.suffix)"
         [minFractionDigits]="group().input.fractionDigits"
         [maxFractionDigits]="group().input.fractionDigits"
         [useGrouping]="false"
         showButtons
         formControlName="max"
       />
-      <label [for]="group().maxInputId">Max</label>
+      <label [for]="group().maxInputId">{{
+        t('PROTECTION.PLACEHOLDER.MAX')
+      }}</label>
     </p-floatlabel>
 
     @for (action of group().actions; track action.id) {
@@ -41,7 +45,7 @@
           formControlName="actions"
         />
         <label [for]="group().id + action.id" class="ml-2">{{
-          action.label
+          t(action.label)
         }}</label>
       </div>
     }
@@ -49,7 +53,7 @@
 
   <div class="flex items-center">
     <p-button
-      label="Save"
+      [label]="t('BUTTON.SAVE')"
       icon="pi pi-save"
       [disabled]="disabled() || form.invalid"
       (onClick)="saveItem()"

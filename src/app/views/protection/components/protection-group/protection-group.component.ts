@@ -20,10 +20,18 @@ import {
 } from '@angular/forms';
 import { ProtectionItemModel } from '../../models/protection.models';
 import { ProtectionItemForm } from './protection-group.models';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-protection-group',
-  imports: [FloatLabel, InputNumber, Checkbox, ReactiveFormsModule, Button],
+  imports: [
+    FloatLabel,
+    InputNumber,
+    Checkbox,
+    ReactiveFormsModule,
+    Button,
+    TranslocoDirective,
+  ],
   templateUrl: './protection-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

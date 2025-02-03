@@ -10,10 +10,11 @@ import { ProtectionGroup } from '../../models/protection-groups.models';
 import { ProtectionGroupComponent } from '../protection-group/protection-group.component';
 import { of, delay } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-protection',
-  imports: [ProtectionGroupComponent],
+  imports: [ProtectionGroupComponent, TranslocoDirective],
   templateUrl: './protection.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

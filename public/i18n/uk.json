@@ -58,10 +58,40 @@
     "CANCEL": "Скасувати",
     "DELETE": "Видалити",
     "EDIT": "Редагувати",
-    "RESET": "Скинути"
+    "RESET": "Скинути",
+    "SAVE": "Зберегти"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Підтвердження"
+  },
+  "PROTECTION": {
+    "ACTION": {
+      "ALARM": "Тривога",
+      "DISABLE_ASICS": "Вимкнути Asic-и",
+      "POWER_OFF": "Вимкнути живлення"
+    },
+    "GROUP": {
+      "AC_OUTPUT_AVG_VOLTAGE": {
+        "LABEL": "AC Вихід - Середня напруга",
+        "SUFFIX": " В"
+      },
+      "AC_OUTPUT_FREQUENCY": {
+        "LABEL": "AC Вихід - Частота",
+        "SUFFIX": " Гц"
+      },
+      "AC_OUTPUT_VOLTAGE": {
+        "LABEL": "AC Вихід - Напруга",
+        "SUFFIX": " В"
+      },
+      "DC_BATTERY_VOLTAGE": {
+        "LABEL": "DC Акумулятор - Напруга",
+        "SUFFIX": " В"
+      }
+    },
+    "PLACEHOLDER": {
+      "MAX": "Макс",
+      "MIN": "Мін"
+    }
   },
   "SENSORS": {
     "BUTTON": {

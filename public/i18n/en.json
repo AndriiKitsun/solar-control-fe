@@ -58,10 +58,40 @@
     "CANCEL": "Cancel",
     "DELETE": "Delete",
     "EDIT": "Edit",
-    "RESET": "Reset"
+    "RESET": "Reset",
+    "SAVE": "Save"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Confirmation"
+  },
+  "PROTECTION": {
+    "ACTION": {
+      "ALARM": "Alarm",
+      "DISABLE_ASICS": "Disable Asics",
+      "POWER_OFF": "Power OFF"
+    },
+    "GROUP": {
+      "AC_OUTPUT_AVG_VOLTAGE": {
+        "LABEL": "AC Output - Avg Voltage",
+        "SUFFIX": " V"
+      },
+      "AC_OUTPUT_FREQUENCY": {
+        "LABEL": "AC Output - Frequency",
+        "SUFFIX": " Hz"
+      },
+      "AC_OUTPUT_VOLTAGE": {
+        "LABEL": "AC Output - Voltage",
+        "SUFFIX": " V"
+      },
+      "DC_BATTERY_VOLTAGE": {
+        "LABEL": "DC Battery - Voltage",
+        "SUFFIX": " V"
+      }
+    },
+    "PLACEHOLDER": {
+      "MAX": "Max",
+      "MIN": "Min"
+    }
   },
   "SENSORS": {
     "BUTTON": {

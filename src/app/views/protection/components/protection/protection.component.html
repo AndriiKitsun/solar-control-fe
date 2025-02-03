@@ -1,7 +1,9 @@
-@for (group of groups; track group.id) {
-  <div class="card">
-    <h3 class="mb-4 text-lg font-semibold">{{ group.label }}</h3>
+<ng-container *transloco="let t">
+  @for (group of groups; track group.id) {
+    <div class="card">
+      <h3 class="mb-4 text-lg font-semibold">{{ t(group.label) }}</h3>
 
-    <app-protection-group [disabled]="isLoading()" [group]="group" />
-  </div>
-}
+      <app-protection-group [disabled]="isLoading()" [group]="group" />
+    </div>
+  }
+</ng-container>
