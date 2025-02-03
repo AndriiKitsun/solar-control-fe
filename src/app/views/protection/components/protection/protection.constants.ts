@@ -43,8 +43,8 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     maxInputId: `${ProtectionGroupId.AC_OUTPUT_VOLTAGE}Max`,
     label: 'AC Output Voltage',
     input: {
-      min: 200,
-      max: 250,
+      min: 150,
+      max: 290,
       step: 1,
       fractionDigits: 0,
       suffix: ' V',
@@ -57,8 +57,8 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     maxInputId: `${ProtectionGroupId.AC_OUTPUT_AVG_VOLTAGE}Max`,
     label: 'AC Output 10m Voltage',
     input: {
-      min: 200,
-      max: 250,
+      min: 150,
+      max: 290,
       step: 1,
       fractionDigits: 0,
       suffix: ' V',
@@ -71,7 +71,7 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     maxInputId: `${ProtectionGroupId.DC_BATTERY_VOLTAGE}Max`,
     label: 'DC Battery Voltage',
     input: {
-      min: 10,
+      min: 30,
       max: 70,
       step: 0.1,
       fractionDigits: 1,
