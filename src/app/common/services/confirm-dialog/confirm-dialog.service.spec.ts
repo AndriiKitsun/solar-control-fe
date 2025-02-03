@@ -1,21 +1,27 @@
 import { TestBed } from '@angular/core/testing';
-import { TranslocoTestingModule, TranslocoService } from '@jsverse/transloco';
-import { getConfirmDialogConfig } from './confirmation.helper';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 import { PrimeIcons } from 'primeng/api';
-import { TypedConfirmation } from '../../types/confirmation.types';
+import { ConfirmDialogService } from './confirm-dialog.service';
 
-describe('ConfirmationHelper', () => {
-  let translocoService: TranslocoService;
+describe('ConfirmDialogService', () => {
+  let service: ConfirmDialogService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      providers: [ConfirmDialogService],
       imports: [TranslocoTestingModule.forRoot({})],
     });
 
-    translocoService = TestBed.inject(TranslocoService);
+    service = TestBed.inject(ConfirmDialogService);
   });
 
-  describe('getConfirmDialogConfig', () => {
+  describe('confirmDialog', () => {
+    let confirmSpy: jasmine.Spy;
+
+    beforeEach(() => {
+      confirmSpy = spyOn(service, 'confirm');
+    });
+
     it('should return default config', () => {
       const expectedResult = {
         header: 'en.CONFIRM_DIALOG.HEADER',
@@ -32,14 +38,11 @@ describe('ConfirmationHelper', () => {
         },
       };
 
-      const result = getConfirmDialogConfig(
-        {
-          message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
-        },
-        translocoService,
-      );
+      service.confirmDialog({
+        message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
+      });
 
-      expect(result).toEqual(expectedResult as TypedConfirmation);
+      expect(confirmSpy).toHaveBeenCalledWith(expectedResult);
     });
 
     it('should return config with overridden fields', () => {
@@ -60,23 +63,20 @@ describe('ConfirmationHelper', () => {
         },
       };
 
-      const result = getConfirmDialogConfig(
-        {
-          message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
-          position: 'position',
-          rejectButtonProps: {
-            label: 'BUTTON.RESET',
-            severity: 'success',
-          },
-          acceptButtonProps: {
-            label: 'BUTTON.SAVE',
-            icon: PrimeIcons.TIMES,
-          },
+      service.confirmDialog({
+        message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
+        position: 'position',
+        rejectButtonProps: {
+          label: 'BUTTON.RESET',
+          severity: 'success',
         },
-        translocoService,
-      );
+        acceptButtonProps: {
+          label: 'BUTTON.SAVE',
+          icon: PrimeIcons.TIMES,
+        },
+      });
 
-      expect(result).toEqual(expectedResult as TypedConfirmation);
+      expect(confirmSpy).toHaveBeenCalledWith(expectedResult);
     });
   });
 });

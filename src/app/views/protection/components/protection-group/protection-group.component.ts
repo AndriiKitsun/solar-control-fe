@@ -6,6 +6,7 @@ import {
   input,
   output,
   OnInit,
+  Inject,
 } from '@angular/core';
 import { Button } from 'primeng/button';
 import { Checkbox } from 'primeng/checkbox';
@@ -20,10 +21,10 @@ import {
 } from '@angular/forms';
 import { ProtectionItemModel } from '../../models/protection.models';
 import { ProtectionItemForm } from './protection-group.models';
-import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-import { getConfirmDialogConfig } from '@common/helpers/confirmation/confirmation.helper';
-import { PrimeIcons, ConfirmationService } from 'primeng/api';
+import { TranslocoDirective } from '@jsverse/transloco';
+import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 
 /**
  * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
@@ -41,7 +42,12 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
     TranslocoDirective,
     ConfirmDialog,
   ],
-  providers: [ConfirmationService],
+  providers: [
+    {
+      provide: ConfirmationService,
+      useClass: ConfirmDialogService,
+    },
+  ],
   templateUrl: './protection-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -67,8 +73,8 @@ export class ProtectionGroupComponent implements OnInit {
   form!: FormGroup<ProtectionItemForm>;
 
   constructor(
-    private readonly translocoService: TranslocoService,
-    private readonly confirmationService: ConfirmationService,
+    @Inject(ConfirmationService)
+    private readonly confirmDialogService: ConfirmDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -100,21 +106,16 @@ export class ProtectionGroupComponent implements OnInit {
       return;
     }
 
-    const config = getConfirmDialogConfig(
-      {
-        target: event.target!,
-        message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
-        acceptButtonProps: {
-          icon: PrimeIcons.SAVE,
-          label: 'BUTTON.SAVE',
-        },
-        accept: () => {
-          this.save.emit(this.form.value as ProtectionItemModel);
-        },
+    this.confirmDialogService.confirmDialog({
+      target: event.target!,
+      message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
+      acceptButtonProps: {
+        icon: PrimeIcons.SAVE,
+        label: 'BUTTON.SAVE',
       },
-      this.translocoService,
-    );
-
-    this.confirmationService.confirm(config);
+      accept: () => {
+        this.save.emit(this.form.value as ProtectionItemModel);
+      },
+    });
   }
 }
