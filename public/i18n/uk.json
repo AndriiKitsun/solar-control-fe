@@ -1,12 +1,12 @@
 {
   "ASICS": {
-    "CONFIRM_DIALOG": {
-      "DELETE_ASIC_MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
-    },
     "BUTTON": {
       "ADD": "Додати",
-      "EDIT": "Редагувати",
-      "DELETE": "Видалити"
+      "DELETE": "Видалити",
+      "EDIT": "Редагувати"
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC_MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
     },
     "DIALOG": {
       "MODIFY": {
@@ -64,13 +64,13 @@
     "HEADER": "Підтвердження"
   },
   "PROTECTION": {
-    "BUTTON": {
-      "SAVE": "Зберегти"
-    },
     "ACTION": {
       "ALARM": "Тривога",
       "DISABLE_ASICS": "Вимкнути Asic-и",
       "POWER_OFF": "Вимкнути живлення"
+    },
+    "BUTTON": {
+      "SAVE": "Зберегти"
     },
     "CONFIRM_DIALOG": {
       "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правила захисту?"
@@ -105,8 +105,8 @@
     "BUTTON": {
       "POWER_OFF": "Вимкнути",
       "POWER_ON": "Увімкнути",
-      "RESET_COUNTERS": "Скинути лічильники",
       "RESET": "Скинути",
+      "RESET_COUNTERS": "Скинути лічильники",
       "SWITCH": "Перемкнути"
     },
     "CONFIRM_DIALOG": {

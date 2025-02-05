@@ -1,12 +1,12 @@
 {
   "ASICS": {
-    "CONFIRM_DIALOG": {
-      "DELETE_ASIC_MESSAGE": "Are you sure you want to delete the Asic?"
-    },
     "BUTTON": {
       "ADD": "Add",
-      "EDIT": "Edit",
-      "DELETE": "Delete"
+      "DELETE": "Delete",
+      "EDIT": "Edit"
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC_MESSAGE": "Are you sure you want to delete the Asic?"
     },
     "DIALOG": {
       "MODIFY": {
@@ -64,13 +64,13 @@
     "HEADER": "Confirm"
   },
   "PROTECTION": {
-    "BUTTON": {
-      "SAVE": "Save"
-    },
     "ACTION": {
       "ALARM": "Alarm",
       "DISABLE_ASICS": "Disable Asics",
       "POWER_OFF": "Power OFF"
+    },
+    "BUTTON": {
+      "SAVE": "Save"
     },
     "CONFIRM_DIALOG": {
       "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
@@ -105,8 +105,8 @@
     "BUTTON": {
       "POWER_OFF": "Power OFF",
       "POWER_ON": "Power ON",
-      "RESET_COUNTERS": "Reset counters",
       "RESET": "Reset",
+      "RESET_COUNTERS": "Reset counters",
       "SWITCH": "Switch"
     },
     "CONFIRM_DIALOG": {
