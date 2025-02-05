@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,15 +10,15 @@ import { Button } from 'primeng/button';
 import { Checkbox } from 'primeng/checkbox';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputNumber } from 'primeng/inputnumber';
-import { ProtectionGroup } from '../../models/protection-groups.models';
+import { ProtectionGroup } from '../../models/protection-group.models';
 import {
   FormGroup,
   FormControl,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ProtectionItemModel } from '../../models/protection.models';
-import { ProtectionItemForm } from './protection-group.models';
+import { ProtectionRuleModel } from '../../models/protection-rule.models';
+import { ProtectionRuleForm } from './protection-group.models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -28,7 +26,6 @@ import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-di
 
 /**
  * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
- * t(PROTECTION.TOAST.SAVE_ERROR)
  */
 
 @Component({
@@ -68,9 +65,9 @@ export class ProtectionGroupComponent implements OnInit {
       return value;
     },
   });
-  save = output<ProtectionItemModel>();
+  save = output<ProtectionRuleModel>();
 
-  form!: FormGroup<ProtectionItemForm>;
+  form!: FormGroup<ProtectionRuleForm>;
 
   constructor(
     @Inject(ConfirmationService)
@@ -78,8 +75,8 @@ export class ProtectionGroupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup<ProtectionItemForm>({
-      id: new FormControl(this.group().id),
+    this.form = new FormGroup<ProtectionRuleForm>({
+      groupId: new FormControl(this.group().id),
       min: new FormControl(
         {
           value: null,
@@ -114,7 +111,7 @@ export class ProtectionGroupComponent implements OnInit {
         label: 'BUTTON.SAVE',
       },
       accept: () => {
-        this.save.emit(this.form.value as ProtectionItemModel);
+        this.save.emit(this.form.value as ProtectionRuleModel);
       },
     });
   }

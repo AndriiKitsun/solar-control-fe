@@ -3,8 +3,8 @@ import {
   ProtectionActionId,
 } from '../enums/protection-groups.enums';
 
-export interface ProtectionItemModel {
-  id: ProtectionGroupId;
+export interface ProtectionRuleModel {
+  groupId: ProtectionGroupId;
   min: number;
   max: number;
   actions: ProtectionActionId[];

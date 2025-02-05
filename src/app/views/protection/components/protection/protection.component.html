@@ -3,7 +3,11 @@
     <div class="card">
       <h3 class="mb-4 text-lg font-semibold">{{ t(group.label) }}</h3>
 
-      <app-protection-group [disabled]="isLoading()" [group]="group" />
+      <app-protection-group
+        [disabled]="isLoading()"
+        [group]="group"
+        (save)="saveRule($event)"
+      />
     </div>
   }
 </ng-container>

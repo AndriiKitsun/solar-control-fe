@@ -30,6 +30,12 @@ module.exports = tseslint.config(
           allowExpressions: true,
         },
       ],
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
       '@angular-eslint/directive-selector': [
         'error',
         {

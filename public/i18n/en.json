@@ -95,9 +95,6 @@
     "PLACEHOLDER": {
       "MAX": "Max",
       "MIN": "Min"
-    },
-    "TOAST": {
-      "SAVE_ERROR": "The error occurred while saving protection rules"
     }
   },
   "SENSORS": {

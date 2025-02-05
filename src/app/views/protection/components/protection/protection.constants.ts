@@ -5,7 +5,7 @@ import {
 import {
   ProtectionGroup,
   ProtectionAction,
-} from '../../models/protection-groups.models';
+} from '../../models/protection-group.models';
 
 /**
  * t(PROTECTION.ACTION.DISABLE_ASICS)

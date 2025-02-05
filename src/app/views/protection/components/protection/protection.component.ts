@@ -6,11 +6,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { PROTECTION_GROUPS } from './protection.constants';
-import { ProtectionGroup } from '../../models/protection-groups.models';
+import { ProtectionGroup } from '../../models/protection-group.models';
 import { ProtectionGroupComponent } from '../protection-group/protection-group.component';
 import { of, delay } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { ProtectionRuleModel } from '../../models/protection-rule.models';
 
 @Component({
   selector: 'app-protection',
@@ -37,5 +38,9 @@ export class ProtectionComponent implements OnInit {
       .subscribe(() => {
         this.isLoading.set(false);
       });
+  }
+
+  saveRule(rule: ProtectionRuleModel): void {
+    console.log(`rule -->`, rule);
   }
 }
