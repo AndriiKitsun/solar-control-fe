@@ -6,6 +6,7 @@
       <app-protection-group
         [disabled]="isLoading()"
         [group]="group"
+        [rule]="rules[group.id]"
         (save)="saveRule($event)"
       />
     </div>

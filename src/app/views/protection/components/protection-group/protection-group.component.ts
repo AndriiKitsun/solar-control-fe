@@ -49,7 +49,6 @@ import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-di
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProtectionGroupComponent implements OnInit {
-  group = input.required<ProtectionGroup>();
   disabled = input.required<boolean, boolean>({
     transform: (value) => {
       if (!this.form) {
@@ -65,6 +64,17 @@ export class ProtectionGroupComponent implements OnInit {
       return value;
     },
   });
+  group = input.required<ProtectionGroup>();
+  rule = input.required<ProtectionRuleModel, ProtectionRuleModel>({
+    transform: (value) => {
+      if (value && this.form) {
+        this.form.setValue(value);
+      }
+
+      return value;
+    },
+  });
+
   save = output<ProtectionRuleModel>();
 
   form!: FormGroup<ProtectionRuleForm>;

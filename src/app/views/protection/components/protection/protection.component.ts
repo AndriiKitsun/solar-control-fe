@@ -12,6 +12,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
 import { ProtectionService } from '../../services/protection/protection.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-protection',
@@ -21,6 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class ProtectionComponent implements OnInit {
   groups: ProtectionGroup[] = PROTECTION_GROUPS;
+  rules: Record<string, ProtectionRuleModel> = {};
 
   isLoading = signal(false);
 
@@ -39,12 +41,21 @@ export class ProtectionComponent implements OnInit {
     this.protectionService
       .getProtectionRules()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
+      .subscribe((rules) => {
+        this.rules = rules;
+
         this.isLoading.set(false);
       });
   }
 
   saveRule(rule: ProtectionRuleModel): void {
-    console.log(`rule -->`, rule);
+    this.isLoading.set(true);
+
+    this.protectionService
+      .saveRule(rule)
+      .pipe(first())
+      .subscribe(() => {
+        this.isLoading.set(false);
+      });
   }
 }

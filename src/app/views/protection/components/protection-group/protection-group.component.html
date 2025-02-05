@@ -55,7 +55,7 @@
     <p-button
       [label]="t('BUTTON.SAVE')"
       icon="pi pi-save"
-      [disabled]="disabled() || form.invalid"
+      [disabled]="disabled() || form.invalid || !form.dirty"
       (onClick)="openSaveDialog($event)"
     />
   </div>
