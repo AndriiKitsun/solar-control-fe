@@ -6,6 +6,7 @@ import {
   AfterViewInit,
   ViewChild,
   ChangeDetectionStrategy,
+  Inject,
 } from '@angular/core';
 import {
   map,
@@ -53,6 +54,8 @@ import {
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
+import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
+import { ToastService } from '@common/services/toast/toast.service';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -68,6 +71,7 @@ import { Severity } from '@common/types/severity.types';
  * t(ASICS.TOAST.SIDE_BAR_ERROR)
  * t(ASICS.TOAST.SUMMARY_ERROR)
  * t(ASICS.TOAST.DELETE_ERROR)
+ * t(ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE)
  * */
 
 @Component({
@@ -86,7 +90,16 @@ import { Severity } from '@common/types/severity.types';
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ConfirmationService, MessageService],
+  providers: [
+    {
+      provide: ConfirmationService,
+      useClass: ConfirmDialogService,
+    },
+    {
+      provide: MessageService,
+      useClass: ToastService,
+    },
+  ],
 })
 export class AsicsComponent implements OnInit, AfterViewInit {
   isLoading = signal(false);
@@ -104,9 +117,11 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly asicsService: AsicsService,
     private readonly dialogService: DialogService,
-    private readonly confirmationService: ConfirmationService,
     private readonly translocoService: TranslocoService,
-    private readonly messageService: MessageService,
+    @Inject(ConfirmationService)
+    private readonly confirmDialogService: ConfirmDialogService,
+    @Inject(MessageService)
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -141,12 +156,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         this.isLoading.set(false);
       }),
       catchError((err) => {
-        // this.messageService.add(
-        //   createHttpErrorToast(
-        //     'ASICS.TOAST.SIDE_BAR_ERROR',
-        //     this.translocoService,
-        //   ),
-        // );
+        this.toastService.error('ASICS.TOAST.SIDE_BAR_ERROR');
 
         throw err;
       }),
@@ -218,12 +228,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         return [gridData];
       }),
       catchError((err) => {
-        // this.messageService.add(
-        //   createHttpErrorToast(
-        //     'ASICS.TOAST.SUMMARY_ERROR',
-        //     this.translocoService,
-        //   ),
-        // );
+        this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
 
         throw err;
       }),
@@ -277,23 +282,13 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   }
 
   openDeleteAsicModal(event: MouseEvent): void {
-    this.confirmationService.confirm({
+    this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: this.translocoService.translate(
-        'ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE',
-      ),
-      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
-      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
-      rejectButtonProps: {
-        label: this.translocoService.translate('BUTTON.CANCEL'),
-        severity: 'secondary',
-        icon: PrimeIcons.TIMES,
-        outlined: true,
-      },
+      message: 'ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE',
       acceptButtonProps: {
-        label: this.translocoService.translate('BUTTON.DELETE'),
+        label: 'BUTTON.DELETE',
         severity: 'danger',
-        icon: PrimeIcons.CHECK,
+        icon: PrimeIcons.TRASH,
       },
       accept: () => {
         this.deleteAsic();
@@ -322,12 +317,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           this.selectedItem.set(null);
         },
         error: () => {
-          // this.messageService.add(
-          //   createHttpErrorToast(
-          //     'ASICS.TOAST.DELETE_ERROR',
-          //     this.translocoService,
-          //   ),
-          // );
+          this.toastService.error('ASICS.TOAST.DELETE_ERROR');
         },
       });
   }

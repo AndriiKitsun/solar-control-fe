@@ -83,7 +83,7 @@
     />
     <p-button
       [label]="isEditMode ? t('BUTTON.EDIT') : t('BUTTON.ADD')"
-      icon="pi pi-check"
+      [icon]="isEditMode ? 'pi pi-pencil' : 'pi pi-plus'"
       [disabled]="form.invalid || !form.dirty"
       [loading]="isProcessing()"
       (onClick)="isEditMode ? editAsic() : addAsic()"
