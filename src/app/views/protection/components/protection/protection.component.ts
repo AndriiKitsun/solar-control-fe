@@ -8,10 +8,10 @@ import {
 import { PROTECTION_GROUPS } from './protection.constants';
 import { ProtectionGroup } from '../../models/protection-group.models';
 import { ProtectionGroupComponent } from '../protection-group/protection-group.component';
-import { of, delay } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
+import { ProtectionService } from '../../services/protection/protection.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-protection',
@@ -24,7 +24,10 @@ export class ProtectionComponent implements OnInit {
 
   isLoading = signal(false);
 
-  constructor(private readonly destroyRef: DestroyRef) {}
+  constructor(
+    private readonly protectionService: ProtectionService,
+    private readonly destroyRef: DestroyRef,
+  ) {}
 
   ngOnInit(): void {
     this.getProtectionRules();
@@ -33,8 +36,9 @@ export class ProtectionComponent implements OnInit {
   getProtectionRules(): void {
     this.isLoading.set(true);
 
-    of(null)
-      .pipe(delay(1000), takeUntilDestroyed(this.destroyRef))
+    this.protectionService
+      .getProtectionRules()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         this.isLoading.set(false);
       });

@@ -1,8 +1,9 @@
 import {
   ProtectionGroupId,
   ProtectionActionId,
-} from '../enums/protection-groups.enums';
+} from '../enums/protection-group.enums';
 import { TranslationKey } from '@common/types/lang.types';
+import { ProtectionRuleModel } from './protection-rule.models';
 
 export interface ProtectionGroup {
   id: ProtectionGroupId;
@@ -11,6 +12,7 @@ export interface ProtectionGroup {
   label: TranslationKey;
   input: ProtectionInput;
   actions: ProtectionAction[];
+  rule?: ProtectionRuleModel;
 }
 
 export interface ProtectionInput {

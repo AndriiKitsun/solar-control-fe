@@ -1,7 +1,7 @@
 import {
   ProtectionGroupId,
   ProtectionActionId,
-} from '../../enums/protection-groups.enums';
+} from '../../enums/protection-group.enums';
 import {
   ProtectionGroup,
   ProtectionAction,
