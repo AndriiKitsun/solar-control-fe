@@ -1,5 +1,7 @@
-export enum RoutePath {
+export const enum RoutePath {
   ROOT = '',
   SENSORS = 'sensors',
+  PROTECTION = 'protection',
+  CONTROL = 'control',
   ASICS = 'asics',
 }

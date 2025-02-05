@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   signal,
-  inject,
   DestroyRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -25,9 +24,10 @@ export class TabBarComponent implements OnInit {
   tabs: TabItem[] = MAIN_TABS;
   activeRoute = signal('');
 
-  private destroyRef = inject(DestroyRef);
-
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly destroyRef: DestroyRef,
+  ) {}
 
   ngOnInit(): void {
     this.getActiveRoute();

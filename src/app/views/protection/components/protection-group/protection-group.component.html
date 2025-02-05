@@ -1,0 +1,65 @@
+<div class="flex justify-between" *transloco="let t" [formGroup]="form">
+  <div class="flex items-center gap-x-4">
+    <p-floatlabel variant="on">
+      <p-input-number
+        [inputId]="group().minInputId"
+        [min]="group().input.min"
+        [max]="group().input.max"
+        [step]="group().input.step"
+        [suffix]="t(group().input.suffix)"
+        [minFractionDigits]="group().input.fractionDigits"
+        [maxFractionDigits]="group().input.fractionDigits"
+        [useGrouping]="false"
+        showButtons
+        formControlName="min"
+      />
+      <label [for]="group().minInputId">{{
+        t('PROTECTION.PLACEHOLDER.MIN')
+      }}</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+      <p-input-number
+        [inputId]="group().maxInputId"
+        [min]="group().input.min"
+        [max]="group().input.max"
+        [step]="group().input.step"
+        [suffix]="t(group().input.suffix)"
+        [minFractionDigits]="group().input.fractionDigits"
+        [maxFractionDigits]="group().input.fractionDigits"
+        [useGrouping]="false"
+        showButtons
+        formControlName="max"
+      />
+      <label [for]="group().maxInputId">{{
+        t('PROTECTION.PLACEHOLDER.MAX')
+      }}</label>
+    </p-floatlabel>
+
+    @for (action of group().actions; track action.id) {
+      <div class="flex items-center">
+        <p-checkbox
+          [inputId]="group().id + action.id"
+          [value]="action.id"
+          name="actions"
+          formControlName="actions"
+        />
+        <label [for]="group().id + action.id" class="ml-2">{{
+          t(action.label)
+        }}</label>
+      </div>
+    }
+  </div>
+
+  <div class="flex items-center">
+    <p-button
+      [label]="t('PROTECTION.BUTTON.SAVE')"
+      icon="pi pi-save"
+      [disabled]="isDisabled() || form.invalid || !form.dirty"
+      (onClick)="openSaveDialog($event)"
+    />
+  </div>
+</div>
+
+<p-confirm-dialog />
+<p-toast />

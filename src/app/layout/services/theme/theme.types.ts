@@ -30,7 +30,7 @@ export enum ThemePresetName {
   LARA = 'Lara',
 }
 
-export enum ColorScheme {
+export const enum ColorScheme {
   LIGHT = 'light',
   DARK = 'dark',
 }

@@ -1,4 +1,4 @@
-export enum SubmenuAnimationState {
+export const enum SubmenuAnimationState {
   COLLAPSED = 'collapsed',
   EXPANDED = 'expanded',
 }

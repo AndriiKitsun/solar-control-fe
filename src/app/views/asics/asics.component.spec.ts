@@ -6,8 +6,8 @@ import { AsicsServiceMock } from './services/asics/mocks/asics.service.mock';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogServiceMock } from '@common/mocks/dialog.service.mock';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmationServiceMock } from '@common/mocks/confirmation.service.mock';
-import { MessageServiceMock } from '@common/mocks/message.service.mock';
+import { ConfirmDialogServiceMock } from '@common/services/confirm-dialog/mocks/confirm-dialog.service.mock';
+import { ToastServiceMock } from '@common/services/toast/mocks/toast.service.mock';
 
 describe('AsicsComponent', () => {
   let component: AsicsComponent;
@@ -27,11 +27,11 @@ describe('AsicsComponent', () => {
         },
         {
           provide: ConfirmationService,
-          useClass: ConfirmationServiceMock,
+          useClass: ConfirmDialogServiceMock,
         },
         {
           provide: MessageService,
-          useClass: MessageServiceMock,
+          useClass: ToastServiceMock,
         },
       ],
     }).compileComponents();

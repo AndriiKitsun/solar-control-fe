@@ -6,8 +6,8 @@ import { SensorsWebSocketService } from './services/sensors-websocket/sensors-we
 import { SensorsService } from './services/sensors/sensors.service';
 import { SensorsWebsocketServiceMock } from './services/sensors-websocket/mocks/sensors-websocket.service.mock';
 import { SensorsServiceMock } from './services/sensors/mocks/sensors.service.mock';
-import { ConfirmationServiceMock } from '@common/mocks/confirmation.service.mock';
-import { MessageServiceMock } from '@common/mocks/message.service.mock';
+import { ConfirmDialogServiceMock } from '@common/services/confirm-dialog/mocks/confirm-dialog.service.mock';
+import { ToastServiceMock } from '@common/services/toast/mocks/toast.service.mock';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;
@@ -26,12 +26,12 @@ describe('SensorsComponent', () => {
           useClass: SensorsServiceMock,
         },
         {
-          provide: MessageService,
-          useClass: MessageServiceMock,
+          provide: ConfirmationService,
+          useClass: ConfirmDialogServiceMock,
         },
         {
-          provide: ConfirmationService,
-          useClass: ConfirmationServiceMock,
+          provide: MessageService,
+          useClass: ToastServiceMock,
         },
       ],
     }).compileComponents();

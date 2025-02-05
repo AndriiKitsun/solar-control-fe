@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-
 import {
   Component,
   OnInit,
@@ -33,8 +31,8 @@ import { TranslationKey } from '@common/types/lang.types';
 import { ModifyAsicForm } from './modify-asic-dialog.types';
 
 /**
- * t(ASICS.TOAST.ADD)
- * t(ASICS.TOAST.EDIT)
+ * t(ASICS.TOAST.ADD_ERROR)
+ * t(ASICS.TOAST.EDIT_ERROR)
  * */
 
 @Component({
@@ -154,7 +152,7 @@ export class ModifyAsicDialogComponent implements OnInit {
           this.closeDialog(data);
         },
         error: () => {
-          this.errorMessageKey = 'ASICS.TOAST.ADD';
+          this.errorMessageKey = 'ASICS.TOAST.ADD_ERROR';
         },
       });
   }
@@ -180,7 +178,7 @@ export class ModifyAsicDialogComponent implements OnInit {
           this.closeDialog(data);
         },
         error: () => {
-          this.errorMessageKey = 'ASICS.TOAST.EDIT';
+          this.errorMessageKey = 'ASICS.TOAST.EDIT_ERROR';
         },
       });
   }
