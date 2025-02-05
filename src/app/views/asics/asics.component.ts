@@ -71,7 +71,7 @@ import { ToastService } from '@common/services/toast/toast.service';
  * t(ASICS.TOAST.SIDE_BAR_ERROR)
  * t(ASICS.TOAST.SUMMARY_ERROR)
  * t(ASICS.TOAST.DELETE_ERROR)
- * t(ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE)
+ * t(ASICS.CONFIRM_DIALOG.DELETE_ASIC_MESSAGE)
  * */
 
 @Component({
@@ -284,9 +284,9 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   openDeleteAsicModal(event: MouseEvent): void {
     this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: 'ASICS.CONFIRM_DIALOG.DELETE_ASIC.MESSAGE',
+      message: 'ASICS.CONFIRM_DIALOG.DELETE_ASIC_MESSAGE',
       acceptButtonProps: {
-        label: 'BUTTON.DELETE',
+        label: 'ASICS.BUTTON.DELETE',
         severity: 'danger',
         icon: PrimeIcons.TRASH,
       },

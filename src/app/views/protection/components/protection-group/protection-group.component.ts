@@ -128,7 +128,7 @@ export class ProtectionGroupComponent implements OnInit {
       message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
       acceptButtonProps: {
         icon: PrimeIcons.SAVE,
-        label: 'BUTTON.SAVE',
+        label: 'PROTECTION.BUTTON.SAVE',
       },
       accept: () => {
         this.saveRule();

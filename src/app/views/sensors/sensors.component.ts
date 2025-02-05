@@ -40,8 +40,8 @@ import { ToastService } from '@common/services/toast/toast.service';
  * t(SENSORS.BUTTON.SWITCH)
  * t(SENSORS.TOAST.RESET_ERROR)
  * t(SENSORS.TOAST.POWER_ERROR)
- * t(SENSORS.CONFIRM_DIALOG.POWER.MESSAGE)
- * t(SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE)
+ * t(SENSORS.CONFIRM_DIALOG.POWER_MESSAGE)
+ * t(SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE)
  * */
 
 @Component({
@@ -173,7 +173,7 @@ export class SensorsComponent implements OnInit {
   openResetConfirmationModal(event: MouseEvent): void {
     this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: 'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
+      message: 'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE',
       acceptButtonProps: {
         label: 'SENSORS.BUTTON.RESET',
         icon: PrimeIcons.BOLT,
@@ -188,7 +188,7 @@ export class SensorsComponent implements OnInit {
   openSwitchPowerConfirmationModal(event: MouseEvent): void {
     this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: 'SENSORS.CONFIRM_DIALOG.POWER.MESSAGE',
+      message: 'SENSORS.CONFIRM_DIALOG.POWER_MESSAGE',
       acceptButtonProps: {
         label: 'SENSORS.BUTTON.SWITCH',
         icon: PrimeIcons.POWER_OFF,

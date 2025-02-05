@@ -1,9 +1,12 @@
 {
   "ASICS": {
     "CONFIRM_DIALOG": {
-      "DELETE_ASIC": {
-        "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
-      }
+      "DELETE_ASIC_MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
+    },
+    "BUTTON": {
+      "ADD": "Додати",
+      "EDIT": "Редагувати",
+      "DELETE": "Видалити"
     },
     "DIALOG": {
       "MODIFY": {
@@ -54,17 +57,16 @@
     }
   },
   "BUTTON": {
-    "ADD": "Додати",
     "CANCEL": "Скасувати",
-    "DELETE": "Видалити",
-    "EDIT": "Редагувати",
-    "OK": "Ок",
-    "SAVE": "Зберегти"
+    "OK": "Ок"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Підтвердження"
   },
   "PROTECTION": {
+    "BUTTON": {
+      "SAVE": "Зберегти"
+    },
     "ACTION": {
       "ALARM": "Тривога",
       "DISABLE_ASICS": "Вимкнути Asic-и",
@@ -108,12 +110,8 @@
       "SWITCH": "Перемкнути"
     },
     "CONFIRM_DIALOG": {
-      "POWER": {
-        "MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?"
-      },
-      "RESET_COUNTERS": {
-        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
-      }
+      "POWER_MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?",
+      "RESET_COUNTERS_MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
     },
     "PZEM_LABEL": "Показники PZEM",
     "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",

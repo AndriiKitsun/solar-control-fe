@@ -1,9 +1,12 @@
 {
   "ASICS": {
     "CONFIRM_DIALOG": {
-      "DELETE_ASIC": {
-        "MESSAGE": "Are you sure you want to delete the Asic?"
-      }
+      "DELETE_ASIC_MESSAGE": "Are you sure you want to delete the Asic?"
+    },
+    "BUTTON": {
+      "ADD": "Add",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
     },
     "DIALOG": {
       "MODIFY": {
@@ -54,18 +57,16 @@
     }
   },
   "BUTTON": {
-    "ADD": "Add",
     "CANCEL": "Cancel",
-    "DELETE": "Delete",
-    "EDIT": "Edit",
-    "OK": "Ok",
-
-    "SAVE": "Save"
+    "OK": "Ok"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Confirm"
   },
   "PROTECTION": {
+    "BUTTON": {
+      "SAVE": "Save"
+    },
     "ACTION": {
       "ALARM": "Alarm",
       "DISABLE_ASICS": "Disable Asics",
@@ -109,12 +110,8 @@
       "SWITCH": "Switch"
     },
     "CONFIRM_DIALOG": {
-      "POWER": {
-        "MESSAGE": "Are you sure you want to switch the power?"
-      },
-      "RESET_COUNTERS": {
-        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
-      }
+      "POWER_MESSAGE": "Are you sure you want to switch the power?",
+      "RESET_COUNTERS_MESSAGE": "Are you sure you want to reset the PZEM counters?"
     },
     "PZEM_LABEL": "PZEM Sensors",
     "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
