@@ -3,9 +3,7 @@ import { MessageService } from 'primeng/api';
 import { TranslocoService } from '@jsverse/transloco';
 import { TranslationKey } from '../../types/lang.types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ToastService extends MessageService {
   constructor(private readonly translocoService: TranslocoService) {
     super();

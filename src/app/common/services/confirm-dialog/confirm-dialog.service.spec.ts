@@ -15,6 +15,10 @@ describe('ConfirmDialogService', () => {
     service = TestBed.inject(ConfirmDialogService);
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
   describe('confirmDialog', () => {
     let confirmSpy: jasmine.Spy;
 
@@ -55,10 +59,10 @@ describe('ConfirmDialogService', () => {
           severity: 'success',
           icon: PrimeIcons.TIMES,
           outlined: true,
-          label: 'en.BUTTON.RESET',
+          label: 'en.BUTTON.CANCEL',
         },
         acceptButtonProps: {
-          label: 'en.BUTTON.SAVE',
+          label: 'en.BUTTON.OK',
           icon: PrimeIcons.TIMES,
         },
       };
@@ -67,11 +71,11 @@ describe('ConfirmDialogService', () => {
         message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
         position: 'position',
         rejectButtonProps: {
-          label: 'BUTTON.RESET',
+          label: 'BUTTON.CANCEL',
           severity: 'success',
         },
         acceptButtonProps: {
-          label: 'BUTTON.SAVE',
+          label: 'BUTTON.OK',
           icon: PrimeIcons.TIMES,
         },
       });
