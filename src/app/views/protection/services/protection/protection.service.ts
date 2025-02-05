@@ -36,8 +36,8 @@ export class ProtectionService {
       }),
       map((rules: ProtectionRuleModel[]) => {
         return rules.reduce(
-          (acc, item) => {
-            acc[item.groupId] = item;
+          (acc, rule) => {
+            acc[rule.groupId] = rule;
 
             return acc;
           },

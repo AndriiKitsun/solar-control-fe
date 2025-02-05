@@ -21,14 +21,17 @@ import {
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
 import { ProtectionRuleForm } from './protection-group.models';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { ConfirmationService, PrimeIcons } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ProtectionService } from '../../services/protection/protection.service';
 import { first, finalize } from 'rxjs';
+import { Toast } from 'primeng/toast';
+import { ToastService } from '@common/services/toast/toast.service';
 
 /**
  * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
+ * t(PROTECTION.TOAST.SAVE_ERROR)
  */
 
 @Component({
@@ -41,11 +44,16 @@ import { first, finalize } from 'rxjs';
     Button,
     TranslocoDirective,
     ConfirmDialog,
+    Toast,
   ],
   providers: [
     {
       provide: ConfirmationService,
       useClass: ConfirmDialogService,
+    },
+    {
+      provide: MessageService,
+      useClass: ToastService,
     },
   ],
   templateUrl: './protection-group.component.html',
@@ -79,9 +87,11 @@ export class ProtectionGroupComponent implements OnInit {
   private isLoading = signal(false);
 
   constructor(
+    private readonly protectionService: ProtectionService,
     @Inject(ConfirmationService)
     private readonly confirmDialogService: ConfirmDialogService,
-    private readonly protectionService: ProtectionService,
+    @Inject(MessageService)
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -137,8 +147,13 @@ export class ProtectionGroupComponent implements OnInit {
           this.isLoading.set(false);
         }),
       )
-      .subscribe(() => {
-        this.form.reset(this.form.value);
+      .subscribe({
+        next: () => {
+          this.form.reset(this.form.value);
+        },
+        error: () => {
+          this.toastService.error('PROTECTION.TOAST.SAVE_ERROR');
+        },
       });
   }
 }
