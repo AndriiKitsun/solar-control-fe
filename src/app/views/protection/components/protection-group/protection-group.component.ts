@@ -2,9 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output,
   OnInit,
   Inject,
+  computed,
+  signal,
 } from '@angular/core';
 import { Button } from 'primeng/button';
 import { Checkbox } from 'primeng/checkbox';
@@ -23,6 +24,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
+import { ProtectionService } from '../../services/protection/protection.service';
+import { first, finalize } from 'rxjs';
 
 /**
  * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
@@ -49,21 +52,7 @@ import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-di
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProtectionGroupComponent implements OnInit {
-  disabled = input.required<boolean, boolean>({
-    transform: (value) => {
-      if (!this.form) {
-        return value;
-      }
-
-      if (value) {
-        this.form.disable();
-      } else {
-        this.form.enable();
-      }
-
-      return value;
-    },
-  });
+  disabled = input.required<boolean>();
   group = input.required<ProtectionGroup>();
   rule = input.required<ProtectionRuleModel, ProtectionRuleModel>({
     transform: (value) => {
@@ -75,13 +64,24 @@ export class ProtectionGroupComponent implements OnInit {
     },
   });
 
-  save = output<ProtectionRuleModel>();
+  isDisabled = computed(() => {
+    const disabled = this.disabled() || this.isLoading();
+
+    if (this.form) {
+      disabled ? this.form.disable() : this.form.enable();
+    }
+
+    return disabled;
+  });
 
   form!: FormGroup<ProtectionRuleForm>;
+
+  private isLoading = signal(false);
 
   constructor(
     @Inject(ConfirmationService)
     private readonly confirmDialogService: ConfirmDialogService,
+    private readonly protectionService: ProtectionService,
   ) {}
 
   ngOnInit(): void {
@@ -90,20 +90,20 @@ export class ProtectionGroupComponent implements OnInit {
       min: new FormControl(
         {
           value: null,
-          disabled: this.disabled(),
+          disabled: this.isDisabled(),
         },
         Validators.required,
       ),
       max: new FormControl(
         {
           value: null,
-          disabled: this.disabled(),
+          disabled: this.isDisabled(),
         },
         Validators.required,
       ),
       actions: new FormControl({
         value: [],
-        disabled: this.disabled(),
+        disabled: this.isDisabled(),
       }),
     });
   }
@@ -121,8 +121,24 @@ export class ProtectionGroupComponent implements OnInit {
         label: 'BUTTON.SAVE',
       },
       accept: () => {
-        this.save.emit(this.form.value as ProtectionRuleModel);
+        this.saveRule();
       },
     });
+  }
+
+  saveRule(): void {
+    this.isLoading.set(true);
+
+    this.protectionService
+      .saveRule(this.form.value as ProtectionRuleModel)
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+      )
+      .subscribe(() => {
+        this.form.reset(this.form.value);
+      });
   }
 }

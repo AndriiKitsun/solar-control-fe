@@ -12,7 +12,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
 import { ProtectionService } from '../../services/protection/protection.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'app-protection',
@@ -44,17 +43,6 @@ export class ProtectionComponent implements OnInit {
       .subscribe((rules) => {
         this.rules = rules;
 
-        this.isLoading.set(false);
-      });
-  }
-
-  saveRule(rule: ProtectionRuleModel): void {
-    this.isLoading.set(true);
-
-    this.protectionService
-      .saveRule(rule)
-      .pipe(first())
-      .subscribe(() => {
         this.isLoading.set(false);
       });
   }

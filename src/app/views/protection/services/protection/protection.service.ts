@@ -50,6 +50,15 @@ export class ProtectionService {
   saveRule(rule: ProtectionRuleModel): Observable<null> {
     console.log(`rule -->`, rule);
 
-    return of(null).pipe(delay(2000));
+    return of(null).pipe(
+      delay(2000),
+      map((value) => {
+        if (Math.random() > 0.5) {
+          throw new Error('error occured');
+        }
+
+        return value;
+      }),
+    );
   }
 }
