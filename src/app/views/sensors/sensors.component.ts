@@ -5,11 +5,12 @@ import {
   DestroyRef,
   computed,
   ChangeDetectionStrategy,
+  Inject,
 } from '@angular/core';
 import { Observable, map, tap, first, finalize } from 'rxjs';
 import { AsyncPipe, NgClass, DatePipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
@@ -29,13 +30,18 @@ import {
   TWO_DIGIT,
 } from '@common/helpers/format.helper';
 import { Toolbar } from 'primeng/toolbar';
-import { createHttpErrorToast } from '@common/helpers/toast.helper';
+import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
+import { ToastService } from '@common/services/toast/toast.service';
 
 /**
  * t(SENSORS.PZEM_LABEL)
  * t(SENSORS.PZEM_LABEL_WITH_TIME)
+ * t(SENSORS.BUTTON.RESET)
+ * t(SENSORS.BUTTON.SWITCH)
  * t(SENSORS.TOAST.RESET_ERROR)
  * t(SENSORS.TOAST.POWER_ERROR)
+ * t(SENSORS.CONFIRM_DIALOG.POWER.MESSAGE)
+ * t(SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE)
  * */
 
 @Component({
@@ -54,7 +60,16 @@ import { createHttpErrorToast } from '@common/helpers/toast.helper';
     ConfirmDialog,
     Toolbar,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [
+    {
+      provide: ConfirmationService,
+      useClass: ConfirmDialogService,
+    },
+    {
+      provide: MessageService,
+      useClass: ToastService,
+    },
+  ],
 })
 export class SensorsComponent implements OnInit {
   isWsConnecting = signal(false);
@@ -73,10 +88,11 @@ export class SensorsComponent implements OnInit {
   constructor(
     private readonly sensorsWebSocketService: SensorsWebSocketService,
     private readonly sensorsService: SensorsService,
-    private readonly translocoService: TranslocoService,
-    private readonly messageService: MessageService,
-    private readonly confirmationService: ConfirmationService,
     private readonly destroyRef: DestroyRef,
+    @Inject(ConfirmationService)
+    private readonly confirmDialogService: ConfirmDialogService,
+    @Inject(MessageService)
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -148,29 +164,19 @@ export class SensorsComponent implements OnInit {
       energy: formatNum(pzem.energy, ONE_DIGIT),
       t1Energy: formatNum(pzem.t1Energy, ONE_DIGIT),
       t2Energy: formatNum(pzem.t2Energy, ONE_DIGIT),
-      frequency: formatNum(pzem.frequency, NEAREST_INT),
+      frequency: formatNum(pzem.frequency, TWO_DIGIT),
       powerFactor: formatNum(pzem.powerFactor, TWO_DIGIT),
       avgVoltage: formatNum(pzem.avgVoltage, THREE_DIGITS),
     };
   }
 
   openResetConfirmationModal(event: MouseEvent): void {
-    this.confirmationService.confirm({
+    this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: this.translocoService.translate(
-        'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
-      ),
-      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
-      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
-      rejectButtonProps: {
-        label: this.translocoService.translate('BUTTON.CANCEL'),
-        severity: 'secondary',
-        icon: PrimeIcons.TIMES,
-        outlined: true,
-      },
+      message: 'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS.MESSAGE',
       acceptButtonProps: {
-        label: this.translocoService.translate('BUTTON.RESET'),
-        icon: PrimeIcons.CHECK,
+        label: 'SENSORS.BUTTON.RESET',
+        icon: PrimeIcons.BOLT,
         severity: 'danger',
       },
       accept: () => {
@@ -180,22 +186,12 @@ export class SensorsComponent implements OnInit {
   }
 
   openSwitchPowerConfirmationModal(event: MouseEvent): void {
-    this.confirmationService.confirm({
+    this.confirmDialogService.confirmDialog({
       target: event.target!,
-      message: this.translocoService.translate(
-        'SENSORS.CONFIRM_DIALOG.POWER.MESSAGE',
-      ),
-      header: this.translocoService.translate('CONFIRM_DIALOG.HEADER'),
-      icon: PrimeIcons.EXCLAMATION_TRIANGLE,
-      rejectButtonProps: {
-        label: this.translocoService.translate('BUTTON.CANCEL'),
-        severity: 'secondary',
-        icon: PrimeIcons.TIMES,
-        outlined: true,
-      },
+      message: 'SENSORS.CONFIRM_DIALOG.POWER.MESSAGE',
       acceptButtonProps: {
-        label: this.translocoService.translate('BUTTON.RESET'),
-        icon: PrimeIcons.CHECK,
+        label: 'SENSORS.BUTTON.SWITCH',
+        icon: PrimeIcons.POWER_OFF,
         severity: 'danger',
       },
       accept: () => {
@@ -217,12 +213,7 @@ export class SensorsComponent implements OnInit {
       )
       .subscribe({
         error: () => {
-          this.messageService.add(
-            createHttpErrorToast(
-              'SENSORS.TOAST.RESET_ERROR',
-              this.translocoService,
-            ),
-          );
+          this.toastService.error('SENSORS.TOAST.RESET_ERROR');
         },
       });
   }
@@ -243,12 +234,7 @@ export class SensorsComponent implements OnInit {
           this.powerStatus.set(response.status);
         },
         error: () => {
-          this.messageService.add(
-            createHttpErrorToast(
-              'SENSORS.TOAST.POWER_ERROR',
-              this.translocoService,
-            ),
-          );
+          this.toastService.error('SENSORS.TOAST.POWER_ERROR');
         },
       });
   }

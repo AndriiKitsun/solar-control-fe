@@ -59,7 +59,7 @@
     "DELETE": "Delete",
     "EDIT": "Edit",
     "OK": "Ok",
-    "RESET": "Reset",
+
     "SAVE": "Save"
   },
   "CONFIRM_DIALOG": {
@@ -104,7 +104,9 @@
     "BUTTON": {
       "POWER_OFF": "Power OFF",
       "POWER_ON": "Power ON",
-      "RESET_COUNTERS": "Reset counters"
+      "RESET_COUNTERS": "Reset counters",
+      "RESET": "Reset",
+      "SWITCH": "Switch"
     },
     "CONFIRM_DIALOG": {
       "POWER": {

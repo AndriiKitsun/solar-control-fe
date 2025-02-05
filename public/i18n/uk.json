@@ -59,7 +59,6 @@
     "DELETE": "Видалити",
     "EDIT": "Редагувати",
     "OK": "Ок",
-    "RESET": "Скинути",
     "SAVE": "Зберегти"
   },
   "CONFIRM_DIALOG": {
@@ -104,7 +103,9 @@
     "BUTTON": {
       "POWER_OFF": "Вимкнути",
       "POWER_ON": "Увімкнути",
-      "RESET_COUNTERS": "Скинути лічильники"
+      "RESET_COUNTERS": "Скинути лічильники",
+      "RESET": "Скинути",
+      "SWITCH": "Перемкнути"
     },
     "CONFIRM_DIALOG": {
       "POWER": {

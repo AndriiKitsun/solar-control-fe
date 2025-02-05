@@ -53,7 +53,6 @@ import {
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
-import { createHttpErrorToast } from '@common/helpers/toast.helper';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -142,12 +141,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         this.isLoading.set(false);
       }),
       catchError((err) => {
-        this.messageService.add(
-          createHttpErrorToast(
-            'ASICS.TOAST.SIDE_BAR_ERROR',
-            this.translocoService,
-          ),
-        );
+        // this.messageService.add(
+        //   createHttpErrorToast(
+        //     'ASICS.TOAST.SIDE_BAR_ERROR',
+        //     this.translocoService,
+        //   ),
+        // );
 
         throw err;
       }),
@@ -219,12 +218,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         return [gridData];
       }),
       catchError((err) => {
-        this.messageService.add(
-          createHttpErrorToast(
-            'ASICS.TOAST.SUMMARY_ERROR',
-            this.translocoService,
-          ),
-        );
+        // this.messageService.add(
+        //   createHttpErrorToast(
+        //     'ASICS.TOAST.SUMMARY_ERROR',
+        //     this.translocoService,
+        //   ),
+        // );
 
         throw err;
       }),
@@ -323,12 +322,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           this.selectedItem.set(null);
         },
         error: () => {
-          this.messageService.add(
-            createHttpErrorToast(
-              'ASICS.TOAST.DELETE_ERROR',
-              this.translocoService,
-            ),
-          );
+          // this.messageService.add(
+          //   createHttpErrorToast(
+          //     'ASICS.TOAST.DELETE_ERROR',
+          //     this.translocoService,
+          //   ),
+          // );
         },
       });
   }
