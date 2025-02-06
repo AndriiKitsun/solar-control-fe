@@ -38,6 +38,7 @@
     <app-sensors-table
       [loading]="isLoading()"
       [rows]="(sensorsData$ | async)!"
+      [settings]="settings"
     />
   </div>
 </ng-container>

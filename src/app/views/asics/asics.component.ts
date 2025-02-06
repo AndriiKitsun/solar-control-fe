@@ -46,11 +46,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { Toast } from 'primeng/toast';
 import { toObservable } from '@angular/core/rxjs-interop';
-import {
-  formatNum,
-  NEAREST_INT,
-  TWO_DIGIT,
-} from '@common/helpers/format.helper';
+import { formatNum, NumFormat } from '@common/helpers/format.helper';
 import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
 import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
@@ -220,9 +216,12 @@ export class AsicsComponent implements OnInit, AfterViewInit {
             summary.avgHashRate,
             summary.currentPreset,
           ),
-          maxChipTemp: formatNum(summary.maxChipTemp, NEAREST_INT),
-          powerConsumption: formatNum(summary.powerConsumption, NEAREST_INT),
-          avgFanSpeed: formatNum(summary.avgFanSpeed, NEAREST_INT),
+          maxChipTemp: formatNum(summary.maxChipTemp, NumFormat.NEAREST_INT),
+          powerConsumption: formatNum(
+            summary.powerConsumption,
+            NumFormat.NEAREST_INT,
+          ),
+          avgFanSpeed: formatNum(summary.avgFanSpeed, NumFormat.NEAREST_INT),
         };
 
         return [gridData];
@@ -236,7 +235,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   }
 
   formatHashRate(hashrate: number, preset?: string): string {
-    const formatted = formatNum(hashrate, TWO_DIGIT);
+    const formatted = formatNum(hashrate, NumFormat.TWO_DIGIT);
 
     if (preset) {
       return `${formatted} / ${preset}`;

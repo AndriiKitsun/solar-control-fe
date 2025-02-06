@@ -23,6 +23,8 @@ import { Toolbar } from 'primeng/toolbar';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
 import { SensorsTableComponent } from '../sensors-table/sensors-table.component';
+import { SettingsService } from '../../services/settings/settings.service';
+import { SettingsModel } from '../../models/setting.models';
 
 /**
  * t(SENSORS.BUTTON.RESET)
@@ -69,12 +71,13 @@ export class SensorsComponent implements OnInit {
   powerStatus = signal(false);
 
   createdAt = '';
-
   sensorsData$!: Observable<PzemDataModel>;
+  settings!: SettingsModel;
 
   constructor(
     private readonly sensorsWebSocketService: SensorsWebSocketService,
     private readonly sensorsService: SensorsService,
+    private readonly settingsService: SettingsService,
     private readonly destroyRef: DestroyRef,
     @Inject(ConfirmationService)
     private readonly confirmDialogService: ConfirmDialogService,
@@ -83,12 +86,13 @@ export class SensorsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.subscribeOnWsStatusChange();
-    this.subscribeOnPowerChange();
+    this.getWsStatus();
+    this.getPowerStatus();
     this.sensorsData$ = this.getSensorsData();
+    this.getSettings();
   }
 
-  subscribeOnWsStatusChange(): void {
+  getWsStatus(): void {
     this.sensorsWebSocketService.isConnected$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
@@ -99,7 +103,7 @@ export class SensorsComponent implements OnInit {
       .subscribe();
   }
 
-  subscribeOnPowerChange(): void {
+  getPowerStatus(): void {
     this.sensorsService
       .getPowerStatus()
       .pipe(
@@ -121,6 +125,18 @@ export class SensorsComponent implements OnInit {
         this.createdAt = response.createdAtGmt;
       }),
     );
+  }
+
+  getSettings(): void {
+    this.settingsService
+      .getSettings()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((settings) => {
+          this.settings = settings;
+        }),
+      )
+      .subscribe();
   }
 
   openResetConfirmationModal(event: MouseEvent): void {

@@ -26,7 +26,7 @@ export const enum TableRowId {
   DC_BATTERY = 'dcBattery',
 }
 
-export const TABLE_ROWS: readonly Pick<RowConfig, 'id' | 'title'>[] = [
+export const SENSORS_TABLE_ROWS: readonly Pick<RowConfig, 'id' | 'title'>[] = [
   {
     id: TableRowId.AC_INPUT,
     title: 'SENSORS.TABLE.ROW.AC_INPUT',
@@ -73,26 +73,26 @@ export const SENSORS_TABLE_COLUMNS: ColumnConfig[] = [
     field: 't1Energy',
     minWidth: TableColumnWidth.MEDIUM,
   },
-  // {
-  //   header: 'SENSORS.TABLE.COLUMN.T1_ENERGY_CCY',
-  //   field: 't1EnergyCost',
-  //   minWidth: TableColumnWidth.MEDIUM,
-  // },
+  {
+    header: 'SENSORS.TABLE.COLUMN.T1_ENERGY_CCY',
+    field: 't1EnergyCost',
+    minWidth: TableColumnWidth.MEDIUM,
+  },
   {
     header: 'SENSORS.TABLE.COLUMN.T2_ENERGY',
     field: 't2Energy',
     minWidth: TableColumnWidth.MEDIUM,
   },
-  // {
-  //   header: 'SENSORS.TABLE.COLUMN.T2_ENERGY_CCY',
-  //   field: 't2EnergyCost',
-  //   minWidth: TableColumnWidth.MEDIUM,
-  // },
-  // {
-  //   header: 'SENSORS.TABLE.COLUMN.ENERGY_CCY_SUM',
-  //   field: 'energyCost',
-  //   minWidth: TableColumnWidth.MEDIUM,
-  // },
+  {
+    header: 'SENSORS.TABLE.COLUMN.T2_ENERGY_CCY',
+    field: 't2EnergyCost',
+    minWidth: TableColumnWidth.MEDIUM,
+  },
+  {
+    header: 'SENSORS.TABLE.COLUMN.ENERGY_CCY_SUM',
+    field: 'energyCost',
+    minWidth: TableColumnWidth.MEDIUM,
+  },
   {
     header: 'SENSORS.TABLE.COLUMN.FREQUENCY',
     field: 'frequency',
