@@ -115,19 +115,19 @@
     },
     "TABLE": {
       "COLUMN": {
-        "NAME": "Назва",
-        "VOLTAGE": "U (В)",
+        "AVG_VOLTAGE": "Сер. U (В)",
         "CURRENT": "I (A)",
-        "POWER": "P (кВт)",
         "ENERGY": "E (кВт⋅год)",
+        "ENERGY_CCY_SUM": "E Сума (грн)",
+        "FREQUENCY": "F (Гц)",
+        "NAME": "Назва",
+        "POWER": "P (кВт)",
+        "POWER_FACTOR": "Коеф. потуж.",
         "T1_ENERGY": "T1 (кВт⋅год)",
         "T1_ENERGY_CCY": "T1 (грн)",
         "T2_ENERGY": "T2 (кВт⋅год)",
         "T2_ENERGY_CCY": "T2 (грн)",
-        "ENERGY_CCY_SUM": "E Сума (грн)",
-        "FREQUENCY": "F (Гц)",
-        "POWER_FACTOR": "Коеф. потуж.",
-        "AVG_VOLTAGE": "Сер. U (В)"
+        "VOLTAGE": "U (В)"
       },
       "ROW": {
         "AC_INPUT": "AC Вхід",

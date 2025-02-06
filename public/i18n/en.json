@@ -115,19 +115,19 @@
     },
     "TABLE": {
       "COLUMN": {
-        "NAME": "Name",
-        "VOLTAGE": "U (V)",
+        "AVG_VOLTAGE": "Avg U (V)",
         "CURRENT": "I (A)",
-        "POWER": "P (kW)",
         "ENERGY": "E (kW⋅h)",
+        "ENERGY_CCY_SUM": "E Sum (UAH)",
+        "FREQUENCY": "F (Hz)",
+        "NAME": "Name",
+        "POWER": "P (kW)",
+        "POWER_FACTOR": "Power factor",
         "T1_ENERGY": "T1 (kW⋅h)",
         "T1_ENERGY_CCY": "T1 (UAH)",
         "T2_ENERGY": "T2 (kW⋅h)",
         "T2_ENERGY_CCY": "T2 (UAH)",
-        "ENERGY_CCY_SUM": "E Sum (UAH)",
-        "FREQUENCY": "F (Hz)",
-        "POWER_FACTOR": "Power factor",
-        "AVG_VOLTAGE": "Avg U (V)"
+        "VOLTAGE": "U (V)"
       },
       "ROW": {
         "AC_INPUT": "AC Input",
