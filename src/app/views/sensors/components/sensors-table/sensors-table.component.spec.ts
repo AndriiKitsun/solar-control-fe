@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SensorsTableComponent } from './sensors-table.component';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('SensorsTableComponent', () => {
   let component: SensorsTableComponent;
@@ -7,7 +8,7 @@ describe('SensorsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SensorsTableComponent],
+      imports: [SensorsTableComponent, TranslocoTestingModule.forRoot({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SensorsTableComponent);
