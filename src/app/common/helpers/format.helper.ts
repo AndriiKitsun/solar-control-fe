@@ -1,9 +1,11 @@
 import { formatNumber } from '@angular/common';
 
-export const NEAREST_INT = '1.0-0';
-export const ONE_DIGIT = '1.1-1';
-export const TWO_DIGIT = '1.2-2';
-export const THREE_DIGITS = '1.3-3';
+export const enum NumFormat {
+  NEAREST_INT = '1.0-0',
+  ONE_DIGIT = '1.1-1',
+  TWO_DIGIT = '1.2-2',
+  THREE_DIGITS = '1.3-3',
+}
 
 /**
  *

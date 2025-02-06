@@ -11,7 +11,9 @@ export default [
   {
     path: RoutePath.SENSORS,
     loadComponent: () =>
-      import('./sensors/sensors.component').then((c) => c.SensorsComponent),
+      import('./sensors/components/sensors/sensors.component').then(
+        (c) => c.SensorsComponent,
+      ),
   },
   {
     path: RoutePath.PROTECTION,
