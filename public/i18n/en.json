@@ -113,20 +113,21 @@
       "POWER_MESSAGE": "Are you sure you want to switch the power?",
       "RESET_COUNTERS_MESSAGE": "Are you sure you want to reset the PZEM counters?"
     },
-    "PZEM_LABEL": "PZEM Sensors",
-    "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
     "TABLE": {
       "COLUMN": {
-        "AVG_VOLTAGE": "10m U (V)",
-        "CURRENT": "I (A)",
-        "ENERGY": "E (kW⋅h)",
-        "FREQUENCY": "F (Hz)",
         "NAME": "Name",
+        "VOLTAGE": "U (V)",
+        "CURRENT": "I (A)",
         "POWER": "P (kW)",
-        "POWER_FACTOR": "Power factor",
+        "ENERGY": "E (kW⋅h)",
         "T1_ENERGY": "T1 (kW⋅h)",
+        "T1_ENERGY_CCY": "T1 (UAH)",
         "T2_ENERGY": "T2 (kW⋅h)",
-        "VOLTAGE": "U (V)"
+        "T2_ENERGY_CCY": "T2 (UAH)",
+        "ENERGY_CCY_SUM": "E Sum (UAH)",
+        "FREQUENCY": "F (Hz)",
+        "POWER_FACTOR": "Power factor",
+        "AVG_VOLTAGE": "Avg U (V)"
       },
       "ROW": {
         "AC_INPUT": "AC Input",

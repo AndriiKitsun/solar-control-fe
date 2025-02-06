@@ -113,20 +113,21 @@
       "POWER_MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?",
       "RESET_COUNTERS_MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
     },
-    "PZEM_LABEL": "Показники PZEM",
-    "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
     "TABLE": {
       "COLUMN": {
-        "AVG_VOLTAGE": "10хв U (В)",
-        "CURRENT": "I (A)",
-        "ENERGY": "E (кВт⋅год)",
-        "FREQUENCY": "F (Гц)",
         "NAME": "Назва",
+        "VOLTAGE": "U (В)",
+        "CURRENT": "I (A)",
         "POWER": "P (кВт)",
-        "POWER_FACTOR": "Коеф. потуж.",
+        "ENERGY": "E (кВт⋅год)",
         "T1_ENERGY": "T1 (кВт⋅год)",
+        "T1_ENERGY_CCY": "T1 (грн)",
         "T2_ENERGY": "T2 (кВт⋅год)",
-        "VOLTAGE": "U (В)"
+        "T2_ENERGY_CCY": "T2 (грн)",
+        "ENERGY_CCY_SUM": "E Сума (грн)",
+        "FREQUENCY": "F (Гц)",
+        "POWER_FACTOR": "Коеф. потуж.",
+        "AVG_VOLTAGE": "Сер. U (В)"
       },
       "ROW": {
         "AC_INPUT": "AC Вхід",
