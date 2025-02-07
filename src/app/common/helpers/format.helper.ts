@@ -1,4 +1,4 @@
-import { formatNumber } from '@angular/common';
+import { formatNumber, formatCurrency } from '@angular/common';
 
 export const enum NumFormat {
   NEAREST_INT = '1.0-0',
@@ -18,11 +18,19 @@ export const enum NumFormat {
  */
 export function formatNum(
   value: number | undefined | null,
-  digitsInfo: string,
+  digitsInfo: NumFormat,
 ): string {
   if (value === null || value === undefined) {
     return '';
   }
 
   return formatNumber(value, 'en-US', digitsInfo);
+}
+
+export function formatCcy(value: number | undefined | null): string {
+  if (value === null || value === undefined) {
+    return '';
+  }
+
+  return formatCurrency(value, 'en-US', '₴');
 }

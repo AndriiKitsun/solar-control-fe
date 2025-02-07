@@ -1,6 +1,7 @@
 .table {
   &__cell {
     text-align: center;
+    white-space: nowrap;
   }
 
   &__row-title {

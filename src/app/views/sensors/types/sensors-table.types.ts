@@ -1,5 +1,6 @@
 import { TranslationKey } from '@common/types/lang.types';
 import { TableColumnWidth } from '@common/enums/table.enums';
+import { HashMap } from '@jsverse/transloco';
 
 export interface RowConfig {
   id: string;
@@ -28,4 +29,5 @@ export interface ColumnConfig {
   field: keyof RowDataModel | '';
   minWidth?: TableColumnWidth;
   isTitle?: boolean;
+  params?: HashMap;
 }

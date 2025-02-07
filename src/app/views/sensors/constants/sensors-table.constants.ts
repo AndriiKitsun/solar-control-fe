@@ -77,6 +77,9 @@ export const SENSORS_TABLE_COLUMNS: ColumnConfig[] = [
     header: 'SENSORS.TABLE.COLUMN.T1_ENERGY_CCY',
     field: 't1EnergyCost',
     minWidth: TableColumnWidth.MEDIUM,
+    params: {
+      cost: 0,
+    },
   },
   {
     header: 'SENSORS.TABLE.COLUMN.T2_ENERGY',
@@ -87,6 +90,9 @@ export const SENSORS_TABLE_COLUMNS: ColumnConfig[] = [
     header: 'SENSORS.TABLE.COLUMN.T2_ENERGY_CCY',
     field: 't2EnergyCost',
     minWidth: TableColumnWidth.MEDIUM,
+    params: {
+      cost: 0,
+    },
   },
   {
     header: 'SENSORS.TABLE.COLUMN.ENERGY_CCY_SUM',

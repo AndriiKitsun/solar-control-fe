@@ -7,7 +7,7 @@ import {
   RowConfig,
   ColumnConfig,
 } from '../../types/sensors-table.types';
-import { formatNum, NumFormat } from '@common/helpers/format.helper';
+import { formatNum, NumFormat, formatCcy } from '@common/helpers/format.helper';
 import {
   SENSORS_TABLE_ROWS,
   SENSORS_TABLE_COLUMNS,
@@ -33,7 +33,29 @@ export class SensorsTableComponent {
       return this.transformToRow(value);
     },
   });
-  settings = input<SettingsModel | null>(null);
+  settings = input.required<SettingsModel, SettingsModel>({
+    transform: (value: SettingsModel) => {
+      if (!value) {
+        return {} as SettingsModel;
+      }
+
+      this.columnConfigs = SENSORS_TABLE_COLUMNS.map((column) => {
+        const col = { ...column };
+
+        if (col.field === 't1EnergyCost') {
+          col.params = { cost: formatCcy(value.t1EnergyCcyPrice) };
+        }
+
+        if (col.field === 't2EnergyCost') {
+          col.params = { cost: formatCcy(value.t2EnergyCcyPrice) };
+        }
+
+        return col;
+      });
+
+      return value;
+    },
+  });
 
   columnConfigs: ColumnConfig[] = SENSORS_TABLE_COLUMNS;
 
@@ -60,11 +82,11 @@ export class SensorsTableComponent {
 
     const t1EnergyCost = this.calcCost(
       pzem.t1Energy,
-      this.settings()?.t1EnergyCcyPrice,
+      this.settings().t1EnergyCcyPrice,
     );
     const t2EnergyCost = this.calcCost(
       pzem.t2Energy,
-      this.settings()?.t2EnergyCcyPrice,
+      this.settings().t2EnergyCcyPrice,
     );
     const energyCost = t1EnergyCost + t2EnergyCost;
 

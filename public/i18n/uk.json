@@ -124,9 +124,9 @@
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",
         "T1_ENERGY": "T1 (кВт⋅год)",
-        "T1_ENERGY_CCY": "T1 (грн)",
+        "T1_ENERGY_CCY": "T1 (грн) / {{cost}}",
         "T2_ENERGY": "T2 (кВт⋅год)",
-        "T2_ENERGY_CCY": "T2 (грн)",
+        "T2_ENERGY_CCY": "T2 (грн) / {{cost}}",
         "VOLTAGE": "U (В)"
       },
       "ROW": {
