@@ -101,6 +101,7 @@
   },
   "SENSORS": {
     "BUTTON": {
+      "POWER": "Живлення",
       "POWER_OFF": "Вимкнути",
       "POWER_ON": "Увімкнути",
       "RESET": "Скинути",

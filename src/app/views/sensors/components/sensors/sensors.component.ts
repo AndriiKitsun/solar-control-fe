@@ -25,10 +25,15 @@ import { ToastService } from '@common/services/toast/toast.service';
 import { SensorsTableComponent } from '../sensors-table/sensors-table.component';
 import { SettingsService } from '../../../settings/services/settings/settings.service';
 import { SettingsModel } from '../../../settings/models/settings.models';
+import { TranslationKey } from '@common/types/lang.types';
+import { Severity } from '@common/types/severity.types';
 
 /**
  * t(SENSORS.BUTTON.RESET)
  * t(SENSORS.BUTTON.SWITCH)
+ * t(SENSORS.BUTTON.POWER)
+ * t(SENSORS.BUTTON.POWER_ON)
+ * t(SENSORS.BUTTON.POWER_OFF)
  * t(SENSORS.TOAST.RESET_ERROR)
  * t(SENSORS.TOAST.SWITCH_POWER_ERROR)
  * t(SENSORS.TOAST.POWER_STATUS_ERROR)
@@ -69,7 +74,9 @@ export class SensorsComponent implements OnInit {
   isResetProcessing = signal<boolean>(false);
   isPowerProcessing = signal<boolean>(false);
 
-  powerStatus = signal(false);
+  powerStatus?: boolean;
+  powerBtnLabel: TranslationKey = 'SENSORS.BUTTON.POWER';
+  powerBtnSeverity: Severity = 'secondary';
 
   createdAt = '';
   sensorsData$!: Observable<PzemDataModel>;
@@ -105,12 +112,25 @@ export class SensorsComponent implements OnInit {
   }
 
   getPowerStatus(): void {
+    this.isPowerProcessing.set(true);
+
     this.sensorsService
       .getPowerStatus()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         tap((response) => {
-          this.powerStatus.set(response.status);
+          this.powerStatus = response.status;
+
+          if (response.status) {
+            this.powerBtnLabel = 'SENSORS.BUTTON.POWER_OFF';
+            this.powerBtnSeverity = 'danger';
+          } else {
+            this.powerBtnLabel = 'SENSORS.BUTTON.POWER_ON';
+            this.powerBtnSeverity = 'success';
+          }
+        }),
+        finalize(() => {
+          this.isPowerProcessing.set(false);
         }),
       )
       .subscribe({
@@ -200,7 +220,7 @@ export class SensorsComponent implements OnInit {
     this.isPowerProcessing.set(true);
 
     this.sensorsService
-      .switchPower(!this.powerStatus())
+      .switchPower(!this.powerStatus)
       .pipe(
         first(),
         finalize(() => {
@@ -209,7 +229,7 @@ export class SensorsComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.powerStatus.set(response.status);
+          this.powerStatus = response.status;
         },
         error: () => {
           void this.toastService.error('SENSORS.TOAST.SWITCH_POWER_ERROR');

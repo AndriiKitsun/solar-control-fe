@@ -101,6 +101,7 @@
   },
   "SENSORS": {
     "BUTTON": {
+      "POWER": "Power",
       "POWER_OFF": "Power OFF",
       "POWER_ON": "Power ON",
       "RESET": "Reset",

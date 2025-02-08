@@ -9,16 +9,14 @@
 
       <ng-template #end>
         <p-button
-          [label]="
-            powerStatus()
-              ? t('SENSORS.BUTTON.POWER_OFF')
-              : t('SENSORS.BUTTON.POWER_ON')
-          "
+          [label]="t(powerBtnLabel)"
           variant="outlined"
-          [severity]="powerStatus() ? 'danger' : 'success'"
+          [severity]="powerBtnSeverity"
           icon="pi pi-power-off"
           styleClass="mr-2"
-          [disabled]="isLoading() || isPowerProcessing()"
+          [disabled]="
+            isLoading() || isPowerProcessing() || powerStatus === undefined
+          "
           [loading]="isPowerProcessing()"
           (onClick)="openSwitchPowerConfirmationModal($event)"
         />
