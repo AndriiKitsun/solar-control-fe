@@ -122,9 +122,9 @@
         "POWER": "P (kW)",
         "POWER_FACTOR": "Power factor",
         "T1_ENERGY": "T1 (kW⋅h)",
-        "T1_ENERGY_CCY": "T1 (UAH) / {{cost}}",
+        "T1_ENERGY_CCY": "T1 (UAH) / {{price}}",
         "T2_ENERGY": "T2 (kW⋅h)",
-        "T2_ENERGY_CCY": "T2 (UAH) / {{cost}}",
+        "T2_ENERGY_CCY": "T2 (UAH) / {{price}}",
         "VOLTAGE": "U (V)"
       },
       "ROW": {

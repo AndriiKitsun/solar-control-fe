@@ -43,11 +43,11 @@ export class SensorsTableComponent {
         const col = { ...column };
 
         if (col.field === 't1EnergyCost') {
-          col.params = { cost: formatCcy(value.t1EnergyCcyPrice) };
+          col.params = { price: formatCcy(value.t1EnergyCcyPrice) };
         }
 
         if (col.field === 't2EnergyCost') {
-          col.params = { cost: formatCcy(value.t2EnergyCcyPrice) };
+          col.params = { price: formatCcy(value.t2EnergyCcyPrice) };
         }
 
         return col;
