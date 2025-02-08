@@ -1,5 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TranslocoTestingModule } from '@jsverse/transloco';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -7,7 +8,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, TranslocoTestingModule.forRoot({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

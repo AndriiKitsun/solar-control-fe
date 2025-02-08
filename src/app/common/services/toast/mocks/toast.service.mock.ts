@@ -14,5 +14,7 @@ export class ToastServiceMock implements ClassMock<ToastService> {
 
   clear(key?: string): void {}
 
-  error(message: TranslationKey): void {}
+  async error(message: TranslationKey): Promise<void> {
+    return;
+  }
 }
