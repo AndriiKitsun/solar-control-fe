@@ -14,7 +14,7 @@ export class ToastService extends MessageService {
   }
 
   async error(message: TranslationKey): Promise<void> {
-    if (await this.langService.langLoaded()) {
+    if (await this.langService.getLangLoadEvent()) {
       this.add({
         severity: 'error',
         summary: this.translocoService.translate('TOAST.ERROR_SUMMARY'),

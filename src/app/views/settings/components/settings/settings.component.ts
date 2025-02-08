@@ -120,7 +120,8 @@ export class SettingsComponent implements OnInit {
             t1EnergyCcyPrice: settings.t1EnergyCcyPrice,
             t2EnergyCcyPrice: settings.t2EnergyCcyPrice,
           });
-
+        }),
+        finalize(() => {
           this.isLoading.set(false);
         }),
       )
@@ -157,6 +158,9 @@ export class SettingsComponent implements OnInit {
             }),
           )
           .subscribe({
+            next: () => {
+              this.form.reset(this.form.value);
+            },
             error: () => {
               void this.toastService.error('SETTINGS.TOAST.SAVE_ERROR');
             },

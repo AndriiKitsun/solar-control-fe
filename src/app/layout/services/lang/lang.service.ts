@@ -25,7 +25,7 @@ export class LangService {
     LocalStorageHelper.set(LangService.langKey, lang);
   }
 
-  async langLoaded(): Promise<boolean> {
+  async getLangLoadEvent(): Promise<boolean> {
     if (this.isLangLoaded) {
       return this.isLangLoaded;
     }

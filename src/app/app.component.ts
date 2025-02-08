@@ -9,7 +9,11 @@ import { LangService } from '@layout/services/lang/lang.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+  constructor(private readonly langService: LangService) {}
+
   ngOnInit(): void {
     document.documentElement.lang = LangService.getLang();
+
+    void this.langService.getLangLoadEvent();
   }
 }
