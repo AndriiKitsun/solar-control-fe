@@ -3,10 +3,11 @@ import { HeaderComponent } from '../header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { TabBarComponent } from '../tab-bar/tab-bar.component';
 import { ThemeService } from '../../services/theme/theme.service';
+import { LockerComponent } from '../locker/locker.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [HeaderComponent, TabBarComponent, RouterOutlet],
+  imports: [HeaderComponent, TabBarComponent, RouterOutlet, LockerComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
