@@ -11,7 +11,10 @@ import { Button } from 'primeng/button';
 import { Checkbox } from 'primeng/checkbox';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputNumber } from 'primeng/inputnumber';
-import { ProtectionGroup } from '../../models/protection-group.models';
+import {
+  ProtectionGroup,
+  ProtectionRuleForm,
+} from '../../types/protection-group.types';
 import {
   FormGroup,
   FormControl,
@@ -19,7 +22,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
-import { ProtectionRuleForm } from './protection-group.models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -128,7 +130,7 @@ export class ProtectionGroupComponent implements OnInit {
       message: 'PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE',
       acceptButtonProps: {
         icon: PrimeIcons.SAVE,
-        label: 'PROTECTION.BUTTON.SAVE',
+        label: 'BUTTON.SAVE',
       },
       accept: () => {
         this.saveRule();
@@ -152,7 +154,7 @@ export class ProtectionGroupComponent implements OnInit {
           this.form.reset(this.form.value);
         },
         error: () => {
-          this.toastService.error('PROTECTION.TOAST.SAVE_ERROR');
+          void this.toastService.error('PROTECTION.TOAST.SAVE_ERROR');
         },
       });
   }

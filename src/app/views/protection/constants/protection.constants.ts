@@ -1,11 +1,11 @@
 import {
   ProtectionGroupId,
   ProtectionActionId,
-} from '../../enums/protection-group.enums';
+} from '../enums/protection-group.enums';
 import {
   ProtectionGroup,
   ProtectionAction,
-} from '../../models/protection-group.models';
+} from '../types/protection-group.types';
 
 /**
  * t(PROTECTION.ACTION.DISABLE_ASICS)

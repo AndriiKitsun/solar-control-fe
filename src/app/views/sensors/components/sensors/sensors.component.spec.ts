@@ -8,8 +8,8 @@ import { SensorsWebsocketServiceMock } from '../../services/sensors-websocket/mo
 import { SensorsServiceMock } from '../../services/sensors/mocks/sensors.service.mock';
 import { ConfirmDialogServiceMock } from '@common/services/confirm-dialog/mocks/confirm-dialog.service.mock';
 import { ToastServiceMock } from '@common/services/toast/mocks/toast.service.mock';
-import { SettingsService } from '../../services/settings/settings.service';
-import { SettingsServiceMock } from '../../services/settings/mocks/settings.service.mock';
+import { SettingsService } from '../../../settings/services/settings/settings.service';
+import { SettingsServiceMock } from '../../../settings/services/settings/mocks/settings.service.mock';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;

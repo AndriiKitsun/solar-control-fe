@@ -3,4 +3,8 @@ import { LangService } from '../lang.service';
 
 export class LangServiceMock implements ClassMock<LangService> {
   switchLang(lang: string): void {}
+
+  async getLangLoadEvent(): Promise<boolean> {
+    return false;
+  }
 }

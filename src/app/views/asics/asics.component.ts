@@ -152,7 +152,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         this.isLoading.set(false);
       }),
       catchError((err) => {
-        this.toastService.error('ASICS.TOAST.SIDE_BAR_ERROR');
+        void this.toastService.error('ASICS.TOAST.SIDE_BAR_ERROR');
 
         throw err;
       }),
@@ -227,7 +227,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         return [gridData];
       }),
       catchError((err) => {
-        this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
+        void this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
 
         throw err;
       }),
@@ -316,7 +316,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           this.selectedItem.set(null);
         },
         error: () => {
-          this.toastService.error('ASICS.TOAST.DELETE_ERROR');
+          void this.toastService.error('ASICS.TOAST.DELETE_ERROR');
         },
       });
   }

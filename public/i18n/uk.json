@@ -58,7 +58,8 @@
   },
   "BUTTON": {
     "CANCEL": "Скасувати",
-    "OK": "Ок"
+    "OK": "Ок",
+    "SAVE": "Зберегти"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Підтвердження"
@@ -68,9 +69,6 @@
       "ALARM": "Тривога",
       "DISABLE_ASICS": "Вимкнути Asic-и",
       "POWER_OFF": "Вимкнути живлення"
-    },
-    "BUTTON": {
-      "SAVE": "Зберегти"
     },
     "CONFIRM_DIALOG": {
       "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правила захисту?"
@@ -124,9 +122,9 @@
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",
         "T1_ENERGY": "T1 (кВт⋅год)",
-        "T1_ENERGY_CCY": "T1 (грн)",
+        "T1_ENERGY_CCY": "T1 (грн) / {{price}}",
         "T2_ENERGY": "T2 (кВт⋅год)",
-        "T2_ENERGY_CCY": "T2 (грн)",
+        "T2_ENERGY_CCY": "T2 (грн) / {{price}}",
         "VOLTAGE": "U (В)"
       },
       "ROW": {
@@ -136,15 +134,29 @@
       }
     },
     "TOAST": {
-      "POWER_ERROR": "Виникла помилка під час скидання перемикання енергії",
-      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM"
+      "POWER_STATUS_ERROR": "Виникла помилка під час завантаження статусу живлення",
+      "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM",
+      "SWITCH_POWER_ERROR": "Виникла помилка під час скидання перемикання енергії"
+    }
+  },
+  "SETTINGS": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти налаштування?"
+    },
+    "ELECTRICITY_SETTINGS": "Тариф на електроенергію",
+    "T1_CCY_PRICE": "День (Т1)",
+    "T2_CCY_PRICE": "Ніч (Т2)",
+    "TOAST": {
+      "SAVE_ERROR": "Виникла помилка під час зберігання налаштувань",
+      "SETTINGS_ERROR": "Виникла помилка під час завантаження налаштувань"
     }
   },
   "TAB_BAR": {
     "ASICS": "Asic-и",
     "CONTROL": "Керування",
     "PROTECTION": "Захист",
-    "SENSORS": "Датчики"
+    "SENSORS": "Датчики",
+    "SETTINGS": "Налаштування"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",

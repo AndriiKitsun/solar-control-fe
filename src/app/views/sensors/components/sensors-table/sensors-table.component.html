@@ -7,14 +7,13 @@
     [tableStyle]="{ 'min-height': '13rem' }"
     showGridlines
     rowHover
-    scrollable
     stripedRows
   >
     <ng-template #header let-columns>
       <tr>
         @for (col of columns; track col.header) {
           <th [style.min-width.rem]="col.minWidth" class="table__cell">
-            {{ t(col.header) }}
+            {{ t(col.header, col.params) }}
           </th>
         }
       </tr>

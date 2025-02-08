@@ -23,14 +23,15 @@ import { Toolbar } from 'primeng/toolbar';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
 import { SensorsTableComponent } from '../sensors-table/sensors-table.component';
-import { SettingsService } from '../../services/settings/settings.service';
-import { SettingsModel } from '../../models/setting.models';
+import { SettingsService } from '../../../settings/services/settings/settings.service';
+import { SettingsModel } from '../../../settings/models/settings.models';
 
 /**
  * t(SENSORS.BUTTON.RESET)
  * t(SENSORS.BUTTON.SWITCH)
  * t(SENSORS.TOAST.RESET_ERROR)
- * t(SENSORS.TOAST.POWER_ERROR)
+ * t(SENSORS.TOAST.SWITCH_POWER_ERROR)
+ * t(SENSORS.TOAST.POWER_STATUS_ERROR)
  * t(SENSORS.CONFIRM_DIALOG.POWER_MESSAGE)
  * t(SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE)
  * */
@@ -112,7 +113,11 @@ export class SensorsComponent implements OnInit {
           this.powerStatus.set(response.status);
         }),
       )
-      .subscribe();
+      .subscribe({
+        error: () => {
+          void this.toastService.error('SENSORS.TOAST.POWER_STATUS_ERROR');
+        },
+      });
   }
 
   getSensorsData(): Observable<PzemDataModel> {
@@ -136,7 +141,11 @@ export class SensorsComponent implements OnInit {
           this.settings = settings;
         }),
       )
-      .subscribe();
+      .subscribe({
+        error: () => {
+          void this.toastService.error('SETTINGS.TOAST.SETTINGS_ERROR');
+        },
+      });
   }
 
   openResetConfirmationModal(event: MouseEvent): void {
@@ -182,7 +191,7 @@ export class SensorsComponent implements OnInit {
       )
       .subscribe({
         error: () => {
-          this.toastService.error('SENSORS.TOAST.RESET_ERROR');
+          void this.toastService.error('SENSORS.TOAST.RESET_ERROR');
         },
       });
   }
@@ -203,7 +212,7 @@ export class SensorsComponent implements OnInit {
           this.powerStatus.set(response.status);
         },
         error: () => {
-          this.toastService.error('SENSORS.TOAST.POWER_ERROR');
+          void this.toastService.error('SENSORS.TOAST.SWITCH_POWER_ERROR');
         },
       });
   }

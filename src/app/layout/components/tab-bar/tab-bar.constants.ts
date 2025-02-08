@@ -7,6 +7,7 @@ import { PrimeIcons } from 'primeng/api';
  * t(TAB_BAR.PROTECTION)
  * t(TAB_BAR.CONTROL)
  * t(TAB_BAR.ASICS)
+ * t(TAB_BAR.SETTINGS)
  * */
 
 export const MAIN_TABS: TabItem[] = [
@@ -30,6 +31,11 @@ export const MAIN_TABS: TabItem[] = [
     label: 'TAB_BAR.ASICS',
     icon: PrimeIcons.SERVER,
     route: RoutePath.ASICS,
+  },
+  {
+    label: 'TAB_BAR.SETTINGS',
+    icon: PrimeIcons.COG,
+    route: RoutePath.SETTINGS,
   },
 ];
 
