@@ -5,8 +5,8 @@ import {
   DestroyRef,
   OnInit,
 } from '@angular/core';
-import { PROTECTION_GROUPS } from './protection.constants';
-import { ProtectionGroup } from '../../models/protection-group.models';
+import { PROTECTION_GROUPS } from '../../constants/protection.constants';
+import { ProtectionGroup } from '../../types/protection-group.types';
 import { ProtectionGroupComponent } from '../protection-group/protection-group.component';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';

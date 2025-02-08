@@ -3,7 +3,8 @@ import {
   ProtectionActionId,
 } from '../enums/protection-group.enums';
 import { TranslationKey } from '@common/types/lang.types';
-import { ProtectionRuleModel } from './protection-rule.models';
+import { ProtectionRuleModel } from '../models/protection-rule.models';
+import { FormControl } from '@angular/forms';
 
 export interface ProtectionGroup {
   id: ProtectionGroupId;
@@ -26,4 +27,11 @@ export interface ProtectionInput {
 export interface ProtectionAction {
   id: ProtectionActionId;
   label: TranslationKey;
+}
+
+export interface ProtectionRuleForm {
+  groupId: FormControl<ProtectionGroupId | null>;
+  min: FormControl<number | null>;
+  max: FormControl<number | null>;
+  actions: FormControl<ProtectionActionId[] | null>;
 }

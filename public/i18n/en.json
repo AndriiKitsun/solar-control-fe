@@ -58,7 +58,8 @@
   },
   "BUTTON": {
     "CANCEL": "Cancel",
-    "OK": "Ok"
+    "OK": "Ok",
+    "SAVE": "Save"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Confirm"
@@ -68,9 +69,6 @@
       "ALARM": "Alarm",
       "DISABLE_ASICS": "Disable Asics",
       "POWER_OFF": "Power OFF"
-    },
-    "BUTTON": {
-      "SAVE": "Save"
     },
     "CONFIRM_DIALOG": {
       "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
@@ -136,8 +134,21 @@
       }
     },
     "TOAST": {
-      "POWER_ERROR": "The error occurred while switching power",
-      "RESET_ERROR": "The error occurred while resetting of the PZEM counters"
+      "POWER_STATUS_ERROR": "The error occurred while fetching power status",
+      "RESET_ERROR": "The error occurred while resetting of the PZEM counters",
+      "SWITCH_POWER_ERROR": "The error occurred while switching power"
+    }
+  },
+  "SETTINGS": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save settings?"
+    },
+    "ELECTRICITY_SETTINGS": "Electricity tariff",
+    "T1_CCY_PRICE": "Day (T1)",
+    "T2_CCY_PRICE": "Night (T2)",
+    "TOAST": {
+      "SAVE_ERROR": "The error occurred while saving settings",
+      "SETTINGS_ERROR": "The error occurred while fetching settings"
     }
   },
   "TAB_BAR": {

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import {
   SettingsModel,
   UpdateSettingsModel,
-} from '../../../models/setting.models';
+} from '../../../models/settings.models';
 
 export class SettingsServiceMock implements ClassMock<SettingsService> {
   getSettings(): Observable<SettingsModel> {

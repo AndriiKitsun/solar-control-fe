@@ -13,7 +13,7 @@ import {
   SENSORS_TABLE_COLUMNS,
 } from '../../constants/sensors-table.constants';
 import { NgClass } from '@angular/common';
-import { SettingsModel } from '../../../settings/models/setting.models';
+import { SettingsModel } from '../../../settings/models/settings.models';
 
 @Component({
   selector: 'app-sensors-table',
