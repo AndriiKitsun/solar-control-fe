@@ -23,8 +23,8 @@ import { Toolbar } from 'primeng/toolbar';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
 import { SensorsTableComponent } from '../sensors-table/sensors-table.component';
-import { SettingsService } from '../../services/settings/settings.service';
-import { SettingsModel } from '../../models/setting.models';
+import { SettingsService } from '../../../settings/services/settings/settings.service';
+import { SettingsModel } from '../../../settings/models/setting.models';
 
 /**
  * t(SENSORS.BUTTON.RESET)

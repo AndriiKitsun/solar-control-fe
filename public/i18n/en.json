@@ -144,7 +144,8 @@
     "ASICS": "Asics",
     "CONTROL": "Control",
     "PROTECTION": "Protection",
-    "SENSORS": "Sensors"
+    "SENSORS": "Sensors",
+    "SETTINGS": "Settings"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",

@@ -28,4 +28,12 @@ export default [
       import('./asics/asics.component').then((c) => c.AsicsComponent),
     providers: [DialogService],
   },
+  {
+    path: RoutePath.SETTINGS,
+    loadComponent: () =>
+      import('./settings/components/settings/settings.component').then(
+        (c) => c.SettingsComponent,
+      ),
+    providers: [DialogService],
+  },
 ] as Routes;

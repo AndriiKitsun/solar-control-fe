@@ -4,4 +4,5 @@ export const enum RoutePath {
   PROTECTION = 'protection',
   CONTROL = 'control',
   ASICS = 'asics',
+  SETTINGS = 'settings',
 }

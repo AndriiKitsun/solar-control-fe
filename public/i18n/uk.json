@@ -144,7 +144,8 @@
     "ASICS": "Asic-и",
     "CONTROL": "Керування",
     "PROTECTION": "Захист",
-    "SENSORS": "Датчики"
+    "SENSORS": "Датчики",
+    "SETTINGS": "Налаштування"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",
