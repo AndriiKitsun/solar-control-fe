@@ -1,72 +1,131 @@
 {
   "ASICS": {
+    "BUTTON": {
+      "ADD": "Add",
+      "DELETE": "Delete",
+      "EDIT": "Edit"
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC_MESSAGE": "Are you sure you want to delete the Asic?"
+    },
     "DIALOG": {
       "MODIFY": {
+        "FIELD": {
+          "ADDRESS": "Address*",
+          "IP": "IP Address*",
+          "PASSWORD": "Password",
+          "PASSWORD_REQUIRED": "Password*"
+        },
         "HEADER": {
           "ADD": "Add Asic",
           "EDIT": "Edit Asic"
         },
-        "FIELD": {
-          "IP": "IP Address*",
-          "ADDRESS": "Address*",
-          "PASSWORD": "Password",
-          "PASSWORD_REQUIRED": "Password*"
-        },
         "VALIDATION": {
-          "REQUIRED": "Field is required",
-          "INVALID": "Field is invalid"
+          "INVALID": "Field is invalid",
+          "REQUIRED": "Field is required"
         }
       }
     },
-    "CONFIRM_DIALOG": {
-      "DELETE_ASIC": {
-        "MESSAGE": "Are you sure you want to delete the Asic?"
-      }
-    },
-    "TOAST": {
-      "SIDE_BAR": "The error occurred while fetching the Asics list",
-      "SUMMARY": "The error occurred while fetching the Asic summary",
-      "ADD": "The error occurred while adding an Asic",
-      "EDIT": "The error occurred while editing an Asic",
-      "DELETE": "The error occurred while deleting an Asic"
-    },
     "TABLE": {
       "COLUMN": {
-        "IP_ADDRESS": "IP Address",
-        "STATE": "Status",
-        "TIME": "Time",
         "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
+        "FAN_SPEED": "Fan Speed (%)",
+        "IP_ADDRESS": "IP Address",
         "MAX_TEMP": "Max Temperature (°C)",
         "POWER_USAGE": "Power Usage (kW)",
-        "FAN_SPEED": "Fan Speed (%)"
+        "STATE": "Status",
+        "TIME": "Time"
       },
       "STATE": {
-        "MINING": "Mining",
-        "INITIALIZING": "Initializing",
-        "STARTING": "Starting",
         "AUTO-TUNING": "Auto tuning",
+        "FAILURE": "Failure",
+        "INITIALIZING": "Initializing",
+        "MINING": "Mining",
         "RESTARTING": "Restarting",
         "SHUTTING-DOWN": "Shutting down",
-        "STOPPED": "Stopped",
-        "FAILURE": "Failure"
+        "STARTING": "Starting",
+        "STOPPED": "Stopped"
       },
       "TIME_FORMAT": "{{days}}d {{hours}}h {{minutes}}m"
+    },
+    "TOAST": {
+      "ADD_ERROR": "The error occurred while adding an Asic",
+      "DELETE_ERROR": "The error occurred while deleting an Asic",
+      "EDIT_ERROR": "The error occurred while editing an Asic",
+      "SIDE_BAR_ERROR": "The error occurred while fetching the Asics list",
+      "SUMMARY_ERROR": "The error occurred while fetching the Asic summary"
+    }
+  },
+  "BUTTON": {
+    "CANCEL": "Cancel",
+    "OK": "Ok",
+    "SAVE": "Save"
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Confirm"
+  },
+  "PROTECTION": {
+    "ACTION": {
+      "ALARM": "Alarm",
+      "DISABLE_ASICS": "Disable Asics",
+      "POWER_OFF": "Power OFF"
+    },
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
+    },
+    "GROUP": {
+      "AC_OUTPUT_AVG_VOLTAGE": {
+        "LABEL": "AC Output - Avg Voltage",
+        "SUFFIX": " V"
+      },
+      "AC_OUTPUT_FREQUENCY": {
+        "LABEL": "AC Output - Frequency",
+        "SUFFIX": " Hz"
+      },
+      "AC_OUTPUT_VOLTAGE": {
+        "LABEL": "AC Output - Voltage",
+        "SUFFIX": " V"
+      },
+      "DC_BATTERY_VOLTAGE": {
+        "LABEL": "DC Battery - Voltage",
+        "SUFFIX": " V"
+      }
+    },
+    "PLACEHOLDER": {
+      "MAX": "Max",
+      "MIN": "Min"
+    },
+    "TOAST": {
+      "SAVE_ERROR": "The error occurred while saving protection rules"
     }
   },
   "SENSORS": {
-    "PZEM_LABEL": "PZEM Sensors",
-    "PZEM_LABEL_WITH_TIME": "PZEM Sensors: {{time}}",
+    "BUTTON": {
+      "POWER": "Power",
+      "POWER_OFF": "Power OFF",
+      "POWER_ON": "Power ON",
+      "RESET": "Reset",
+      "RESET_COUNTERS": "Reset counters",
+      "SWITCH": "Switch"
+    },
+    "CONFIRM_DIALOG": {
+      "POWER_MESSAGE": "Are you sure you want to switch the power?",
+      "RESET_COUNTERS_MESSAGE": "Are you sure you want to reset the PZEM counters?"
+    },
     "TABLE": {
       "COLUMN": {
-        "AVG_VOLTAGE": "10m U (V)",
+        "AVG_VOLTAGE": "Avg U (V)",
         "CURRENT": "I (A)",
         "ENERGY": "E (kW⋅h)",
+        "ENERGY_CCY_SUM": "E Sum (UAH)",
         "FREQUENCY": "F (Hz)",
         "NAME": "Name",
         "POWER": "P (kW)",
         "POWER_FACTOR": "Power factor",
         "T1_ENERGY": "T1 (kW⋅h)",
+        "T1_ENERGY_CCY": "T1 (UAH) / {{price}}",
         "T2_ENERGY": "T2 (kW⋅h)",
+        "T2_ENERGY_CCY": "T2 (UAH) / {{price}}",
         "VOLTAGE": "U (V)"
       },
       "ROW": {
@@ -75,27 +134,30 @@
         "DC_BATTERY": "DC Battery"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Reset counters",
-      "POWER_ON": "Power ON",
-      "POWER_OFF": "Power OFF"
-    },
     "TOAST": {
+      "POWER_STATUS_ERROR": "The error occurred while fetching power status",
       "RESET_ERROR": "The error occurred while resetting of the PZEM counters",
-      "POWER_ERROR": "The error occurred while switching power"
-    },
+      "SWITCH_POWER_ERROR": "The error occurred while switching power"
+    }
+  },
+  "SETTINGS": {
     "CONFIRM_DIALOG": {
-      "RESET_COUNTERS": {
-        "MESSAGE": "Are you sure you want to reset the PZEM counters?"
-      },
-      "POWER": {
-        "MESSAGE": "Are you sure you want to switch the power?"
-      }
+      "SAVE_MESSAGE": "Are you sure you want to save settings?"
+    },
+    "ELECTRICITY_SETTINGS": "Electricity tariff",
+    "T1_CCY_PRICE": "Day (T1)",
+    "T2_CCY_PRICE": "Night (T2)",
+    "TOAST": {
+      "SAVE_ERROR": "The error occurred while saving settings",
+      "SETTINGS_ERROR": "The error occurred while fetching settings"
     }
   },
   "TAB_BAR": {
     "ASICS": "Asics",
-    "SENSORS": "Sensors"
+    "CONTROL": "Control",
+    "PROTECTION": "Protection",
+    "SENSORS": "Sensors",
+    "SETTINGS": "Settings"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Background color (Dark theme)",
@@ -104,18 +166,6 @@
     "THEME_PRESETS": "Theme presets"
   },
   "TOAST": {
-    "SUMMARY": {
-      "ERROR": "Error"
-    }
-  },
-  "CONFIRM_DIALOG": {
-    "HEADER": "Confirmation"
-  },
-  "BUTTON": {
-    "ADD": "Add",
-    "EDIT": "Edit",
-    "DELETE": "Delete",
-    "CANCEL": "Cancel",
-    "RESET": "Reset"
+    "ERROR_SUMMARY": "Error"
   }
 }

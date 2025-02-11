@@ -1,72 +1,131 @@
 {
   "ASICS": {
+    "BUTTON": {
+      "ADD": "Додати",
+      "DELETE": "Видалити",
+      "EDIT": "Редагувати"
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_ASIC_MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
+    },
     "DIALOG": {
       "MODIFY": {
+        "FIELD": {
+          "ADDRESS": "Адреса*",
+          "IP": "IP Адреса*",
+          "PASSWORD": "Пароль",
+          "PASSWORD_REQUIRED": "Пароль*"
+        },
         "HEADER": {
           "ADD": "Додати Asic",
           "EDIT": "Редагувати Asic"
         },
-        "FIELD": {
-          "IP": "IP Адреса*",
-          "ADDRESS": "Адреса*",
-          "PASSWORD": "Пароль",
-          "PASSWORD_REQUIRED": "Пароль*"
-        },
         "VALIDATION": {
-          "REQUIRED": "Поле обовʼязкове",
-          "INVALID": "Невірний формат"
+          "INVALID": "Невірний формат",
+          "REQUIRED": "Поле обовʼязкове"
         }
       }
     },
-    "CONFIRM_DIALOG": {
-      "DELETE_ASIC": {
-        "MESSAGE": "Ви впевнені, що бажаєте видалити Asic?"
-      }
-    },
-    "TOAST": {
-      "SIDE_BAR": "Виникла помилка під час завантаження списку Asic майнерів",
-      "SUMMARY": "Виникла помилка під час завантаження показників Asic",
-      "ADD": "Виникла помилка під час додавання Asic",
-      "EDIT": "Виникла помилка під час редагування Asic",
-      "DELETE": "Виникла помилка під час видалення Asic"
-    },
     "TABLE": {
       "COLUMN": {
-        "IP_ADDRESS": "IP Адреса",
-        "STATE": "Статус",
-        "TIME": "Час",
         "AVERAGE_HASHRATE": "Сер. Хешрейт (Тх/с)",
+        "FAN_SPEED": "Швидкість (%)",
+        "IP_ADDRESS": "IP Адреса",
         "MAX_TEMP": "Макс. Температура (°C)",
         "POWER_USAGE": "Споживання (кВт)",
-        "FAN_SPEED": "Швидкість (%)"
+        "STATE": "Статус",
+        "TIME": "Час"
       },
       "STATE": {
-        "MINING": "Майнінг",
-        "INITIALIZING": "Ініціалізація",
-        "STARTING": "Запуск",
         "AUTO-TUNING": "Автоналаштування",
+        "FAILURE": "Помилка",
+        "INITIALIZING": "Ініціалізація",
+        "MINING": "Майнінг",
         "RESTARTING": "Перезапуск",
         "SHUTTING-DOWN": "Вимкнення",
-        "STOPPED": "Зупинено",
-        "FAILURE": "Помилка"
+        "STARTING": "Запуск",
+        "STOPPED": "Зупинено"
       },
       "TIME_FORMAT": "{{days}}д {{hours}}г {{minutes}}хв"
+    },
+    "TOAST": {
+      "ADD_ERROR": "Виникла помилка під час додавання Asic",
+      "DELETE_ERROR": "Виникла помилка під час видалення Asic",
+      "EDIT_ERROR": "Виникла помилка під час редагування Asic",
+      "SIDE_BAR_ERROR": "Виникла помилка під час завантаження списку Asic майнерів",
+      "SUMMARY_ERROR": "Виникла помилка під час завантаження показників Asic"
+    }
+  },
+  "BUTTON": {
+    "CANCEL": "Скасувати",
+    "OK": "Ок",
+    "SAVE": "Зберегти"
+  },
+  "CONFIRM_DIALOG": {
+    "HEADER": "Підтвердження"
+  },
+  "PROTECTION": {
+    "ACTION": {
+      "ALARM": "Тривога",
+      "DISABLE_ASICS": "Вимкнути Asic-и",
+      "POWER_OFF": "Вимкнути живлення"
+    },
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правила захисту?"
+    },
+    "GROUP": {
+      "AC_OUTPUT_AVG_VOLTAGE": {
+        "LABEL": "AC Вихід - Середня напруга",
+        "SUFFIX": " В"
+      },
+      "AC_OUTPUT_FREQUENCY": {
+        "LABEL": "AC Вихід - Частота",
+        "SUFFIX": " Гц"
+      },
+      "AC_OUTPUT_VOLTAGE": {
+        "LABEL": "AC Вихід - Напруга",
+        "SUFFIX": " В"
+      },
+      "DC_BATTERY_VOLTAGE": {
+        "LABEL": "DC Акумулятор - Напруга",
+        "SUFFIX": " В"
+      }
+    },
+    "PLACEHOLDER": {
+      "MAX": "Макс",
+      "MIN": "Мін"
+    },
+    "TOAST": {
+      "SAVE_ERROR": "Виникла помилка під час зберігання правил захисту"
     }
   },
   "SENSORS": {
-    "PZEM_LABEL": "Показники PZEM",
-    "PZEM_LABEL_WITH_TIME": "Показники PZEM: {{time}}",
+    "BUTTON": {
+      "POWER": "Живлення",
+      "POWER_OFF": "Вимкнути",
+      "POWER_ON": "Увімкнути",
+      "RESET": "Скинути",
+      "RESET_COUNTERS": "Скинути лічильники",
+      "SWITCH": "Перемкнути"
+    },
+    "CONFIRM_DIALOG": {
+      "POWER_MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?",
+      "RESET_COUNTERS_MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
+    },
     "TABLE": {
       "COLUMN": {
-        "AVG_VOLTAGE": "10хв U (В)",
+        "AVG_VOLTAGE": "Сер. U (В)",
         "CURRENT": "I (A)",
         "ENERGY": "E (кВт⋅год)",
+        "ENERGY_CCY_SUM": "E Сума (грн)",
         "FREQUENCY": "F (Гц)",
         "NAME": "Назва",
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",
         "T1_ENERGY": "T1 (кВт⋅год)",
+        "T1_ENERGY_CCY": "T1 (грн) / {{price}}",
         "T2_ENERGY": "T2 (кВт⋅год)",
+        "T2_ENERGY_CCY": "T2 (грн) / {{price}}",
         "VOLTAGE": "U (В)"
       },
       "ROW": {
@@ -75,27 +134,30 @@
         "DC_BATTERY": "DC Акумулятор"
       }
     },
-    "BUTTON": {
-      "RESET_COUNTERS": "Скинути лічильники",
-      "POWER_ON": "Увімкнути",
-      "POWER_OFF": "Вимкнути"
-    },
     "TOAST": {
+      "POWER_STATUS_ERROR": "Виникла помилка під час завантаження статусу живлення",
       "RESET_ERROR": "Виникла помилка під час скидання лічильників PZEM",
-      "POWER_ERROR": "Виникла помилка під час скидання перемикання енергії"
-    },
+      "SWITCH_POWER_ERROR": "Виникла помилка під час скидання перемикання енергії"
+    }
+  },
+  "SETTINGS": {
     "CONFIRM_DIALOG": {
-      "RESET_COUNTERS": {
-        "MESSAGE": "Ви впевнені, що бажаєте скинути лічильники PZEM?"
-      },
-      "POWER": {
-        "MESSAGE": "Ви впевнені, що бажаєте перемкнути живлення?"
-      }
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти налаштування?"
+    },
+    "ELECTRICITY_SETTINGS": "Тариф на електроенергію",
+    "T1_CCY_PRICE": "День (Т1)",
+    "T2_CCY_PRICE": "Ніч (Т2)",
+    "TOAST": {
+      "SAVE_ERROR": "Виникла помилка під час зберігання налаштувань",
+      "SETTINGS_ERROR": "Виникла помилка під час завантаження налаштувань"
     }
   },
   "TAB_BAR": {
     "ASICS": "Asic-и",
-    "SENSORS": "Датчики"
+    "CONTROL": "Керування",
+    "PROTECTION": "Захист",
+    "SENSORS": "Датчики",
+    "SETTINGS": "Налаштування"
   },
   "THEME_CONFIGURATOR": {
     "DARK_SURFACE_COLOR": "Колір фону (Темна тема)",
@@ -104,18 +166,6 @@
     "THEME_PRESETS": "Тема"
   },
   "TOAST": {
-    "SUMMARY": {
-      "ERROR": "Помилка"
-    }
-  },
-  "CONFIRM_DIALOG": {
-    "HEADER": "Підтвердження"
-  },
-  "BUTTON": {
-    "ADD": "Додати",
-    "EDIT": "Редагувати",
-    "DELETE": "Видалити",
-    "CANCEL": "Скасувати",
-    "RESET": "Скинути"
+    "ERROR_SUMMARY": "Помилка"
   }
 }
