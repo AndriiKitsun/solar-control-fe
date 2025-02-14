@@ -1,7 +1,7 @@
 import {
-  ProtectionGroupId,
+  ProtectionRuleId,
   ProtectionActionId,
-} from '../enums/protection-group.enums';
+} from '../enums/protection.enums';
 import {
   ProtectionGroup,
   ProtectionAction,
@@ -38,9 +38,9 @@ const PROTECTION_ACTIONS: ProtectionAction[] = [
 
 export const PROTECTION_GROUPS: ProtectionGroup[] = [
   {
-    id: ProtectionGroupId.AC_OUTPUT_FREQUENCY,
-    minInputId: `${ProtectionGroupId.AC_OUTPUT_FREQUENCY}Min`,
-    maxInputId: `${ProtectionGroupId.AC_OUTPUT_FREQUENCY}Max`,
+    id: ProtectionRuleId.AC_OUTPUT_FREQUENCY,
+    minInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Min`,
+    maxInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.LABEL',
     input: {
       min: 49.5,
@@ -52,9 +52,9 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     actions: PROTECTION_ACTIONS,
   },
   {
-    id: ProtectionGroupId.AC_OUTPUT_VOLTAGE,
-    minInputId: `${ProtectionGroupId.AC_OUTPUT_VOLTAGE}Min`,
-    maxInputId: `${ProtectionGroupId.AC_OUTPUT_VOLTAGE}Max`,
+    id: ProtectionRuleId.AC_OUTPUT_VOLTAGE,
+    minInputId: `${ProtectionRuleId.AC_OUTPUT_VOLTAGE}Min`,
+    maxInputId: `${ProtectionRuleId.AC_OUTPUT_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.LABEL',
     input: {
       min: 150,
@@ -66,9 +66,9 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     actions: PROTECTION_ACTIONS,
   },
   {
-    id: ProtectionGroupId.AC_OUTPUT_AVG_VOLTAGE,
-    minInputId: `${ProtectionGroupId.AC_OUTPUT_AVG_VOLTAGE}Min`,
-    maxInputId: `${ProtectionGroupId.AC_OUTPUT_AVG_VOLTAGE}Max`,
+    id: ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE,
+    minInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE}Min`,
+    maxInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.LABEL',
     input: {
       min: 150,
@@ -80,9 +80,9 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     actions: PROTECTION_ACTIONS,
   },
   {
-    id: ProtectionGroupId.DC_BATTERY_VOLTAGE,
-    minInputId: `${ProtectionGroupId.DC_BATTERY_VOLTAGE}Min`,
-    maxInputId: `${ProtectionGroupId.DC_BATTERY_VOLTAGE}Max`,
+    id: ProtectionRuleId.DC_BATTERY_VOLTAGE,
+    minInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Min`,
+    maxInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.DC_BATTERY_VOLTAGE.LABEL',
     input: {
       min: 30,

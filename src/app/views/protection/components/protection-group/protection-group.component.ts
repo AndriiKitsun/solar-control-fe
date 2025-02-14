@@ -98,7 +98,7 @@ export class ProtectionGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup<ProtectionRuleForm>({
-      groupId: new FormControl(this.group().id),
+      id: new FormControl(this.group().id),
       min: new FormControl(
         {
           value: null,
@@ -118,6 +118,10 @@ export class ProtectionGroupComponent implements OnInit {
         disabled: this.isDisabled(),
       }),
     });
+
+    if (this.rule()) {
+      this.form.setValue(this.rule());
+    }
   }
 
   openSaveDialog(event: MouseEvent): void {
