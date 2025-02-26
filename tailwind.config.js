@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import PrimeUI from 'tailwindcss-primeui';
+
+export default {
   content: ['./src/**/*.{html,ts}'],
+  plugins: [PrimeUI],
   theme: {
     extend: {},
   },
-  plugins: [require('tailwindcss-primeui')],
 };
