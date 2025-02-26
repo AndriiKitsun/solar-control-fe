@@ -1,19 +1,14 @@
-import {
-  ProtectionRuleId,
-  ProtectionActionId,
-} from '../enums/protection.enums';
+import { ProtectionRuleId } from '../enums/protection.enums';
 import { TranslationKey } from '@common/types/lang.types';
-import { ProtectionRuleModel } from '../models/protection-rule.models';
 import { FormControl } from '@angular/forms';
 
 export interface ProtectionGroup {
   id: ProtectionRuleId;
+  enableCheckId: string;
   minInputId: string;
   maxInputId: string;
   label: TranslationKey;
   input: ProtectionInput;
-  actions: ProtectionAction[];
-  rule?: ProtectionRuleModel;
 }
 
 export interface ProtectionInput {
@@ -24,14 +19,9 @@ export interface ProtectionInput {
   fractionDigits: number;
 }
 
-export interface ProtectionAction {
-  id: ProtectionActionId;
-  label: TranslationKey;
-}
-
 export interface ProtectionRuleForm {
   id: FormControl<ProtectionRuleId | null>;
   min: FormControl<number | null>;
   max: FormControl<number | null>;
-  actions: FormControl<ProtectionActionId[] | null>;
+  enabled: FormControl<boolean | null>;
 }

@@ -1,16 +1,7 @@
-import {
-  ProtectionRuleId,
-  ProtectionActionId,
-} from '../enums/protection.enums';
-import {
-  ProtectionGroup,
-  ProtectionAction,
-} from '../types/protection-group.types';
+import { ProtectionRuleId } from '../enums/protection.enums';
+import { ProtectionGroup } from '../types/protection-group.types';
 
 /**
- * t(PROTECTION.ACTION.DISABLE_ASICS)
- * t(PROTECTION.ACTION.ALARM)
- * t(PROTECTION.ACTION.POWER_OFF)
  * t(PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.LABEL)
  * t(PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.SUFFIX)
  * t(PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.LABEL)
@@ -21,24 +12,10 @@ import {
  * t(PROTECTION.GROUP.DC_BATTERY_VOLTAGE.SUFFIX)
  * */
 
-const PROTECTION_ACTIONS: ProtectionAction[] = [
-  {
-    id: ProtectionActionId.DISABLE_ASICS,
-    label: 'PROTECTION.ACTION.DISABLE_ASICS',
-  },
-  {
-    id: ProtectionActionId.ALARM,
-    label: 'PROTECTION.ACTION.ALARM',
-  },
-  {
-    id: ProtectionActionId.POWER_OFF,
-    label: 'PROTECTION.ACTION.POWER_OFF',
-  },
-];
-
 export const PROTECTION_GROUPS: ProtectionGroup[] = [
   {
     id: ProtectionRuleId.AC_OUTPUT_FREQUENCY,
+    enableCheckId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Enabled`,
     minInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Min`,
     maxInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.LABEL',
@@ -49,10 +26,10 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
       fractionDigits: 2,
       suffix: 'PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.SUFFIX',
     },
-    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionRuleId.AC_OUTPUT_VOLTAGE,
+    enableCheckId: `${ProtectionRuleId.AC_OUTPUT_VOLTAGE}Enabled`,
     minInputId: `${ProtectionRuleId.AC_OUTPUT_VOLTAGE}Min`,
     maxInputId: `${ProtectionRuleId.AC_OUTPUT_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.LABEL',
@@ -63,10 +40,10 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
       fractionDigits: 0,
       suffix: 'PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.SUFFIX',
     },
-    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE,
+    enableCheckId: `${ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE}Enabled`,
     minInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE}Min`,
     maxInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.LABEL',
@@ -77,10 +54,10 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
       fractionDigits: 0,
       suffix: 'PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.SUFFIX',
     },
-    actions: PROTECTION_ACTIONS,
   },
   {
     id: ProtectionRuleId.DC_BATTERY_VOLTAGE,
+    enableCheckId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Enabled`,
     minInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Min`,
     maxInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Max`,
     label: 'PROTECTION.GROUP.DC_BATTERY_VOLTAGE.LABEL',
@@ -91,6 +68,5 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
       fractionDigits: 1,
       suffix: 'PROTECTION.GROUP.DC_BATTERY_VOLTAGE.SUFFIX',
     },
-    actions: PROTECTION_ACTIONS,
   },
 ];

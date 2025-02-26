@@ -31,9 +31,15 @@ export class ProtectionService {
   }
 
   saveRule(rule: ProtectionRuleModel): Observable<ProtectionRuleModel> {
+    const payload: Partial<ProtectionRuleModel> = {
+      min: rule.min,
+      max: rule.max,
+      enabled: rule.enabled,
+    };
+
     return this.http.put<ProtectionRuleModel>(
-      `${env.apiEndpoint}/protection-rules`,
-      rule,
+      `${env.apiEndpoint}/protection-rules/${rule.id}`,
+      payload,
     );
   }
 }

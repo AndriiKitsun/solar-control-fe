@@ -1,11 +1,8 @@
-import {
-  ProtectionRuleId,
-  ProtectionActionId,
-} from '../enums/protection.enums';
+import { ProtectionRuleId } from '../enums/protection.enums';
 
 export interface ProtectionRuleModel {
   id: ProtectionRuleId;
   min: number;
   max: number;
-  actions: ProtectionActionId[];
+  enabled: boolean;
 }
