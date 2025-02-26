@@ -15,7 +15,7 @@
           icon="pi pi-power-off"
           styleClass="mr-2"
           [disabled]="
-            isLoading() || isPowerProcessing() || powerStatus === undefined
+            isTableLoading() || isPowerProcessing() || powerStatus === undefined
           "
           [loading]="isPowerProcessing()"
           (onClick)="openSwitchPowerConfirmationModal($event)"
@@ -26,7 +26,7 @@
           variant="outlined"
           severity="danger"
           icon="pi pi-bolt"
-          [disabled]="isLoading()"
+          [disabled]="isTableLoading()"
           [loading]="isResetProcessing()"
           (onClick)="openResetConfirmationModal($event)"
         />
@@ -34,7 +34,7 @@
     </p-toolbar>
 
     <app-sensors-table
-      [loading]="isLoading()"
+      [loading]="isTableLoading()"
       [rows]="(sensorsData$ | async)!"
       [settings]="settings"
     />

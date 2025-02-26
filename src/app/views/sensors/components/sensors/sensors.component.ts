@@ -3,7 +3,6 @@ import {
   OnInit,
   signal,
   DestroyRef,
-  computed,
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
@@ -15,7 +14,6 @@ import { Button } from 'primeng/button';
 import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
-import { SensorsWebSocketService } from '../../services/sensors-websocket/sensors-websocket.service';
 import { SensorsService } from '../../services/sensors/sensors.service';
 import { SensorDataModel } from '../../models/sensor.models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -68,22 +66,19 @@ import { Severity } from '@common/types/severity.types';
   ],
 })
 export class SensorsComponent implements OnInit {
-  isWsConnecting = signal(false);
   isTableLoading = signal(false);
-  isLoading = computed(() => this.isWsConnecting() || this.isTableLoading());
-  isResetProcessing = signal<boolean>(false);
-  isPowerProcessing = signal<boolean>(false);
+  isResetProcessing = signal(false);
+  isPowerProcessing = signal(false);
 
   powerStatus?: boolean;
   powerBtnLabel: TranslationKey = 'SENSORS.BUTTON.POWER';
   powerBtnSeverity: Severity = 'secondary';
 
   createdAt = '';
-  sensorsData$!: Observable<SensorDataModel>;
+  sensorsData$!: Observable<SensorDataModel | null>;
   settings!: SettingsModel;
 
   constructor(
-    private readonly sensorsWebSocketService: SensorsWebSocketService,
     private readonly sensorsService: SensorsService,
     private readonly settingsService: SettingsService,
     private readonly destroyRef: DestroyRef,
@@ -94,21 +89,9 @@ export class SensorsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getWsStatus();
     this.getPowerStatus();
     this.sensorsData$ = this.getSensorsData();
     this.getSettings();
-  }
-
-  getWsStatus(): void {
-    this.sensorsWebSocketService.isConnected$
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        tap((value) => {
-          this.isWsConnecting.set(!value);
-        }),
-      )
-      .subscribe();
   }
 
   getPowerStatus(): void {
@@ -140,11 +123,17 @@ export class SensorsComponent implements OnInit {
       });
   }
 
-  getSensorsData(): Observable<SensorDataModel> {
+  getSensorsData(): Observable<SensorDataModel | null> {
     this.isTableLoading.set(true);
 
-    return this.sensorsWebSocketService.on<SensorDataModel>().pipe(
-      tap((response: SensorDataModel) => {
+    return this.sensorsService.getSensorDataEvents().pipe(
+      tap((response: SensorDataModel | null) => {
+        if (!response) {
+          this.isTableLoading.set(true);
+
+          return;
+        }
+
         this.isTableLoading.set(false);
 
         this.createdAt = response.createdAt;
