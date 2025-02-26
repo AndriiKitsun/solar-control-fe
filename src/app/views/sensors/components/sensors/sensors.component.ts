@@ -17,7 +17,7 @@ import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { SensorsWebSocketService } from '../../services/sensors-websocket/sensors-websocket.service';
 import { SensorsService } from '../../services/sensors/sensors.service';
-import { PzemDataModel } from '../../models/sensor.models';
+import { SensorDataModel } from '../../models/sensor.models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Toolbar } from 'primeng/toolbar';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
@@ -79,7 +79,7 @@ export class SensorsComponent implements OnInit {
   powerBtnSeverity: Severity = 'secondary';
 
   createdAt = '';
-  sensorsData$!: Observable<PzemDataModel>;
+  sensorsData$!: Observable<SensorDataModel>;
   settings!: SettingsModel;
 
   constructor(
@@ -140,14 +140,14 @@ export class SensorsComponent implements OnInit {
       });
   }
 
-  getSensorsData(): Observable<PzemDataModel> {
+  getSensorsData(): Observable<SensorDataModel> {
     this.isTableLoading.set(true);
 
-    return this.sensorsWebSocketService.on<PzemDataModel>().pipe(
-      tap((response: PzemDataModel) => {
+    return this.sensorsWebSocketService.on<SensorDataModel>().pipe(
+      tap((response: SensorDataModel) => {
         this.isTableLoading.set(false);
 
-        this.createdAt = response.createdAtGmt;
+        this.createdAt = response.createdAt;
       }),
     );
   }

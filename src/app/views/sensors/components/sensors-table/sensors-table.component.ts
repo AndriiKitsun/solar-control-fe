@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { PzemDataModel, PzemModel } from '../../models/sensor.models';
+import { SensorDataModel, SensorModel } from '../../models/sensor.models';
 import {
   RowDataModel,
   RowConfig,
@@ -24,8 +24,8 @@ import { SettingsModel } from '../../../settings/models/settings.models';
 })
 export class SensorsTableComponent {
   loading = input.required<boolean>();
-  rows = input.required<RowConfig[], PzemDataModel>({
-    transform: (value: PzemDataModel): RowConfig[] => {
+  rows = input.required<RowConfig[], SensorDataModel>({
+    transform: (value: SensorDataModel): RowConfig[] => {
       if (!value) {
         return [];
       }
@@ -59,50 +59,50 @@ export class SensorsTableComponent {
 
   columnConfigs: ColumnConfig[] = SENSORS_TABLE_COLUMNS;
 
-  transformToRow(data: PzemDataModel): RowConfig[] {
+  transformToRow(data: SensorDataModel): RowConfig[] {
     return SENSORS_TABLE_ROWS.map((row) => {
-      const pzem = data.sensors.find((pzem) => pzem.name === row.id);
+      const sensor = data.sensors.find((sensor) => sensor.name === row.id);
 
       return {
         ...row,
-        isEmpty: !pzem,
-        data: this.mapToRowData(pzem),
+        isEmpty: !sensor,
+        data: this.mapToRowData(sensor),
       };
     });
   }
 
-  mapToRowData(pzem?: PzemModel): RowDataModel {
-    if (!pzem) {
+  mapToRowData(sensor?: SensorModel): RowDataModel {
+    if (!sensor) {
       return {} as RowDataModel;
     }
 
-    const acVoltageFormat = pzem.name.startsWith('ac')
+    const acVoltageFormat = sensor.name.startsWith('ac')
       ? NumFormat.NEAREST_INT
       : NumFormat.THREE_DIGITS;
 
     const t1EnergyCost = this.calcParamCost(
-      pzem.t1Energy,
+      sensor.t1Energy,
       this.settings().t1EnergyCcyPrice,
     );
     const t2EnergyCost = this.calcParamCost(
-      pzem.t2Energy,
+      sensor.t2Energy,
       this.settings().t2EnergyCcyPrice,
     );
     const energyCost = this.sumCosts(t1EnergyCost, t2EnergyCost);
 
     return {
-      voltage: formatNum(pzem.voltage, acVoltageFormat),
-      current: formatNum(pzem.current, NumFormat.ONE_DIGIT),
-      power: formatNum(pzem.power, NumFormat.TWO_DIGIT),
-      energy: formatNum(pzem.energy, NumFormat.ONE_DIGIT),
-      t1Energy: formatNum(pzem.t1Energy, NumFormat.ONE_DIGIT),
+      voltage: formatNum(sensor.voltage, acVoltageFormat),
+      current: formatNum(sensor.current, NumFormat.ONE_DIGIT),
+      power: formatNum(sensor.power, NumFormat.TWO_DIGIT),
+      energy: formatNum(sensor.energy, NumFormat.ONE_DIGIT),
+      t1Energy: formatNum(sensor.t1Energy, NumFormat.ONE_DIGIT),
       t1EnergyCost: formatCcy(t1EnergyCost),
-      t2Energy: formatNum(pzem.t2Energy, NumFormat.ONE_DIGIT),
+      t2Energy: formatNum(sensor.t2Energy, NumFormat.ONE_DIGIT),
       t2EnergyCost: formatCcy(t2EnergyCost),
       energyCost: formatCcy(energyCost),
-      frequency: formatNum(pzem.frequency, NumFormat.TWO_DIGIT),
-      powerFactor: formatNum(pzem.powerFactor, NumFormat.TWO_DIGIT),
-      avgVoltage: formatNum(pzem.avgVoltage, NumFormat.THREE_DIGITS),
+      frequency: formatNum(sensor.frequency, NumFormat.TWO_DIGIT),
+      powerFactor: formatNum(sensor.powerFactor, NumFormat.TWO_DIGIT),
+      avgVoltage: formatNum(sensor.avgVoltage, NumFormat.THREE_DIGITS),
     };
   }
 
