@@ -76,8 +76,10 @@ export class SettingsComponent implements OnInit {
     private readonly toastService: ToastService,
   ) {
     effect(() => {
-      if (this.form) {
-        this.isLoading() ? this.form.disable() : this.form.enable();
+      const isLoading = this.isLoading();
+
+      if (this.form && this.settings) {
+        isLoading ? this.form.disable() : this.form.enable();
       }
     });
   }

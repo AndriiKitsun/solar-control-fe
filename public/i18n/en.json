@@ -65,13 +65,8 @@
     "HEADER": "Confirm"
   },
   "PROTECTION": {
-    "ACTION": {
-      "ALARM": "Alarm",
-      "DISABLE_ASICS": "Disable Asics",
-      "POWER_OFF": "Power OFF"
-    },
     "CONFIRM_DIALOG": {
-      "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
+      "SAVE_MESSAGE": "Are you sure you want to save protection rule?"
     },
     "GROUP": {
       "AC_OUTPUT_AVG_VOLTAGE": {
@@ -96,7 +91,8 @@
       "MIN": "Min"
     },
     "TOAST": {
-      "SAVE_ERROR": "The error occurred while saving protection rules"
+      "SAVE_ERROR": "The error occurred while saving protection rule",
+      "FETCH_RULES_ERROR": "The error occurred while fetching protection rules"
     }
   },
   "SENSORS": {

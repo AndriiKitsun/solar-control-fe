@@ -8,7 +8,6 @@ import {
   signal,
 } from '@angular/core';
 import { Button } from 'primeng/button';
-import { Checkbox } from 'primeng/checkbox';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputNumber } from 'primeng/inputnumber';
 import {
@@ -30,6 +29,7 @@ import { ProtectionService } from '../../services/protection/protection.service'
 import { first, finalize } from 'rxjs';
 import { Toast } from 'primeng/toast';
 import { ToastService } from '@common/services/toast/toast.service';
+import { Checkbox } from 'primeng/checkbox';
 
 /**
  * t(PROTECTION.CONFIRM_DIALOG.SAVE_MESSAGE)
@@ -41,12 +41,12 @@ import { ToastService } from '@common/services/toast/toast.service';
   imports: [
     FloatLabel,
     InputNumber,
-    Checkbox,
     ReactiveFormsModule,
     Button,
     TranslocoDirective,
     ConfirmDialog,
     Toast,
+    Checkbox,
   ],
   providers: [
     {
@@ -74,6 +74,7 @@ export class ProtectionGroupComponent implements OnInit {
     },
   });
 
+  isLoading = signal(false);
   isDisabled = computed(() => {
     const disabled = this.disabled() || this.isLoading();
 
@@ -85,8 +86,6 @@ export class ProtectionGroupComponent implements OnInit {
   });
 
   form!: FormGroup<ProtectionRuleForm>;
-
-  private isLoading = signal(false);
 
   constructor(
     private readonly protectionService: ProtectionService,
@@ -113,8 +112,8 @@ export class ProtectionGroupComponent implements OnInit {
         },
         Validators.required,
       ),
-      actions: new FormControl({
-        value: [],
+      enabled: new FormControl({
+        value: null,
         disabled: this.isDisabled(),
       }),
     });
