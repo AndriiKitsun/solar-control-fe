@@ -91,7 +91,8 @@
       "MIN": "Min"
     },
     "TOAST": {
-      "SAVE_ERROR": "The error occurred while saving protection rule"
+      "SAVE_ERROR": "The error occurred while saving protection rule",
+      "FETCH_RULES_ERROR": "The error occurred while fetching protection rules"
     }
   },
   "SENSORS": {

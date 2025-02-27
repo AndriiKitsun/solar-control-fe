@@ -3,6 +3,8 @@ import { ProtectionComponent } from './protection.component';
 import { ProtectionService } from '../../services/protection/protection.service';
 import { ProtectionServiceMock } from '../../services/protection/mocks/protection.service.mock';
 import { TranslocoTestingModule } from '@jsverse/transloco';
+import { MessageService } from 'primeng/api';
+import { ToastServiceMock } from '@common/services/toast/mocks/toast.service.mock';
 
 describe('ProtectionComponent', () => {
   let component: ProtectionComponent;
@@ -15,6 +17,10 @@ describe('ProtectionComponent', () => {
         {
           provide: ProtectionService,
           useClass: ProtectionServiceMock,
+        },
+        {
+          provide: MessageService,
+          useClass: ToastServiceMock,
         },
       ],
     }).compileComponents();
