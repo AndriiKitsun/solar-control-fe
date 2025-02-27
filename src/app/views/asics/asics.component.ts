@@ -189,14 +189,20 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   getAsicSummary(): Observable<AsicSummaryGridItem[]> {
     return toObservable(this.selectedItem).pipe(
       switchMap((menuItem) => {
+        if (!menuItem) {
+          return EMPTY;
+        }
+
         return interval(ASIC_SUMMARY_UPDATE_INTERVAL).pipe(
           startWith(0),
           switchMap(() => {
-            if (!menuItem) {
-              return EMPTY;
-            }
+            return this.asicsService.getSummary(menuItem.id!).pipe(
+              catchError(() => {
+                void this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
 
-            return this.asicsService.getSummary(menuItem.id!);
+                return EMPTY;
+              }),
+            );
           }),
         );
       }),
@@ -225,11 +231,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         };
 
         return [gridData];
-      }),
-      catchError((err) => {
-        void this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
-
-        throw err;
       }),
     );
   }
