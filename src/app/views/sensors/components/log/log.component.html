@@ -38,7 +38,7 @@
       >
         <ng-template #item let-item>
           <div class="flex items-center p-2">
-            <span>[{{ item.createdAt | date: 'dd-MM-yy HH:mm:ss' }}]</span>
+            <span>[{{ item.createdAt | date: 'dd-MM-yyyy HH:mm:ss' }}]</span>
             <span class="ml-2 text-muted-color">{{
               t(getLevelTranslation(item.level))
             }}</span>
