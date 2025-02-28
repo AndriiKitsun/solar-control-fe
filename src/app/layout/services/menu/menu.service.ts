@@ -6,11 +6,9 @@ import { MenuState } from './menu.types';
   providedIn: 'root',
 })
 export class MenuService {
-  private menuState = new Subject<MenuState>();
-
-  menuState$ = this.menuState.asObservable();
+  menuState$ = new Subject<MenuState>();
 
   updateMenuState(state: MenuState): void {
-    this.menuState.next(state);
+    this.menuState$.next(state);
   }
 }

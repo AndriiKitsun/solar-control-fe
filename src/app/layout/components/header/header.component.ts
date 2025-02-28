@@ -44,6 +44,10 @@ export class HeaderComponent implements OnInit {
     private readonly langService: LangService,
   ) {}
 
+  get colorScheme(): ColorScheme {
+    return this.themeService.colorScheme;
+  }
+
   ngOnInit(): void {
     const savedLang = LangService.getLang();
 
@@ -51,10 +55,6 @@ export class HeaderComponent implements OnInit {
     this.selectedLang = LANG_SELECT_OPTIONS.find(
       (option) => option.value === savedLang,
     );
-  }
-
-  get colorScheme(): ColorScheme {
-    return this.themeService.colorScheme;
   }
 
   toggleDarkMode(): void {

@@ -28,16 +28,16 @@ export class ThemeService {
   private static readonly surfaceColorKey = 'SurfaceColor';
   private static readonly themePresetKey = 'themePreset';
 
-  private themePresets: ThemePresetConfig = {
-    [ThemePresetName.AURA]: Aura as ThemePreset,
-    [ThemePresetName.LARA]: Lara as ThemePreset,
-  };
-
   colorScheme!: ColorScheme;
   primaryColor!: PrimaryColor;
   lightSurfaceColor!: SurfaceColor;
   darkSurfaceColor!: SurfaceColor;
   presetName!: ThemePresetName;
+
+  private themePresets: ThemePresetConfig = {
+    [ThemePresetName.AURA]: Aura as ThemePreset,
+    [ThemePresetName.LARA]: Lara as ThemePreset,
+  };
 
   restoreThemeState(): void {
     this.loadThemeConfig();

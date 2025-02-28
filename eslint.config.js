@@ -42,6 +42,7 @@ module.exports = tseslint.config(
           allowTernary: true,
         },
       ],
+      '@typescript-eslint/member-ordering': 'error',
       '@angular-eslint/directive-selector': [
         'error',
         {
