@@ -4,12 +4,17 @@ import { Observable, map } from 'rxjs';
 import { ProtectionRuleId } from '../../enums/protection.enums';
 import { HttpClient } from '@angular/common/http';
 import { env } from '@env/environment';
+import { SseClient } from 'ngx-sse-client';
+import { ProtectionResultModel } from '../../models/protection-result.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProtectionService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly sse: SseClient,
+  ) {}
 
   getProtectionRules(): Observable<
     Record<ProtectionRuleId, ProtectionRuleModel>
@@ -41,5 +46,13 @@ export class ProtectionService {
       `${env.apiEndpoint}/protection-rules/${rule.id}`,
       payload,
     );
+  }
+
+  getProtectionResult(): Observable<ProtectionResultModel> {
+    return this.sse
+      .stream(`${env.apiEndpoint}/protection-rules/sse`, {
+        responseType: 'text',
+      })
+      .pipe(map((message) => JSON.parse(message) as ProtectionResultModel));
   }
 }

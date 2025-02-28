@@ -1,15 +1,18 @@
 <p-tabs [value]="activeRoute()" class="tab-bar" *transloco="let t">
   <p-tablist>
     <div class="tab-bar__list">
-      @for (tab of tabs; track tab.label) {
+      @for (tab of tabs | async; track tab.label) {
         <p-tab
           [value]="tab.route"
           [routerLink]="tab.route"
           [disabled]="tab.disabled"
           class="tab-bar__tab"
+          [class.tab-bar__tab-badge]="tab.badge"
         >
           <i [class]="tab.icon"></i>
-          <span>{{ t(tab.label) }}</span>
+          <p-overlaybadge [badgeDisabled]="!tab.badge" severity="danger">
+            <span>{{ t(tab.label) }}</span>
+          </p-overlaybadge>
         </p-tab>
       }
     </div>
