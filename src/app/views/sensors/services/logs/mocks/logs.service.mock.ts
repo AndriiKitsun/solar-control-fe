@@ -12,7 +12,7 @@ export class LogsServiceMock implements ClassMock<LogsService> {
     return of();
   }
 
-  clearLogs(): Observable<void> {
+  deleteLogs(): Observable<void> {
     return of();
   }
 }
