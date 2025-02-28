@@ -163,5 +163,16 @@
   },
   "TOAST": {
     "ERROR_SUMMARY": "Error"
+  },
+  "LOG": {
+    "TAB": {
+      "LOGS": "Logs"
+    },
+    "LEVEL": {
+      "DEBUG": "Debug",
+      "INFO": "Info",
+      "WARN": "Warn",
+      "ERROR": "Error"
+    }
   }
 }

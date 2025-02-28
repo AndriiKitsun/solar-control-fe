@@ -1,0 +1,45 @@
+<p-tabs value="0" *transloco="let t">
+  <p-tablist>
+    <p-tab value="0">{{ t('LOG.TAB.LOGS') }}</p-tab>
+
+    <div class="ml-auto inline-flex items-center gap-1">
+      <p-select
+        optionLabel="label"
+        class="min-w-28"
+        [options]="levelOptions"
+        [(ngModel)]="selectedLevel"
+        (onChange)="changeLevel()"
+      >
+        <ng-template let-option #selectedItem>{{
+          t(option.label)
+        }}</ng-template>
+
+        <ng-template let-option #item>{{ t(option.label) }}</ng-template>
+      </p-select>
+
+      <p-button icon="pi pi-trash" severity="danger" rounded text />
+    </div>
+  </p-tablist>
+
+  <p-tabpanels>
+    <p-tabpanel value="0">
+      <p-virtualscroller
+        [items]="items()"
+        [itemSize]="35"
+        scrollHeight="22rem"
+        styleClass="border border-surface w-full"
+      >
+        <ng-template #item let-item>
+          <div class="flex items-center p-2">
+            <span>[{{ item.createdAt | date: 'dd-MM-yy HH:mm:ss' }}]</span>
+            <span class="ml-2 text-muted-color">{{
+              t(getLevelTranslation(item.level))
+            }}</span>
+            <span>:</span>
+            <span class="ml-1">{{ item.message }}</span>
+          </div>
+        </ng-template>
+      </p-virtualscroller>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>

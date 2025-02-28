@@ -25,6 +25,7 @@ import { SettingsService } from '../../../settings/services/settings/settings.se
 import { SettingsModel } from '../../../settings/models/settings.models';
 import { TranslationKey } from '@common/types/lang.types';
 import { Severity } from '@common/types/severity.types';
+import { LogComponent } from '../log/log.component';
 
 /**
  * t(SENSORS.BUTTON.RESET)
@@ -53,6 +54,7 @@ import { Severity } from '@common/types/severity.types';
     Toolbar,
     SensorsTableComponent,
     AsyncPipe,
+    LogComponent,
   ],
   providers: [
     {

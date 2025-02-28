@@ -1,8 +1,8 @@
 import { SelectChangeEvent } from 'primeng/select';
 import { SelectButtonChangeEvent } from 'primeng/selectbutton';
 
-export interface SelectOption<T = string> {
-  label: string;
+export interface SelectOption<T = string, K = string> {
+  label: K;
   value: T;
 }
 
