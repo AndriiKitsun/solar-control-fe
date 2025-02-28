@@ -98,11 +98,11 @@ import { ToastService } from '@common/services/toast/toast.service';
   ],
 })
 export class AsicsComponent implements OnInit, AfterViewInit {
+  @ViewChild('menu') menuElement!: Menu;
+
   isLoading = signal(false);
   isToolbarDisabled = computed(() => this.isLoading() || !this.selectedItem());
   selectedItem = signal<AsicMenuItem | null>(null);
-
-  @ViewChild('menu') menuElement!: Menu;
 
   menuItems$!: Observable<AsicMenuItem[]>;
   asicSummary$: Observable<AsicSummaryGridItem[]> = this.getAsicSummary();
@@ -286,7 +286,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       target: event.target!,
       message: 'ASICS.CONFIRM_DIALOG.DELETE_ASIC_MESSAGE',
       acceptButtonProps: {
-        label: 'ASICS.BUTTON.DELETE',
+        label: 'BUTTON.DELETE',
         severity: 'danger',
         icon: PrimeIcons.TRASH,
       },

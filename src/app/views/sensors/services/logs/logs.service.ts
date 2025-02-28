@@ -35,7 +35,7 @@ export class LogsService {
       .pipe(map((message) => JSON.parse(message) as LogModel));
   }
 
-  clearLogs(): Observable<void> {
+  deleteLogs(): Observable<void> {
     return this.http.delete<void>(`${env.apiEndpoint}/logs`);
   }
 }

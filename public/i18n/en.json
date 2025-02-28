@@ -2,7 +2,6 @@
   "ASICS": {
     "BUTTON": {
       "ADD": "Add",
-      "DELETE": "Delete",
       "EDIT": "Edit"
     },
     "CONFIRM_DIALOG": {
@@ -59,7 +58,8 @@
   "BUTTON": {
     "CANCEL": "Cancel",
     "OK": "Ok",
-    "SAVE": "Save"
+    "SAVE": "Save",
+    "DELETE": "Delete"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Confirm"
@@ -173,6 +173,12 @@
       "INFO": "Info",
       "WARN": "Warn",
       "ERROR": "Error"
+    },
+    "CONFIRM_DIALOG": {
+      "DELETE_MESSAGE": "Are you sure you want to delete all logs?"
+    },
+    "TOAST": {
+      "DELETE_ERROR": "The error occurred while deleting logs"
     }
   }
 }

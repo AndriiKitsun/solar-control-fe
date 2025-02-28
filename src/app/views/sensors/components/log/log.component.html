@@ -8,7 +8,7 @@
         class="min-w-28"
         [options]="levelOptions"
         [(ngModel)]="selectedLevel"
-        (onChange)="changeLevel()"
+        (onChange)="updateItems()"
       >
         <ng-template let-option #selectedItem>{{
           t(option.label)
@@ -17,7 +17,14 @@
         <ng-template let-option #item>{{ t(option.label) }}</ng-template>
       </p-select>
 
-      <p-button icon="pi pi-trash" severity="danger" rounded text />
+      <p-button
+        icon="pi pi-trash"
+        severity="danger"
+        rounded
+        text
+        [loading]="isDeleting()"
+        (onClick)="openDeleteLogsDialog($event)"
+      />
     </div>
   </p-tablist>
 
@@ -43,3 +50,6 @@
     </p-tabpanel>
   </p-tabpanels>
 </p-tabs>
+
+<p-confirm-dialog />
+<p-toast />
