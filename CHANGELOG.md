@@ -1,5 +1,48 @@
 # solar-control-fe
 
+## 1.3.0
+
+### Minor Changes
+
+- [#37](https://github.com/AndriiKitsun/solar-control-fe/pull/37) [`3c0d011`](https://github.com/AndriiKitsun/solar-control-fe/commit/3c0d0111873690bf8fb95ced9dcaeee048d1f61c) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-101: Implement protection settings page
+
+- [#46](https://github.com/AndriiKitsun/solar-control-fe/pull/46) [`dd76794`](https://github.com/AndriiKitsun/solar-control-fe/commit/dd76794c8e15111f7db3d4194d580e8c88496aed) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-118: Implement protection alarms
+
+- [#41](https://github.com/AndriiKitsun/solar-control-fe/pull/41) [`7e99568`](https://github.com/AndriiKitsun/solar-control-fe/commit/7e99568e6047826092d99f93f237d8aa61660e0c) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-93: Block UI on idle
+
+- [#39](https://github.com/AndriiKitsun/solar-control-fe/pull/39) [`b341d16`](https://github.com/AndriiKitsun/solar-control-fe/commit/b341d16397328828b18ff1e32a1fc2eeca695430) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-91: Add currency calculation
+
+- [#45](https://github.com/AndriiKitsun/solar-control-fe/pull/45) [`ebd6858`](https://github.com/AndriiKitsun/solar-control-fe/commit/ebd6858543d30eddd20febf54c2cafe9f5925c5f) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-117: Add log component
+
+- [#43](https://github.com/AndriiKitsun/solar-control-fe/pull/43) [`40190a5`](https://github.com/AndriiKitsun/solar-control-fe/commit/40190a597786751a731ab604956052ce5a490fb6) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-105: Integrate Protection page with BE
+
+- [#40](https://github.com/AndriiKitsun/solar-control-fe/pull/40) [`956a659`](https://github.com/AndriiKitsun/solar-control-fe/commit/956a6598bfa8ef07a90b69979a5efcf8caba9507) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-86: Add currency input to the Sensors table
+
+- [#44](https://github.com/AndriiKitsun/solar-control-fe/pull/44) [`d0d7c8d`](https://github.com/AndriiKitsun/solar-control-fe/commit/d0d7c8dafdd8b5d5d4fa51395ef949e941464472) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-112: Integrate protection rules with new BE endpoints
+
+  Protection Rules:
+
+  - Update BE Integration for the protection page
+  - Delete protection actions. Add a checkbox for enable/disable rule instead of actions
+  - Add error toast for protection rules fetch
+
+  Sensors:
+
+  - Migrate web socket to SSE
+
+  Misc:
+
+  - Update packages
+
+  Fixes:
+
+  - Disable form on Settings page when BE error occurs
+  - Prevent completing observable for fetching Asics summary when BE error occurs
+
+### Patch Changes
+
+- [#42](https://github.com/AndriiKitsun/solar-control-fe/pull/42) [`173a0d1`](https://github.com/AndriiKitsun/solar-control-fe/commit/173a0d192eca63b355131571ee25acf0b3a400ab) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-97: Power button enabled when error recieved
+
 ## 1.2.0
 
 ### Minor Changes
