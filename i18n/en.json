@@ -2,7 +2,6 @@
   "ASICS": {
     "BUTTON": {
       "ADD": "Add",
-      "DELETE": "Delete",
       "EDIT": "Edit"
     },
     "CONFIRM_DIALOG": {
@@ -58,20 +57,33 @@
   },
   "BUTTON": {
     "CANCEL": "Cancel",
+    "DELETE": "Delete",
     "OK": "Ok",
     "SAVE": "Save"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Confirm"
   },
-  "PROTECTION": {
-    "ACTION": {
-      "ALARM": "Alarm",
-      "DISABLE_ASICS": "Disable Asics",
-      "POWER_OFF": "Power OFF"
-    },
+  "LOG": {
     "CONFIRM_DIALOG": {
-      "SAVE_MESSAGE": "Are you sure you want to save protection rules?"
+      "DELETE_MESSAGE": "Are you sure you want to delete all logs?"
+    },
+    "LEVEL": {
+      "DEBUG": "Debug",
+      "ERROR": "Error",
+      "INFO": "Info",
+      "WARN": "Warn"
+    },
+    "TAB": {
+      "LOGS": "Logs"
+    },
+    "TOAST": {
+      "DELETE_ERROR": "The error occurred while deleting logs"
+    }
+  },
+  "PROTECTION": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save protection rule?"
     },
     "GROUP": {
       "AC_OUTPUT_AVG_VOLTAGE": {
@@ -96,7 +108,8 @@
       "MIN": "Min"
     },
     "TOAST": {
-      "SAVE_ERROR": "The error occurred while saving protection rules"
+      "FETCH_RULES_ERROR": "The error occurred while fetching protection rules",
+      "SAVE_ERROR": "The error occurred while saving protection rule"
     }
   },
   "SENSORS": {

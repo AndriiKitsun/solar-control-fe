@@ -2,7 +2,6 @@
   "ASICS": {
     "BUTTON": {
       "ADD": "Додати",
-      "DELETE": "Видалити",
       "EDIT": "Редагувати"
     },
     "CONFIRM_DIALOG": {
@@ -58,20 +57,33 @@
   },
   "BUTTON": {
     "CANCEL": "Скасувати",
+    "DELETE": "Видалити",
     "OK": "Ок",
     "SAVE": "Зберегти"
   },
   "CONFIRM_DIALOG": {
     "HEADER": "Підтвердження"
   },
-  "PROTECTION": {
-    "ACTION": {
-      "ALARM": "Тривога",
-      "DISABLE_ASICS": "Вимкнути Asic-и",
-      "POWER_OFF": "Вимкнути живлення"
-    },
+  "LOG": {
     "CONFIRM_DIALOG": {
-      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правила захисту?"
+      "DELETE_MESSAGE": "Ви впевнені, що бажаєте видалити усі логи?"
+    },
+    "LEVEL": {
+      "DEBUG": "Відладка",
+      "ERROR": "Помилка",
+      "INFO": "Інфо",
+      "WARN": "Увага"
+    },
+    "TAB": {
+      "LOGS": "Логи"
+    },
+    "TOAST": {
+      "DELETE_ERROR": "Виникла помилка під час видалення логів"
+    }
+  },
+  "PROTECTION": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правило захисту?"
     },
     "GROUP": {
       "AC_OUTPUT_AVG_VOLTAGE": {
@@ -96,7 +108,8 @@
       "MIN": "Мін"
     },
     "TOAST": {
-      "SAVE_ERROR": "Виникла помилка під час зберігання правил захисту"
+      "FETCH_RULES_ERROR": "Виникла помилка під час завантаження правил захисту",
+      "SAVE_ERROR": "Виникла помилка під час зберігання правила захисту"
     }
   },
   "SENSORS": {
