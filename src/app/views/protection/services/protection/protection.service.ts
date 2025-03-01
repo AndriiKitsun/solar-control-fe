@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProtectionRuleModel } from '../../models/protection-rule.models';
-import { Observable, map } from 'rxjs';
+import { Observable, map, share } from 'rxjs';
 import { ProtectionRuleId } from '../../enums/protection.enums';
 import { HttpClient } from '@angular/common/http';
 import { env } from '@env/environment';
@@ -11,6 +11,8 @@ import { ProtectionResultModel } from '../../models/protection-result.models';
   providedIn: 'root',
 })
 export class ProtectionService {
+  private cachedObservable?: Observable<ProtectionResultModel>;
+
   constructor(
     private readonly http: HttpClient,
     private readonly sse: SseClient,
@@ -49,10 +51,19 @@ export class ProtectionService {
   }
 
   getProtectionEvents(): Observable<ProtectionResultModel> {
-    return this.sse
+    if (this.cachedObservable) {
+      return this.cachedObservable;
+    }
+
+    this.cachedObservable = this.sse
       .stream(`${env.apiEndpoint}/protection-rules/sse`, {
         responseType: 'text',
       })
-      .pipe(map((message) => JSON.parse(message) as ProtectionResultModel));
+      .pipe(
+        map((message) => JSON.parse(message) as ProtectionResultModel),
+        share(),
+      );
+
+    return this.cachedObservable;
   }
 }
