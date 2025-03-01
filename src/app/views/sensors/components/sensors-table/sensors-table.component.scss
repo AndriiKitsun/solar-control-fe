@@ -6,5 +6,8 @@
 
   &__row-title {
     font-weight: var(--table-column-title-font-weight);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 }

@@ -85,7 +85,6 @@ export class LogComponent implements OnInit {
     this.logsService
       .getLogs()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         mergeWith(this.logsService.getLogStream()),
         tap((logs: LogModel | LogModel[]) => {
           if (Array.isArray(logs)) {
@@ -96,6 +95,7 @@ export class LogComponent implements OnInit {
 
           this.updateItems();
         }),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }

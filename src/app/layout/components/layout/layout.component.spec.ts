@@ -6,6 +6,8 @@ import { TranslocoTestingModule } from '@jsverse/transloco';
 import { ThemeService } from '../../services/theme/theme.service';
 import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
 import { ThemeServiceMock } from '../../services/theme/mocks/theme.service.mock';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -19,6 +21,8 @@ describe('LayoutComponent', () => {
         TranslocoTestingModule.forRoot({}),
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: ActivatedRouteMock,

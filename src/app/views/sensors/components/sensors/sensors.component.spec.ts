@@ -8,6 +8,8 @@ import { ConfirmDialogServiceMock } from '@common/services/confirm-dialog/mocks/
 import { ToastServiceMock } from '@common/services/toast/mocks/toast.service.mock';
 import { SettingsService } from '../../../settings/services/settings/settings.service';
 import { SettingsServiceMock } from '../../../settings/services/settings/mocks/settings.service.mock';
+import { ProtectionService } from '../../../protection/services/protection/protection.service';
+import { ProtectionServiceMock } from '../../../protection/services/protection/mocks/protection.service.mock';
 
 describe('SensorsComponent', () => {
   let component: SensorsComponent;
@@ -32,6 +34,10 @@ describe('SensorsComponent', () => {
         {
           provide: MessageService,
           useClass: ToastServiceMock,
+        },
+        {
+          provide: ProtectionService,
+          useClass: ProtectionServiceMock,
         },
       ],
     }).compileComponents();

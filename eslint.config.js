@@ -43,6 +43,7 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/member-ordering': 'error',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
       '@angular-eslint/directive-selector': [
         'error',
         {

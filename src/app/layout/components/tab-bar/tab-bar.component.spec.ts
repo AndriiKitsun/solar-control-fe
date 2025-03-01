@@ -3,6 +3,8 @@ import { TabBarComponent } from './tab-bar.component';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { ActivatedRouteMock } from '@common/mocks/activated-route.mock';
+import { ProtectionService } from '@views/protection/services/protection/protection.service';
+import { ProtectionServiceMock } from '@views/protection/services/protection/mocks/protection.service.mock';
 
 describe('TabBarComponent', () => {
   let component: TabBarComponent;
@@ -15,6 +17,10 @@ describe('TabBarComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: ActivatedRouteMock,
+        },
+        {
+          provide: ProtectionService,
+          useClass: ProtectionServiceMock,
         },
       ],
     }).compileComponents();

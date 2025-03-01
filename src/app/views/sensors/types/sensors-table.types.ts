@@ -1,6 +1,8 @@
 import { TranslationKey } from '@common/types/lang.types';
 import { TableColumnWidth } from '@common/enums/table.enums';
 import { HashMap } from '@jsverse/transloco';
+import { SensorDataModel } from '../models/sensor.models';
+import { ProtectionResultModel } from '../../protection/models/protection-result.models';
 
 export interface RowConfig {
   id: string;
@@ -22,6 +24,7 @@ export interface RowDataModel {
   frequency: string;
   powerFactor: string;
   avgVoltage: string;
+  alarm?: boolean;
 }
 
 export interface ColumnConfig {
@@ -31,3 +34,5 @@ export interface ColumnConfig {
   isTitle?: boolean;
   params?: HashMap;
 }
+
+export type SensorsTableData = [SensorDataModel | null, ProtectionResultModel];

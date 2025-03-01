@@ -6,5 +6,9 @@
 
   &__tab {
     height: 3rem;
+
+    &-badge {
+      color: var(--p-badge-danger-background);
+    }
   }
 }

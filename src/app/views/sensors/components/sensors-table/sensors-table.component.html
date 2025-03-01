@@ -23,7 +23,10 @@
       <tr [ngClass]="{ '!bg-highlight': row.isEmpty }">
         @for (col of columns; track col.header) {
           @if (col.isTitle) {
-            <td class="table__row-title">{{ t(row.title) }}</td>
+            <td class="table__row-title">
+              <p-badge severity="danger" [badgeDisabled]="!row.data?.alarm" />
+              {{ t(row.title) }}
+            </td>
           } @else {
             <td class="table__cell">{{ row.data?.[col.field] }}</td>
           }

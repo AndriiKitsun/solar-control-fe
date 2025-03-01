@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { SensorDataModel, SensorModel } from '../../models/sensor.models';
+import { SensorModel, SensorName } from '../../models/sensor.models';
 import {
   RowDataModel,
   RowConfig,
   ColumnConfig,
+  SensorsTableData,
 } from '../../types/sensors-table.types';
 import { formatNum, NumFormat, formatCcy } from '@common/helpers/format.helper';
 import {
@@ -14,19 +15,21 @@ import {
 } from '../../constants/sensors-table.constants';
 import { NgClass } from '@angular/common';
 import { SettingsModel } from '../../../settings/models/settings.models';
+import { Badge } from 'primeng/badge';
+import { ProtectionResultModel } from '../../../protection/models/protection-result.models';
 
 @Component({
   selector: 'app-sensors-table',
-  imports: [TableModule, TranslocoDirective, NgClass],
+  imports: [TableModule, TranslocoDirective, NgClass, Badge],
   templateUrl: './sensors-table.component.html',
   styleUrl: './sensors-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SensorsTableComponent {
   loading = input.required<boolean>();
-  rows = input.required<RowConfig[], SensorDataModel>({
-    transform: (value: SensorDataModel): RowConfig[] => {
-      if (!value) {
+  rows = input.required<RowConfig[], SensorsTableData>({
+    transform: (value: SensorsTableData): RowConfig[] => {
+      if (!value?.[0]) {
         return [];
       }
 
@@ -59,19 +62,24 @@ export class SensorsTableComponent {
 
   columnConfigs: ColumnConfig[] = SENSORS_TABLE_COLUMNS;
 
-  transformToRow(data: SensorDataModel): RowConfig[] {
+  transformToRow([sensorData, protection]: SensorsTableData): RowConfig[] {
     return SENSORS_TABLE_ROWS.map((row) => {
-      const sensor = data.sensors.find((sensor) => sensor.name === row.id);
+      const sensor = sensorData?.sensors.find(
+        (sensor) => sensor.name === row.id,
+      );
 
       return {
         ...row,
         isEmpty: !sensor,
-        data: this.mapToRowData(sensor),
+        data: this.mapToRowData(sensor, protection),
       };
     });
   }
 
-  mapToRowData(sensor?: SensorModel): RowDataModel {
+  mapToRowData(
+    sensor: SensorModel | undefined,
+    protection: ProtectionResultModel,
+  ): RowDataModel {
     if (!sensor) {
       return {} as RowDataModel;
     }
@@ -90,7 +98,7 @@ export class SensorsTableComponent {
     );
     const energyCost = this.sumCosts(t1EnergyCost, t2EnergyCost);
 
-    return {
+    const row: RowDataModel = {
       voltage: formatNum(sensor.voltage, acVoltageFormat),
       current: formatNum(sensor.current, NumFormat.ONE_DIGIT),
       power: formatNum(sensor.power, NumFormat.TWO_DIGIT),
@@ -104,6 +112,19 @@ export class SensorsTableComponent {
       powerFactor: formatNum(sensor.powerFactor, NumFormat.TWO_DIGIT),
       avgVoltage: formatNum(sensor.avgVoltage, NumFormat.THREE_DIGITS),
     };
+
+    if (sensor.name === SensorName.AC_OUTPUT) {
+      row.alarm =
+        protection.rules.acOutputFrequency ||
+        protection.rules.acOutputVoltage ||
+        protection.rules.acOutputAvgVoltage;
+    }
+
+    if (sensor.name === SensorName.DC_BATTERY) {
+      row.alarm = protection.rules.dcBatteryVoltage;
+    }
+
+    return row;
   }
 
   calcParamCost(param?: number, price?: number): number | undefined {
