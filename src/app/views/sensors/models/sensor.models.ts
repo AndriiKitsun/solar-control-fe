@@ -24,3 +24,9 @@ export interface PzemCounter {
 export interface PowerStatus {
   status: boolean;
 }
+
+export const enum SensorName {
+  AC_INPUT = 'acInput',
+  AC_OUTPUT = 'acOutput',
+  DC_BATTERY = 'dcBattery',
+}

@@ -51,7 +51,7 @@ export class TabBarComponent implements OnInit {
     )!;
 
     this.getActiveRoute();
-    this.getProtectionResult();
+    this.getProtectionEvents();
   }
 
   getActiveRoute(): void {
@@ -70,9 +70,9 @@ export class TabBarComponent implements OnInit {
       .subscribe();
   }
 
-  getProtectionResult(): void {
+  getProtectionEvents(): void {
     this.protectionService
-      .getProtectionResult()
+      .getProtectionEvents()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         tap((result: ProtectionResultModel) => {

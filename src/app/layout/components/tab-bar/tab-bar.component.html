@@ -10,9 +10,9 @@
           [class.tab-bar__tab-badge]="tab.badge"
         >
           <i [class]="tab.icon"></i>
-          <p-overlaybadge [badgeDisabled]="!tab.badge" severity="danger">
+          <p-overlay-badge [badgeDisabled]="!tab.badge" severity="danger">
             <span>{{ t(tab.label) }}</span>
-          </p-overlaybadge>
+          </p-overlay-badge>
         </p-tab>
       }
     </div>

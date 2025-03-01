@@ -6,7 +6,14 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable, tap, first, finalize } from 'rxjs';
+import {
+  Observable,
+  tap,
+  first,
+  finalize,
+  combineLatest,
+  startWith,
+} from 'rxjs';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -15,7 +22,6 @@ import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { SensorsService } from '../../services/sensors/sensors.service';
-import { SensorDataModel } from '../../models/sensor.models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Toolbar } from 'primeng/toolbar';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
@@ -26,6 +32,9 @@ import { SettingsModel } from '../../../settings/models/settings.models';
 import { TranslationKey } from '@common/types/lang.types';
 import { Severity } from '@common/types/severity.types';
 import { LogComponent } from '../log/log.component';
+import { ProtectionResultModel } from '../../../protection/models/protection-result.models';
+import { ProtectionService } from '../../../protection/services/protection/protection.service';
+import { SensorsTableData } from '../../types/sensors-table.types';
 
 /**
  * t(SENSORS.BUTTON.RESET)
@@ -77,7 +86,7 @@ export class SensorsComponent implements OnInit {
   powerBtnSeverity: Severity = 'secondary';
 
   createdAt = '';
-  sensorsData$!: Observable<SensorDataModel | null>;
+  sensorsTableData$!: Observable<SensorsTableData>;
   settings!: SettingsModel;
 
   constructor(
@@ -88,11 +97,12 @@ export class SensorsComponent implements OnInit {
     private readonly confirmDialogService: ConfirmDialogService,
     @Inject(MessageService)
     private readonly toastService: ToastService,
+    private readonly protectionService: ProtectionService,
   ) {}
 
   ngOnInit(): void {
     this.getPowerStatus();
-    this.sensorsData$ = this.getSensorsData();
+    this.sensorsTableData$ = this.getSensorsTableData();
     this.getSettings();
   }
 
@@ -125,12 +135,20 @@ export class SensorsComponent implements OnInit {
       });
   }
 
-  getSensorsData(): Observable<SensorDataModel | null> {
+  getSensorsTableData(): Observable<SensorsTableData> {
     this.isTableLoading.set(true);
 
-    return this.sensorsService.getSensorDataEvents().pipe(
-      tap((response: SensorDataModel | null) => {
-        if (!response) {
+    return combineLatest([
+      this.sensorsService.getSensorDataEvents(),
+      this.protectionService.getProtectionEvents().pipe(
+        startWith({
+          triggered: false,
+          rules: {},
+        } as ProtectionResultModel),
+      ),
+    ]).pipe(
+      tap(([sensors]) => {
+        if (!sensors) {
           this.isTableLoading.set(true);
 
           return;
@@ -138,7 +156,7 @@ export class SensorsComponent implements OnInit {
 
         this.isTableLoading.set(false);
 
-        this.createdAt = response.createdAt;
+        this.createdAt = sensors.createdAt;
       }),
     );
   }

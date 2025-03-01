@@ -48,7 +48,7 @@ export class ProtectionService {
     );
   }
 
-  getProtectionResult(): Observable<ProtectionResultModel> {
+  getProtectionEvents(): Observable<ProtectionResultModel> {
     return this.sse
       .stream(`${env.apiEndpoint}/protection-rules/sse`, {
         responseType: 'text',
