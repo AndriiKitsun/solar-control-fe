@@ -74,11 +74,11 @@ export class TabBarComponent implements OnInit {
     this.protectionService
       .getProtectionEvents()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         tap((result: ProtectionResultModel) => {
           this.protectionTab.badge = result.triggered;
           this.tabs.next(this.tabs.value);
         }),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }

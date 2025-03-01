@@ -114,7 +114,6 @@ export class SettingsComponent implements OnInit {
     this.settingsService
       .getSettings()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         tap((settings) => {
           this.settings = settings;
 
@@ -126,6 +125,7 @@ export class SettingsComponent implements OnInit {
         finalize(() => {
           this.isLoading.set(false);
         }),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         error: () => {

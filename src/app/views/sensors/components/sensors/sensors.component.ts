@@ -112,7 +112,6 @@ export class SensorsComponent implements OnInit {
     this.sensorsService
       .getPowerStatus()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         tap((response) => {
           this.powerStatus = response.status;
 
@@ -127,6 +126,7 @@ export class SensorsComponent implements OnInit {
         finalize(() => {
           this.isPowerProcessing.set(false);
         }),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         error: () => {
@@ -165,10 +165,10 @@ export class SensorsComponent implements OnInit {
     this.settingsService
       .getSettings()
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         tap((settings) => {
           this.settings = settings;
         }),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         error: () => {
