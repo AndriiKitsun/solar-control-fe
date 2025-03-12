@@ -25,6 +25,9 @@
         }
       }
     },
+    "SETTINGS": {
+      "T2_ACTIVE": "Working at night"
+    },
     "TABLE": {
       "COLUMN": {
         "AVERAGE_HASHRATE": "Avg. Hashrate (TH/s)",
@@ -52,7 +55,8 @@
       "DELETE_ERROR": "The error occurred while deleting an Asic",
       "EDIT_ERROR": "The error occurred while editing an Asic",
       "SIDE_BAR_ERROR": "The error occurred while fetching the Asics list",
-      "SUMMARY_ERROR": "The error occurred while fetching the Asic summary"
+      "SUMMARY_ERROR": "The error occurred while fetching the Asic summary",
+      "UPDATE_SETTINGS_ERROR": "The error occurred while updating Asic settings"
     }
   },
   "BUTTON": {

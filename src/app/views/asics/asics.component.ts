@@ -52,6 +52,9 @@ import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
+import { Checkbox } from 'primeng/checkbox';
+import { CheckboxChangeTypedEvent } from '@common/types/checkbox.types';
+import { FormsModule } from '@angular/forms';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -67,6 +70,7 @@ import { ToastService } from '@common/services/toast/toast.service';
  * t(ASICS.TOAST.SIDE_BAR_ERROR)
  * t(ASICS.TOAST.SUMMARY_ERROR)
  * t(ASICS.TOAST.DELETE_ERROR)
+ * t(ASICS.TOAST.UPDATE_SETTINGS_ERROR)
  * t(ASICS.CONFIRM_DIALOG.DELETE_ASIC_MESSAGE)
  * */
 
@@ -82,6 +86,8 @@ import { ToastService } from '@common/services/toast/toast.service';
     TableModule,
     Toast,
     Tag,
+    Checkbox,
+    FormsModule,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
@@ -101,6 +107,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   @ViewChild('menu') menuElement!: Menu;
 
   isLoading = signal(false);
+  isSettingUpdating = signal(false);
   isToolbarDisabled = computed(() => this.isLoading() || !this.selectedItem());
   selectedItem = signal<AsicMenuItem | null>(null);
 
@@ -318,6 +325,35 @@ export class AsicsComponent implements OnInit, AfterViewInit {
         },
         error: () => {
           void this.toastService.error('ASICS.TOAST.DELETE_ERROR');
+        },
+      });
+  }
+
+  updateT2ActiveState(event: CheckboxChangeTypedEvent): void {
+    const checked = event.checked ?? false;
+
+    if (!this.selectedItem()) {
+      return;
+    }
+
+    this.isSettingUpdating.set(true);
+
+    this.asicsService
+      .updateAsic(this.selectedItem()!.id!, { t2Active: checked })
+      .pipe(
+        first(),
+        finalize(() => {
+          this.isSettingUpdating.set(false);
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.selectedItem()!.asic!.t2Active = checked;
+
+          this.menuItemsSub$.next([]);
+        },
+        error: () => {
+          void this.toastService.error('ASICS.TOAST.UPDATE_SETTINGS_ERROR');
         },
       });
   }

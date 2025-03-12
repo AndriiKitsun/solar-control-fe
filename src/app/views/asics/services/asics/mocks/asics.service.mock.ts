@@ -5,6 +5,7 @@ import {
   AsicModel,
   AsicSummaryModel,
   AddAsicModel,
+  UpdateAsicModel,
 } from '../../../asics.models';
 
 export class AsicsServiceMock implements ClassMock<AsicsService> {
@@ -20,7 +21,7 @@ export class AsicsServiceMock implements ClassMock<AsicsService> {
     return of();
   }
 
-  updateAsic(id: string, asic: Partial<AddAsicModel>): Observable<AsicModel> {
+  updateAsic(id: string, asic: UpdateAsicModel): Observable<AsicModel> {
     return of();
   }
 
