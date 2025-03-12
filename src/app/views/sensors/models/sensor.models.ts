@@ -1,11 +1,14 @@
 export interface SensorDataModel {
   createdAt: string;
+  power: boolean;
   sensors: SensorModel[];
+  pTriggered: boolean;
 }
 
 export interface SensorModel {
   name: string;
   voltage?: number;
+  avgVoltage?: number;
   current?: number;
   power?: number;
   energy?: number;
@@ -13,7 +16,6 @@ export interface SensorModel {
   powerFactor?: number;
   t1Energy?: number;
   t2Energy?: number;
-  avgVoltage?: number;
 }
 
 export interface PzemCounter {

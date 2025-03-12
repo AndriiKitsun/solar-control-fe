@@ -44,7 +44,6 @@ import { SensorsTableData } from '../../types/sensors-table.types';
  * t(SENSORS.BUTTON.POWER_OFF)
  * t(SENSORS.TOAST.RESET_ERROR)
  * t(SENSORS.TOAST.SWITCH_POWER_ERROR)
- * t(SENSORS.TOAST.POWER_STATUS_ERROR)
  * t(SENSORS.CONFIRM_DIALOG.POWER_MESSAGE)
  * t(SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE)
  * */
@@ -101,38 +100,8 @@ export class SensorsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getPowerStatus();
     this.sensorsTableData$ = this.getSensorsTableData();
     this.getSettings();
-  }
-
-  getPowerStatus(): void {
-    this.isPowerProcessing.set(true);
-
-    this.sensorsService
-      .getPowerStatus()
-      .pipe(
-        tap((response) => {
-          this.powerStatus = response.status;
-
-          if (response.status) {
-            this.powerBtnLabel = 'SENSORS.BUTTON.POWER_OFF';
-            this.powerBtnSeverity = 'danger';
-          } else {
-            this.powerBtnLabel = 'SENSORS.BUTTON.POWER_ON';
-            this.powerBtnSeverity = 'success';
-          }
-        }),
-        finalize(() => {
-          this.isPowerProcessing.set(false);
-        }),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe({
-        error: () => {
-          void this.toastService.error('SENSORS.TOAST.POWER_STATUS_ERROR');
-        },
-      });
   }
 
   getSensorsTableData(): Observable<SensorsTableData> {
@@ -147,8 +116,8 @@ export class SensorsComponent implements OnInit {
         } as ProtectionResultModel),
       ),
     ]).pipe(
-      tap(([sensors]) => {
-        if (!sensors) {
+      tap(([sensor]) => {
+        if (!sensor) {
           this.isTableLoading.set(true);
 
           return;
@@ -156,7 +125,8 @@ export class SensorsComponent implements OnInit {
 
         this.isTableLoading.set(false);
 
-        this.createdAt = sensors.createdAt;
+        this.createdAt = sensor.createdAt;
+        this.updatePowerButton(sensor.power);
       }),
     );
   }
@@ -177,19 +147,16 @@ export class SensorsComponent implements OnInit {
       });
   }
 
-  openResetConfirmationModal(event: MouseEvent): void {
-    this.confirmDialogService.confirmDialog({
-      target: event.target!,
-      message: 'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE',
-      acceptButtonProps: {
-        label: 'SENSORS.BUTTON.RESET',
-        icon: PrimeIcons.BOLT,
-        severity: 'danger',
-      },
-      accept: () => {
-        this.resetCounters();
-      },
-    });
+  updatePowerButton(status: boolean): void {
+    this.powerStatus = status;
+
+    if (status) {
+      this.powerBtnLabel = 'SENSORS.BUTTON.POWER_OFF';
+      this.powerBtnSeverity = 'danger';
+    } else {
+      this.powerBtnLabel = 'SENSORS.BUTTON.POWER_ON';
+      this.powerBtnSeverity = 'success';
+    }
   }
 
   openSwitchPowerConfirmationModal(event: MouseEvent): void {
@@ -202,47 +169,54 @@ export class SensorsComponent implements OnInit {
         severity: 'danger',
       },
       accept: () => {
-        this.switchPower();
+        this.isPowerProcessing.set(true);
+
+        this.sensorsService
+          .switchPower(!this.powerStatus)
+          .pipe(
+            first(),
+            finalize(() => {
+              this.isPowerProcessing.set(false);
+            }),
+          )
+          .subscribe({
+            next: (response) => {
+              this.updatePowerButton(response.status);
+            },
+            error: () => {
+              void this.toastService.error('SENSORS.TOAST.SWITCH_POWER_ERROR');
+            },
+          });
       },
     });
   }
 
-  resetCounters(): void {
-    this.isResetProcessing.set(true);
+  openResetConfirmationModal(event: MouseEvent): void {
+    this.confirmDialogService.confirmDialog({
+      target: event.target!,
+      message: 'SENSORS.CONFIRM_DIALOG.RESET_COUNTERS_MESSAGE',
+      acceptButtonProps: {
+        label: 'SENSORS.BUTTON.RESET',
+        icon: PrimeIcons.BOLT,
+        severity: 'danger',
+      },
+      accept: () => {
+        this.isResetProcessing.set(true);
 
-    this.sensorsService
-      .resetCounters()
-      .pipe(
-        first(),
-        finalize(() => {
-          this.isResetProcessing.set(false);
-        }),
-      )
-      .subscribe({
-        error: () => {
-          void this.toastService.error('SENSORS.TOAST.RESET_ERROR');
-        },
-      });
-  }
-
-  switchPower(): void {
-    this.isPowerProcessing.set(true);
-
-    this.sensorsService
-      .switchPower(!this.powerStatus)
-      .pipe(
-        first(),
-        finalize(() => {
-          this.isPowerProcessing.set(false);
-        }),
-      )
-      .subscribe({
-        next: (response) => {
-          this.powerStatus = response.status;
-        },
-        error: () => {
-          void this.toastService.error('SENSORS.TOAST.SWITCH_POWER_ERROR');
-        },
-      });
+        this.sensorsService
+          .resetCounters()
+          .pipe(
+            first(),
+            finalize(() => {
+              this.isResetProcessing.set(false);
+            }),
+          )
+          .subscribe({
+            error: () => {
+              void this.toastService.error('SENSORS.TOAST.RESET_ERROR');
+            },
+          });
+      },
+    });
   }
 }
