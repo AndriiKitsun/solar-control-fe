@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AsicModel, AsicSummaryModel, AddAsicModel } from '../../asics.models';
+import {
+  AsicModel,
+  AsicSummaryModel,
+  AddAsicModel,
+  UpdateAsicModel,
+} from '../../asics.models';
 import { HttpClient } from '@angular/common/http';
 import { env } from '@env/environment';
 
@@ -24,7 +29,7 @@ export class AsicsService {
     return this.http.post<AsicModel>(`${env.apiEndpoint}/asics`, asic);
   }
 
-  updateAsic(id: string, asic: Partial<AddAsicModel>): Observable<AsicModel> {
+  updateAsic(id: string, asic: UpdateAsicModel): Observable<AsicModel> {
     if (!asic.password) {
       delete asic.password;
     }

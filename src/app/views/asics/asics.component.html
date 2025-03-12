@@ -45,66 +45,90 @@
 
     @let summary = asicSummary$ | async;
 
-    @if (selectedItem() && summary?.length) {
+    @if (selectedItem()) {
       <div class="card">
-        <p-table [value]="summary!" showGridlines rowHover>
-          <ng-template #header>
-            <tr>
-              <th class="table__column">
-                {{ t('ASICS.TABLE.COLUMN.IP_ADDRESS') }}
-              </th>
-              <th class="table__column">{{ t('ASICS.TABLE.COLUMN.STATE') }}</th>
-              <th class="table__column">{{ t('ASICS.TABLE.COLUMN.TIME') }}</th>
-              <th class="table__column">
-                {{ t('ASICS.TABLE.COLUMN.AVERAGE_HASHRATE') }}
-              </th>
-              <th class="table__column">
-                {{ t('ASICS.TABLE.COLUMN.MAX_TEMP') }}
-              </th>
-              <th class="table__column">
-                {{ t('ASICS.TABLE.COLUMN.POWER_USAGE') }}
-              </th>
-              <th class="table__column">
-                {{ t('ASICS.TABLE.COLUMN.FAN_SPEED') }}
-              </th>
-            </tr>
-          </ng-template>
-          <ng-template #body let-summary>
-            <tr>
-              <td>
-                <a
-                  href="http://{{ summary.ip }}"
-                  target="_blank"
-                  class="font-bold text-primary hover:underline"
-                  >{{ summary.ip }}</a
-                >
-              </td>
-
-              <td>
-                <p-tag
-                  [value]="t(summary.state.value)"
-                  [severity]="summary.state.severity"
-                />
-              </td>
-
-              <td>
-                {{
-                  t('ASICS.TABLE.TIME_FORMAT', {
-                    days: summary.time.days,
-                    hours: summary.time.hours,
-                    minutes: summary.time.minutes,
-                  })
-                }}
-              </td>
-
-              <td>{{ summary.avgHashRate }}</td>
-              <td>{{ summary.maxChipTemp }}</td>
-              <td>{{ summary.powerConsumption }}</td>
-              <td>{{ summary.avgFanSpeed }}</td>
-            </tr>
-          </ng-template>
-        </p-table>
+        <div class="flex items-center">
+          <p-checkbox
+            inputId="t2ActiveAsic"
+            binary
+            [ngModel]="selectedItem()?.asic?.t2Active"
+            (onChange)="updateT2ActiveState($event)"
+            [disabled]="isSettingUpdating()"
+          />
+          <label
+            for="t2ActiveAsic"
+            class="ml-2 cursor-pointer text-base font-semibold"
+            [class.text-muted-color]="isSettingUpdating()"
+            >{{ t('ASICS.SETTINGS.T2_ACTIVE') }}</label
+          >
+        </div>
       </div>
+
+      @if (summary?.length) {
+        <div class="card">
+          <p-table [value]="summary!" showGridlines rowHover>
+            <ng-template #header>
+              <tr>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.IP_ADDRESS') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.STATE') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.TIME') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.AVERAGE_HASHRATE') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.MAX_TEMP') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.POWER_USAGE') }}
+                </th>
+                <th class="table__column">
+                  {{ t('ASICS.TABLE.COLUMN.FAN_SPEED') }}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template #body let-summary>
+              <tr>
+                <td>
+                  <a
+                    href="http://{{ summary.ip }}"
+                    target="_blank"
+                    class="font-bold text-primary hover:underline"
+                    >{{ summary.ip }}</a
+                  >
+                </td>
+
+                <td>
+                  <p-tag
+                    [value]="t(summary.state.value)"
+                    [severity]="summary.state.severity"
+                  />
+                </td>
+
+                <td>
+                  {{
+                    t('ASICS.TABLE.TIME_FORMAT', {
+                      days: summary.time.days,
+                      hours: summary.time.hours,
+                      minutes: summary.time.minutes,
+                    })
+                  }}
+                </td>
+
+                <td>{{ summary.avgHashRate }}</td>
+                <td>{{ summary.maxChipTemp }}</td>
+                <td>{{ summary.powerConsumption }}</td>
+                <td>{{ summary.avgFanSpeed }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      }
     }
   </div>
 </div>

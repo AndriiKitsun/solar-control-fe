@@ -3,12 +3,17 @@ export interface AsicModel {
   ip: string;
   address: string;
   hostname: string;
+  t2Active: boolean;
 }
 
 export interface AddAsicModel {
   ip: string;
   address: string;
   password: string;
+}
+
+export interface UpdateAsicModel extends Partial<AddAsicModel> {
+  t2Active?: boolean;
 }
 
 export type AsicState =
