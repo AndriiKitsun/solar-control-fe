@@ -16,10 +16,6 @@ export class SensorsServiceMock implements ClassMock<SensorsService> {
     return of([]);
   }
 
-  getPowerStatus(): Observable<PowerStatus> {
-    return of();
-  }
-
   switchPower(status: boolean): Observable<PowerStatus> {
     return of();
   }
