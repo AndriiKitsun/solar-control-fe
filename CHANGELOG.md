@@ -1,5 +1,17 @@
 # solar-control-fe
 
+## 1.4.0
+
+### Minor Changes
+
+- [#49](https://github.com/AndriiKitsun/solar-control-fe/pull/49) [`60aece9`](https://github.com/AndriiKitsun/solar-control-fe/commit/60aece920a8c0a1d568c5dfd1a30b895d2142ab8) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-125: Add checkbox to enable Asics during T2 zone
+
+- [#48](https://github.com/AndriiKitsun/solar-control-fe/pull/48) [`5208c48`](https://github.com/AndriiKitsun/solar-control-fe/commit/5208c48f911a981ee4368ab32fc56416f1ba8a52) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-130: Migrate DC Battery Voltage protection rule to the DC Battery Avg Votlage
+
+### Patch Changes
+
+- [#48](https://github.com/AndriiKitsun/solar-control-fe/pull/48) [`5208c48`](https://github.com/AndriiKitsun/solar-control-fe/commit/5208c48f911a981ee4368ab32fc56416f1ba8a52) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-128: Power button does not reflect current power state
+
 ## 1.3.0
 
 ### Minor Changes
