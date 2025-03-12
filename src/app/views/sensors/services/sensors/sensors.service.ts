@@ -36,10 +36,6 @@ export class SensorsService {
     return this.http.delete<PzemCounter[]>(`${env.apiEndpoint}/pzems/counter`);
   }
 
-  getPowerStatus(): Observable<PowerStatus> {
-    return this.http.get<PowerStatus>(`${env.apiEndpoint}/relays`);
-  }
-
   switchPower(status: boolean): Observable<PowerStatus> {
     return this.http.put<PowerStatus>(`${env.apiEndpoint}/relays/power`, {
       status: status,

@@ -8,8 +8,8 @@ import { ProtectionGroup } from '../types/protection-group.types';
  * t(PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.SUFFIX)
  * t(PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.LABEL)
  * t(PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.SUFFIX)
- * t(PROTECTION.GROUP.DC_BATTERY_VOLTAGE.LABEL)
- * t(PROTECTION.GROUP.DC_BATTERY_VOLTAGE.SUFFIX)
+ * t(PROTECTION.GROUP.DC_BATTERY_AVG_VOLTAGE.LABEL)
+ * t(PROTECTION.GROUP.DC_BATTERY_AVG_VOLTAGE.SUFFIX)
  * */
 
 export const PROTECTION_GROUPS: ProtectionGroup[] = [
@@ -56,17 +56,17 @@ export const PROTECTION_GROUPS: ProtectionGroup[] = [
     },
   },
   {
-    id: ProtectionRuleId.DC_BATTERY_VOLTAGE,
-    enableCheckId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Enabled`,
-    minInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Min`,
-    maxInputId: `${ProtectionRuleId.DC_BATTERY_VOLTAGE}Max`,
-    label: 'PROTECTION.GROUP.DC_BATTERY_VOLTAGE.LABEL',
+    id: ProtectionRuleId.DC_BATTERY_AVG_VOLTAGE,
+    enableCheckId: `${ProtectionRuleId.DC_BATTERY_AVG_VOLTAGE}Enabled`,
+    minInputId: `${ProtectionRuleId.DC_BATTERY_AVG_VOLTAGE}Min`,
+    maxInputId: `${ProtectionRuleId.DC_BATTERY_AVG_VOLTAGE}Max`,
+    label: 'PROTECTION.GROUP.DC_BATTERY_AVG_VOLTAGE.LABEL',
     input: {
       min: 30,
       max: 70,
       step: 0.1,
       fractionDigits: 1,
-      suffix: 'PROTECTION.GROUP.DC_BATTERY_VOLTAGE.SUFFIX',
+      suffix: 'PROTECTION.GROUP.DC_BATTERY_AVG_VOLTAGE.SUFFIX',
     },
   },
 ];

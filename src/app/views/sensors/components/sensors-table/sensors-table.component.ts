@@ -121,7 +121,7 @@ export class SensorsTableComponent {
     }
 
     if (sensor.name === SensorName.DC_BATTERY) {
-      row.alarm = protection.rules.dcBatteryVoltage;
+      row.alarm = protection.rules.dcBatteryAvgVoltage;
     }
 
     return row;
