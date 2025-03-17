@@ -4,6 +4,7 @@ export interface AsicModel {
   address: string;
   hostname: string;
   t2Active: boolean;
+  t2EndStop: boolean;
 }
 
 export interface AddAsicModel {
@@ -14,7 +15,10 @@ export interface AddAsicModel {
 
 export interface UpdateAsicModel extends Partial<AddAsicModel> {
   t2Active?: boolean;
+  t2EndStop?: boolean;
 }
+
+export type AsicSetting = keyof Pick<AsicModel, 't2Active' | 't2EndStop'>;
 
 export type AsicState =
   | 'mining'
