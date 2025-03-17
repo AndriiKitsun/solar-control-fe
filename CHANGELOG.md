@@ -1,5 +1,11 @@
 # solar-control-fe
 
+## 1.5.0
+
+### Minor Changes
+
+- [#51](https://github.com/AndriiKitsun/solar-control-fe/pull/51) [`0dc9918`](https://github.com/AndriiKitsun/solar-control-fe/commit/0dc99184a72041a1e78b39cfc8bf815ed9f09952) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-137: Add checkbox for turning off Asics after T2 zone end
+
 ## 1.4.0
 
 ### Minor Changes
