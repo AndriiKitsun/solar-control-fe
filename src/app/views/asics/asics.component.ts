@@ -34,7 +34,12 @@ import {
   MessageService,
 } from 'primeng/api';
 import { AsyncPipe } from '@angular/common';
-import { AsicModel, AsicSummaryModel, AsicState } from './asics.models';
+import {
+  AsicModel,
+  AsicSummaryModel,
+  AsicState,
+  AsicSetting,
+} from './asics.models';
 import {
   AsicMenuItem,
   ModifyAsicDialogData,
@@ -329,7 +334,10 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       });
   }
 
-  updateT2ActiveState(event: CheckboxChangeTypedEvent): void {
+  updateT2ActiveState(
+    event: CheckboxChangeTypedEvent,
+    setting: AsicSetting,
+  ): void {
     const checked = event.checked ?? false;
 
     if (!this.selectedItem()) {
@@ -339,7 +347,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     this.isSettingUpdating.set(true);
 
     this.asicsService
-      .updateAsic(this.selectedItem()!.id!, { t2Active: checked })
+      .updateAsic(this.selectedItem()!.id!, { [setting]: checked })
       .pipe(
         first(),
         finalize(() => {
@@ -348,7 +356,7 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: () => {
-          this.selectedItem()!.asic!.t2Active = checked;
+          this.selectedItem()!.asic![setting] = checked;
 
           this.menuItemsSub$.next([]);
         },
