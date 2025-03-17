@@ -26,7 +26,8 @@
       }
     },
     "SETTINGS": {
-      "T2_ACTIVE": "Робота вночі"
+      "T2_ACTIVE": "Вмикати вночі",
+      "T2_END_STOP": "Вимикати вранці"
     },
     "TABLE": {
       "COLUMN": {
