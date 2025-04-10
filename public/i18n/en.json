@@ -26,6 +26,7 @@
       }
     },
     "SETTINGS": {
+      "AUTOMATED": "Automation",
       "T2_ACTIVE": "Start at night",
       "T2_END_STOP": "Stop in the morning"
     },

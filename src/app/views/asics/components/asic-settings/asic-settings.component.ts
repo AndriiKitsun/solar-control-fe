@@ -6,7 +6,7 @@ import {
   Inject,
   output,
 } from '@angular/core';
-import { AsicModel, AsicSetting } from '../../models/asics.models';
+import { AsicModel } from '../../models/asics.models';
 import { Checkbox } from 'primeng/checkbox';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { CheckboxChangeTypedEvent } from '@common/types/checkbox.types';
@@ -15,6 +15,8 @@ import { AsicsService } from '../../services/asics/asics.service';
 import { ToastService } from '@common/services/toast/toast.service';
 import { MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
+import { ASIC_SETTINGS } from '../../constants/asic-settings.constants';
+import { AsicSetting } from '../../types/asic-settings.types';
 
 @Component({
   selector: 'app-asic-settings',
@@ -24,8 +26,10 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsicSettingsComponent {
+  settings = ASIC_SETTINGS;
+
   asic = input.required<AsicModel>();
-  isSettingUpdating = signal(false);
+  isUpdating = signal(false);
 
   updated = output<AsicModel>();
 
@@ -35,20 +39,20 @@ export class AsicSettingsComponent {
     private readonly toastService: ToastService,
   ) {}
 
-  updateT2ActiveState(
+  updateAsicSetting(
     event: CheckboxChangeTypedEvent,
     setting: AsicSetting,
   ): void {
     const checked = event.checked ?? false;
 
-    this.isSettingUpdating.set(true);
+    this.isUpdating.set(true);
 
     this.asicsService
       .updateAsic(this.asic().id, { [setting]: checked })
       .pipe(
         first(),
         finalize(() => {
-          this.isSettingUpdating.set(false);
+          this.isUpdating.set(false);
         }),
       )
       .subscribe({

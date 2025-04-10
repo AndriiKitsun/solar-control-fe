@@ -17,12 +17,8 @@ export interface AddAsicModel {
 export interface UpdateAsicModel extends Partial<AddAsicModel> {
   t2Active?: boolean;
   t2EndStop?: boolean;
+  automated?: boolean;
 }
-
-export type AsicSetting = keyof Pick<
-  AsicModel,
-  't2Active' | 't2EndStop' | 'automated'
->;
 
 export type AsicState =
   | 'mining'
