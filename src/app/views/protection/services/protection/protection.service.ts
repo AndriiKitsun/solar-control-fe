@@ -22,7 +22,7 @@ export class ProtectionService {
     Record<ProtectionRuleId, ProtectionRuleModel>
   > {
     return this.http
-      .get<ProtectionRuleModel[]>(`${env.apiEndpoint}/protection-rules`)
+      .get<ProtectionRuleModel[]>(`${env.apiEndpoint}/automation/protection`)
       .pipe(
         map((rules) => {
           return rules.reduce(
@@ -45,7 +45,7 @@ export class ProtectionService {
     };
 
     return this.http.put<ProtectionRuleModel>(
-      `${env.apiEndpoint}/protection-rules/${rule.id}`,
+      `${env.apiEndpoint}/automation/protection/${rule.id}`,
       payload,
     );
   }
@@ -56,7 +56,7 @@ export class ProtectionService {
     }
 
     this.cachedObservable = this.sse
-      .stream(`${env.apiEndpoint}/protection-rules/sse`, {
+      .stream(`${env.apiEndpoint}/automation/protection/sse`, {
         responseType: 'text',
       })
       .pipe(
