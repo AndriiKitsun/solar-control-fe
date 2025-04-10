@@ -1,5 +1,5 @@
 import { MenuItem } from 'primeng/api';
-import { AsicModel } from './asics.models';
+import { AsicModel } from '../models/asics.models';
 
 export interface AsicMenuItem extends MenuItem {
   asic?: AsicModel;

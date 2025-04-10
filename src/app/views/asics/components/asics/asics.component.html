@@ -46,39 +46,7 @@
     @let summary = asicSummary$ | async;
 
     @if (selectedItem()) {
-      <div class="card flex items-center gap-4">
-        <div>
-          <p-checkbox
-            inputId="t2ActiveAsic"
-            binary
-            [ngModel]="selectedItem()?.asic?.t2Active"
-            (onChange)="updateT2ActiveState($event, 't2Active')"
-            [disabled]="isSettingUpdating()"
-          />
-          <label
-            for="t2ActiveAsic"
-            class="ml-2 cursor-pointer text-base font-semibold"
-            [class.text-muted-color]="isSettingUpdating()"
-            >{{ t('ASICS.SETTINGS.T2_ACTIVE') }}</label
-          >
-        </div>
-
-        <div>
-          <p-checkbox
-            inputId="t2EndStopAsic"
-            binary
-            [ngModel]="selectedItem()?.asic?.t2EndStop"
-            (onChange)="updateT2ActiveState($event, 't2EndStop')"
-            [disabled]="isSettingUpdating()"
-          />
-          <label
-            for="t2EndStopAsic"
-            class="ml-2 cursor-pointer text-base font-semibold"
-            [class.text-muted-color]="isSettingUpdating()"
-            >{{ t('ASICS.SETTINGS.T2_END_STOP') }}</label
-          >
-        </div>
-      </div>
+      <app-asic-settings [asic]="selectedItem()!.asic!" />
 
       @if (summary?.length) {
         <div class="card">

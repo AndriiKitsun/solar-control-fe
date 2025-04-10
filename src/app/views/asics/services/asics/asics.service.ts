@@ -5,7 +5,7 @@ import {
   AsicSummaryModel,
   AddAsicModel,
   UpdateAsicModel,
-} from '../../asics.models';
+} from '../../models/asics.models';
 import { HttpClient } from '@angular/common/http';
 import { env } from '@env/environment';
 

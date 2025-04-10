@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AsicsComponent } from './asics.component';
 import { TranslocoTestingModule } from '@jsverse/transloco';
-import { AsicsService } from './services/asics/asics.service';
-import { AsicsServiceMock } from './services/asics/mocks/asics.service.mock';
+import { AsicsService } from '../../services/asics/asics.service';
+import { AsicsServiceMock } from '../../services/asics/mocks/asics.service.mock';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogServiceMock } from '@common/mocks/dialog.service.mock';
 import { ConfirmationService, MessageService } from 'primeng/api';
