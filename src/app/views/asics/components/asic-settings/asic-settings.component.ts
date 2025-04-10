@@ -21,7 +21,6 @@ import { AsicSetting } from '../../types/asic-settings.types';
   selector: 'app-asic-settings',
   imports: [Checkbox, TranslocoDirective, FormsModule],
   templateUrl: './asic-settings.component.html',
-  styleUrl: './asic-settings.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsicSettingsComponent {
