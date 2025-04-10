@@ -6,7 +6,7 @@ import {
   AsicSummaryModel,
   AddAsicModel,
   UpdateAsicModel,
-} from '../../../asics.models';
+} from '../../../models/asics.models';
 
 export class AsicsServiceMock implements ClassMock<AsicsService> {
   getAsics(): Observable<AsicModel[]> {

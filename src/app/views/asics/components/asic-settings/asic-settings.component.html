@@ -1,0 +1,49 @@
+<div class="card flex items-center gap-4" *transloco="let t">
+  <div>
+    <p-checkbox
+      inputId="t2ActiveAsic"
+      binary
+      [ngModel]="asic().t2Active"
+      (onChange)="updateT2ActiveState($event, 't2Active')"
+      [disabled]="isSettingUpdating()"
+    />
+    <label
+      for="t2ActiveAsic"
+      class="ml-2 cursor-pointer text-base font-semibold"
+      [class.text-muted-color]="isSettingUpdating()"
+      >{{ t('ASICS.SETTINGS.T2_ACTIVE') }}</label
+    >
+  </div>
+
+  <div>
+    <p-checkbox
+      inputId="t2EndStopAsic"
+      binary
+      [ngModel]="asic().t2EndStop"
+      (onChange)="updateT2ActiveState($event, 't2EndStop')"
+      [disabled]="isSettingUpdating()"
+    />
+    <label
+      for="t2EndStopAsic"
+      class="ml-2 cursor-pointer text-base font-semibold"
+      [class.text-muted-color]="isSettingUpdating()"
+      >{{ t('ASICS.SETTINGS.T2_END_STOP') }}</label
+    >
+  </div>
+
+  <div>
+    <p-checkbox
+      inputId="automated"
+      binary
+      [ngModel]="asic().automated"
+      (onChange)="updateT2ActiveState($event, 'automated')"
+      [disabled]="isSettingUpdating()"
+    />
+    <label
+      for="automated"
+      class="ml-2 cursor-pointer text-base font-semibold"
+      [class.text-muted-color]="isSettingUpdating()"
+      >Automated</label
+    >
+  </div>
+</div>

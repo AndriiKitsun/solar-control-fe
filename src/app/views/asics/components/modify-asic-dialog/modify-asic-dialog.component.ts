@@ -5,7 +5,7 @@ import {
   signal,
 } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
-import { ModifyAsicDialogData } from '../../asics.types';
+import { ModifyAsicDialogData } from '../../types/asics.types';
 import { InputText } from 'primeng/inputtext';
 import { AutoCompleteCompleteEvent, AutoComplete } from 'primeng/autocomplete';
 import {
@@ -18,8 +18,8 @@ import {
 import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { KeyFilter } from 'primeng/keyfilter';
-import { IPv4AddressRegExpPattern } from '../../asics.constants';
-import { AsicModel, AddAsicModel } from '../../asics.models';
+import { IPv4AddressRegExpPattern } from '../../constants/asics.constants';
+import { AsicModel, AddAsicModel } from '../../models/asics.models';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { Password } from 'primeng/password';
 import { NgTemplateOutlet } from '@angular/common';

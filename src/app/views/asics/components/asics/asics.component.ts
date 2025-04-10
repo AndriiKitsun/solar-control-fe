@@ -25,7 +25,7 @@ import {
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-import { AsicsService } from './services/asics/asics.service';
+import { AsicsService } from '../../services/asics/asics.service';
 import { Toolbar } from 'primeng/toolbar';
 import {
   PrimeIcons,
@@ -38,28 +38,26 @@ import {
   AsicModel,
   AsicSummaryModel,
   AsicState,
-  AsicSetting,
-} from './asics.models';
+} from '../../models/asics.models';
 import {
   AsicMenuItem,
   ModifyAsicDialogData,
   AsicSummaryGridItem,
-} from './asics.types';
+} from '../../types/asics.types';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ModifyAsicDialogComponent } from './components/modify-asic-dialog/modify-asic-dialog.component';
+import { ModifyAsicDialogComponent } from '../modify-asic-dialog/modify-asic-dialog.component';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { Toast } from 'primeng/toast';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { formatNum, NumFormat } from '@common/helpers/format.helper';
-import { ASIC_SUMMARY_UPDATE_INTERVAL } from './asics.constants';
+import { ASIC_SUMMARY_UPDATE_INTERVAL } from '../../constants/asics.constants';
 import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
-import { Checkbox } from 'primeng/checkbox';
-import { CheckboxChangeTypedEvent } from '@common/types/checkbox.types';
 import { FormsModule } from '@angular/forms';
+import { AsicSettingsComponent } from '../asic-settings/asic-settings.component';
 
 /**
  * t(ASICS.DIALOG.MODIFY.HEADER.ADD)
@@ -91,8 +89,8 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     Toast,
     Tag,
-    Checkbox,
     FormsModule,
+    AsicSettingsComponent,
   ],
   templateUrl: './asics.component.html',
   styleUrl: './asics.component.scss',
@@ -334,36 +332,9 @@ export class AsicsComponent implements OnInit, AfterViewInit {
       });
   }
 
-  updateT2ActiveState(
-    event: CheckboxChangeTypedEvent,
-    setting: AsicSetting,
-  ): void {
-    const checked = event.checked ?? false;
-
-    if (!this.selectedItem()) {
-      return;
-    }
-
-    this.isSettingUpdating.set(true);
-
-    this.asicsService
-      .updateAsic(this.selectedItem()!.id!, { [setting]: checked })
-      .pipe(
-        first(),
-        finalize(() => {
-          this.isSettingUpdating.set(false);
-        }),
-      )
-      .subscribe({
-        next: () => {
-          this.selectedItem()!.asic![setting] = checked;
-
-          this.menuItemsSub$.next([]);
-        },
-        error: () => {
-          void this.toastService.error('ASICS.TOAST.UPDATE_SETTINGS_ERROR');
-        },
-      });
+  updateMenuAfterSettingChange(asic: AsicModel): void {
+    this.selectedItem()!.asic = asic;
+    this.menuItemsSub$.next([]);
   }
 
   getStateSeverity(state: AsicState): Severity {

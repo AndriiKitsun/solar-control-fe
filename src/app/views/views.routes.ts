@@ -25,7 +25,9 @@ export default [
   {
     path: RoutePath.ASICS,
     loadComponent: () =>
-      import('./asics/asics.component').then((c) => c.AsicsComponent),
+      import('./asics/components/asics/asics.component').then(
+        (c) => c.AsicsComponent,
+      ),
     providers: [DialogService],
   },
   {
