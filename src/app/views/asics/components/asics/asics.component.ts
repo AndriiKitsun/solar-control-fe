@@ -110,7 +110,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   @ViewChild('menu') menuElement!: Menu;
 
   isLoading = signal(false);
-  isSettingUpdating = signal(false);
   isToolbarDisabled = computed(() => this.isLoading() || !this.selectedItem());
   selectedItem = signal<AsicMenuItem | null>(null);
 
@@ -330,11 +329,6 @@ export class AsicsComponent implements OnInit, AfterViewInit {
           void this.toastService.error('ASICS.TOAST.DELETE_ERROR');
         },
       });
-  }
-
-  updateMenuAfterSettingChange(asic: AsicModel): void {
-    this.selectedItem()!.asic = asic;
-    this.menuItemsSub$.next([]);
   }
 
   getStateSeverity(state: AsicState): Severity {

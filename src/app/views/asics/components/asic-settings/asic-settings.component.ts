@@ -4,7 +4,6 @@ import {
   input,
   signal,
   Inject,
-  output,
 } from '@angular/core';
 import { AsicModel } from '../../models/asics.models';
 import { Checkbox } from 'primeng/checkbox';
@@ -31,8 +30,6 @@ export class AsicSettingsComponent {
   asic = input.required<AsicModel>();
   isUpdating = signal(false);
 
-  updated = output<AsicModel>();
-
   constructor(
     private readonly asicsService: AsicsService,
     @Inject(MessageService)
@@ -58,8 +55,6 @@ export class AsicSettingsComponent {
       .subscribe({
         next: () => {
           this.asic()[setting] = checked;
-
-          this.updated.emit(this.asic());
         },
         error: () => {
           void this.toastService.error('ASICS.TOAST.UPDATE_SETTINGS_ERROR');
