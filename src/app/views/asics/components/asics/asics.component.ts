@@ -56,7 +56,6 @@ import { Tag } from 'primeng/tag';
 import { Severity } from '@common/types/severity.types';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
-import { FormsModule } from '@angular/forms';
 import { AsicSettingsComponent } from '../asic-settings/asic-settings.component';
 
 /**
@@ -89,7 +88,6 @@ import { AsicSettingsComponent } from '../asic-settings/asic-settings.component'
     TableModule,
     Toast,
     Tag,
-    FormsModule,
     AsicSettingsComponent,
   ],
   templateUrl: './asics.component.html',
