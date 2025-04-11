@@ -101,7 +101,9 @@
       "WARN": "Warn"
     },
     "TAB": {
-      "LOGS": "Logs"
+      "ALL": "All",
+      "CONTROL": "Control",
+      "PROTECTION": "Protection"
     },
     "TOAST": {
       "DELETE_ERROR": "The error occurred while deleting logs"

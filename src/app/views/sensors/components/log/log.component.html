@@ -1,6 +1,12 @@
-<p-tabs value="0" *transloco="let t">
+<p-tabs
+  [value]="activeTab$.value"
+  *transloco="let t"
+  (valueChange)="updateTab($event)"
+>
   <p-tablist>
-    <p-tab value="0">{{ t('LOG.TAB.LOGS') }}</p-tab>
+    @for (tab of tabs; track tab.id) {
+      <p-tab [value]="tab.id">{{ t(tab.label) }}</p-tab>
+    }
 
     <div class="ml-auto inline-flex items-center gap-1">
       <p-select
@@ -8,7 +14,7 @@
         class="min-w-28"
         [options]="levelOptions"
         [(ngModel)]="selectedLevel"
-        (onChange)="updateItems()"
+        (onChange)="filterLogsByLevel()"
       >
         <ng-template let-option #selectedItem>{{
           t(option.label)
@@ -28,27 +34,23 @@
     </div>
   </p-tablist>
 
-  <p-tabpanels>
-    <p-tabpanel value="0">
-      <p-virtualscroller
-        [items]="items()"
-        [itemSize]="35"
-        scrollHeight="22rem"
-        styleClass="border border-surface"
-      >
-        <ng-template #item let-item>
-          <div class="flex items-center p-2">
-            <span>[{{ item.createdAt | date: 'dd-MM-yyyy HH:mm:ss' }}]</span>
-            <span class="ml-2 text-muted-color">{{
-              t(getLevelTranslation(item.level))
-            }}</span>
-            <span>:</span>
-            <span class="ml-1">{{ item.message }}</span>
-          </div>
-        </ng-template>
-      </p-virtualscroller>
-    </p-tabpanel>
-  </p-tabpanels>
+  <p-virtualscroller
+    [items]="items()"
+    [itemSize]="35"
+    scrollHeight="22rem"
+    styleClass="border border-surface"
+  >
+    <ng-template #item let-item>
+      <div class="flex items-center p-2">
+        <span>[{{ item.createdAt | date: 'dd-MM-yyyy HH:mm:ss' }}]</span>
+        <span class="ml-2 text-muted-color">{{
+          t(getLevelTranslation(item.level))
+        }}</span>
+        <span>:</span>
+        <span class="ml-1">{{ item.message }}</span>
+      </div>
+    </ng-template>
+  </p-virtualscroller>
 </p-tabs>
 
 <p-confirm-dialog />

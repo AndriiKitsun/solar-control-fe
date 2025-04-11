@@ -12,20 +12,27 @@ import { LogLevel } from '../../enums/log.enums';
 import { Select } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { LOG_SELECT_OPTIONS } from '../../constants/log.constants';
+import { LOG_SELECT_OPTIONS, LOG_TABS } from '../../constants/log.constants';
 import { LogsService } from '../../services/logs/logs.service';
-import { mergeWith, tap, first, finalize } from 'rxjs';
+import {
+  first,
+  finalize,
+  BehaviorSubject,
+  switchMap,
+  mergeWith,
+  tap,
+} from 'rxjs';
 import { TranslationKey } from '@common/types/lang.types';
 import { LogModel } from '../../models/log.model';
-import { Scroller } from 'primeng/scroller';
-import { DatePipe } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Button } from 'primeng/button';
 import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { ConfirmDialogService } from '@common/services/confirm-dialog/confirm-dialog.service';
 import { ToastService } from '@common/services/toast/toast.service';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { Toast } from 'primeng/toast';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Scroller } from 'primeng/scroller';
+import { DatePipe } from '@angular/common';
 
 /**
  * t(LOG.CONFIRM_DIALOG.DELETE_MESSAGE)
@@ -40,10 +47,10 @@ import { Toast } from 'primeng/toast';
     FormsModule,
     Button,
     TranslocoDirective,
-    Scroller,
-    DatePipe,
     ConfirmDialog,
     Toast,
+    Scroller,
+    DatePipe,
   ],
   templateUrl: './log.component.html',
   styleUrl: './log.component.scss',
@@ -60,7 +67,10 @@ import { Toast } from 'primeng/toast';
   ],
 })
 export class LogComponent implements OnInit {
-  levelOptions: SelectOption<LogLevel>[] = LOG_SELECT_OPTIONS;
+  readonly tabs = LOG_TABS;
+  readonly levelOptions: SelectOption<LogLevel>[] = LOG_SELECT_OPTIONS;
+
+  activeTab$ = new BehaviorSubject<string>('');
   selectedLevel: SelectOption<LogLevel> = this.levelOptions[1];
 
   items = signal<LogModel[]>([]);
@@ -82,22 +92,37 @@ export class LogComponent implements OnInit {
   }
 
   getLogs(): void {
-    this.logsService
-      .getLogs()
+    this.activeTab$
       .pipe(
-        mergeWith(this.logsService.getLogStream()),
-        tap((logs: LogModel | LogModel[]) => {
-          if (Array.isArray(logs)) {
-            this.logs = logs;
-          } else {
-            this.logs.unshift(logs);
-          }
+        switchMap((tab: string) => {
+          return this.logsService.getLogs(tab).pipe(
+            mergeWith(this.logsService.getLogStream(tab)),
+            tap((logs: LogModel | LogModel[]) => {
+              if (Array.isArray(logs)) {
+                this.logs = logs;
+              } else {
+                this.logs.unshift(logs);
+              }
 
-          this.updateItems();
+              this.filterLogsByLevel();
+            }),
+            takeUntilDestroyed(this.destroyRef),
+          );
         }),
-        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
+  }
+
+  updateTab(event: unknown): void {
+    this.activeTab$.next(event as string);
+  }
+
+  filterLogsByLevel(): void {
+    const logs = this.logs.filter(
+      (log) => log.level >= this.selectedLevel.value,
+    );
+
+    this.items.set(logs);
   }
 
   getLevelTranslation(level: LogLevel): TranslationKey {
@@ -113,14 +138,6 @@ export class LogComponent implements OnInit {
       default:
         return 'LOG.LEVEL.ERROR';
     }
-  }
-
-  updateItems(): void {
-    const logs = this.logs.filter(
-      (log) => log.level >= this.selectedLevel.value,
-    );
-
-    this.items.set(logs);
   }
 
   openDeleteLogsDialog(event: MouseEvent): void {
@@ -146,7 +163,7 @@ export class LogComponent implements OnInit {
           .subscribe({
             next: () => {
               this.logs = [];
-              this.updateItems();
+              this.filterLogsByLevel();
             },
             error: () => {
               void this.toastService.error('LOG.TOAST.DELETE_ERROR');
