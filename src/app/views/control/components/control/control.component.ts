@@ -13,6 +13,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '@common/services/toast/toast.service';
 import { Toast } from 'primeng/toast';
+import { CONTROL_GROUPS } from '../../constants/control.constants';
+import { ControlGroupComponent } from '../control-group/control-group.component';
 
 /**
  * t(CONTROL.TOAST.FETCH_RULES_ERROR)
@@ -20,7 +22,7 @@ import { Toast } from 'primeng/toast';
 
 @Component({
   selector: 'app-control',
-  imports: [TranslocoDirective, Toast],
+  imports: [TranslocoDirective, Toast, ControlGroupComponent],
   templateUrl: './control.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
@@ -31,6 +33,7 @@ import { Toast } from 'primeng/toast';
   ],
 })
 export class ControlComponent implements OnInit {
+  groups = CONTROL_GROUPS;
   rules: Record<string, ControlRuleModel> = {};
 
   isLoading = signal(false);

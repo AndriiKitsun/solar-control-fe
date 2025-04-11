@@ -1,11 +1,11 @@
 <ng-container *transloco="let t">
-  <!--  @for (group of groups; track group.id) {-->
-  <!--    <app-protection-group-->
-  <!--      [disabled]="isLoading()"-->
-  <!--      [group]="group"-->
-  <!--      [rule]="rules[group.id]"-->
-  <!--    />-->
-  <!--  }-->
+  @for (group of groups; track group.id) {
+    <app-control-group
+      [disabled]="isLoading()"
+      [group]="group"
+      [rule]="rules[group.id]"
+    />
+  }
 </ng-container>
 
 <p-toast />

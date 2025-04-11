@@ -1,0 +1,40 @@
+<div class="card" *transloco="let t" [formGroup]="form">
+  <div class="mb-4 flex">
+    <span class="ml-2 cursor-pointer text-lg font-semibold">{{
+      t(group().label)
+    }}</span>
+  </div>
+
+  <div class="flex justify-between">
+    <div class="flex gap-x-2">
+      @for (input of group().inputs; track input.id) {
+        <p-floatlabel variant="on">
+          <p-input-number
+            [inputId]="input.id"
+            [min]="input.min"
+            [max]="input.max"
+            [step]="input.step"
+            [suffix]="t(input.suffix)"
+            [minFractionDigits]="input.fractionDigits"
+            [maxFractionDigits]="input.fractionDigits"
+            [useGrouping]="false"
+            showButtons
+            [formControlName]="input.formControlId"
+          />
+          <label [for]="input.id">{{ t(input.label) }}</label>
+        </p-floatlabel>
+      }
+    </div>
+
+    <p-button
+      [label]="t('BUTTON.SAVE')"
+      icon="pi pi-save"
+      [loading]="isLoading()"
+      [disabled]="isDisabled() || form.invalid || !form.dirty"
+      (onClick)="openSaveDialog($event)"
+    />
+  </div>
+</div>
+
+<p-confirm-dialog />
+<p-toast />

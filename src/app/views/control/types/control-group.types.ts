@@ -1,23 +1,23 @@
 import { ControlRuleId } from '../enums/control-rule.enum';
 import { TranslationKey } from '@common/types/lang.types';
 import { FormControl } from '@angular/forms';
+import { ControlRuleModel } from '../models/control-rule.models';
 
 export interface ControlGroup {
   id: ControlRuleId;
-  scaleUpTimeInputId: string;
-  scaleUpValueInputId: string;
-  scaleDownTimeInputId: string;
-  scaleDownValueInputId: string;
   label: TranslationKey;
-  input: ControlInput;
+  inputs: ControlInput[];
 }
 
 export interface ControlInput {
+  id: string;
+  formControlId: keyof ControlRuleModel;
   min: number;
   max: number;
   step: number;
-  suffix: TranslationKey;
   fractionDigits: number;
+  suffix: TranslationKey;
+  label: TranslationKey;
 }
 
 export interface ControlRuleForm {
