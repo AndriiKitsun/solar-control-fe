@@ -70,6 +70,26 @@
   "CONFIRM_DIALOG": {
     "HEADER": "Підтвердження"
   },
+  "CONTROL": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правило керування?"
+    },
+    "GROUP": {
+      "DC_BATTERY_AVG_VOLTAGE": "DC Акумулятор - Середня Напруга"
+    },
+    "PLACEHOLDER": {
+      "SCALE_DOWN_CHECK_TIME": "⬇ Час",
+      "SCALE_DOWN_VALUE": "⬇ Мін",
+      "SCALE_UP_CHECK_TIME": "⬆ Час",
+      "SCALE_UP_VALUE": "⬆ Макс",
+      "TIME_SUFFIX": " с",
+      "VOLTAGE_SUFFIX": " В"
+    },
+    "TOAST": {
+      "FETCH_RULES_ERROR": "Виникла помилка під час завантаження правил керування",
+      "SAVE_ERROR": "Виникла помилка під час зберігання правила керування"
+    }
+  },
   "LOG": {
     "CONFIRM_DIALOG": {
       "DELETE_MESSAGE": "Ви впевнені, що бажаєте видалити усі логи?"

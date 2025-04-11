@@ -25,7 +25,6 @@ export const MAIN_TABS: TabItem[] = [
     label: 'TAB_BAR.CONTROL',
     icon: PrimeIcons.WRENCH,
     route: RoutePath.CONTROL,
-    disabled: true,
   },
   {
     label: 'TAB_BAR.ASICS',
