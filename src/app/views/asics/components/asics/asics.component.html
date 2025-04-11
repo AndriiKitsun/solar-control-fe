@@ -46,7 +46,9 @@
     @let summary = asicSummary$ | async;
 
     @if (selectedItem()) {
-      <app-asic-settings [asic]="selectedItem()!.asic!" />
+      <div class="card">
+        <app-asic-settings [asic]="selectedItem()!.asic!" />
+      </div>
 
       @if (summary?.length) {
         <div class="card">
