@@ -43,14 +43,12 @@
       </p-toolbar>
     </div>
 
-    @let summary = asicSummary$ | async;
-
     @if (selectedItem()) {
       <div class="card">
         <app-asic-settings [asic]="selectedItem()!.asic!" />
       </div>
 
-      @if (summary?.length) {
+      @if (asicSummary$ | async; as summary) {
         <div class="card">
           <p-table [value]="summary!" showGridlines rowHover>
             <ng-template #header>
