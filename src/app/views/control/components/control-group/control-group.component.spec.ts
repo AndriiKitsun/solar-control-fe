@@ -40,7 +40,7 @@ describe('ControlGroupComponent', () => {
 
     fixture.componentRef.setInput('group', {
       id: ControlRuleId.DC_BATTERY_AVG_VOLTAGE,
-      label: 'CONTROL.GROUP.DC_BATTERY_AVG_VOLTAGE.LABEL',
+      label: 'CONTROL.GROUP.DC_BATTERY_AVG_VOLTAGE',
       inputs: [
         {
           id: `${ControlRuleId.DC_BATTERY_AVG_VOLTAGE}ScaleUpTime`,
