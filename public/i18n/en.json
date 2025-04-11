@@ -118,6 +118,27 @@
       "SAVE_ERROR": "The error occurred while saving protection rule"
     }
   },
+  "CONTROL": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save control rule?"
+    },
+    "GROUP": {
+      "DC_BATTERY_AVG_VOLTAGE": {
+        "LABEL": "DC Battery - Avg Voltage",
+        "SUFFIX": " V"
+      }
+    },
+    "PLACEHOLDER": {
+      "SCALE_UP_CHECK_TIME": "Scale Up Check Time",
+      "SCALE_UP_VALUE": "Scale Up Value",
+      "SCALE_DOWN_CHECK_TIME": "Scale Down Check Time",
+      "SCALE_DOWN_VALUE": "Scale Down Value"
+    },
+    "TOAST": {
+      "FETCH_RULES_ERROR": "The error occurred while fetching control rules",
+      "SAVE_ERROR": "The error occurred while saving control rule"
+    }
+  },
   "SENSORS": {
     "BUTTON": {
       "POWER": "Power",

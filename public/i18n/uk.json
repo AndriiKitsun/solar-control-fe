@@ -118,6 +118,28 @@
       "SAVE_ERROR": "Виникла помилка під час зберігання правила захисту"
     }
   },
+  "CONTROL": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правило керування?"
+    },
+    "GROUP": {
+      "DC_BATTERY_AVG_VOLTAGE": {
+        "LABEL": "DC Акумулятор - Середня Напруга",
+        "SUFFIX": " В"
+      }
+    },
+    "PLACEHOLDER": {
+      "SCALE_UP_CHECK_TIME": "⬆ час опитування",
+      "SCALE_UP_VALUE": "⬆ Макс",
+      "SCALE_DOWN_CHECK_TIME": "⬇ час опитування",
+      "SCALE_DOWN_VALUE": "⬇ Мін"
+    },
+    "TOAST": {
+      "FETCH_RULES_ERROR": "Виникла помилка під час завантаження правил керування",
+      "SAVE_ERROR": "Виникла помилка під час зберігання правила керування"
+    }
+  },
+
   "SENSORS": {
     "BUTTON": {
       "POWER": "Живлення",

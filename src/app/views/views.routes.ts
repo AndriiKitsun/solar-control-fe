@@ -23,6 +23,13 @@ export default [
       ),
   },
   {
+    path: RoutePath.CONTROL,
+    loadComponent: () =>
+      import('./control/components/control/control.component').then(
+        (c) => c.ControlComponent,
+      ),
+  },
+  {
     path: RoutePath.ASICS,
     loadComponent: () =>
       import('./asics/components/asics/asics.component').then(
