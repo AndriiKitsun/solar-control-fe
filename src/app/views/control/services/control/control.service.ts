@@ -29,9 +29,16 @@ export class ControlService {
   }
 
   saveRule(rule: ControlRuleModel): Observable<ControlRuleModel> {
+    const payload: Partial<ControlRuleModel> = {
+      scaleUpCheckTime: rule.scaleUpCheckTime,
+      scaleUpValue: rule.scaleUpValue,
+      scaleDownCheckTime: rule.scaleDownCheckTime,
+      scaleDownValue: rule.scaleDownValue,
+    };
+
     return this.http.put<ControlRuleModel>(
-      `${env.apiEndpoint}/automation/protection/${rule.id}`,
-      rule,
+      `${env.apiEndpoint}/automation/control/${rule.id}`,
+      payload,
     );
   }
 }
