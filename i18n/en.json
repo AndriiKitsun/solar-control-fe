@@ -26,6 +26,7 @@
       }
     },
     "SETTINGS": {
+      "AUTOMATED": "Automation",
       "T2_ACTIVE": "Start at night",
       "T2_END_STOP": "Stop in the morning"
     },
@@ -69,6 +70,26 @@
   "CONFIRM_DIALOG": {
     "HEADER": "Confirm"
   },
+  "CONTROL": {
+    "CONFIRM_DIALOG": {
+      "SAVE_MESSAGE": "Are you sure you want to save control rule?"
+    },
+    "GROUP": {
+      "DC_BATTERY_AVG_VOLTAGE": "DC Battery - Avg Voltage"
+    },
+    "PLACEHOLDER": {
+      "SCALE_DOWN_CHECK_TIME": "⬇ Time",
+      "SCALE_DOWN_VALUE": "⬇ Min",
+      "SCALE_UP_CHECK_TIME": "⬆ Time",
+      "SCALE_UP_VALUE": "⬆ Max",
+      "TIME_SUFFIX": " s",
+      "VOLTAGE_SUFFIX": " V"
+    },
+    "TOAST": {
+      "FETCH_RULES_ERROR": "The error occurred while fetching control rules",
+      "SAVE_ERROR": "The error occurred while saving control rule"
+    }
+  },
   "LOG": {
     "CONFIRM_DIALOG": {
       "DELETE_MESSAGE": "Are you sure you want to delete all logs?"
@@ -80,7 +101,9 @@
       "WARN": "Warn"
     },
     "TAB": {
-      "LOGS": "Logs"
+      "ALL": "All",
+      "CONTROL": "Control",
+      "PROTECTION": "Protection"
     },
     "TOAST": {
       "DELETE_ERROR": "The error occurred while deleting logs"
