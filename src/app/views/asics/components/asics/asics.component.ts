@@ -17,7 +17,6 @@ import {
   switchMap,
   interval,
   startWith,
-  EMPTY,
   finalize,
   BehaviorSubject,
   of,
@@ -112,7 +111,8 @@ export class AsicsComponent implements OnInit, AfterViewInit {
   selectedItem = signal<AsicMenuItem | null>(null);
 
   menuItems$!: Observable<AsicMenuItem[]>;
-  asicSummary$: Observable<AsicSummaryGridItem[]> = this.getAsicSummary();
+  asicSummary$: Observable<AsicSummaryGridItem[] | null> =
+    this.getAsicSummary();
 
   private addresses: string[] = [];
   private menuItemsSub$ = new BehaviorSubject<AsicMenuItem[]>([]);
@@ -193,11 +193,11 @@ export class AsicsComponent implements OnInit, AfterViewInit {
     };
   }
 
-  getAsicSummary(): Observable<AsicSummaryGridItem[]> {
+  getAsicSummary(): Observable<AsicSummaryGridItem[] | null> {
     return toObservable(this.selectedItem).pipe(
       switchMap((menuItem) => {
         if (!menuItem) {
-          return EMPTY;
+          return of(null);
         }
 
         return interval(ASIC_SUMMARY_UPDATE_INTERVAL).pipe(
@@ -207,13 +207,17 @@ export class AsicsComponent implements OnInit, AfterViewInit {
               catchError(() => {
                 void this.toastService.error('ASICS.TOAST.SUMMARY_ERROR');
 
-                return EMPTY;
+                return of(null);
               }),
             );
           }),
         );
       }),
-      map((summary: AsicSummaryModel) => {
+      map((summary: AsicSummaryModel | null) => {
+        if (!summary) {
+          return null;
+        }
+
         const gridData: AsicSummaryGridItem = {
           ip: summary.ip,
           state: {

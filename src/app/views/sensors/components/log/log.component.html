@@ -41,7 +41,7 @@
     styleClass="border border-surface mt-3"
   >
     <ng-template #item let-item>
-      <div class="flex items-center p-2">
+      <div class="flex items-center p-2 py-1.5">
         <span>[{{ item.createdAt | date: 'dd-MM-yyyy HH:mm:ss' }}]</span>
         <span class="ml-2 text-muted-color">{{
           t(getLevelTranslation(item.level))
