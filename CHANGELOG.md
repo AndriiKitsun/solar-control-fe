@@ -1,5 +1,21 @@
 # solar-control-fe
 
+## 1.6.0
+
+### Minor Changes
+
+- [#53](https://github.com/AndriiKitsun/solar-control-fe/pull/53) [`7adfb00`](https://github.com/AndriiKitsun/solar-control-fe/commit/7adfb0095ac0b11b83a938751660f4d38bbe1d28) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-141: Add automation flag to Asic settings component
+
+- [#56](https://github.com/AndriiKitsun/solar-control-fe/pull/56) [`937d146`](https://github.com/AndriiKitsun/solar-control-fe/commit/937d146d44bc550545b5c56409dc358ba9f82c6a) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-129: Asic scaling UAT testing
+
+  - Adjust the spacing between the Asic Settings and Asic Details panels
+  - Fix the bug where the Asci Details panel does not disappear when the Summary API call finishes with an error
+  - Reduce the vertical padding between log items in the Log component
+
+- [#55](https://github.com/AndriiKitsun/solar-control-fe/pull/55) [`65f3f08`](https://github.com/AndriiKitsun/solar-control-fe/commit/65f3f08fb87a1c4a6e0e0d031b400fbad7264774) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-138: Add separate tab for control logs
+
+- [#54](https://github.com/AndriiKitsun/solar-control-fe/pull/54) [`b268279`](https://github.com/AndriiKitsun/solar-control-fe/commit/b268279c494b04315388bc8836d9e1ba04fe90cc) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-110: Implement Control tab
+
 ## 1.5.0
 
 ### Minor Changes
