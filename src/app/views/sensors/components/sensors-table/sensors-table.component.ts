@@ -115,7 +115,7 @@ export class SensorsTableComponent {
 
     if (sensor.name === SensorName.AC_OUTPUT) {
       row.alarm =
-        protection.rules.acOutputFrequency ||
+        protection.rules.acOutputAvgFrequency ||
         protection.rules.acOutputVoltage ||
         protection.rules.acOutputAvgVoltage;
     }

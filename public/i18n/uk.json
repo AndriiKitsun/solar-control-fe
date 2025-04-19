@@ -118,8 +118,8 @@
         "LABEL": "AC Вихід - Середня напруга",
         "SUFFIX": " В"
       },
-      "AC_OUTPUT_FREQUENCY": {
-        "LABEL": "AC Вихід - Частота",
+      "AC_OUTPUT_AVG_FREQUENCY": {
+        "LABEL": "AC Вихід - Середня Частота",
         "SUFFIX": " Гц"
       },
       "AC_OUTPUT_VOLTAGE": {
