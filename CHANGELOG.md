@@ -1,5 +1,13 @@
 # solar-control-fe
 
+## 1.7.0
+
+### Minor Changes
+
+- [#58](https://github.com/AndriiKitsun/solar-control-fe/pull/58) [`525e80b`](https://github.com/AndriiKitsun/solar-control-fe/commit/525e80bc356358bb5cdc4b2584de22902d605343) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-149: Use average frequency in Sensors table and protection component
+
+- [#59](https://github.com/AndriiKitsun/solar-control-fe/pull/59) [`921bad9`](https://github.com/AndriiKitsun/solar-control-fe/commit/921bad915b3209abe06897d98b0f823c254a15f8) Thanks [@AndriiKitsun](https://github.com/AndriiKitsun)! - SC-155: Add Asic setting to prevent control automation during T2 zone
+
 ## 1.6.0
 
 ### Minor Changes
