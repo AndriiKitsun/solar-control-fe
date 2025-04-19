@@ -28,6 +28,7 @@
     "SETTINGS": {
       "AUTOMATED": "Автоматизація",
       "T2_ACTIVE": "Вмикати вночі",
+      "T2_AUTOMATED": "Автоматизація вночі",
       "T2_END_STOP": "Вимикати вранці"
     },
     "TABLE": {
@@ -114,13 +115,13 @@
       "SAVE_MESSAGE": "Ви впевнені, що бажаєте зберегти правило захисту?"
     },
     "GROUP": {
-      "AC_OUTPUT_AVG_VOLTAGE": {
-        "LABEL": "AC Вихід - Середня напруга",
-        "SUFFIX": " В"
-      },
       "AC_OUTPUT_AVG_FREQUENCY": {
         "LABEL": "AC Вихід - Середня Частота",
         "SUFFIX": " Гц"
+      },
+      "AC_OUTPUT_AVG_VOLTAGE": {
+        "LABEL": "AC Вихід - Середня напруга",
+        "SUFFIX": " В"
       },
       "AC_OUTPUT_VOLTAGE": {
         "LABEL": "AC Вихід - Напруга",
@@ -155,11 +156,11 @@
     },
     "TABLE": {
       "COLUMN": {
+        "AVG_FREQUENCY": "Сер. F (Гц)",
         "AVG_VOLTAGE": "Сер. U (В)",
         "CURRENT": "I (A)",
         "ENERGY": "E (кВт⋅год)",
         "ENERGY_CCY_SUM": "E Сума (грн)",
-        "AVG_FREQUENCY": "Сер. F (Гц)",
         "NAME": "Назва",
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",
