@@ -6,6 +6,7 @@ export interface AsicModel {
   t2Active: boolean;
   t2EndStop: boolean;
   automated: boolean;
+  t2Automated: boolean;
 }
 
 export interface AddAsicModel {
@@ -18,6 +19,7 @@ export interface UpdateAsicModel extends Partial<AddAsicModel> {
   t2Active?: boolean;
   t2EndStop?: boolean;
   automated?: boolean;
+  t2Automated?: boolean;
 }
 
 export type AsicState =
