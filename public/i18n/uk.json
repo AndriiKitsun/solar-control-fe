@@ -118,8 +118,8 @@
         "LABEL": "AC Вихід - Середня напруга",
         "SUFFIX": " В"
       },
-      "AC_OUTPUT_FREQUENCY": {
-        "LABEL": "AC Вихід - Частота",
+      "AC_OUTPUT_AVG_FREQUENCY": {
+        "LABEL": "AC Вихід - Середня Частота",
         "SUFFIX": " Гц"
       },
       "AC_OUTPUT_VOLTAGE": {
@@ -159,7 +159,7 @@
         "CURRENT": "I (A)",
         "ENERGY": "E (кВт⋅год)",
         "ENERGY_CCY_SUM": "E Сума (грн)",
-        "FREQUENCY": "F (Гц)",
+        "AVG_FREQUENCY": "Сер. F (Гц)",
         "NAME": "Назва",
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",

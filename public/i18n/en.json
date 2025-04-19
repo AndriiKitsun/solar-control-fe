@@ -118,8 +118,8 @@
         "LABEL": "AC Output - Avg Voltage",
         "SUFFIX": " V"
       },
-      "AC_OUTPUT_FREQUENCY": {
-        "LABEL": "AC Output - Frequency",
+      "AC_OUTPUT_AVG_FREQUENCY": {
+        "LABEL": "AC Output - Avg Frequency",
         "SUFFIX": " Hz"
       },
       "AC_OUTPUT_VOLTAGE": {
@@ -159,7 +159,7 @@
         "CURRENT": "I (A)",
         "ENERGY": "E (kW⋅h)",
         "ENERGY_CCY_SUM": "E Sum (UAH)",
-        "FREQUENCY": "F (Hz)",
+        "AVG_FREQUENCY": "Avg F (Hz)",
         "NAME": "Name",
         "POWER": "P (kW)",
         "POWER_FACTOR": "Power factor",

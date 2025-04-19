@@ -15,7 +15,7 @@ import { TableColumnWidth } from '@common/enums/table.enums';
  * t(SENSORS.TABLE.COLUMN.T2_ENERGY)
  * t(SENSORS.TABLE.COLUMN.T2_ENERGY_CCY)
  * t(SENSORS.TABLE.COLUMN.ENERGY_CCY_SUM)
- * t(SENSORS.TABLE.COLUMN.FREQUENCY)
+ * t(SENSORS.TABLE.COLUMN.AVG_FREQUENCY)
  * t(SENSORS.TABLE.COLUMN.POWER_FACTOR)
  * t(SENSORS.TABLE.COLUMN.AVG_VOLTAGE)
  * */
@@ -94,8 +94,8 @@ export const SENSORS_TABLE_COLUMNS: ColumnConfig[] = [
     minWidth: TableColumnWidth.MEDIUM,
   },
   {
-    header: 'SENSORS.TABLE.COLUMN.FREQUENCY',
-    field: 'frequency',
+    header: 'SENSORS.TABLE.COLUMN.AVG_FREQUENCY',
+    field: 'avgFrequency',
     minWidth: TableColumnWidth.MEDIUM,
   },
   {

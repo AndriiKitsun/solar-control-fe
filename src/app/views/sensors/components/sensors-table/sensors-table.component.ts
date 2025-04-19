@@ -108,14 +108,14 @@ export class SensorsTableComponent {
       t2Energy: formatNum(sensor.t2Energy, NumFormat.ONE_DIGIT),
       t2EnergyCost: formatCcy(t2EnergyCost),
       energyCost: formatCcy(energyCost),
-      frequency: formatNum(sensor.frequency, NumFormat.TWO_DIGIT),
+      avgFrequency: formatNum(sensor.avgFrequency, NumFormat.TWO_DIGIT),
       powerFactor: formatNum(sensor.powerFactor, NumFormat.TWO_DIGIT),
       avgVoltage: formatNum(sensor.avgVoltage, NumFormat.THREE_DIGITS),
     };
 
     if (sensor.name === SensorName.AC_OUTPUT) {
       row.alarm =
-        protection.rules.acOutputFrequency ||
+        protection.rules.acOutputAvgFrequency ||
         protection.rules.acOutputVoltage ||
         protection.rules.acOutputAvgVoltage;
     }

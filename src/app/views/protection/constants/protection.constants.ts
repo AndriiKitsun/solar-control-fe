@@ -2,8 +2,8 @@ import { ProtectionRuleId } from '../enums/protection.enums';
 import { ProtectionGroup } from '../types/protection-group.types';
 
 /**
- * t(PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.LABEL)
- * t(PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.SUFFIX)
+ * t(PROTECTION.GROUP.AC_OUTPUT_AVG_FREQUENCY.LABEL)
+ * t(PROTECTION.GROUP.AC_OUTPUT_AVG_FREQUENCY.SUFFIX)
  * t(PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.LABEL)
  * t(PROTECTION.GROUP.AC_OUTPUT_VOLTAGE.SUFFIX)
  * t(PROTECTION.GROUP.AC_OUTPUT_AVG_VOLTAGE.LABEL)
@@ -14,17 +14,17 @@ import { ProtectionGroup } from '../types/protection-group.types';
 
 export const PROTECTION_GROUPS: ProtectionGroup[] = [
   {
-    id: ProtectionRuleId.AC_OUTPUT_FREQUENCY,
-    enableCheckId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Enabled`,
-    minInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Min`,
-    maxInputId: `${ProtectionRuleId.AC_OUTPUT_FREQUENCY}Max`,
-    label: 'PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.LABEL',
+    id: ProtectionRuleId.AC_OUTPUT_AVG_FREQUENCY,
+    enableCheckId: `${ProtectionRuleId.AC_OUTPUT_AVG_FREQUENCY}Enabled`,
+    minInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_FREQUENCY}Min`,
+    maxInputId: `${ProtectionRuleId.AC_OUTPUT_AVG_FREQUENCY}Max`,
+    label: 'PROTECTION.GROUP.AC_OUTPUT_AVG_FREQUENCY.LABEL',
     input: {
       min: 49.5,
       max: 50.5,
       step: 0.01,
       fractionDigits: 2,
-      suffix: 'PROTECTION.GROUP.AC_OUTPUT_FREQUENCY.SUFFIX',
+      suffix: 'PROTECTION.GROUP.AC_OUTPUT_AVG_FREQUENCY.SUFFIX',
     },
   },
   {
