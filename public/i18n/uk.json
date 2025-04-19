@@ -159,7 +159,7 @@
         "CURRENT": "I (A)",
         "ENERGY": "E (кВт⋅год)",
         "ENERGY_CCY_SUM": "E Сума (грн)",
-        "FREQUENCY": "F (Гц)",
+        "AVG_FREQUENCY": "Сер. F (Гц)",
         "NAME": "Назва",
         "POWER": "P (кВт)",
         "POWER_FACTOR": "Коеф. потуж.",

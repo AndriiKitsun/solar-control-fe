@@ -159,7 +159,7 @@
         "CURRENT": "I (A)",
         "ENERGY": "E (kW⋅h)",
         "ENERGY_CCY_SUM": "E Sum (UAH)",
-        "FREQUENCY": "F (Hz)",
+        "AVG_FREQUENCY": "Avg F (Hz)",
         "NAME": "Name",
         "POWER": "P (kW)",
         "POWER_FACTOR": "Power factor",

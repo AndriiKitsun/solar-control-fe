@@ -13,6 +13,7 @@ export interface SensorModel {
   power?: number;
   energy?: number;
   frequency?: number;
+  avgFrequency?: number;
   powerFactor?: number;
   t1Energy?: number;
   t2Energy?: number;

@@ -21,7 +21,7 @@ export interface RowDataModel {
   t2Energy: string;
   t2EnergyCost: string;
   energyCost: string;
-  frequency: string;
+  avgFrequency: string;
   powerFactor: string;
   avgVoltage: string;
   alarm?: boolean;
